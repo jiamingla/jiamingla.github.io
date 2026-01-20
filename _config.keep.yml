@@ -256,40 +256,40 @@ comment:
   # See: https://github.com/giscus/giscus
   #      https://giscus.app
   # Please generate your configuration items in https://giscus.app
-giscus:
-  # 是否启用 Giscus 评论系统
-  enable: true
-  # 是否显示加载动画
-  loading: true
-  # GitHub 仓库，格式为 username/repo-name
-  repo: "jiamingla/jiamingla.github.io"
-  # GitHub 仓库的唯一ID
-  repo_id: "R_kgDOQ9s4Ng"
-  # GitHub Discussions 分类名称
-  category: "Blog Comments"
-  # Discussions 分类的唯一 ID
-  category_id: "DIC_kwDOQ9s4Ns4C1NAE"
-  # 指定 GitHub discussion 的匹配规则
-  mapping: "pathname"
-  # 是否启用严格的标题匹配
-  strict: "0"
-  # 是否启用主帖子上的反应
-  reactions_enabled: "1"
-  # 是否输出 discussion 的元数据
-  emit_metadata: 0
-  # 亮色主题
-  theme: light
-  # 暗色主题
-  dark: dark
-  # 评论区的语言
-  lang: "zh-TW"
-  # 评论输入框的位置
-  input_position: bottom
-  # 懒加载评论
-  data_loading: lazy
-  # Artalk
-  # See: https://github.com/ArtalkJS/Artalk
-  #      https://artalk.js.org
+  giscus:
+    # 是否启用 Giscus 评论系统
+    enable: true
+    # 是否显示加载动画
+    loading: true
+    # GitHub 仓库，格式为 username/repo-name
+    repo: "jiamingla/jiamingla.github.io"
+    # GitHub 仓库的唯一ID
+    repo_id: "R_kgDOQ9s4Ng"
+    # GitHub Discussions 分类名称
+    category: "Blog Comments"
+    # Discussions 分类的唯一 ID
+    category_id: "DIC_kwDOQ9s4Ns4C1NAE"
+    # 指定 GitHub discussion 的匹配规则
+    mapping: "pathname"
+    # 是否启用严格的标题匹配
+    strict: "0"
+    # 是否启用主帖子上的反应
+    reactions_enabled: "1"
+    # 是否输出 discussion 的元数据
+    emit_metadata: 0
+    # 亮色主题
+    theme: light
+    # 暗色主题
+    dark: dark
+    # 评论区的语言
+    lang: "zh-TW"
+    # 评论输入框的位置
+    input_position: bottom
+    # 懒加载评论
+    data_loading: lazy
+    # Artalk
+    # See: https://github.com/ArtalkJS/Artalk
+    #      https://artalk.js.org
   artalk:
     server:                    # Server URL
 
