@@ -201,7 +201,7 @@
             
                 <span class="meta-info-item post-update-date">
                     <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                    <span class="datetime" data-updated="Wed Jan 21 2026 01:05:04 GMT+0800">2026-01-21 01:05:04</span>
+                    <span class="datetime" data-updated="Wed Jan 21 2026 02:19:50 GMT+0800">2026-01-21 02:19:50</span>
                 </span>
             
         
@@ -249,7 +249,36 @@
 <p>結果：</p>
 <p>因為父標籤 &lt;android.view.View&gt; 絕對出現在子標籤之前，所以 XPath 返回的列表第一個元素 百分之百 會是父元素。</p>
 <ol start="3">
-<li>實作方式與排序對照表<br>特性 |	By.ID &#x2F; By.ResourceID |	By.XPATH<br>底層原理 |	索引查詢 (Lookup &#x2F; Index) |	樹狀遍歷 (Tree Traversal)<br>執行速度 |	極快（直接定位） |	較慢（需要解析整個 DOM）<br>順序保證 |	弱（取決於底層 OS 註冊順序） |	強（嚴格遵循文件 DFS 順序）<br>適用場景 |	元素 ID 唯一且明確時 |	需要處理複雜層級或重複 ID 時</li>
+<li>實作方式與排序對照表<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="center">By.ID &#x2F; By.ResourceID</th>
+<th align="right">By.XPATH</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">底層原理</td>
+<td align="center">索引查詢 (Lookup &#x2F; Index)</td>
+<td align="right">樹狀遍歷 (Tree Traversal)</td>
+</tr>
+<tr>
+<td align="left">執行速度</td>
+<td align="center">極快（直接定位）</td>
+<td align="right">較慢（需要解析整個 DOM）</td>
+</tr>
+<tr>
+<td align="left">順序保證</td>
+<td align="center">弱（取決於底層 OS 註冊順序）</td>
+<td align="right">強（嚴格遵循文件 DFS 順序）</td>
+</tr>
+<tr>
+<td align="left">適用場景</td>
+<td align="center">元素 ID 唯一且明確時</td>
+<td align="right">需要處理複雜層級或重複 ID 時</td>
+</tr>
+</tbody></table>
+</li>
 </ol>
 
                     
