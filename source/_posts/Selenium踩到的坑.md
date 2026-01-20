@@ -39,7 +39,8 @@ XPath 引擎會強迫進行一次完整的 DOM Tree Walker。它必須解析整�
 
 因為父標籤 <android.view.View> 絕對出現在子標籤之前，所以 XPath 返回的列表第一個元素 百分之百 會是父元素。
 
-3. 實作方式與排序對照表
+3. 實作方式與排序對照表  
+
 | 特性 |	By.ID / By.ResourceID |	By.XPATH |
 | :------ | :------: | ------: |
 | 底層原理 |	索引查詢 (Lookup / Index) |	樹狀遍歷 (Tree Traversal) |
