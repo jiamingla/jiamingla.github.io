@@ -8,7 +8,7 @@ subtitle: '早上好'
 description: '我會在這裡分享有關軟體測試的知識與經驗。'
 keywords: testing, software testing, test automation, qa, quality assurance
 author: 'Elijah Ho'
-language: en
+language: zh
 timezone: 'Asia/Taipei'
 
 # URL
@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
@@ -140,6 +140,15 @@ giscus:
   input_position: bottom
   # 懒加载评论
   data_loading: lazy
+
+# Sitemap
+# path：sitemap 路徑
+# tags：是否要包含標籤（不包含標籤頁）
+# categories：是否要包含分類（不包含分類頁）
+sitemap:
+  path: sitemap.xml
+  tags: false
+  categories: false
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
