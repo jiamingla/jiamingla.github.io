@@ -9,7 +9,7 @@
     
     <title>
         
-            Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯 |
+            Hello World |
         
         The Elijah Web
     </title>
@@ -167,7 +167,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯
+                        Hello World
                     </div>
                 
 
@@ -195,28 +195,19 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2026-01-20 16:13:17</span>
+                <span class="datetime">2026-01-21 10:24:37</span>
             </span>
 
             
                 <span class="meta-info-item post-update-date">
                     <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                    <span class="datetime" data-updated="Wed Jan 21 2026 11:07:06 GMT+0800">2026-01-21 11:07:06</span>
+                    <span class="datetime" data-updated="Wed Jan 21 2026 10:24:37 GMT+0800">2026-01-21 10:24:37</span>
                 </span>
             
         
 
         
 
-        
-            <span class="post-tag meta-info-item border-box">
-                <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/selenium/">selenium</a></li>
-                        
-                    
-                </ul>
-            </span>
         
 
         
@@ -237,58 +228,19 @@
                     
 
                     
-                         <h1 id="Selenium-踩坑筆記：別盲目相信-By-ID，解析重複-ID-下的定位排序邏輯"><a href="#Selenium-踩坑筆記：別盲目相信-By-ID，解析重複-ID-下的定位排序邏輯" class="headerlink" title="Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯"></a>Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯</h1><p>By.ID 和 By.XPATH 在底層掃描邏輯與規範約束力上的不同。<br>這次明白了如果同一個ID有出現在畫面上的好幾個地方，用XPath雖然比較慢，但比較穩定不會定位到錯誤的元素</p>
-<ol>
-<li>By.ID 的實作：優化優先 (Fast Lookup)<br>在多數瀏覽器和 Android 系統中，ID（或 resource-id）被設計為一個「快速索引」。</li>
-</ol>
-<p>實作方式：</p>
-<p>系統通常會維護一個 Hash Map（雜湊表） 或索引表。當你調用 find_elements (By.ID, “…”) 時，驅動程式並不一定會從根節點乖乖地開始遍歷，而是直接向系統底層詢問：「誰的 ID 是這個？」</p>
-<p>排序特點：</p>
-<p>由於底層索引表的目的是「快」，它有時會返回最先被系統註冊到索引中的元素。在 Android UIAutomator 中，如果一個佈局是異步渲染的，或者某些 View 被優化（如 merge 標籤），索引返回的順序並不絕對保證是物理 DOM 順序。</p>
-<p>為什麼抓到子元素？</p>
-<p>在 Android 的 Accessibility Node 樹中，有些父元素會被標記為「僅作為容器（Non-important for accessibility）」，而底層搜尋引擎可能會優先返回「有意義」的葉子節點（Leaf Nodes）。</p>
-<ol start="2">
-<li>By.XPATH 的實作：路徑規範 (Tree Walking)<br>XPath 的實作邏輯完全不同，它是一套嚴格的 W3C 標準演算法。</li>
-</ol>
-<p>實作方式：</p>
-<p>XPath 引擎會強迫進行一次完整的 DOM Tree Walker。它必須解析整個樹狀結構，以確保符合所有路徑約束（例如 &#x2F;&#x2F; 代表任何深度，.. 代表父級）。</p>
-<p>排序特點：</p>
-<p>根據 XPath 規範，結果集（Node-set）必須按照 Document Order（文件順序） 排列。</p>
-<p>文件順序定義： 節點的出現順序與它們在 XML &#x2F; HTML 源碼中「起始標籤」出現的順序一致。</p>
-<p>結果：</p>
-<p>因為父標籤 &lt;android.view.View&gt; 絕對出現在子標籤之前，所以 XPath 返回的列表第一個元素 百分之百 會是父元素。</p>
-<ol start="3">
-<li>實作方式與排序對照表</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th align="left">特性</th>
-<th align="center">By.ID &#x2F; By.ResourceID</th>
-<th align="right">By.XPATH</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">底層原理</td>
-<td align="center">索引查詢 (Lookup &#x2F; Index)</td>
-<td align="right">樹狀遍歷 (Tree Traversal)</td>
-</tr>
-<tr>
-<td align="left">執行速度</td>
-<td align="center">極快（直接定位）</td>
-<td align="right">較慢（需要解析整個 DOM）</td>
-</tr>
-<tr>
-<td align="left">順序保證</td>
-<td align="center">弱（取決於底層 OS 註冊順序）</td>
-<td align="right">強（嚴格遵循文件 DFS 順序）</td>
-</tr>
-<tr>
-<td align="left">適用場景</td>
-<td align="center">元素 ID 唯一且明確時</td>
-<td align="right">需要處理複雜層級或重複 ID 時</td>
-</tr>
-</tbody></table>
+                         <p>Welcome to <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
 
                     
                 </div>
@@ -297,14 +249,6 @@
 
                 <div class="post-bottom-tags-and-share border-box">
                     <div>
-                        
-                            <ul class="post-tags-box border-box">
-                                
-                                    <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/selenium/">selenium</a>
-                                    </li>
-                                
-                            </ul>
                         
                     </div>
                     <div>
@@ -317,22 +261,22 @@
                 
                     <div class="post-nav border-box">
                         
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/2026/01/21/undefined/"
-                                   title="Hello World"
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/selenium-troubleshooting/"
+                                   title="Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯"
                                 >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">Hello World</span>
-                                        <span class="post-nav-item">Prev posts</span>
+                                        <span class="post-nav-title-item text-ellipsis">Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
                                     </span>
                                 </a>
                             </div>
-                        
                         
                     </div>
                 
