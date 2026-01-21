@@ -1,8 +1,11 @@
 ---
-title: Selenium踩到的坑
+urlname: selenium-troubleshooting
+title: Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯
 date: 2026-01-20 16:13:17
-tags:
+tags: selenium
 ---
+
+# Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯
 
 By.ID 和 By.XPATH 在底層掃描邏輯與規範約束力上的不同。
 這次明白了如果同一個ID有出現在畫面上的好幾個地方，用XPath雖然比較慢，但比較穩定不會定位到錯誤的元素
