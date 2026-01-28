@@ -69,13 +69,13 @@ first_screen:
 # Docs: https://keep-docs.xpoet.cn/basis/configuration-guide/social_contact.html
 # ---------------------------------------------------------------------------------------
 social_contact:
-  enable: false      # Option values: true | false
+  enable: true      # Option values: true | false
   links:
     # Fill in your social platform links here, e.g. `github: https://github.com/XPoet`
     # If you want to click open the picture, you need to add a prefix `img | `,
     # at the same time change your link to the image link.
     # e.g. `weixin: img | ./images/qrcode.png`
-    github:          # GitHub
+    github: https://github.com/jiamingla         # GitHub
     weixin:          # WeChat
     qq:              # QQ
     weibo:           # WeiBo
@@ -91,7 +91,7 @@ social_contact:
 # ---------------------------------------------------------------------------------------
 scroll:
   # Show progress bar in top when page scroll
-  progress_bar: false  # Option values: true | false
+  progress_bar: true  # Option values: true | false
 
   # Show percent when page scroll
   percent: false       # Option values: true | false
@@ -114,7 +114,7 @@ home:
   tag: false                # Option values: true | false
 
   # Set the datetime type of home page post block
-  post_datetime: updated    # Option values: updated | created
+  post_datetime: created    # Option values: updated | created
 
 
 # ---------------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ post:
 
     # If true, show Lv1, Lv2, Lv3 ...
     # If false, show custom badge
-    level_badge: true    # Option values: true | false
+    level_badge: false    # Option values: true | false
 
     # Custom badge array, You can be fill one or more item
     custom_badge: ["One", "Two", "Three"]
@@ -136,17 +136,17 @@ post:
   # Depend on Hexo Plugin: hexo-wordcount (`npm install hexo-wordcount`)
   # See: https://github.com/willin/hexo-wordcount
   word_count:
-    wordcount: false     # Word count, one post. Option values: true | false
+    wordcount: true     # Word count, one post. Option values: true | false
     min2read: false      # Time to read, one post. Option values: true | false
 
   # Post datetime
-  datetime_format: "YYYY-MM-DD HH:mm:ss"  # Datetime format. e.g. "YYYY-MM-DD HH:mm:ss"
+  datetime_format: "YYYY-MM-DD"  # Datetime format. e.g. "YYYY-MM-DD HH:mm:ss"
 
   # Post copyright info
   copyright_info: false  # Option values: true | false
 
   # Post share
-  share: false           # Option values: true | false
+  share: true           # Option values: true | false
 
   # Reward author
   reward:
