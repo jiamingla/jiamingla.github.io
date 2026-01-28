@@ -5,15 +5,15 @@
 # Site
 title: 'The Elijah Web'
 subtitle: '早上好'
-description: '我會在這裡分享有關軟體測試的知識與經驗。'
+description: '我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑。'
 keywords: testing, software testing, test automation, qa, quality assurance
 author: 'Elijah Ho'
-language: zh
+language: zh-TW
 timezone: 'Asia/Taipei'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://jiamingla.github.io
 permalink: post/:urlname/
 permalink_defaults:
   title: index
