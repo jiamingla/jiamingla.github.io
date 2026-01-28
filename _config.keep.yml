@@ -270,7 +270,7 @@ comment:
     # Discussions 分类的唯一 ID
     category_id: "DIC_kwDOQ9s4Ns4C1NAE"
     # 指定 GitHub discussion 的匹配规则
-    mapping: "pathname"
+    mapping: "title"
     # 是否启用严格的标题匹配
     strict: "0"
     # 是否启用主帖子上的反应
@@ -284,7 +284,7 @@ comment:
     # 评论区的语言
     lang: "zh-TW"
     # 评论输入框的位置
-    input_position: bottom
+    input_position: top
     # 懒加载评论
     data_loading: lazy
     # Artalk
