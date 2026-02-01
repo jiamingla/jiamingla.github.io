@@ -41,7 +41,7 @@ menu:
   # links: /links               # || fa-solid fa-link
   # photos: /photos             # || fa-solid fa-image
   # tools: /tools               # || fa-solid fa-tools
-  about: /about               # || fa-solid fa-user-graduate
+  about: /about || fa-solid fa-user-graduate
   # ......
 
 
@@ -127,7 +127,7 @@ post:
 
     # If true, show Lv1, Lv2, Lv3 ...
     # If false, show custom badge
-    level_badge: false    # Option values: true | false
+    level_badge: true    # Option values: true | false
 
     # Custom badge array, You can be fill one or more item
     custom_badge: ["One", "Two", "Three"]
@@ -193,10 +193,10 @@ website_count:
   # busuanzi
   # See: http://ibruce.info/2015/04/04/busuanzi/
   busuanzi_count:
-    enable: false     # Option values: true | false
+    enable: true     # Option values: true | false
     site_uv: false    # Option values: true | false
-    site_pv: false    # Option values: true | false
-    page_pv: false    # Option values: true | false
+    site_pv: true    # Option values: true | false
+    page_pv: true    # Option values: true | false
 
 
 # ---------------------------------------------------------------------------------------
@@ -334,8 +334,8 @@ pjax:
 # Docs: https://keep-docs.xpoet.cn/basis/configuration-guide/footer.html
 # ---------------------------------------------------------------------------------------
 footer:
-  since: 2020            # The starting year of your website, Can be null
-  word_count: false      # Option values: true | false
+  since: 2026            # The starting year of your website, Can be null
+  word_count: true      # Option values: true | false
 
   site_deploy:
     enable: false        # Option values: true | false
