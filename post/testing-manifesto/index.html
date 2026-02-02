@@ -9,7 +9,7 @@
     
     <title>
         
-            Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯 |
+            【開台宣言】測試的靈魂在於提問：我未來想分享的寫作藍圖 |
         
         The Elijah Web
     </title>
@@ -229,7 +229,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯
+                        【開台宣言】測試的靈魂在於提問：我未來想分享的寫作藍圖
                     </div>
                 
 
@@ -257,13 +257,13 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2026-01-20</span>
+                <span class="datetime">2026-01-29</span>
             </span>
 
             
                 <span class="meta-info-item post-update-date">
                     <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                    <span class="datetime" data-updated="Wed Jan 21 2026 11:07:06 GMT+0800">2026-01-21</span>
+                    <span class="datetime" data-updated="Thu Jan 29 2026 00:19:17 GMT+0800">2026-01-29</span>
                 </span>
             
         
@@ -274,7 +274,16 @@
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/selenium/">selenium</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
                         
                     
                 </ul>
@@ -303,58 +312,27 @@
                     
 
                     
-                         <h1 id="Selenium-踩坑筆記：別盲目相信-By-ID，解析重複-ID-下的定位排序邏輯"><a href="#Selenium-踩坑筆記：別盲目相信-By-ID，解析重複-ID-下的定位排序邏輯" class="headerlink" title="Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯"></a>Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯</h1><p>By.ID 和 By.XPATH 在底層掃描邏輯與規範約束力上的不同。<br>這次明白了如果同一個ID有出現在畫面上的好幾個地方，用XPath雖然比較慢，但比較穩定不會定位到錯誤的元素</p>
-<ol>
-<li>By.ID 的實作：優化優先 (Fast Lookup)<br>在多數瀏覽器和 Android 系統中，ID（或 resource-id）被設計為一個「快速索引」。</li>
-</ol>
-<p>實作方式：</p>
-<p>系統通常會維護一個 Hash Map（雜湊表） 或索引表。當你調用 find_elements (By.ID, “…”) 時，驅動程式並不一定會從根節點乖乖地開始遍歷，而是直接向系統底層詢問：「誰的 ID 是這個？」</p>
-<p>排序特點：</p>
-<p>由於底層索引表的目的是「快」，它有時會返回最先被系統註冊到索引中的元素。在 Android UIAutomator 中，如果一個佈局是異步渲染的，或者某些 View 被優化（如 merge 標籤），索引返回的順序並不絕對保證是物理 DOM 順序。</p>
-<p>為什麼抓到子元素？</p>
-<p>在 Android 的 Accessibility Node 樹中，有些父元素會被標記為「僅作為容器（Non-important for accessibility）」，而底層搜尋引擎可能會優先返回「有意義」的葉子節點（Leaf Nodes）。</p>
-<ol start="2">
-<li>By.XPATH 的實作：路徑規範 (Tree Walking)<br>XPath 的實作邏輯完全不同，它是一套嚴格的 W3C 標準演算法。</li>
-</ol>
-<p>實作方式：</p>
-<p>XPath 引擎會強迫進行一次完整的 DOM Tree Walker。它必須解析整個樹狀結構，以確保符合所有路徑約束（例如 &#x2F;&#x2F; 代表任何深度，.. 代表父級）。</p>
-<p>排序特點：</p>
-<p>根據 XPath 規範，結果集（Node-set）必須按照 Document Order（文件順序） 排列。</p>
-<p>文件順序定義： 節點的出現順序與它們在 XML &#x2F; HTML 源碼中「起始標籤」出現的順序一致。</p>
-<p>結果：</p>
-<p>因為父標籤 &lt;android.view.View&gt; 絕對出現在子標籤之前，所以 XPath 返回的列表第一個元素 百分之百 會是父元素。</p>
-<ol start="3">
-<li>實作方式與排序對照表</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th align="left">特性</th>
-<th align="center">By.ID &#x2F; By.ResourceID</th>
-<th align="right">By.XPATH</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">底層原理</td>
-<td align="center">索引查詢 (Lookup &#x2F; Index)</td>
-<td align="right">樹狀遍歷 (Tree Traversal)</td>
-</tr>
-<tr>
-<td align="left">執行速度</td>
-<td align="center">極快（直接定位）</td>
-<td align="right">較慢（需要解析整個 DOM）</td>
-</tr>
-<tr>
-<td align="left">順序保證</td>
-<td align="center">弱（取決於底層 OS 註冊順序）</td>
-<td align="right">強（嚴格遵循文件 DFS 順序）</td>
-</tr>
-<tr>
-<td align="left">適用場景</td>
-<td align="center">元素 ID 唯一且明確時</td>
-<td align="right">需要處理複雜層級或重複 ID 時</td>
-</tr>
-</tbody></table>
+                         <p>大家晚安！</p>
+<p>這段時間我的更新頻率會稍微放慢一些，主要在處理搬家的各項瑣事。不過，這段空檔也讓我能靜下心來梳理未來的寫作方向。</p>
+<p>我一直在思考，除了單純的技術工具，測試工程師還能為團隊帶來什麼價值？未來，我希望透過這個部落格，紀錄我在「品質工程」這條路上的探索。以下是我初步規劃的系列文章藍圖：</p>
+<h3 id="一、-核心思維：從執行者轉向思考者"><a href="#一、-核心思維：從執行者轉向思考者" class="headerlink" title="一、 核心思維：從執行者轉向思考者"></a>一、 核心思維：從執行者轉向思考者</h3><ul>
+<li><strong>問題驅動測試 (PDT) 專題：</strong> 究竟什麼是問題驅動測試？它與我們熟捻的「腳本化測試」有何本質上的差異？為什麼在複雜系統中，PDT 才是抓出致命 Bug 的關鍵？</li>
+<li><strong>推動變革：</strong> 在資源有限的環境下，我們該如何有策略地推動單元測試與問題驅動測試？</li>
+</ul>
+<h3 id="二、-技術實踐：現代工具與架構優化"><a href="#二、-技術實踐：現代工具與架構優化" class="headerlink" title="二、 技術實踐：現代工具與架構優化"></a>二、 技術實踐：現代工具與架構優化</h3><ul>
+<li><strong>AI 驅動開發：</strong> 分享如何利用 <strong>Claude Code + MCP</strong> 的組合，高效撰寫 Android App 前端自動化測試（Python）腳本。</li>
+<li><strong>架構設計：</strong> 深入探討 <strong>Page Object Pattern (POM)</strong>，分享如何將雜亂無章的測試腳本，優雅地重構成易於維護的形狀。</li>
+</ul>
+<h3 id="三、-職場生存與價值導向"><a href="#三、-職場生存與價值導向" class="headerlink" title="三、 職場生存與價值導向"></a>三、 職場生存與價值導向</h3><ul>
+<li><strong>期待管理：</strong> 「領多少錢做多少事」是真的嗎？作為一名測試員，我該對工作抱持什麼樣的成長期待？</li>
+<li><strong>利害關係人溝通：</strong> 如何在紛亂的需求中，精準搞清楚開發、產品、主管等利害關係人的真實期待？</li>
+</ul>
+<h3 id="四、-信仰與工作的對話"><a href="#四、-信仰與工作的對話" class="headerlink" title="四、 信仰與工作的對話"></a>四、 信仰與工作的對話</h3><ul>
+<li><strong>基督徒的測試視角：</strong> 作為一名基督徒，在軟體測試這份強調「挑錯」與「嚴謹」的工作中，我可以期待什麼樣的召命與價值？</li>
+</ul>
+<hr>
+<p>希望這些內容能為同樣在測試領域奮鬥的你，帶來一點啟發與共鳴。搬家事宜告一段落後，我會儘快開始第一篇的更新，敬請期待。</p>
+<p><strong>一切順利。</strong></p>
 
                     
                 </div>
@@ -367,7 +345,19 @@
                             <ul class="post-tags-box border-box">
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/selenium/">selenium</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a>
                                     </li>
                                 
                             </ul>
@@ -383,31 +373,15 @@
                 
                     <div class="post-nav border-box">
                         
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/post/testing-manifesto/"
-                                   title="【開台宣言】測試的靈魂在於提問：我未來想分享的寫作藍圖"
-                                >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">【開台宣言】測試的靈魂在於提問：我未來想分享的寫作藍圖</span>
-                                        <span class="post-nav-item">上一篇</span>
-                                    </span>
-                                </a>
-                            </div>
-                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/post/hello-world/"
-                                   title="Hello World"
+                                   href="/post/selenium-troubleshooting/"
+                                   title="Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">Hello World</span>
+                                        <span class="post-nav-title-item text-ellipsis">Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯</span>
                                         <span class="post-nav-item">下一篇</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -536,7 +510,7 @@
             <div class="pc-post-toc left-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Selenium-%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98%EF%BC%9A%E5%88%A5%E7%9B%B2%E7%9B%AE%E7%9B%B8%E4%BF%A1-By-ID%EF%BC%8C%E8%A7%A3%E6%9E%90%E9%87%8D%E8%A4%87-ID-%E4%B8%8B%E7%9A%84%E5%AE%9A%E4%BD%8D%E6%8E%92%E5%BA%8F%E9%82%8F%E8%BC%AF"><span class="nav-text">Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E6%A0%B8%E5%BF%83%E6%80%9D%E7%B6%AD%EF%BC%9A%E5%BE%9E%E5%9F%B7%E8%A1%8C%E8%80%85%E8%BD%89%E5%90%91%E6%80%9D%E8%80%83%E8%80%85"><span class="nav-text">一、 核心思維：從執行者轉向思考者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E6%8A%80%E8%A1%93%E5%AF%A6%E8%B8%90%EF%BC%9A%E7%8F%BE%E4%BB%A3%E5%B7%A5%E5%85%B7%E8%88%87%E6%9E%B6%E6%A7%8B%E5%84%AA%E5%8C%96"><span class="nav-text">二、 技術實踐：現代工具與架構優化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E8%81%B7%E5%A0%B4%E7%94%9F%E5%AD%98%E8%88%87%E5%83%B9%E5%80%BC%E5%B0%8E%E5%90%91"><span class="nav-text">三、 職場生存與價值導向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E4%BF%A1%E4%BB%B0%E8%88%87%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%B0%8D%E8%A9%B1"><span class="nav-text">四、 信仰與工作的對話</span></a></li></ol>
     </div>
 </div>
 
@@ -718,7 +692,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Selenium-%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98%EF%BC%9A%E5%88%A5%E7%9B%B2%E7%9B%AE%E7%9B%B8%E4%BF%A1-By-ID%EF%BC%8C%E8%A7%A3%E6%9E%90%E9%87%8D%E8%A4%87-ID-%E4%B8%8B%E7%9A%84%E5%AE%9A%E4%BD%8D%E6%8E%92%E5%BA%8F%E9%82%8F%E8%BC%AF"><span class="nav-text">Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E6%A0%B8%E5%BF%83%E6%80%9D%E7%B6%AD%EF%BC%9A%E5%BE%9E%E5%9F%B7%E8%A1%8C%E8%80%85%E8%BD%89%E5%90%91%E6%80%9D%E8%80%83%E8%80%85"><span class="nav-text">一、 核心思維：從執行者轉向思考者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E6%8A%80%E8%A1%93%E5%AF%A6%E8%B8%90%EF%BC%9A%E7%8F%BE%E4%BB%A3%E5%B7%A5%E5%85%B7%E8%88%87%E6%9E%B6%E6%A7%8B%E5%84%AA%E5%8C%96"><span class="nav-text">二、 技術實踐：現代工具與架構優化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E8%81%B7%E5%A0%B4%E7%94%9F%E5%AD%98%E8%88%87%E5%83%B9%E5%80%BC%E5%B0%8E%E5%90%91"><span class="nav-text">三、 職場生存與價值導向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E4%BF%A1%E4%BB%B0%E8%88%87%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%B0%8D%E8%A9%B1"><span class="nav-text">四、 信仰與工作的對話</span></a></li></ol>
     </div>
 </div>
 
