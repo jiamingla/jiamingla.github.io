@@ -180,10 +180,10 @@ toc:
   expand_all: false  # Option values: true | false
 
   # If true, auto open TOC every time when you enter post page
-  init_open: true    # Option values: true | false
+  init_open: false    # Option values: true | false
 
   # TOC layout on post page
-  layout: right      # Option values: left | right
+  layout: left      # Option values: left | right
 
 
 # ---------------------------------------------------------------------------------------
@@ -319,7 +319,7 @@ lazyload:
 # Docs: https://keep-docs.xpoet.cn/basis/configuration-guide/cdn.html
 # ---------------------------------------------------------------------------------------
 cdn:
-  enable: false       # Option values: true | false
+  enable: true       # Option values: true | false
   provider: cdnjs     # Option values: cdnjs | jsdelivr | unpkg
 
 
