@@ -55,7 +55,7 @@ tags: [軟體測試, FFmpeg, Audacity, 語音測試, 實戰經驗]
 除了用耳聽，我還會用 `ffmpeg` 快速檢查檔案是否損壞：
 ```bash
 ffmpeg -v error -i your_audio_file.mp4 -f null -
-
+```
 --- 
 
 ### 5. 結語
