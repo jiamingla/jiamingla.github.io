@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jiamingla.github.io/post/audio-testing-ffmpeg/</loc>
+    
+    <lastmod>2026-03-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiamingla.github.io/googlebf59fe9929fd5d2f.html</loc>
     
     <lastmod>2026-02-02</lastmod>
@@ -58,7 +67,7 @@
 
   <url>
     <loc>https://jiamingla.github.io/</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
