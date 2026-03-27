@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            【實戰筆記】語音聊天室錄音測試：從 FFmpeg 安裝到「口頭標記」驗證法 |
+        
+        The Elijah Web
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"The Elijah Web","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":null,"category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               The Elijah Web
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        【實戰筆記】語音聊天室錄音測試：從 FFmpeg 安裝到「口頭標記」驗證法
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv1</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-03-24</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Tue Mar 24 2026 15:00:00 GMT+0800">2026-03-24</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/FFmpeg/">FFmpeg</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Audacity/">Audacity</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%AA%9E%E9%9F%B3%E6%B8%AC%E8%A9%A6/">語音測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%AF%A6%E6%88%B0%E7%B6%93%E9%A9%97/">實戰經驗</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>最近接到一個需求：驗證「語音聊天室自動錄音功能」。為了確保行銷團隊拿到的音訊檔案完整且無損，我嘗試使用 <strong>Audacity</strong> 搭配 <strong>FFmpeg</strong> 來進行驗證。</p>
+<p>沒想到，光是安裝工具就踩了一點小坑，這篇文記錄一下解決過程與我的測試計畫。</p>
+<h3 id="1-工具準備：Windows-版-Audacity-導入-FFmpeg"><a href="#1-工具準備：Windows-版-Audacity-導入-FFmpeg" class="headerlink" title="1. 工具準備：Windows 版 Audacity 導入 FFmpeg"></a>1. 工具準備：Windows 版 Audacity 導入 FFmpeg</h3><p>如果你在 Windows 上使用 Audacity，卻發現無法匯入特定的音訊格式（如 AAC 或 WMA），那是因為缺少了 FFmpeg 函式庫。</p>
+<p><strong>安裝避坑指南：</strong></p>
+<ol>
+<li>不要只從官網下載 Audacity，你需要額外的 FFmpeg 外掛。</li>
+<li>前往 <a class="link"   target="_blank" rel="noopener" href="https://lame.buanzo.org/ffmpeg.php" >LAME &amp; FFmpeg download page<i class="fas fa-external-link-alt"></i></a> 下載對應版本。</li>
+<li><strong>關鍵步驟：</strong> 下載 <code>.exe</code> 安裝檔後執行，並在 Audacity 的 <code>偏好設定 &gt; 程式庫</code> 中手動定位 <code>avformat</code> 檔案的位置。</li>
+</ol>
+<p>搞定工具後，才能開始真正的測試工作。</p>
+<hr>
+<h3 id="2-測試計畫：語音錄音完整性驗證-2026-03-24"><a href="#2-測試計畫：語音錄音完整性驗證-2026-03-24" class="headerlink" title="2. 測試計畫：語音錄音完整性驗證 (2026&#x2F;03&#x2F;24)"></a>2. 測試計畫：語音錄音完整性驗證 (2026&#x2F;03&#x2F;24)</h3><p>這次測試的核心目標是：<strong>以「最直覺、低成本」的人工方式，驗證 GCP Bucket 上的檔案完整性。</strong></p>
+<h4 id="測試範圍-Scope"><a href="#測試範圍-Scope" class="headerlink" title="測試範圍 (Scope)"></a>測試範圍 (Scope)</h4><ul>
+<li><strong>包含：</strong> App 端錄音啟動、GCP Bucket 檔案完整性對照。</li>
+<li><strong>不包含：</strong> 後端底層服務測試、影音直播流測試。</li>
+</ul>
+<h4 id="風險評估-Risks"><a href="#風險評估-Risks" class="headerlink" title="風險評估 (Risks)"></a>風險評估 (Risks)</h4><ul>
+<li>環境穩定性：若 RD 突然在測試環境佈版，會干擾錄音檔案生成。</li>
+</ul>
+<hr>
+<h3 id="3-測試方法：「口頭標記」黃金-3-步驟"><a href="#3-測試方法：「口頭標記」黃金-3-步驟" class="headerlink" title="3. 測試方法：「口頭標記」黃金 3 步驟"></a>3. 測試方法：「口頭標記」黃金 3 步驟</h3><p>為了確保長達數十分鐘的錄音沒有「隱形斷層」，我設計了一套<strong>口頭標記法</strong>，這比單純看波形圖更有效：</p>
+<ol>
+<li><strong>開頭（啟動驗證）：</strong> * 動作：大聲說出「我是 [姓名]，現在時間 [X時X分]，錄音開始。」<ul>
+<li>目的：確認錄音與直播同步啟動，且基本音量正常。</li>
+</ul>
+</li>
+<li><strong>中間（心跳驗證）：</strong> * 動作：在直播第 10 分鐘說出「現在是中間點，測試錄音是否持續。」<ul>
+<li>目的：確認時間軸對齊，防止錄音中途自動斷開。</li>
+</ul>
+</li>
+<li><strong>結尾（結束驗證）：</strong> * 動作：結束前說出「現在時間 [X時X分]，錄音結束，總時長約 [X] 分鐘。」<ul>
+<li>目的：確認檔案封裝完整，沒有因為關閉直播導致檔案損毀 (Corrupted)。</li>
+</ul>
+</li>
+</ol>
+<h4 id="進階情境：網路不穩與-App-閃退"><a href="#進階情境：網路不穩與-App-閃退" class="headerlink" title="進階情境：網路不穩與 App 閃退"></a>進階情境：網路不穩與 App 閃退</h4><p>除了正常流程，我也測試了「異常中斷」：</p>
+<ul>
+<li><strong>情境：</strong> 在第 1 分鐘人為斷網或強制關閉 App。</li>
+<li><strong>預期：</strong> 檢查 GCP 上的檔案是否仍能正常讀取（封裝成功），且中斷期間的處理符合預期。</li>
+</ul>
+<hr>
+<h3 id="4-驗證工具：FFmpeg-指令"><a href="#4-驗證工具：FFmpeg-指令" class="headerlink" title="4. 驗證工具：FFmpeg 指令"></a>4. 驗證工具：FFmpeg 指令</h3><p>除了用耳聽，我還會用 <code>ffmpeg</code> 快速檢查檔案是否損壞：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -v error -i your_audio_file.mp4 -f null -</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="5-結語"><a href="#5-結語" class="headerlink" title="5. 結語"></a>5. 結語</h3><p>其實這麼測試遠遠不夠完整，但畢竟這功能還算MVP，後續如果完整了，就再做更完整的測試</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/FFmpeg/">FFmpeg</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Audacity/">Audacity</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%AA%9E%E9%9F%B3%E6%B8%AC%E8%A9%A6/">語音測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%AF%A6%E6%88%B0%E7%B6%93%E9%A9%97/">實戰經驗</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/appium-v2-to-v3-migration/"
+                                   title="【技術升級】Appium 3.0 來了！從 v2 遷移至 v3 的核心重點與避坑指南"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">【技術升級】Appium 3.0 來了！從 v2 遷移至 v3 的核心重點與避坑指南</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/testing-manifesto/"
+                                   title="【開台宣言】測試的靈魂在於提問：我未來想分享的寫作藍圖"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">【開台宣言】測試的靈魂在於提問：我未來想分享的寫作藍圖</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B7%A5%E5%85%B7%E6%BA%96%E5%82%99%EF%BC%9AWindows-%E7%89%88-Audacity-%E5%B0%8E%E5%85%A5-FFmpeg"><span class="nav-text">1. 工具準備：Windows 版 Audacity 導入 FFmpeg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B8%AC%E8%A9%A6%E8%A8%88%E7%95%AB%EF%BC%9A%E8%AA%9E%E9%9F%B3%E9%8C%84%E9%9F%B3%E5%AE%8C%E6%95%B4%E6%80%A7%E9%A9%97%E8%AD%89-2026-03-24"><span class="nav-text">2. 測試計畫：語音錄音完整性驗證 (2026&#x2F;03&#x2F;24)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%AF%84%E5%9C%8D-Scope"><span class="nav-text">測試範圍 (Scope)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%A8%E9%9A%AA%E8%A9%95%E4%BC%B0-Risks"><span class="nav-text">風險評估 (Risks)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B8%AC%E8%A9%A6%E6%96%B9%E6%B3%95%EF%BC%9A%E3%80%8C%E5%8F%A3%E9%A0%AD%E6%A8%99%E8%A8%98%E3%80%8D%E9%BB%83%E9%87%91-3-%E6%AD%A5%E9%A9%9F"><span class="nav-text">3. 測試方法：「口頭標記」黃金 3 步驟</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%B2%E9%9A%8E%E6%83%85%E5%A2%83%EF%BC%9A%E7%B6%B2%E8%B7%AF%E4%B8%8D%E7%A9%A9%E8%88%87-App-%E9%96%83%E9%80%80"><span class="nav-text">進階情境：網路不穩與 App 閃退</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%A9%97%E8%AD%89%E5%B7%A5%E5%85%B7%EF%BC%9AFFmpeg-%E6%8C%87%E4%BB%A4"><span class="nav-text">4. 驗證工具：FFmpeg 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%B5%90%E8%AA%9E"><span class="nav-text">5. 結語</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B7%A5%E5%85%B7%E6%BA%96%E5%82%99%EF%BC%9AWindows-%E7%89%88-Audacity-%E5%B0%8E%E5%85%A5-FFmpeg"><span class="nav-text">1. 工具準備：Windows 版 Audacity 導入 FFmpeg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B8%AC%E8%A9%A6%E8%A8%88%E7%95%AB%EF%BC%9A%E8%AA%9E%E9%9F%B3%E9%8C%84%E9%9F%B3%E5%AE%8C%E6%95%B4%E6%80%A7%E9%A9%97%E8%AD%89-2026-03-24"><span class="nav-text">2. 測試計畫：語音錄音完整性驗證 (2026&#x2F;03&#x2F;24)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%AF%84%E5%9C%8D-Scope"><span class="nav-text">測試範圍 (Scope)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%A8%E9%9A%AA%E8%A9%95%E4%BC%B0-Risks"><span class="nav-text">風險評估 (Risks)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B8%AC%E8%A9%A6%E6%96%B9%E6%B3%95%EF%BC%9A%E3%80%8C%E5%8F%A3%E9%A0%AD%E6%A8%99%E8%A8%98%E3%80%8D%E9%BB%83%E9%87%91-3-%E6%AD%A5%E9%A9%9F"><span class="nav-text">3. 測試方法：「口頭標記」黃金 3 步驟</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%B2%E9%9A%8E%E6%83%85%E5%A2%83%EF%BC%9A%E7%B6%B2%E8%B7%AF%E4%B8%8D%E7%A9%A9%E8%88%87-App-%E9%96%83%E9%80%80"><span class="nav-text">進階情境：網路不穩與 App 閃退</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%A9%97%E8%AD%89%E5%B7%A5%E5%85%B7%EF%BC%9AFFmpeg-%E6%8C%87%E4%BB%A4"><span class="nav-text">4. 驗證工具：FFmpeg 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%B5%90%E8%AA%9E"><span class="nav-text">5. 結語</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
