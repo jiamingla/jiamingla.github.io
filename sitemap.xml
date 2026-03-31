@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jiamingla.github.io/post/black-box-limitations-and-strategy/</loc>
+    
+    <lastmod>2026-03-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiamingla.github.io/post/appium-v2-to-v3-migration/</loc>
+    
+    <lastmod>2026-03-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiamingla.github.io/post/audio-testing-ffmpeg/</loc>
     
     <lastmod>2026-03-24</lastmod>
@@ -58,7 +76,7 @@
 
   <url>
     <loc>https://jiamingla.github.io/</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
