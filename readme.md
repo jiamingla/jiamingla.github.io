@@ -52,4 +52,7 @@ hexo generate
 
 # 部署到 GitHub Pages
 hexo deploy
+
+# 清除上次生成的靜態檔案，再次生成並且部署
+hexo clean && hexo g -d
 ```
