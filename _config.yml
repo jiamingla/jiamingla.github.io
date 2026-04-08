@@ -159,9 +159,10 @@ deploy:
   branch: gh-pages
 
 symbols_count_time:
- #文章内是否显示
   symbols: true
-  time: false
- # 网页底部是否显示
-  total_symbols: true
+  time: true
+  total_symbols: false
   total_time: false
+  exclude_codeblock: true
+  awl: 2   # 中文处理速度（每分钟字数）
+  wpm: 275 # 英文处理速度（每分钟字数）

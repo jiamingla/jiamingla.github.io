@@ -369,3 +369,11 @@ inject:
     # - /js/custom-1.js
     # - /js/custom-2.js
     # - ...
+
+# 字数统计和阅读时长统计
+symbols_count_time:
+  symbols: true          # 显示文章字数
+  time: true             # 显示阅读时长
+  total_symbols: true    # 显示全站总字数
+  total_time: true       # 显示全站总阅读时长
+  exclude_codeblock: true # 设置为 true 则不统计代码块字数
