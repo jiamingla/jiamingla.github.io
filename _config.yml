@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 'The Elijah Web'
+title: 'Elijah’s Quality Lab'
 subtitle: '早上好'
-description: '我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑。'
+description: '我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。'
 keywords: testing, software testing, test automation, qa, quality assurance
 author: 'Elijah Ho'
 language: zh-TW
