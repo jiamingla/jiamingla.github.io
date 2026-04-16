@@ -44,6 +44,9 @@
 ## 常用指令
 
 ```bash
+# 安裝 Hexo
+ npm i -g @hexo
+
 # 啟動本地伺服器
 hexo server
 
