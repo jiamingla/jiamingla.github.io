@@ -9,7 +9,7 @@
     
     <title>
         
-            【開台宣言】測試的靈魂在於提問：我未來想分享的寫作藍圖 |
+            我們真的跑了太多「無意義」的回歸測試嗎？從 MoT 論壇看測試的精簡與價值 |
         
         Elijah’s Quality Lab
     </title>
@@ -229,7 +229,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        【開台宣言】測試的靈魂在於提問：我未來想分享的寫作藍圖
+                        我們真的跑了太多「無意義」的回歸測試嗎？從 MoT 論壇看測試的精簡與價值
                     </div>
                 
 
@@ -257,13 +257,13 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2026-01-29</span>
+                <span class="datetime">2026-04-17</span>
             </span>
 
             
                 <span class="meta-info-item post-update-date">
                     <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                    <span class="datetime" data-updated="Thu Jan 29 2026 00:19:17 GMT+0800">2026-01-29</span>
+                    <span class="datetime" data-updated="Fri Apr 17 2026 23:00:00 GMT+0800">2026-04-17</span>
                 </span>
             
         
@@ -280,10 +280,13 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%9B%9E%E6%AD%B8%E6%B8%AC%E8%A9%A6/">回歸測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/MoT/">MoT</a></li>
                         
                     
                 </ul>
@@ -312,27 +315,42 @@
                     
 
                     
-                         <p>大家晚安！</p>
-<p>這段時間我的更新頻率會稍微放慢一些，主要在處理搬家的各項瑣事。不過，這段空檔也讓我能靜下心來梳理未來的寫作方向。</p>
-<p>我一直在思考，除了單純的技術工具，測試工程師還能為團隊帶來什麼價值？未來，我希望透過這個部落格，紀錄我在「品質工程」這條路上的探索。以下是我初步規劃的系列文章藍圖：</p>
-<h3 id="一、-核心思維：從執行者轉向思考者"><a href="#一、-核心思維：從執行者轉向思考者" class="headerlink" title="一、 核心思維：從執行者轉向思考者"></a>一、 核心思維：從執行者轉向思考者</h3><ul>
-<li><strong>問題驅動測試 (PDT) 專題：</strong> 究竟什麼是問題驅動測試？它與我們熟捻的「腳本化測試」有何本質上的差異？為什麼在複雜系統中，PDT 才是抓出致命 Bug 的關鍵？</li>
-<li><strong>推動變革：</strong> 在資源有限的環境下，我們該如何有策略地推動單元測試與問題驅動測試？</li>
+                         <p>最近在 Ministry of Testing (MoT) 論壇看到一個值得深思的討論：<strong>「我們是否跑了比實際需求更多的回歸測試？」</strong></p>
+<p>在自動化測試領域，我們很容易陷入「數量迷思」。當腳本從 100 條增加到 1000 條時，表面上覆蓋率更高、更有安全感，但現實往往是：維護成本呈倍數增長，而發現關鍵問題的效率卻在下降。</p>
+<h3 id="一、-想刪，但誰敢刪？——-當責的缺失"><a href="#一、-想刪，但誰敢刪？——-當責的缺失" class="headerlink" title="一、 想刪，但誰敢刪？—— 當責的缺失"></a>一、 想刪，但誰敢刪？—— 當責的缺失</h3><p>我深刻體悟到：<strong>刪除一個測試案例，技術上容易，但心理上困難很多。</strong></p>
+<ul>
+<li>你有沒有遇過一個從來沒失敗過的測試，後來發現它測的功能早就下架了？</li>
+<li>你有沒有想刪某個測試，卻因為擔心「萬一出事要扛責」而收手的經驗？</li>
+<li>團隊裡是否曾為了衝 KPI，產出大量「為了綠燈而綠燈」的低價值腳本？</li>
 </ul>
-<h3 id="二、-技術實踐：現代工具與架構優化"><a href="#二、-技術實踐：現代工具與架構優化" class="headerlink" title="二、 技術實踐：現代工具與架構優化"></a>二、 技術實踐：現代工具與架構優化</h3><ul>
-<li><strong>AI 驅動開發：</strong> 分享如何利用 <strong>Claude Code + MCP</strong> 的組合，高效撰寫 Android App 前端自動化測試（Python）腳本。</li>
-<li><strong>架構設計：</strong> 深入探討 <strong>Page Object Pattern (POM)</strong>，分享如何將雜亂無章的測試腳本，優雅地重構成易於維護的形狀。</li>
+<p>這些場景背後都指向同一個核心：<strong>沒有人為這些測試「當責」</strong>。 如果一個測試失敗了，卻沒人知道它當初存在的理由；如果一個測試永遠綠燈，卻沒人有權限決定它是否該被淘汰，這個測試就變成了<strong>技術債</strong>。論壇建議每個測試都應由專人負責，但在現實職場中，提出「精簡」的人往往會被指派去執行。這不只需要技術判斷，更需要一點勇氣。</p>
+<h3 id="二、-篩子理論：篩網破洞的雙重代價：對內臃腫、對外失去信任。"><a href="#二、-篩子理論：篩網破洞的雙重代價：對內臃腫、對外失去信任。" class="headerlink" title="二、 篩子理論：篩網破洞的雙重代價：對內臃腫、對外失去信任。"></a>二、 篩子理論：篩網破洞的雙重代價：對內臃腫、對外失去信任。</h3><p>要解決數量迷思，必須回頭看測試的本質 ——「篩子理論 (Sieve Theory)」。</p>
+<p>想像 Bug 是掉進漏斗裡的碎石與沙塵：</p>
+<ul>
+<li><strong>第一層（單元測試）</strong>：網目最細，能攔截 80% 的微小邏輯錯誤，開發階段即測即改，成本最低。</li>
+<li><strong>第二層（整合測試）</strong>：負責攔截模組串接間的裂縫。</li>
+<li><strong>最後一層（UI 自動化 &#x2F; 回歸測試）</strong>：網目最粗，理應只負責攔截核心路徑的「漏網之魚」。</li>
 </ul>
-<h3 id="三、-職場生存與價值導向"><a href="#三、-職場生存與價值導向" class="headerlink" title="三、 職場生存與價值導向"></a>三、 職場生存與價值導向</h3><ul>
-<li><strong>期待管理：</strong> 「領多少錢做多少事」是真的嗎？作為一名測試員，我該對工作抱持什麼樣的成長期待？</li>
-<li><strong>利害關係人溝通：</strong> 如何在紛亂的需求中，精準搞清楚開發、產品、主管等利害關係人的真實期待？</li>
-</ul>
-<h3 id="四、-信仰與工作的對話"><a href="#四、-信仰與工作的對話" class="headerlink" title="四、 信仰與工作的對話"></a>四、 信仰與工作的對話</h3><ul>
-<li><strong>基督徒的測試視角：</strong> 作為一名基督徒，在軟體測試這份強調「挑錯」與「嚴謹」的工作中，我可以期待什麼樣的召命與價值？</li>
-</ul>
+<p>很多時候回歸測試之所以臃腫，是因為我們前面的「篩網」破洞了。因為對早期測試沒信心，我們產生了補償心理，試圖在最昂貴、最慢、也最脆弱的 UI 層架設一張密不透風的鋼絲網。我們在最後一關，承擔了前面所有階段的失職。</p>
+<p>回歸測試臃腫的另一個副作用，是它製造了大量難以重現的失敗，進而侵蝕 RD 對測試的信任。《單元測試的藝術》給我的啟發是：當 QA 頻繁報出無法穩定重現的 Bug，其實正在一點一滴消耗 RD 的信任。</p>
+<p>這種「不可重現性」往往源於 UI 層級過多的外部變因（網路、非同步處理）。書中建議：與其在 UI 層級反覆測試那 1% 的重現機率（這也是無意義回歸測試的來源），不如透過單元測試在受控環境下穩定捕捉邏輯異常。</p>
+<p>當篩網的密度在早期就建立好，QA 遇到的「靈異事件」自然減少，雙方的專業信任感也隨之提升。</p>
+<h3 id="三、-實踐中的改變：新增腳本前的四個自問"><a href="#三、-實踐中的改變：新增腳本前的四個自問" class="headerlink" title="三、 實踐中的改變：新增腳本前的四個自問"></a>三、 實踐中的改變：新增腳本前的四個自問</h3><p>作為 QA，面對堆積如山的回歸測試，我們能做的微小改變是，在未來添磚加瓦，新增任何一條腳本前，先問自己：</p>
+<ol>
+<li>可解釋性：如果測試失敗，我能 1 分鐘內定位是哪層邏輯出錯嗎？</li>
+<li>重複性：這個功能點在 API 或單元測試層級測過了嗎？</li>
+<li>維護性：我有信心在 UI 變動時快速修復它，而不讓它變成 Flaky Test 嗎？</li>
+<li>存在感：如果這個測試明天消失了，會有人感覺到品質下降嗎？</li>
+</ol>
+<h3 id="四、-結語：斷捨離的代價，由誰來扛？"><a href="#四、-結語：斷捨離的代價，由誰來扛？" class="headerlink" title="四、 結語：斷捨離的代價，由誰來扛？"></a>四、 結語：斷捨離的代價，由誰來扛？</h3><p>回歸測試不應是 QA 的心理安慰劑，而應是精準的導航雷達。</p>
+<p>身為基督徒，我常想起約瑟在埃及的智慧。約瑟在豐年時囤積五穀，是為了荒年時不至於混亂。測試也是一樣——在開發早期補好篩網、建立穩固的單元與整合測試，正是為了上線前不必靠海量回歸測試來壯膽。</p>
+<p>精簡測試，本質上是在挑戰眾人的「舒適圈」。它可能會讓習慣「看綠燈安心」的人不舒服，也可能讓提出精簡的人承受壓力。但我期待自己能成為團隊裡的「品質定心丸」—— 這份安全感不是來自於我跑了幾千條腳本，而是來自於我能精準告訴大家：哪些地方我們測透了，哪些地方還有風險。</p>
+<p>你願不願意當那個站出來推動改變的人？我自己也還在猶豫，但至少我開始想了。</p>
+<p>現在 2026 四月，距離我 2023 三月退伍已經悄悄過了三年。下部隊的那兩個月我在某個營區，主要在幫忙輔導長做些政戰的差事。那個職位的行政瑣事並不少，輔導長常常加班加到周末，我有思考過為什麼沒有人去精簡這些基層的冗長行政流程，但最後的答案是——這不一定符合上頭的利益，我猜測輔導長的上頭要升官，更多要靠的是大量的行政流程確保底下的人不出事。不知道那位輔導長是否順利二十年告退去開大貨車了。</p>
+<p>推動斷捨離不只在職場會遇到阻力。四年前，我待的教會每次開預算規劃會議，常常討論得很冗長、沒有結尾，或是聊天聊太久。後來有人推動改變，順利推進成我們這個世代比較想要的樣子——開會就只討論會議的議題，一個小時內就結束了。但那段過程也造成了教會幾個青年人流失，對於十幾人的教會，每一個人的離開都是巨大的損失。</p>
+<p>改變會有代價。精簡流程不一定會滿足上頭的利益，還可能會踩到既得利益者的腳，刪掉測試會讓習慣「看綠燈安心」的人不舒服。</p>
 <hr>
-<p>希望這些內容能為同樣在測試領域奮鬥的你，帶來一點啟發與共鳴。搬家事宜告一段落後，我會儘快開始第一篇的更新，敬請期待。</p>
-<p><strong>一切順利。</strong></p>
+<p>*參考討論：<br><em><a class="link"   target="_blank" rel="noopener" href="https://club.ministryoftesting.com/t/are-we-running-too-many-regressions-than-required/87169" >Ministry of Testing - Are we running too many regressions than required?<i class="fas fa-external-link-alt"></i></a></em><br><em>《單元測試的藝術》(The Art of Unit Testing)</em></p>
 
                     
                 </div>
@@ -353,11 +371,15 @@
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%9B%9E%E6%AD%B8%E6%B8%AC%E8%A9%A6/">回歸測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/MoT/">MoT</a>
                                     </li>
                                 
                             </ul>
@@ -373,31 +395,15 @@
                 
                     <div class="post-nav border-box">
                         
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/post/audio-testing-ffmpeg/"
-                                   title="【實戰筆記】語音聊天室錄音測試：從 FFmpeg 安裝到「口頭標記」驗證法"
-                                >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">【實戰筆記】語音聊天室錄音測試：從 FFmpeg 安裝到「口頭標記」驗證法</span>
-                                        <span class="post-nav-item">上一篇</span>
-                                    </span>
-                                </a>
-                            </div>
-                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/post/selenium-troubleshooting/"
-                                   title="Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯"
+                                   href="/post/qa-performance-metrics-perspective/"
+                                   title="測試工程師的「價值」如何量化？初階 QA 對於績效指標的觀察與應對"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯</span>
+                                        <span class="post-nav-title-item text-ellipsis">測試工程師的「價值」如何量化？初階 QA 對於績效指標的觀察與應對</span>
                                         <span class="post-nav-item">下一篇</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -526,7 +532,7 @@
             <div class="pc-post-toc left-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E6%A0%B8%E5%BF%83%E6%80%9D%E7%B6%AD%EF%BC%9A%E5%BE%9E%E5%9F%B7%E8%A1%8C%E8%80%85%E8%BD%89%E5%90%91%E6%80%9D%E8%80%83%E8%80%85"><span class="nav-text">一、 核心思維：從執行者轉向思考者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E6%8A%80%E8%A1%93%E5%AF%A6%E8%B8%90%EF%BC%9A%E7%8F%BE%E4%BB%A3%E5%B7%A5%E5%85%B7%E8%88%87%E6%9E%B6%E6%A7%8B%E5%84%AA%E5%8C%96"><span class="nav-text">二、 技術實踐：現代工具與架構優化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E8%81%B7%E5%A0%B4%E7%94%9F%E5%AD%98%E8%88%87%E5%83%B9%E5%80%BC%E5%B0%8E%E5%90%91"><span class="nav-text">三、 職場生存與價值導向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E4%BF%A1%E4%BB%B0%E8%88%87%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%B0%8D%E8%A9%B1"><span class="nav-text">四、 信仰與工作的對話</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E6%83%B3%E5%88%AA%EF%BC%8C%E4%BD%86%E8%AA%B0%E6%95%A2%E5%88%AA%EF%BC%9F%E2%80%94%E2%80%94-%E7%95%B6%E8%B2%AC%E7%9A%84%E7%BC%BA%E5%A4%B1"><span class="nav-text">一、 想刪，但誰敢刪？—— 當責的缺失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%AF%A9%E5%AD%90%E7%90%86%E8%AB%96%EF%BC%9A%E7%AF%A9%E7%B6%B2%E7%A0%B4%E6%B4%9E%E7%9A%84%E9%9B%99%E9%87%8D%E4%BB%A3%E5%83%B9%EF%BC%9A%E5%B0%8D%E5%85%A7%E8%87%83%E8%85%AB%E3%80%81%E5%B0%8D%E5%A4%96%E5%A4%B1%E5%8E%BB%E4%BF%A1%E4%BB%BB%E3%80%82"><span class="nav-text">二、 篩子理論：篩網破洞的雙重代價：對內臃腫、對外失去信任。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E8%B8%90%E4%B8%AD%E7%9A%84%E6%94%B9%E8%AE%8A%EF%BC%9A%E6%96%B0%E5%A2%9E%E8%85%B3%E6%9C%AC%E5%89%8D%E7%9A%84%E5%9B%9B%E5%80%8B%E8%87%AA%E5%95%8F"><span class="nav-text">三、 實踐中的改變：新增腳本前的四個自問</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E7%B5%90%E8%AA%9E%EF%BC%9A%E6%96%B7%E6%8D%A8%E9%9B%A2%E7%9A%84%E4%BB%A3%E5%83%B9%EF%BC%8C%E7%94%B1%E8%AA%B0%E4%BE%86%E6%89%9B%EF%BC%9F"><span class="nav-text">四、 結語：斷捨離的代價，由誰來扛？</span></a></li></ol>
     </div>
 </div>
 
@@ -708,7 +714,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E6%A0%B8%E5%BF%83%E6%80%9D%E7%B6%AD%EF%BC%9A%E5%BE%9E%E5%9F%B7%E8%A1%8C%E8%80%85%E8%BD%89%E5%90%91%E6%80%9D%E8%80%83%E8%80%85"><span class="nav-text">一、 核心思維：從執行者轉向思考者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E6%8A%80%E8%A1%93%E5%AF%A6%E8%B8%90%EF%BC%9A%E7%8F%BE%E4%BB%A3%E5%B7%A5%E5%85%B7%E8%88%87%E6%9E%B6%E6%A7%8B%E5%84%AA%E5%8C%96"><span class="nav-text">二、 技術實踐：現代工具與架構優化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E8%81%B7%E5%A0%B4%E7%94%9F%E5%AD%98%E8%88%87%E5%83%B9%E5%80%BC%E5%B0%8E%E5%90%91"><span class="nav-text">三、 職場生存與價值導向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E4%BF%A1%E4%BB%B0%E8%88%87%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%B0%8D%E8%A9%B1"><span class="nav-text">四、 信仰與工作的對話</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E6%83%B3%E5%88%AA%EF%BC%8C%E4%BD%86%E8%AA%B0%E6%95%A2%E5%88%AA%EF%BC%9F%E2%80%94%E2%80%94-%E7%95%B6%E8%B2%AC%E7%9A%84%E7%BC%BA%E5%A4%B1"><span class="nav-text">一、 想刪，但誰敢刪？—— 當責的缺失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%AF%A9%E5%AD%90%E7%90%86%E8%AB%96%EF%BC%9A%E7%AF%A9%E7%B6%B2%E7%A0%B4%E6%B4%9E%E7%9A%84%E9%9B%99%E9%87%8D%E4%BB%A3%E5%83%B9%EF%BC%9A%E5%B0%8D%E5%85%A7%E8%87%83%E8%85%AB%E3%80%81%E5%B0%8D%E5%A4%96%E5%A4%B1%E5%8E%BB%E4%BF%A1%E4%BB%BB%E3%80%82"><span class="nav-text">二、 篩子理論：篩網破洞的雙重代價：對內臃腫、對外失去信任。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E8%B8%90%E4%B8%AD%E7%9A%84%E6%94%B9%E8%AE%8A%EF%BC%9A%E6%96%B0%E5%A2%9E%E8%85%B3%E6%9C%AC%E5%89%8D%E7%9A%84%E5%9B%9B%E5%80%8B%E8%87%AA%E5%95%8F"><span class="nav-text">三、 實踐中的改變：新增腳本前的四個自問</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E7%B5%90%E8%AA%9E%EF%BC%9A%E6%96%B7%E6%8D%A8%E9%9B%A2%E7%9A%84%E4%BB%A3%E5%83%B9%EF%BC%8C%E7%94%B1%E8%AA%B0%E4%BE%86%E6%89%9B%EF%BC%9F"><span class="nav-text">四、 結語：斷捨離的代價，由誰來扛？</span></a></li></ol>
     </div>
 </div>
 
