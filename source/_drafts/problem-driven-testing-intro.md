@@ -80,7 +80,11 @@ tags: [軟體測試, 問題驅動測試, PDT, 探索式測試, 品質工程, 測
 
 為了誠實交代，PDT 不是我發明的詞彙，它深受幾個思想流派的影響：
 
-- **探索式測試（Exploratory Testing）**：Cem Kaner、James Bach、Michael Bolton 發展的流派，強調「學習、設計、執行」同步進行。PDT 可以視為它的一種實踐精神。
+- **探索式測試（Exploratory Testing）**：Cem Kaner、James Bach、Michael Bolton 發展的流派，強調「學習、設計、執行」同步進行。Bach 對測試本質下過一個我很喜歡的定義——
+
+  > **"Testing is questioning a product in order to evaluate it."**
+
+  一字不差，這就是 PDT。想深入的讀者可以去翻三人合著的《Lessons Learned in Software Testing》，那本書是 Context-Driven School 的入門經典，也是 PDT 背後學理的主要源頭。
 - **Context-Driven School**：主張沒有最佳實務，只有「脈絡下的合適做法」。
 - **風險導向測試（Risk-Based Testing）**：共享「以風險優先」的資源分配邏輯。
 
@@ -269,6 +273,12 @@ PDT 其實不是一個工具、不是一套 SOP、甚至不是一個流派——
 
 兩種角色的市場價值，會隨著系統複雜度的提升，差得越來越遠。
 
+Cem Kaner 在《Lessons Learned in Software Testing》裡寫過一句話，我覺得最適合當這篇的句點：
+
+> **"You are not paid to write test cases, you are paid to test."**
+
+你不是因為「把案例寫完、跑完」才拿到薪水的——你是因為**能為團隊判斷品質**才拿到薪水的。這兩件事的差別，就是 PDT 存在的理由。
+
 ### 一個我還沒想清楚的問題
 
 光知道 PDT 還不夠。真正難的是下面這題：
@@ -282,5 +292,13 @@ PDT 其實不是一個工具、不是一套 SOP、甚至不是一個流派——
 ---
 
 如果這篇對你有幫助，歡迎把那張對照表截圖分享給身邊還在摸索測試價值定位的朋友。
+
+---
+
+### 延伸閱讀
+
+- **《Lessons Learned in Software Testing》** — Cem Kaner, James Bach, Bret Pettichord（Wiley, 2002）。Context-Driven School 創派三人合著，293 條實戰 Lessons。如果這篇文章有打動你，這本書就是下一站。
+- **Context-Driven Testing 七原則** — 可以 Google `Context-Driven School principles`，網路上有完整版；那七條其實是 PDT 的哲學基礎。
+- **《如何閱讀一本書》** — Mortimer Adler。本篇第二節提到「帶著問題進場」的閱讀建議，出自這本書的核心方法論。
 
 **一切順利。**
