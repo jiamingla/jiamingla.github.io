@@ -105,7 +105,7 @@ scroll:
 # ---------------------------------------------------------------------------------------
 home:
   # Website announcement in home page
-  announcement:
+  announcement: 我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。
 
   # Show category in home page post block
   category: false           # Option values: true | false
@@ -356,9 +356,9 @@ footer:
 # Docs: https://keep-docs.xpoet.cn/basis/configuration-guide/inject.html
 # ---------------------------------------------------------------------------------------
 inject:
-  enable: false  # Option values: true | false
+  enable: true  # Option values: true | false
   css:
-    -
+    - /css/custom.css
     # e.g.
     # - /css/custom-1.css
     # - /css/custom-2.css
