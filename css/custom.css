@@ -1,0 +1,14 @@
+/* 
+home.announcement	的句子太長了後面被省略
+找到原因了。Keep 主題在 home.styl:37-39 寫死了 white-space: nowrap + text-overflow: ellipsis，所以長句被截掉。
+
+解法是注入一小段 CSS 覆蓋它。我先看一下 source 目錄結構，找個位置放自訂 CSS。
+*/
+
+/* Allow home announcement to wrap to multiple lines instead of being truncated */
+.home-content-container .website-announcement .announcement p {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  line-height: 1.6;
+}

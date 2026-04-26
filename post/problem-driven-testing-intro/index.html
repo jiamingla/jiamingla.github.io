@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡 |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv2</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-04-24</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Fri Apr 24 2026 19:00:00 GMT+0800">2026-04-24</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PDT/">PDT</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%8E%A2%E7%B4%A2%E5%BC%8F%E6%B8%AC%E8%A9%A6/">探索式測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：一個讓人難受的場景"><a href="#前言：一個讓人難受的場景" class="headerlink" title="前言：一個讓人難受的場景"></a>前言：一個讓人難受的場景</h2><p>想像一個畫面：迭代尾聲，你加班把上百條測試案例全部跑完，報告漂漂亮亮、綠燈整片，信心滿滿地說「可以上線了」。結果上線不到一小時，客服群組跳出第一個 ticket——某個你從來沒想過的操作組合，讓後端噴出 500。</p>
+<p>你心裡浮出那個很難面對的問題：</p>
+<blockquote>
+<p>我到底測了什麼？我測的是「案例」，還是「問題」？</p>
+</blockquote>
+<p>這篇文章想認真回答這件事。因為這正是我開這個部落格想寫的第一個核心命題——<strong>測試的靈魂不在於執行腳本，而在於提問。</strong> 而把這份提問變成一種紀律的做法，我稱為 <strong>問題驅動測試（Problem-Driven Testing, PDT）</strong>。</p>
+<hr>
+<h2 id="一、先看清楚「腳本化測試」的優點與盲點"><a href="#一、先看清楚「腳本化測試」的優點與盲點" class="headerlink" title="一、先看清楚「腳本化測試」的優點與盲點"></a>一、先看清楚「腳本化測試」的優點與盲點</h2><p>在談 PDT 之前，我必須先幫「腳本化測試（Scripted Testing）」講句公道話——它不是錯的，只是不夠。</p>
+<h3 id="它的優點是真實存在的"><a href="#它的優點是真實存在的" class="headerlink" title="它的優點是真實存在的"></a>它的優點是真實存在的</h3><ul>
+<li><strong>可重複</strong>：同一份案例給不同人跑，結果可以對得起來</li>
+<li><strong>易交接</strong>：新人來了，照著跑就能上工</li>
+<li><strong>覆蓋率可量化</strong>：向上報告時有數字可以給</li>
+<li><strong>建立流程紀律</strong>：尤其在合規嚴格的產業（金融、醫療），腳本化幾乎是必要條件</li>
+</ul>
+<p>所以請不要誤會：我不是要你把腳本燒掉。</p>
+<h3 id="但它有三個結構性盲點"><a href="#但它有三個結構性盲點" class="headerlink" title="但它有三個結構性盲點"></a>但它有三個結構性盲點</h3><p><strong>盲點一：只驗證「預期情況」，處理不了「未預期情況」。</strong></p>
+<p>腳本案例的寫法是「Given X, When Y, Then Z」。問題是，真實世界的 bug 常常發生在「有人做了 W」——那個你寫案例時根本沒想到的 W。</p>
+<p>這不只是理論——測試圈流傳一個段子梗圖完美詮釋了這件事：</p>
+<blockquote>
+<p>一位 QA 工程師走進酒吧，點了 1 杯啤酒、點了 0 杯啤酒、點了 99999 杯啤酒、點了 -1 杯啤酒、點了一條蜥蜴——系統都正常處理。真正的使用者走進來之後，問了一句「廁所在哪？」酒吧當場爆炸。</p>
+</blockquote>
+<p><strong>盲點二：腳本本身就是一種假設，而 bug 常常躲在假設之外。</strong></p>
+<p>每一條測試案例，都是你對「系統應該怎麼用」的一個猜測。但致命的 bug 很少出現在你猜對的地方——它們藏在你<strong>沒想到要猜</strong>的地方。</p>
+<p><strong>盲點三：複雜系統中，排列組合爆炸，腳本永遠寫不完。</strong></p>
+<p>一個中等規模的 App，把所有使用者狀態 × 網路狀態 × 裝置狀態 × 帳號權限組合起來，輕易就是上萬種情境。你不可能寫完。那你寫的那 300 條，憑什麼相信它涵蓋了最危險的那幾種？</p>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><p>腳本化測試解決的是「<strong>可重複的驗證</strong>」問題，解決不了「<strong>未知風險的發現</strong>」問題。而致命 bug，幾乎全都屬於後者。</p>
+<hr>
+<h2 id="二、那什麼是問題驅動測試（PDT）？"><a href="#二、那什麼是問題驅動測試（PDT）？" class="headerlink" title="二、那什麼是問題驅動測試（PDT）？"></a>二、那什麼是問題驅動測試（PDT）？</h2><h3 id="一句話定義"><a href="#一句話定義" class="headerlink" title="一句話定義"></a>一句話定義</h3><blockquote>
+<p><strong>問題驅動測試，是以「尚未回答的問題」為測試的起點，而不是以「預先寫好的案例」為起點。</strong></p>
+</blockquote>
+<p>這個差異聽起來很小，其實整個工作流程會翻過來。</p>
+<h3 id="三個核心前提"><a href="#三個核心前提" class="headerlink" title="三個核心前提"></a>三個核心前提</h3><p><strong>前提一：每個軟體都藏著我們還不知道的風險。</strong></p>
+<p>測試員的工作不是「證明系統沒問題」，而是「找出我們原本以為沒問題、但其實有問題的地方」。如果你相信系統是完美的，你根本不需要測試。</p>
+<p><strong>前提二：測試的目的，是降低「對品質的不確定性」。</strong></p>
+<p>不是產出通過數，不是覆蓋率報表，不是「我跑完了」——是<strong>讓團隊更清楚產品目前站在什麼位置</strong>。一個找到關鍵風險的測試員，比一個跑完五百條案例但什麼都沒問的測試員更有價值。</p>
+<p><strong>前提三：腳本是工具，不是目的。</strong></p>
+<p>腳本存在是為了幫你記得「底線要守住」，不是為了定義「你只能做這些」。</p>
+<h3 id="它不是我發明的，它有血統"><a href="#它不是我發明的，它有血統" class="headerlink" title="它不是我發明的，它有血統"></a>它不是我發明的，它有血統</h3><p>為了誠實交代，PDT 不是我發明的詞彙，它深受幾個思想流派的影響：</p>
+<ul>
+<li><p><strong>探索式測試（Exploratory Testing）</strong>：Cem Kaner、James Bach、Michael Bolton 發展的流派，強調「學習、設計、執行」同步進行。Bach 對測試本質下過一個我很喜歡的定義——</p>
+<blockquote>
+<p><strong>“Testing is questioning a product in order to evaluate it.”</strong></p>
+</blockquote>
+<p>一字不差，這就是 PDT。想深入的讀者可以去翻三人合著的《Lessons Learned in Software Testing》，那本書是 Context-Driven School 的入門經典，也是 PDT 背後學理的主要源頭。</p>
+</li>
+<li><p><strong>Context-Driven School</strong>：主張沒有最佳實務，只有「脈絡下的合適做法」。</p>
+</li>
+<li><p><strong>風險導向測試（Risk-Based Testing）</strong>：共享「以風險優先」的資源分配邏輯。</p>
+</li>
+</ul>
+<p>我之所以還是特別用「問題驅動」這個名字，是因為我想把<strong>提問的動作本身</strong>，放到方法論的正中央。</p>
+<h3 id="一個跨領域的印證：連閱讀都是這樣"><a href="#一個跨領域的印證：連閱讀都是這樣" class="headerlink" title="一個跨領域的印證：連閱讀都是這樣"></a>一個跨領域的印證：連閱讀都是這樣</h3><p>這個「帶著問題進場」的做法，其實不只在測試圈成立。</p>
+<p>Mortimer Adler 在《如何閱讀一本書》裡，給讀者的核心建議之一就是：</p>
+<blockquote>
+<p><strong>閱讀一本書之前，先在心裡帶著一兩個想問作者的問題進場</strong>，你吸收到的會比什麼都沒帶進去的人多出好幾倍。</p>
+</blockquote>
+<p>這跟 PDT 是完全同一件事。不帶問題進場，<strong>測試和閱讀一樣，都只是讓內容流過你。</strong></p>
+<p>換句話說，PDT 不是什麼 QA 的獨門絕學——它只是把人類在閱讀、研究、訪談、做判斷時<strong>早就在用的求知姿態</strong>，系統化到測試工作裡。如果你是那種讀書會先翻目錄、畫重點、邊讀邊提問的人，恭喜，你其實天生就有 PDT 的腦袋。</p>
+<hr>
+<h2 id="三、PDT-vs-腳本化測試：本質差異對照表"><a href="#三、PDT-vs-腳本化測試：本質差異對照表" class="headerlink" title="三、PDT vs. 腳本化測試：本質差異對照表"></a>三、PDT vs. 腳本化測試：本質差異對照表</h2><table>
+<thead>
+<tr>
+<th>維度</th>
+<th>腳本化測試</th>
+<th>問題驅動測試（PDT）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>起點</strong></td>
+<td>預先寫好的案例</td>
+<td>一個尚未回答的問題</td>
+</tr>
+<tr>
+<td><strong>產出</strong></td>
+<td>Pass &#x2F; Fail</td>
+<td>新的資訊、新的風險、下一個問題</td>
+</tr>
+<tr>
+<td><strong>測試員角色</strong></td>
+<td>執行者</td>
+<td>研究者</td>
+</tr>
+<tr>
+<td><strong>評估標準</strong></td>
+<td>案例通過率、覆蓋率</td>
+<td>風險揭露程度、不確定性下降</td>
+</tr>
+<tr>
+<td><strong>失敗的定義</strong></td>
+<td>案例不通過</td>
+<td>跑完什麼都沒學到</td>
+</tr>
+<tr>
+<td><strong>最適場景</strong></td>
+<td>穩定流程、回歸守門、合規驗證</td>
+<td>複雜系統、新功能、高風險變更、陌生模組</td>
+</tr>
+</tbody></table>
+<p>如果你只能從這篇文章帶走一件事，我希望是這張表裡的這一行：</p>
+<blockquote>
+<p><strong>腳本化測試的失敗是「案例沒過」；問題驅動測試的失敗是「跑完什麼都沒學到」。</strong></p>
+</blockquote>
+<hr>
+<h2 id="四、為什麼在複雜系統中，PDT-才是抓出致命-Bug-的關鍵？"><a href="#四、為什麼在複雜系統中，PDT-才是抓出致命-Bug-的關鍵？" class="headerlink" title="四、為什麼在複雜系統中，PDT 才是抓出致命 Bug 的關鍵？"></a>四、為什麼在複雜系統中，PDT 才是抓出致命 Bug 的關鍵？</h2><h3 id="複雜系統的三個特徵"><a href="#複雜系統的三個特徵" class="headerlink" title="複雜系統的三個特徵"></a>複雜系統的三個特徵</h3><ol>
+<li><strong>多狀態</strong>：使用者、訂單、裝置、連線⋯⋯每個物件都有自己的狀態機</li>
+<li><strong>多依賴</strong>：前端依賴 API、API 依賴 DB、DB 依賴網路、網路依賴⋯⋯你知道的</li>
+<li><strong>非線性行為</strong>：兩個小問題加在一起，不等於兩個小問題——可能是一個大 crash</li>
+</ol>
+<h3 id="致命-bug-的分布"><a href="#致命-bug-的分布" class="headerlink" title="致命 bug 的分布"></a>致命 bug 的分布</h3><p>我自己踩過坑、看過事故報告後，有一個很鮮明的觀察：<strong>致命 bug 幾乎從不出現在「主流程」上</strong>。它們出現在：</p>
+<ul>
+<li><strong>邊界</strong>：時間剛好到 00:00、剛好滿 100 筆、字串長度剛好 256</li>
+<li><strong>互動</strong>：A 功能跟 B 功能同時進行時</li>
+<li><strong>時序</strong>：請求比預期晚到 3 秒、事件觸發順序顛倒</li>
+<li><strong>異常路徑</strong>：使用者按了「返回」、網路中斷、權限剛好被撤銷</li>
+</ul>
+<p>這四類情境的共通點是什麼？<strong>它們都很難被腳本預先列舉</strong>。因為能預先列舉的，都是設計者已經想到的；而這些 bug 的本質，就是「設計者沒想到」。</p>
+<h3 id="PDT-的武器：一個不斷循環的思考節奏"><a href="#PDT-的武器：一個不斷循環的思考節奏" class="headerlink" title="PDT 的武器：一個不斷循環的思考節奏"></a>PDT 的武器：一個不斷循環的思考節奏</h3><p>PDT 處理這類 bug 的方式，不是多寫幾條案例，而是換一種思考節奏：</p>
+<ul>
+<li><strong>提問</strong>：針對眼前這個模組，冒出一個還沒被回答的問題</li>
+<li><strong>假設</strong>：猜一個答案——「如果我這樣操作，系統應該會這樣反應」</li>
+<li><strong>反證</strong>：動手試試看，驗證假設是不是真的成立</li>
+<li><strong>擴散</strong>：不論結果對錯，都讓它<strong>生出下一個該問的問題</strong></li>
+</ul>
+<p>這是「<strong>怎麼想</strong>」的節奏，會持續循環跑，直到你對模組的不確定性下降到可接受程度。至於<strong>想什麼</strong>——也就是具體該問哪些問題——留到第五節再給你可直接帶走的提問模板。</p>
+<h3 id="一個小例子（我自己踩過的坑）"><a href="#一個小例子（我自己踩過的坑）" class="headerlink" title="一個小例子（我自己踩過的坑）"></a>一個小例子（我自己踩過的坑）</h3><p>我之前寫 Selenium 自動化的時候，有一段測試一直穩定通過。我按照腳本化的邏輯，當然就繼續跑下去。某天我隨手問了一個問題：</p>
+<blockquote>
+<p>「如果頁面裡有<strong>兩個</strong>相同 ID 的元素，我的 <code>By.ID</code> 到底抓到了誰？」</p>
+</blockquote>
+<p>這個問題不在我的腳本裡。但我決定花 10 分鐘去追。結果我發現——<strong>我半年來以為在測的按鈕，根本不是實際使用者會看到的那一顆。</strong>（完整故事寫在 <a href="/posts/selenium-troubleshooting">Selenium踩到的坑</a>。）</p>
+<p>那一刻我第一次真正懂了 PDT 的價值：<strong>腳本守護的是我已經知道的東西，提問揭露的是我不知道自己不知道的東西。</strong></p>
+<hr>
+<h2 id="五、怎麼開始做-PDT？（讓你明天上班就能用）"><a href="#五、怎麼開始做-PDT？（讓你明天上班就能用）" class="headerlink" title="五、怎麼開始做 PDT？（讓你明天上班就能用）"></a>五、怎麼開始做 PDT？（讓你明天上班就能用）</h2><p>講到這裡，如果你只收到「要有提問精神」這種雞湯，我覺得我欠你一個退費。所以這節給你可以直接帶走的東西。</p>
+<h3 id="從「問一個好問題」開始——四個提問模板"><a href="#從「問一個好問題」開始——四個提問模板" class="headerlink" title="從「問一個好問題」開始——四個提問模板"></a>從「問一個好問題」開始——四個提問模板</h3><p>第四節講的是「怎麼想」的節奏（提問 → 假設 → 反證 → 擴散）。這一節給你「<strong>想什麼</strong>」——面對任何一個功能、一個模組、一個新需求，先強迫自己回答這四個問題再動手：</p>
+<ol>
+<li><strong>最糟情境題</strong>：這個功能如果壞掉，對使用者&#x2F;公司最糟會怎樣？</li>
+<li><strong>誤用情境題</strong>：什麼情況下，使用者會做出設計者沒想到的事？</li>
+<li><strong>假設揭露題</strong>：這個功能「之所以能運作」，背後倚賴了哪些沒被寫出來的假設？</li>
+<li><strong>半途情境題</strong>：這個流程如果「只發生一半」，系統會處在什麼狀態？</li>
+</ol>
+<p>這四個問題只要認真問，你會發現每一題都能衍生出十幾個測試點，而且<strong>全部都是腳本裡沒有的</strong>。</p>
+<h3 id="搭配工具"><a href="#搭配工具" class="headerlink" title="搭配工具"></a>搭配工具</h3><ul>
+<li><strong>心智圖</strong>：把提問過程畫出來，問題會自己長問題</li>
+<li><strong>啟發式清單（Heuristics）</strong>：像 James Bach 的 SFDPOT、CRUSSPIC STMPL，當作「提問的提詞卡」</li>
+<li><strong>測試筆記（Session-Based Test Management）</strong>：記下你「問了什麼、試了什麼、學到什麼、還剩什麼沒問」，這是 PDT 最重要的交付物</li>
+</ul>
+<h3 id="最關鍵的觀念：PDT-不取代腳本化測試"><a href="#最關鍵的觀念：PDT-不取代腳本化測試" class="headerlink" title="最關鍵的觀念：PDT 不取代腳本化測試"></a>最關鍵的觀念：PDT <strong>不取代</strong>腳本化測試</h3><p>請務必把這句話收好：</p>
+<blockquote>
+<p><strong>腳本化測試守底線，問題驅動測試追風險。兩者是疊加關係，不是替換關係。</strong></p>
+</blockquote>
+<p>你仍然需要腳本來做回歸、做合規、做可重複驗證。你只是在腳本之外，<strong>額外</strong>留出時間與精力，讓自己以研究者的姿態去追問那些腳本永遠追不到的風險。</p>
+<hr>
+<h2 id="六、「可是我哪有時間做-PDT？」——PDT-的四個實務階段"><a href="#六、「可是我哪有時間做-PDT？」——PDT-的四個實務階段" class="headerlink" title="六、「可是我哪有時間做 PDT？」——PDT 的四個實務階段"></a>六、「可是我哪有時間做 PDT？」——PDT 的四個實務階段</h2><p>講到這裡，我猜你心裡已經冒出這句話了：</p>
+<blockquote>
+<p>「聽起來很棒啦，但我手上一個 App 的 UI 手動回歸測試就要兩天——<strong>一天半跑案例、半天寫報告</strong>。你要我在哪裡擠出 PDT 的時間？」</p>
+</blockquote>
+<p>這是最真實的問題。我自己就卡在這個預算裡。所以這節不談理想，只談<strong>現實可操作的版本</strong>。</p>
+<p>先講一件讓你放心的事：<strong>你很可能已經在做 PDT 了，只是沒意識到。</strong> 而且 PDT 不是一個開關，是一個<strong>光譜</strong>。</p>
+<h3 id="你可能已經在做-PDT-了——三個徵兆"><a href="#你可能已經在做-PDT-了——三個徵兆" class="headerlink" title="你可能已經在做 PDT 了——三個徵兆"></a>你可能已經在做 PDT 了——三個徵兆</h3><ul>
+<li>跑案例跑到一半突然停下來：「奇怪，這個按鈕剛剛為什麼會這樣反應？」於是多點了幾下</li>
+<li>測試報告裡除了 pass&#x2F;fail，還多寫了一段「順便觀察到⋯⋯」</li>
+<li>對某個 feature 有「總覺得哪裡怪怪的」的直覺，決定在時間之外多測一輪</li>
+</ul>
+<p><strong>這些都是 PDT 的雛形。</strong> 如果你有過這些動作，你不是 0 分，你已經在 Level 1 了。</p>
+<h3 id="PDT-的四個階段"><a href="#PDT-的四個階段" class="headerlink" title="PDT 的四個階段"></a>PDT 的四個階段</h3><p>我把實務上看到的 PDT 強度，分成四個階段。對照看看你在哪一層：</p>
+<table>
+<thead>
+<tr>
+<th>階段</th>
+<th>時間配置</th>
+<th>行為特徵</th>
+<th>典型產出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Level 1：偶發式</strong></td>
+<td>95% 跑腳本 + 5% 隨機追問</td>
+<td>遇到「怪怪的」才停下來，不規劃</td>
+<td>案例結果 + 零星觀察</td>
+</tr>
+<tr>
+<td><strong>Level 2：保留式</strong></td>
+<td>80% 跑腳本 + 20% 刻意探索</td>
+<td>測前列「想問的問題清單」，刻意留時間</td>
+<td>結構化觀察 + 風險提示</td>
+</tr>
+<tr>
+<td><strong>Level 3：策略式</strong></td>
+<td>50% 跑腳本 + 30% 探索 + 20% 風險規劃</td>
+<td>開始前做風險分析，依風險分配時間</td>
+<td>測試策略 + 風險清單</td>
+</tr>
+<tr>
+<td><strong>Level 4：文化級</strong></td>
+<td>團隊一起提問、一起探索</td>
+<td>PDT notes 成為團隊交付物</td>
+<td>跨角色共識的品質地圖</td>
+</tr>
+</tbody></table>
+<p>這張表有一個重要訊息：<strong>階段之間不是「做得好 &#x2F; 做得差」的差別，而是「個人 &#x2F; 團隊 &#x2F; 組織」的差別。</strong></p>
+<ul>
+<li>Level 1–2：<strong>個人努力就能做到</strong></li>
+<li>Level 3：需要你對專案有一定話語權</li>
+<li>Level 4：超出個人範圍，牽涉到團隊與組織文化</li>
+</ul>
+<p>所以請不要期待自己從 Level 1 直接跳到 Level 3——會很累，硬推通常也會被主管打回來。一次升一階就好。</p>
+<h3 id="回到你那個「1-5-天執行-0-5-天報告」的預算"><a href="#回到你那個「1-5-天執行-0-5-天報告」的預算" class="headerlink" title="回到你那個「1.5 天執行 + 0.5 天報告」的預算"></a>回到你那個「1.5 天執行 + 0.5 天報告」的預算</h3><p>給你三個階梯，從最低門檻開始爬：</p>
+<p><strong>最低門檻（往 Level 1.5 爬）</strong></p>
+<ul>
+<li>把 1.5 天執行的<strong>最後 2 小時</strong>，刻意關掉腳本、自由探索</li>
+<li>帶著一個問題進去：「這個版本我最擔心的三件事是什麼？」</li>
+<li>不一定要找到 bug——只要<strong>讓自己的不確定性下降</strong>，就算成功</li>
+</ul>
+<p><strong>中等門檻（到 Level 2）</strong></p>
+<ul>
+<li>1.5 天拆成「<strong>1 天跑腳本 + 0.5 天探索</strong>」</li>
+<li>探索前花 15 分鐘寫下 5 個想問的問題（用第五節那四題當模板）</li>
+<li>把探索發現寫進 0.5 天的報告裡，當成<strong>附加風險提示</strong>交付</li>
+<li>這會讓你的報告比同事的報告<strong>多一層價值，而且肉眼可見</strong></li>
+</ul>
+<p><strong>進階門檻（到 Level 3）</strong></p>
+<ul>
+<li>在開始測試<strong>之前</strong>，先花 30 分鐘做<strong>風險分析</strong>：這個版本改了什麼、改動影響什麼、哪裡最脆弱</li>
+<li>依風險動態調整：高風險模組多探索、低風險模組用腳本或自動化帶過</li>
+<li>這一層需要你跟 PM 或開發要到「這個版本改了什麼」的清單——<strong>要清單這個動作本身，就已經在累積影響力</strong></li>
+</ul>
+<h3 id="一個心態上的翻轉"><a href="#一個心態上的翻轉" class="headerlink" title="一個心態上的翻轉"></a>一個心態上的翻轉</h3><p>很多人卡在 Level 1 上不去，不是因為沒時間，是因為覺得「<strong>探索時間 &#x3D; 沒產出時間</strong>」。</p>
+<p>這個心態必須翻轉：</p>
+<blockquote>
+<p><strong>探索產出的不是案例結果，是「降低不確定性」這個成果。</strong></p>
+</blockquote>
+<p>當你的報告能告訴團隊「這個版本我最擔心的是 X、因為 Y」，你就已經不是「跑腳本的人」，而是「提供判斷依據的人」。</p>
+<p>在複雜系統的時代，這兩種角色的價值正在快速拉開。</p>
+<hr>
+<h2 id="結語：測試工程師的價值，藏在「你問了什麼問題」"><a href="#結語：測試工程師的價值，藏在「你問了什麼問題」" class="headerlink" title="結語：測試工程師的價值，藏在「你問了什麼問題」"></a>結語：測試工程師的價值，藏在「你問了什麼問題」</h2><p>回到開台宣言那句話：<strong>測試的靈魂在於提問。</strong></p>
+<p>PDT 其實不是一個工具、不是一套 SOP、甚至不是一個流派——它是一種<strong>職業姿態</strong>。它區分的不是資深與資淺，而是**「執行者」與「研究者」**。</p>
+<p>兩種角色的市場價值，會隨著系統複雜度的提升，差得越來越遠。</p>
+<p>Cem Kaner 在《Lessons Learned in Software Testing》裡寫過一句話，我覺得最適合當這篇的句點：</p>
+<blockquote>
+<p><strong>“You are not paid to write test cases, you are paid to test.”</strong></p>
+</blockquote>
+<p>你不是因為「把案例寫完、跑完」才拿到薪水的——你是因為<strong>能為團隊判斷品質</strong>才拿到薪水的。這兩件事的差別，就是 PDT 存在的理由。</p>
+<h3 id="一個我還沒想清楚的問題"><a href="#一個我還沒想清楚的問題" class="headerlink" title="一個我還沒想清楚的問題"></a>一個我還沒想清楚的問題</h3><p>光知道 PDT 還不夠。真正難的是下面這題：</p>
+<blockquote>
+<p><strong>在一個只看腳本通過率的主管、只看交付時程的 PM、只看 bug 數字的團隊裡，你要怎麼把 PDT 真的推動起來？</strong></p>
+</blockquote>
+<p>說實話，這題我自己目前也還沒有完整答案。我正在自己的工作裡慢慢實驗——哪些說法主管聽得進去、哪些情境同事會自然買單、哪些場合硬推反而會讓人反感。等我踩過更多牆、累積更多實際的觀察之後，會再把心得整理成一篇獨立的文章。</p>
+<p>如果你剛好也在嘗試，或是已經有自己的心得，歡迎留言交流——這條路可能結伴走比較遠。</p>
+<hr>
+<p>如果這篇對你有幫助，歡迎把那張對照表截圖分享給身邊還在摸索測試價值定位的朋友。</p>
+<hr>
+<h3 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h3><ul>
+<li><strong>《Lessons Learned in Software Testing》</strong> — Cem Kaner, James Bach, Bret Pettichord（Wiley, 2002）。Context-Driven School 創派三人合著，293 條實戰 Lessons。如果這篇文章有打動你，這本書就是下一站。</li>
+<li><strong>Context-Driven Testing 七原則</strong> — 可以 Google <code>Context-Driven School principles</code>，網路上有完整版；那七條其實是 PDT 的哲學基礎。</li>
+<li><strong>《如何閱讀一本書》</strong> — Mortimer Adler。本篇第二節提到「帶著問題進場」的閱讀建議，出自這本書的核心方法論。</li>
+</ul>
+<p><strong>一切順利。</strong></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/PDT/">PDT</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%8E%A2%E7%B4%A2%E5%BC%8F%E6%B8%AC%E8%A9%A6/">探索式測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/rethinking-regression-test-value/"
+                                   title="我們真的跑了太多「無意義」的回歸測試嗎？從 MoT 論壇看測試的精簡與價值"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">我們真的跑了太多「無意義」的回歸測試嗎？從 MoT 論壇看測試的精簡與價值</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%B8%80%E5%80%8B%E8%AE%93%E4%BA%BA%E9%9B%A3%E5%8F%97%E7%9A%84%E5%A0%B4%E6%99%AF"><span class="nav-text">前言：一個讓人難受的場景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E7%9C%8B%E6%B8%85%E6%A5%9A%E3%80%8C%E8%85%B3%E6%9C%AC%E5%8C%96%E6%B8%AC%E8%A9%A6%E3%80%8D%E7%9A%84%E5%84%AA%E9%BB%9E%E8%88%87%E7%9B%B2%E9%BB%9E"><span class="nav-text">一、先看清楚「腳本化測試」的優點與盲點</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%83%E7%9A%84%E5%84%AA%E9%BB%9E%E6%98%AF%E7%9C%9F%E5%AF%A6%E5%AD%98%E5%9C%A8%E7%9A%84"><span class="nav-text">它的優點是真實存在的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%86%E5%AE%83%E6%9C%89%E4%B8%89%E5%80%8B%E7%B5%90%E6%A7%8B%E6%80%A7%E7%9B%B2%E9%BB%9E"><span class="nav-text">但它有三個結構性盲點</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-text">小結</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%82%A3%E4%BB%80%E9%BA%BC%E6%98%AF%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6%EF%BC%88PDT%EF%BC%89%EF%BC%9F"><span class="nav-text">二、那什麼是問題驅動測試（PDT）？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%A9%B1%E5%AE%9A%E7%BE%A9"><span class="nav-text">一句話定義</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%80%8B%E6%A0%B8%E5%BF%83%E5%89%8D%E6%8F%90"><span class="nav-text">三個核心前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%83%E4%B8%8D%E6%98%AF%E6%88%91%E7%99%BC%E6%98%8E%E7%9A%84%EF%BC%8C%E5%AE%83%E6%9C%89%E8%A1%80%E7%B5%B1"><span class="nav-text">它不是我發明的，它有血統</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E8%B7%A8%E9%A0%98%E5%9F%9F%E7%9A%84%E5%8D%B0%E8%AD%89%EF%BC%9A%E9%80%A3%E9%96%B1%E8%AE%80%E9%83%BD%E6%98%AF%E9%80%99%E6%A8%A3"><span class="nav-text">一個跨領域的印證：連閱讀都是這樣</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81PDT-vs-%E8%85%B3%E6%9C%AC%E5%8C%96%E6%B8%AC%E8%A9%A6%EF%BC%9A%E6%9C%AC%E8%B3%AA%E5%B7%AE%E7%95%B0%E5%B0%8D%E7%85%A7%E8%A1%A8"><span class="nav-text">三、PDT vs. 腳本化測試：本質差異對照表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E5%9C%A8%E8%A4%87%E9%9B%9C%E7%B3%BB%E7%B5%B1%E4%B8%AD%EF%BC%8CPDT-%E6%89%8D%E6%98%AF%E6%8A%93%E5%87%BA%E8%87%B4%E5%91%BD-Bug-%E7%9A%84%E9%97%9C%E9%8D%B5%EF%BC%9F"><span class="nav-text">四、為什麼在複雜系統中，PDT 才是抓出致命 Bug 的關鍵？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A4%87%E9%9B%9C%E7%B3%BB%E7%B5%B1%E7%9A%84%E4%B8%89%E5%80%8B%E7%89%B9%E5%BE%B5"><span class="nav-text">複雜系統的三個特徵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%B4%E5%91%BD-bug-%E7%9A%84%E5%88%86%E5%B8%83"><span class="nav-text">致命 bug 的分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PDT-%E7%9A%84%E6%AD%A6%E5%99%A8%EF%BC%9A%E4%B8%80%E5%80%8B%E4%B8%8D%E6%96%B7%E5%BE%AA%E7%92%B0%E7%9A%84%E6%80%9D%E8%80%83%E7%AF%80%E5%A5%8F"><span class="nav-text">PDT 的武器：一個不斷循環的思考節奏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E5%B0%8F%E4%BE%8B%E5%AD%90%EF%BC%88%E6%88%91%E8%87%AA%E5%B7%B1%E8%B8%A9%E9%81%8E%E7%9A%84%E5%9D%91%EF%BC%89"><span class="nav-text">一個小例子（我自己踩過的坑）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%80%8E%E9%BA%BC%E9%96%8B%E5%A7%8B%E5%81%9A-PDT%EF%BC%9F%EF%BC%88%E8%AE%93%E4%BD%A0%E6%98%8E%E5%A4%A9%E4%B8%8A%E7%8F%AD%E5%B0%B1%E8%83%BD%E7%94%A8%EF%BC%89"><span class="nav-text">五、怎麼開始做 PDT？（讓你明天上班就能用）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%9E%E3%80%8C%E5%95%8F%E4%B8%80%E5%80%8B%E5%A5%BD%E5%95%8F%E9%A1%8C%E3%80%8D%E9%96%8B%E5%A7%8B%E2%80%94%E2%80%94%E5%9B%9B%E5%80%8B%E6%8F%90%E5%95%8F%E6%A8%A1%E6%9D%BF"><span class="nav-text">從「問一個好問題」開始——四個提問模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%AD%E9%85%8D%E5%B7%A5%E5%85%B7"><span class="nav-text">搭配工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%97%9C%E9%8D%B5%E7%9A%84%E8%A7%80%E5%BF%B5%EF%BC%9APDT-%E4%B8%8D%E5%8F%96%E4%BB%A3%E8%85%B3%E6%9C%AC%E5%8C%96%E6%B8%AC%E8%A9%A6"><span class="nav-text">最關鍵的觀念：PDT 不取代腳本化測試</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E3%80%8C%E5%8F%AF%E6%98%AF%E6%88%91%E5%93%AA%E6%9C%89%E6%99%82%E9%96%93%E5%81%9A-PDT%EF%BC%9F%E3%80%8D%E2%80%94%E2%80%94PDT-%E7%9A%84%E5%9B%9B%E5%80%8B%E5%AF%A6%E5%8B%99%E9%9A%8E%E6%AE%B5"><span class="nav-text">六、「可是我哪有時間做 PDT？」——PDT 的四個實務階段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%A0%E5%8F%AF%E8%83%BD%E5%B7%B2%E7%B6%93%E5%9C%A8%E5%81%9A-PDT-%E4%BA%86%E2%80%94%E2%80%94%E4%B8%89%E5%80%8B%E5%BE%B5%E5%85%86"><span class="nav-text">你可能已經在做 PDT 了——三個徵兆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PDT-%E7%9A%84%E5%9B%9B%E5%80%8B%E9%9A%8E%E6%AE%B5"><span class="nav-text">PDT 的四個階段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E5%88%B0%E4%BD%A0%E9%82%A3%E5%80%8B%E3%80%8C1-5-%E5%A4%A9%E5%9F%B7%E8%A1%8C-0-5-%E5%A4%A9%E5%A0%B1%E5%91%8A%E3%80%8D%E7%9A%84%E9%A0%90%E7%AE%97"><span class="nav-text">回到你那個「1.5 天執行 + 0.5 天報告」的預算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E5%BF%83%E6%85%8B%E4%B8%8A%E7%9A%84%E7%BF%BB%E8%BD%89"><span class="nav-text">一個心態上的翻轉</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E6%B8%AC%E8%A9%A6%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E5%83%B9%E5%80%BC%EF%BC%8C%E8%97%8F%E5%9C%A8%E3%80%8C%E4%BD%A0%E5%95%8F%E4%BA%86%E4%BB%80%E9%BA%BC%E5%95%8F%E9%A1%8C%E3%80%8D"><span class="nav-text">結語：測試工程師的價值，藏在「你問了什麼問題」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E6%88%91%E9%82%84%E6%B2%92%E6%83%B3%E6%B8%85%E6%A5%9A%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">一個我還沒想清楚的問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%B8%80%E5%80%8B%E8%AE%93%E4%BA%BA%E9%9B%A3%E5%8F%97%E7%9A%84%E5%A0%B4%E6%99%AF"><span class="nav-text">前言：一個讓人難受的場景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E7%9C%8B%E6%B8%85%E6%A5%9A%E3%80%8C%E8%85%B3%E6%9C%AC%E5%8C%96%E6%B8%AC%E8%A9%A6%E3%80%8D%E7%9A%84%E5%84%AA%E9%BB%9E%E8%88%87%E7%9B%B2%E9%BB%9E"><span class="nav-text">一、先看清楚「腳本化測試」的優點與盲點</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%83%E7%9A%84%E5%84%AA%E9%BB%9E%E6%98%AF%E7%9C%9F%E5%AF%A6%E5%AD%98%E5%9C%A8%E7%9A%84"><span class="nav-text">它的優點是真實存在的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%86%E5%AE%83%E6%9C%89%E4%B8%89%E5%80%8B%E7%B5%90%E6%A7%8B%E6%80%A7%E7%9B%B2%E9%BB%9E"><span class="nav-text">但它有三個結構性盲點</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-text">小結</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%82%A3%E4%BB%80%E9%BA%BC%E6%98%AF%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6%EF%BC%88PDT%EF%BC%89%EF%BC%9F"><span class="nav-text">二、那什麼是問題驅動測試（PDT）？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%A9%B1%E5%AE%9A%E7%BE%A9"><span class="nav-text">一句話定義</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%80%8B%E6%A0%B8%E5%BF%83%E5%89%8D%E6%8F%90"><span class="nav-text">三個核心前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%83%E4%B8%8D%E6%98%AF%E6%88%91%E7%99%BC%E6%98%8E%E7%9A%84%EF%BC%8C%E5%AE%83%E6%9C%89%E8%A1%80%E7%B5%B1"><span class="nav-text">它不是我發明的，它有血統</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E8%B7%A8%E9%A0%98%E5%9F%9F%E7%9A%84%E5%8D%B0%E8%AD%89%EF%BC%9A%E9%80%A3%E9%96%B1%E8%AE%80%E9%83%BD%E6%98%AF%E9%80%99%E6%A8%A3"><span class="nav-text">一個跨領域的印證：連閱讀都是這樣</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81PDT-vs-%E8%85%B3%E6%9C%AC%E5%8C%96%E6%B8%AC%E8%A9%A6%EF%BC%9A%E6%9C%AC%E8%B3%AA%E5%B7%AE%E7%95%B0%E5%B0%8D%E7%85%A7%E8%A1%A8"><span class="nav-text">三、PDT vs. 腳本化測試：本質差異對照表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E5%9C%A8%E8%A4%87%E9%9B%9C%E7%B3%BB%E7%B5%B1%E4%B8%AD%EF%BC%8CPDT-%E6%89%8D%E6%98%AF%E6%8A%93%E5%87%BA%E8%87%B4%E5%91%BD-Bug-%E7%9A%84%E9%97%9C%E9%8D%B5%EF%BC%9F"><span class="nav-text">四、為什麼在複雜系統中，PDT 才是抓出致命 Bug 的關鍵？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A4%87%E9%9B%9C%E7%B3%BB%E7%B5%B1%E7%9A%84%E4%B8%89%E5%80%8B%E7%89%B9%E5%BE%B5"><span class="nav-text">複雜系統的三個特徵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%B4%E5%91%BD-bug-%E7%9A%84%E5%88%86%E5%B8%83"><span class="nav-text">致命 bug 的分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PDT-%E7%9A%84%E6%AD%A6%E5%99%A8%EF%BC%9A%E4%B8%80%E5%80%8B%E4%B8%8D%E6%96%B7%E5%BE%AA%E7%92%B0%E7%9A%84%E6%80%9D%E8%80%83%E7%AF%80%E5%A5%8F"><span class="nav-text">PDT 的武器：一個不斷循環的思考節奏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E5%B0%8F%E4%BE%8B%E5%AD%90%EF%BC%88%E6%88%91%E8%87%AA%E5%B7%B1%E8%B8%A9%E9%81%8E%E7%9A%84%E5%9D%91%EF%BC%89"><span class="nav-text">一個小例子（我自己踩過的坑）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%80%8E%E9%BA%BC%E9%96%8B%E5%A7%8B%E5%81%9A-PDT%EF%BC%9F%EF%BC%88%E8%AE%93%E4%BD%A0%E6%98%8E%E5%A4%A9%E4%B8%8A%E7%8F%AD%E5%B0%B1%E8%83%BD%E7%94%A8%EF%BC%89"><span class="nav-text">五、怎麼開始做 PDT？（讓你明天上班就能用）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%9E%E3%80%8C%E5%95%8F%E4%B8%80%E5%80%8B%E5%A5%BD%E5%95%8F%E9%A1%8C%E3%80%8D%E9%96%8B%E5%A7%8B%E2%80%94%E2%80%94%E5%9B%9B%E5%80%8B%E6%8F%90%E5%95%8F%E6%A8%A1%E6%9D%BF"><span class="nav-text">從「問一個好問題」開始——四個提問模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%AD%E9%85%8D%E5%B7%A5%E5%85%B7"><span class="nav-text">搭配工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%97%9C%E9%8D%B5%E7%9A%84%E8%A7%80%E5%BF%B5%EF%BC%9APDT-%E4%B8%8D%E5%8F%96%E4%BB%A3%E8%85%B3%E6%9C%AC%E5%8C%96%E6%B8%AC%E8%A9%A6"><span class="nav-text">最關鍵的觀念：PDT 不取代腳本化測試</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E3%80%8C%E5%8F%AF%E6%98%AF%E6%88%91%E5%93%AA%E6%9C%89%E6%99%82%E9%96%93%E5%81%9A-PDT%EF%BC%9F%E3%80%8D%E2%80%94%E2%80%94PDT-%E7%9A%84%E5%9B%9B%E5%80%8B%E5%AF%A6%E5%8B%99%E9%9A%8E%E6%AE%B5"><span class="nav-text">六、「可是我哪有時間做 PDT？」——PDT 的四個實務階段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%A0%E5%8F%AF%E8%83%BD%E5%B7%B2%E7%B6%93%E5%9C%A8%E5%81%9A-PDT-%E4%BA%86%E2%80%94%E2%80%94%E4%B8%89%E5%80%8B%E5%BE%B5%E5%85%86"><span class="nav-text">你可能已經在做 PDT 了——三個徵兆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PDT-%E7%9A%84%E5%9B%9B%E5%80%8B%E9%9A%8E%E6%AE%B5"><span class="nav-text">PDT 的四個階段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E5%88%B0%E4%BD%A0%E9%82%A3%E5%80%8B%E3%80%8C1-5-%E5%A4%A9%E5%9F%B7%E8%A1%8C-0-5-%E5%A4%A9%E5%A0%B1%E5%91%8A%E3%80%8D%E7%9A%84%E9%A0%90%E7%AE%97"><span class="nav-text">回到你那個「1.5 天執行 + 0.5 天報告」的預算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E5%BF%83%E6%85%8B%E4%B8%8A%E7%9A%84%E7%BF%BB%E8%BD%89"><span class="nav-text">一個心態上的翻轉</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E6%B8%AC%E8%A9%A6%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E5%83%B9%E5%80%BC%EF%BC%8C%E8%97%8F%E5%9C%A8%E3%80%8C%E4%BD%A0%E5%95%8F%E4%BA%86%E4%BB%80%E9%BA%BC%E5%95%8F%E9%A1%8C%E3%80%8D"><span class="nav-text">結語：測試工程師的價值，藏在「你問了什麼問題」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E6%88%91%E9%82%84%E6%B2%92%E6%83%B3%E6%B8%85%E6%A5%9A%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">一個我還沒想清楚的問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>
