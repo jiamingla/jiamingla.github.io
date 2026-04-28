@@ -142,10 +142,29 @@ giscus:
   # 懒加载评论
   data_loading: lazy
 
-# Sitemap
-# path：sitemap 路徑
-# tags：是否要包含標籤（不包含標籤頁）
-# categories：是否要包含分類（不包含分類頁）
+# Sitemap (hexo-generator-sitemap)
+# ------------------------------------------------------------
+# 功能：自動產生 sitemap.xml，提交給 Google / Bing 等搜尋引擎
+#       讓爬蟲知道網站有哪些頁面、何時更新，加速 SEO 收錄。
+#
+# 產出位置：public/sitemap.xml（執行 `hexo generate` 後）
+# 線上網址：https://jiamingla.github.io/sitemap.xml
+#
+# 提交方式：
+#   1. Google Search Console → Sitemaps → 提交 sitemap.xml
+#   2. 或在 source/robots.txt 加入：Sitemap: https://jiamingla.github.io/sitemap.xml
+#
+# 可用選項：
+#   path        sitemap 檔名／路徑（可為陣列產生多份）
+#   template    自訂 XML 樣板路徑（不設則用內建）
+#   rel         是否在 <head> 加入 rel="sitemap" 連結（預設 false）
+#   tags        是否收錄各個 tag 頁（true 會列入每個標籤的列表頁）
+#   categories  是否收錄各個 category 頁
+#
+# 目前設定意圖：
+#   - 只收錄文章與主要頁面，不把 tag/category 列表頁塞進 sitemap，
+#     避免內容稀薄（thin content）的列表頁稀釋 SEO 權重。
+#   - 若想排除某篇文章，可在該文 front-matter 加 `sitemap: false`。
 sitemap:
   path: sitemap.xml
   tags: false
