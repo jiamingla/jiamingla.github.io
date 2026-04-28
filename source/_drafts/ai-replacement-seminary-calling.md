@@ -180,4 +180,5 @@ QA 在問的是技術系統的真相。神學院在問的是更大的真相。**
 
 - [問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡](/2026/04/24/problem-driven-testing-intro/)
 - 馬丁路德 (Martin Luther) 論呼召（Doctrine of Vocation）相關著作
-- Tim Keller, *Every Good Endeavor: Connecting Your Work to God's Work*
+-  提摩太．凱勒 & 凱薩琳．李芮．阿斯多夫合著 (Timothy Keller&Katherine Leary Alsdorf), 工作魅力 -- 連結你的工作與上帝的工作 (精裝)／Every Good Endeavor: Connecting Your Work to God’s Work
+https://shop.campus.org.tw/ProductDetails.aspx?productID=000504751
