@@ -107,7 +107,7 @@ tags: [AI, AI取代, 呼召, 信仰, 職涯, 軟體測試, 品質工程]
 
 QA 在問的是技術系統的真相。神學院在問的是更大的真相。**但問問題的姿態是一樣的**——都是相信「真相值得被找出來，即使它不討好」。
 
-如果有一天我真的去了神學院，我大概會把我這幾年寫的 [〈問題驅動測試〉](/2026/04/24/problem-driven-testing-intro/) 帶過去。因為那篇文章的核心命題——「**測試的靈魂不在於執行腳本，而在於提問**」——換個場景一樣成立。把「測試」換成「信仰」，把「腳本」換成「教條」，整段話照樣成立。
+如果有一天我真的去了神學院，我大概會把我這幾年寫的 [〈問題驅動測試〉](/post/problem-driven-testing-intro/) 帶過去。因為那篇文章的核心命題——「**測試的靈魂不在於執行腳本，而在於提問**」——換個場景一樣成立。把「測試」換成「信仰」，把「腳本」換成「教條」，整段話照樣成立。
 
 提問是一種職業姿態，也是一種屬靈姿態。
 
@@ -178,7 +178,7 @@ QA 在問的是技術系統的真相。神學院在問的是更大的真相。**
 
 ## 延伸閱讀
 
-- [問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡](/2026/04/24/problem-driven-testing-intro/)
+- [問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡](/post/problem-driven-testing-intro/)
 - 馬丁路德 (Martin Luther) 論呼召（Doctrine of Vocation）相關著作
 -  提摩太．凱勒 & 凱薩琳．李芮．阿斯多夫合著 (Timothy Keller&Katherine Leary Alsdorf), 工作魅力 -- 連結你的工作與上帝的工作 (精裝)／Every Good Endeavor: Connecting Your Work to God’s Work
 https://shop.campus.org.tw/ProductDetails.aspx?productID=000504751
