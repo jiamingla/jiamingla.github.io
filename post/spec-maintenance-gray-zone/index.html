@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            用 specs.md 餵 AI 生測試案例之前——先問一句：誰負責讓那份文件不過期？ |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        用 specs.md 餵 AI 生測試案例之前——先問一句：誰負責讓那份文件不過期？
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv2</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-05-03</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Sun May 03 2026 22:00:00 GMT+0800">2026-05-03</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI/">AI</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI%E7%94%9F%E6%88%90%E6%B8%AC%E8%A9%A6/">AI生成測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/vibe-coding/">vibe coding</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%96%87%E4%BB%B6%E7%B6%AD%E8%AD%B7/">文件維護</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%A6%8F%E6%A0%BC/">規格</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%81%B0%E8%89%B2%E5%9C%B0%E5%B8%B6/">灰色地帶</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%95%B6%E8%B2%AC/">當責</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：一個聽起來很合理的提案"><a href="#前言：一個聽起來很合理的提案" class="headerlink" title="前言：一個聽起來很合理的提案"></a>前言：一個聽起來很合理的提案</h2><p>某次會議，測試主管講了一個聽起來非常合理的構想：</p>
+<blockquote>
+<p>「現在不是流行 vibe coding 嗎？開發那邊都會留一份 <code>specs.md</code>，我們就拿那個丟給 AI，請它幫我們生測試案例。這樣 QA 也可以加速。」</p>
+</blockquote>
+<p>會議室點頭的人不少。看起來這提案幾乎沒有缺點——有現成的文件、有 AI 工具、有產出物（測試案例）、有效率提升（QA 不用從零寫）。我當下也沒有反對，但回到位置上，我心裡有一個聲音越來越大聲：</p>
+<blockquote>
+<p><strong>如果那份 <code>specs.md</code> 在功能上線那一刻起，就再也沒有人動過呢？</strong></p>
+</blockquote>
+<p>如果是那樣，那我們不是在「用 AI 加速 QA」。我們是在用 AI 加速一份<strong>過期文件</strong>——加速地產生一堆驗證舊需求的測試案例，然後拿它去測一個已經改過三輪需求的產品。</p>
+<p>這篇文章想認真聊聊這件事。因為這個「specs.md 給 AI 生測試案例」的提案，<strong>真正的問題不在 AI</strong>，也不在 QA——它在<strong>整個組織有沒有人願意做一件不性感的事：維護文件</strong>。</p>
+<hr>
+<h2 id="一、AI-生測試案例這條鏈，最弱的一環是哪裡？"><a href="#一、AI-生測試案例這條鏈，最弱的一環是哪裡？" class="headerlink" title="一、AI 生測試案例這條鏈，最弱的一環是哪裡？"></a>一、AI 生測試案例這條鏈，最弱的一環是哪裡？</h2><p>我先把這條鏈拆開看：</p>
+<ol>
+<li>PM 寫需求 &#x2F; RD 寫實作 → 產出 <code>specs.md</code></li>
+<li><code>specs.md</code> 跟著功能演化持續更新</li>
+<li>QA 把 <code>specs.md</code> 餵給 AI</li>
+<li>AI 產出測試案例</li>
+<li>QA 執行（或交給自動化執行）測試案例</li>
+<li>測試案例反映出真實的品質風險</li>
+</ol>
+<p>主管的提案，是在優化第 3、4 步——這兩步是<strong>整條鏈裡最容易優化的</strong>，因為它們是純粹的工程問題：給好的輸入、選好的模型、調好的 prompt。</p>
+<p>但這條鏈的可靠度，<strong>從來不是由最強的一環決定的</strong>。它是由<strong>最弱的一環</strong>決定的。</p>
+<p>而我認為這條鏈最弱的一環，幾乎不會是第 3、4 步。它通常是第 2 步——<strong>「<code>specs.md</code> 跟著功能演化持續更新」</strong>。</p>
+<p>因為這一步：</p>
+<ul>
+<li><strong>不寫程式</strong>——所以 RD 不覺得是自己的事</li>
+<li><strong>沒有交付物</strong>——所以 PM 不覺得是自己的事</li>
+<li><strong>不在測試範圍內</strong>——所以 QA 不覺得是自己的事</li>
+<li><strong>看不到 KPI</strong>——所以主管也很難排進排序</li>
+</ul>
+<p>於是第 2 步就漂浮在組織的灰色地帶裡。它<strong>屬於每一個人</strong>，所以實際上<strong>不屬於任何人</strong>。</p>
+<p>而 AI 生測試案例這個提案，本質上是<strong>假設第 2 步永遠成立</strong>。一旦這個假設不成立，後面所有的工程優化都是在優化一台引擎漏油的車。</p>
+<hr>
+<h2 id="二、文件不會自己過期，是「沒人負責」讓它過期"><a href="#二、文件不會自己過期，是「沒人負責」讓它過期" class="headerlink" title="二、文件不會自己過期，是「沒人負責」讓它過期"></a>二、文件不會自己過期，是「沒人負責」讓它過期</h2><p>我見過太多份 <code>specs.md</code>、<code>README.md</code>、<code>API.md</code>、<code>需求規格書 v3.7 final final.docx</code> 走過一樣的人生：</p>
+<ol>
+<li><strong>誕生</strong>：專案啟動時，PM 跟 RD 一起寫得很認真。文件清楚、流程圖漂亮、有版本號。</li>
+<li><strong>黃金期</strong>：前兩個 sprint，大家都會回去更新。</li>
+<li><strong>拐點</strong>：某次需求臨時改，時程很趕，「<strong>先做了再回頭補文件</strong>」。</li>
+<li><strong>滑坡</strong>：第二次、第三次、第十次的「先做了再回頭補」之後，文件已經跟現實對不上。</li>
+<li><strong>遺棄期</strong>：團隊心照不宣地知道「那份文件不能信」，新人 onboarding 的時候會被告知「<strong>程式才是真相，文件僅供參考</strong>」。</li>
+<li><strong>詭異復活</strong>：某天有人說：「欸我們有 <code>specs.md</code> 對吧？拿去餵 AI 吧。」</li>
+</ol>
+<p><strong>第 6 步是最危險的</strong>。因為當你把一份已經沒人信的文件，<strong>重新塞給 AI 當「真相來源」</strong>，你做的事不是「重新利用文件」，而是<strong>把一個組織內部已經知道的問題，外包給機器，讓機器以權威的姿態幫你重新製造出垃圾</strong>。</p>
+<p>這就是 GIGO（Garbage In, Garbage Out）的 AI 時代版本——而且更糟糕，因為 AI 產出的東西<strong>外觀非常專業</strong>，反而讓人忘了去懷疑它的來源。</p>
+<hr>
+<h2 id="三、「維護文件」為什麼是一份典型的灰色地帶工作？"><a href="#三、「維護文件」為什麼是一份典型的灰色地帶工作？" class="headerlink" title="三、「維護文件」為什麼是一份典型的灰色地帶工作？"></a>三、「維護文件」為什麼是一份典型的灰色地帶工作？</h2><p>我在前一篇 <a href="/2026/04/28/ai-replacement-accountability-checklist/">〈如果主管想用 AI 取代我，我會給他看的四份「當責清單」〉</a> 裡寫過：當責不是能力，是身分；它問的不是「你會不會做」，而是「<strong>事情出了問題，誰簽名</strong>」。</p>
+<p>文件維護就是一份<strong>沒有人想簽名</strong>的工作。原因有三：</p>
+<h3 id="1-它沒有交付儀式"><a href="#1-它沒有交付儀式" class="headerlink" title="1. 它沒有交付儀式"></a>1. 它沒有交付儀式</h3><p>寫程式有 PR 可以 merge、有 demo 可以亮給主管看。寫文件不會。沒有人會在 sprint review 時鼓掌說「這個 README 寫得真好」。<strong>沒有掌聲，就沒有動機。</strong></p>
+<h3 id="2-它的價值是負面證明的"><a href="#2-它的價值是負面證明的" class="headerlink" title="2. 它的價值是負面證明的"></a>2. 它的價值是負面證明的</h3><p>文件維護好，看不出來有什麼差別——因為「沒有人因此誤會需求」這件事，<strong>永遠不會被報導</strong>。但文件爛掉造成的損失（新人 ramp up 慢、跨團隊溝通失誤、AI 生出垃圾測試案例）會被歸因到別的環節，<strong>不會回頭追到「文件沒維護」這個源頭</strong>。</p>
+<p>這就是 <a href="/2026/04/17/rethinking-regression-test-value/">〈我們真的跑了太多無意義的回歸測試嗎〉</a> 裡那種典型的<strong>負面價值困境</strong>：你做對了沒人看到，你做錯了會被怪到其他地方。</p>
+<h3 id="3-它不是任何人的「主業」"><a href="#3-它不是任何人的「主業」" class="headerlink" title="3. 它不是任何人的「主業」"></a>3. 它不是任何人的「主業」</h3><p>PM 的主業是定義產品方向。RD 的主業是寫出可運行的程式。QA 的主業是把關品質。文件維護<strong>對每個角色來說都是「順便」</strong>——而「順便」這兩個字在組織裡的命運，就是被擺在 backlog 最底下，然後永遠不會被翻上來。</p>
+<hr>
+<h2 id="四、再往上一層：這其實是「公司怎麼看待產品」的問題"><a href="#四、再往上一層：這其實是「公司怎麼看待產品」的問題" class="headerlink" title="四、再往上一層：這其實是「公司怎麼看待產品」的問題"></a>四、再往上一層：這其實是「公司怎麼看待產品」的問題</h2><p>寫到這裡其實還沒寫到最深。「文件沒人維護」只是症狀。真正的根源是——<strong>這家公司把產品看成「完成品」還是「活物」</strong>？</p>
+<p>這兩種看法，會長出兩種完全不同的組織。</p>
+<p><strong>把產品當「完成品」的公司：</strong></p>
+<ul>
+<li>績效是 ship 出去的 feature 數</li>
+<li>上線那一刻，責任就跟維運／客服交接了</li>
+<li>文件是上線前的副產品，不是日常的伴生</li>
+<li>「維護」這個詞通常出現在「維運成本」這種偏負面的語境裡</li>
+<li>技術債、文件落差、迴歸風險都被當成「下一版再說」</li>
+</ul>
+<p><strong>把產品當「活物」的公司：</strong></p>
+<ul>
+<li>產品有長期 owner，對它的健康度負責</li>
+<li>文件、測試、監控、回饋都是產品的器官，不是裝飾</li>
+<li>維護有專屬的時間預算（10% time、tech debt sprint、定期的 spec review week）</li>
+<li>KPI 不只看「ship 出多少」，也看「<strong>現有的功能還活著嗎</strong>」</li>
+</ul>
+<p><code>specs.md</code> 餵 AI 這個提案——在第一種公司會失敗（因為文件早就死了），在第二種公司會成功（因為文件本來就是活的）。</p>
+<p><strong>問題從來不在 AI，差別也不在工具，差別在「這家公司怎麼定義『完成』」</strong>。</p>
+<p>而一家公司怎麼定義「完成」，是<strong>文化問題</strong>，不是流程問題。流程可以改、KPI 可以調、職責可以重切——但文化要改，從來不是寫一份新 SOP 就能改的。它需要主管的主管帶頭、需要好幾年的耐心，甚至需要一兩次大規模的痛——客訴爆量、技術債失控、新人三個月就離職——才會真正鬆動。</p>
+<p>這就是為什麼 QA 推「文件先行」會這麼挫折。你不是在推一個流程，<strong>你是在挑戰一家公司對「產品」的定義</strong>。而挑戰文化這件事，從來不該是初階 QA 的工作——這話我等等會回來認真講。</p>
+<hr>
+<h2 id="五、所以「specs-md-餵-AI」不是-AI-的問題，是組織的問題"><a href="#五、所以「specs-md-餵-AI」不是-AI-的問題，是組織的問題" class="headerlink" title="五、所以「specs.md 餵 AI」不是 AI 的問題，是組織的問題"></a>五、所以「specs.md 餵 AI」不是 AI 的問題，是組織的問題</h2><p>回到主管的提案。</p>
+<p>我反對的不是「用 AI 生測試案例」這件事。事實上我相信兩三年內，AI 生測試案例會變成標配——就像當年自動化測試框架變成標配一樣。</p>
+<p>我反對的是——<strong>在文件維護這件事沒有歸屬之前就用 AI 生測試案例</strong>。因為這樣做會發生兩件事：</p>
+<p><strong>第一，組織會誤以為「我們已經解決測試案例的問題了」</strong>，於是更不會去面對文件維護的灰色地帶。AI 變成一個讓組織持續忽略真問題的鴉片。</p>
+<p><strong>第二，當測試案例真的漏掉一個關鍵 bug 時，這個鍋會被丟給 QA</strong>——「為什麼 AI 生的案例沒測到？」「為什麼你沒有檢查 AI 的輸出？」<strong>沒有人會回頭問「為什麼 specs.md 半年沒更新了？」</strong> 因為這個問題沒有歸屬，沒有歸屬就沒有人有義務回答。</p>
+<p>到頭來，QA 變成那個<strong>用過期文件被 AI 害的人，再用自己的名譽幫整個組織的文件荒墊背</strong>。這個結構性的不公平，沒有人會在會議室裡點破，但它會<strong>每一次出包都重演一次</strong>。</p>
+<hr>
+<h2 id="六、那這件事「應該」是誰的責任？"><a href="#六、那這件事「應該」是誰的責任？" class="headerlink" title="六、那這件事「應該」是誰的責任？"></a>六、那這件事「應該」是誰的責任？</h2><p>我想了很久，誠實的答案是：<strong>應該是 PM 跟 RD 共同負責，而不是 QA</strong>。</p>
+<p>因為：</p>
+<ul>
+<li><strong>PM 是需求的源頭</strong>，沒有人比 PM 更清楚「這次改版動到了哪些原本的假設」</li>
+<li><strong>RD 是實作的執行者</strong>，沒有人比 RD 更清楚「文件上寫的跟實際長出來的有什麼差異」</li>
+<li><strong>QA 是下游的驗證者</strong>，QA 看到文件跟現實有落差時，往往已經太晚——下游能做的只是「發現過期」，不是「<strong>避免過期</strong>」</li>
+</ul>
+<p>但組織的現實是，PM 跟 RD 都在以「交付」為績效——交完這個版本，注意力就跳到下一個版本。<strong>文件維護這件事，沒有發生在他們的績效視野裡</strong>。</p>
+<p>這時候真正應該動作的，不是 QA 跑去要求 PM 跟 RD 維護文件（那只會被當成龜毛），而是<strong>主管的主管、或更高一層</strong>，把「<strong>文件維護</strong>」明確地寫進某一個角色的 KPI 裡。</p>
+<p>可以是 PM 的（每次需求變更必須同步更新 spec）。<br>可以是 RD 的（每次 PR merge 必須附帶文件 diff）。<br>甚至可以是設一個<strong>專職的 Tech Writer</strong>——很多歐美工程組織有這個角色，就是因為他們意識到「文件維護是專業，不是順便」。</p>
+<p>但<strong>不應該預設是 QA 的</strong>。因為 QA 一旦扛了這個，就同時扛了「定義」跟「驗證」兩端——這在任何體系裡都是利益衝突。<strong>自己定義需求然後自己驗收，這份報告誰會信？</strong></p>
+<p><strong>但這裡有一個常被忽略的區分——QA 跟 SDET 的權責設計其實不一樣。</strong></p>
+<p>QA 跟 SDET（Software Development Engineer in Test）在中文裡常常被一起講成「測試工程師」，但兩個角色在組織裡的權責設計差很多，反映在「該不該寫／維護 spec」這件事上會落出兩個不同的結論：</p>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>傳統 QA</th>
+<th>SDET</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主要產出</td>
+<td>測試案例、bug report、品質報告</td>
+<td>測試框架、自動化基礎設施、把測試寫成 code</td>
+</tr>
+<tr>
+<td>在開發流程的位置</td>
+<td>下游驗證者</td>
+<td>上下游同時參與，常常進設計會</td>
+</tr>
+<tr>
+<td>跟 spec 的關係</td>
+<td>讀 spec 來測</td>
+<td>寫 spec、改 spec、把 spec 變成可執行的測試</td>
+</tr>
+<tr>
+<td>程式能力預期</td>
+<td>看得懂、會用工具</td>
+<td>等同 RD，能寫 production-grade 程式碼</td>
+</tr>
+<tr>
+<td>「定義 + 驗收」衝突</td>
+<td>高（因此原則上不該扛 spec 維護）</td>
+<td>低（角色設計上就同時在兩端，是組織明知並接受的 trade-off）</td>
+</tr>
+</tbody></table>
+<p>換句話說：</p>
+<ul>
+<li><strong>如果你是傳統 QA</strong>：原則上不該扛 spec 維護，因為這會讓你同時當定義者跟驗收者，利益衝突</li>
+<li><strong>如果你是 SDET</strong>：spec 的維護本來就在你工作的射程內——組織給你的權責設計就是「邊定義邊驗證」，因為 SDET 被預期跟 RD 同等深入產品</li>
+</ul>
+<p>這個區別不是誰高誰低，是<strong>組織給每個角色的權責設計不一樣</strong>。把 SDET 的責任套在 QA 身上不公平（QA 沒那個位置、沒那個薪水、沒那個信任授權）；反過來把 QA 的「不該扛 spec」原則套在 SDET 身上也是錯的（SDET 的工作本來就包含這件事）。</p>
+<p>實務上很多公司沒有區分清楚——掛著 QA title 的人實際被當 SDET 用，掛著 SDET 的人其實只在做 QA 的事。<strong>這時候第一件要釐清的是：你目前在組織裡實質上是哪一種角色？</strong> 這個答案會直接決定，你扛 spec 維護是合理的工作分配，還是組織把灰色地帶塞進你的盤子。</p>
+<hr>
+<p>回到原本的論點——</p>
+<p>但這是<strong>原則層面</strong>的答案——對組織說的話。<strong>對 QA 自己說的話則不一樣</strong>：原則上不公平的事情，並不會因為原則就消失。當你身在其中，主動跨進這片灰色地帶反而可能是擴大你測試視野最快的路徑。§ 八會接著講這件事。</p>
+<hr>
+<h2 id="七、如果我是那個有話語權的-QA，我會說什麼？"><a href="#七、如果我是那個有話語權的-QA，我會說什麼？" class="headerlink" title="七、如果我是那個有話語權的 QA，我會說什麼？"></a>七、如果我是那個有話語權的 QA，我會說什麼？</h2><p>先講前提：<strong>這一段的回答需要有一定的話語權</strong>——資深、跟主管有信任、講話主管會聽。如果你還沒到那個位置，下一節會講初階 QA 的版本。</p>
+<p>我不會直接反對主管「用 AI 生測試案例」的提案。那會讓我看起來像是抗拒新工具的恐龍。</p>
+<p>我會接著主管的話說下去：</p>
+<blockquote>
+<p>「這個方向我同意，<strong>但我想先問一個前置問題</strong>——我們最新一次更新 <code>specs.md</code> 是什麼時候？如果它跟現實的差距超過兩個 sprint，我們用它生出來的測試案例，<strong>驗證的會是兩個月前的產品，不是今天的產品</strong>。</p>
+<p>在跑這個 AI 流程之前，我建議先確認<strong>誰負責讓 spec 保持新鮮</strong>。這件事如果沒有歸屬，AI 加速的不是品質，是錯誤。</p>
+<p>我可以協助設計『spec 更新 → 測試案例重生 → 驗證』的流程，但<strong>spec 更新這個源頭，需要 PM 或 RD 簽名負責</strong>——不然測出來的綠燈是假綠燈，紅燈也找不到該找誰修。」</p>
+</blockquote>
+<p>這個說法的精神是：<strong>我不擋你的工具，但我擋這個工具的盲區</strong>。</p>
+<p>而盲區從來不是技術問題，是組織問題。</p>
+<hr>
+<h2 id="八、那一個還沒有取得大家信任的初階-QA，到底能做什麼？"><a href="#八、那一個還沒有取得大家信任的初階-QA，到底能做什麼？" class="headerlink" title="八、那一個還沒有取得大家信任的初階 QA，到底能做什麼？"></a>八、那一個還沒有取得大家信任的初階 QA，到底能做什麼？</h2><p>我必須誠實地承認：前面那段「我會在會議室這樣回答主管」——對一個初階 QA 來說，<strong>不一定能講得出口</strong>。</p>
+<p>話語權這東西，不是道理對就會有的。它需要年資、需要過往幾次「我講對了」的紀錄、需要主管心裡建立起「這個人開口我得聽」的累積。一個剛入行兩年的 QA 在會議室裡講上面那段話，最常見的反應不是被採納，是：</p>
+<ul>
+<li>PM 笑笑說「對啊我也想啊⋯⋯但時程嘛你知道的」</li>
+<li>RD 說「文件就你寫吧反正你最熟」</li>
+<li>主管說「先把測試案例寫完再說，這個之後再 review」</li>
+</ul>
+<p>然後事情就過去了。下次出包還是會出，責任還是會落到 QA 身上。</p>
+<p>更殘酷的是——<strong>「推廣文件先行的文化」這件事，從本質上就不該由初階 QA 來扛</strong>。文化是組織層級的問題，要動的是主管的主管的視野與 KPI；初階 QA 用力推，最後得到的多半不是文化變革，是同事覺得你龜毛、主管覺得你不識相。</p>
+<p>所以更誠實的問題是：<strong>一個初階 QA，在這個結構下，到底能做什麼？</strong></p>
+<p>我給自己（也給你）的三個答案：</p>
+<h3 id="1-默默記錄，不要默默挨打"><a href="#1-默默記錄，不要默默挨打" class="headerlink" title="1. 默默記錄，不要默默挨打"></a>1. 默默記錄，不要默默挨打</h3><p>每次你發現「文件跟現實對不上」，把那個落差<strong>寫下來</strong>——工作日誌、ticket 註解、自己的 OneNote 或 Notion 都好。不是為了告狀，是為了<strong>當有一天出包時，你有資料可以指出問題出在源頭，而不是被當成 QA 的疏失</strong>。</p>
+<p>QA 最大的職涯風險，從來不是漏測。是<strong>漏測之後沒有人記得「為什麼會漏」</strong>。你的紀錄，就是你未來的保險。</p>
+<h3 id="2-在自己的小範圍裡示範「文件先行」"><a href="#2-在自己的小範圍裡示範「文件先行」" class="headerlink" title="2. 在自己的小範圍裡示範「文件先行」"></a>2. 在自己的小範圍裡示範「文件先行」</h3><p>你改變不了整家公司，但你可以改變<strong>自己負責的那一塊</strong>。</p>
+<p>你經手的功能，自己整理一份「<strong>真正可信的 spec</strong>」——可能只是一頁的檢查清單、一張流程圖、一份「這個功能會跟哪些舊模組互相影響」的關聯表。每次需求變更時，<strong>主動更新它</strong>，當作自己的 source of truth。</p>
+<p>下次主管說「我們來餵 AI 生測試案例吧」的時候，<strong>你的小範圍裡有可以用的文件，其他人沒有</strong>。這份差距不會立刻被看見，但它會慢慢累積——直到某次出包，主管心裡浮出一個問題：「<strong>為什麼 Elijah 那塊沒事？</strong>」</p>
+<p>那個時候，你的影響力才真正開始。文化通常不是從上而下被宣告出來的，<strong>是從某一個小角落被示範出來的</strong>。</p>
+<p>而且這件事還有一個常被低估的副作用——<strong>它會直接擴大你的測試視野</strong>。</p>
+<p>當你開始整理「這個功能跟哪些舊模組互相影響」、「失敗時畫面長什麼樣」、「這個邊界值會碰到哪些東西」，你是在被迫<strong>把整個系統梳理一次</strong>——而梳理過的範圍，就是你能測的範圍。寫文件這個動作，本質上是把你從「跑案例的人」推向「懂這個產品的人」的過程。</p>
+<p>寫文件原則上是 PM&#x2F;RD 的事，但實務上——<strong>主動跨進這個灰色地帶的 QA，反而是能把測試範圍最快擴大的人</strong>。這是初階 QA 在沒有話語權、無法強推流程改革的情況下，<strong>能最快替自己累積專業視野的可行路徑之一</strong>。</p>
+<p>是的，這仍然不太公平（原則上這責任不該預設在你身上）。但你不是在無償為公司做白工——<strong>你是在替自己鋪一條路</strong>。如果有一天你升上去了，這份視野會變成你比別人快的本錢。</p>
+<h3 id="3-把這份觀察當作自己的職涯資本"><a href="#3-把這份觀察當作自己的職涯資本" class="headerlink" title="3. 把這份觀察當作自己的職涯資本"></a>3. 把這份觀察當作自己的職涯資本</h3><p>你能看出「文件維護是組織灰色地帶」這件事——這個洞察本身，就<strong>已經超越了一個初階 QA 通常該有的視野</strong>。不要把它消耗在自我責備或內耗上。</p>
+<p>把它累積成：</p>
+<ul>
+<li>一篇可以拿出來分享的心得（例如這篇文章）</li>
+<li>一次面試的故事（「我前一份工作觀察到一個結構性問題⋯⋯」）</li>
+<li>一份未來換工作時挑公司的判斷標準。面試時你可以反問：「貴公司的 spec 多久 review 一次？」「需求改了，文件會跟著改嗎？是誰負責？」對方的回答會告訴你很多——它告訴你的不是「制度有沒有」，是「<strong>這家公司怎麼看待產品</strong>」</li>
+</ul>
+<p>很多時候，初階 QA 推不動文化，<strong>真正的解法不是「再用力一點推」，是「等你升上去」、或是「換到一家肯做這件事的公司」</strong>。在那之前——</p>
+<p><strong>把該記錄的記錄好、該守的小範圍守好、該累積的洞察累積好。不要把整個組織的失靈背在自己肩上。</strong></p>
+<p>那不是你的責任。那是<strong>整家公司怎麼看待產品</strong>的責任。</p>
+<hr>
+<h2 id="九、結語：AI-不會幫一個不維護文件的組織加速，它只會放大放任的後果"><a href="#九、結語：AI-不會幫一個不維護文件的組織加速，它只會放大放任的後果" class="headerlink" title="九、結語：AI 不會幫一個不維護文件的組織加速，它只會放大放任的後果"></a>九、結語：AI 不會幫一個不維護文件的組織加速，它只會放大放任的後果</h2><p>寫到最後，我想講一句可能會得罪人的話：</p>
+<blockquote>
+<p><strong>一個組織願不願意有人專職維護文件，是這個組織願不願意對「真相」負責的指標。</strong></p>
+</blockquote>
+<p>維護文件這件事，看起來只是技術工作的副產品。但它其實是一個組織<strong>對「我們現在到底在做什麼」這個問題願不願意保持誠實</strong>的測試。</p>
+<p>一個半年沒更新 spec 的團隊，本質上是這樣的團隊——<strong>做完就丟，做的當下沒有人想記住自己做了什麼</strong>。這種團隊餵 AI 不會加速，餵 AI 只會讓「<strong>假裝有 spec 可以參考</strong>」這個謊言變得更難拆穿。</p>
+<p>QA 的工作，從來不只是寫測試案例、跑測試案例。<strong>QA 的工作是替一個組織保留「對真相負責」的最後一道紀律</strong>。當組織想用 AI 抄近路的時候，QA 要做的不是抗拒 AI，是<strong>指出那條路有沒有橋墩在底下撐著</strong>。</p>
+<p>橋墩——就是有沒有人簽名負責讓 spec 保持真實。</p>
+<p>如果有，AI 會是一個極好的加速器。<br>如果沒有，AI 會是一個極好的<strong>自欺加速器</strong>。</p>
+<p>而我此刻在這個位置上，<strong>至少要把這件事說出來</strong>。</p>
+<p>不是因為我反對 AI，是因為<strong>我知道有些灰色地帶的事如果沒有人做，AI 做再多也是徒勞</strong>。</p>
+<p>這就是為什麼我相信——<strong>未來的 QA 不會被 AI 取代，但會被那些「願意管灰色地帶」的 QA 取代</strong>。因為那些灰色地帶，正是 AI 暫時還照不到的地方。</p>
+<hr>
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><ul>
+<li><a href="/2026/04/28/ai-replacement-accountability-checklist/">如果主管想用 AI 取代我，我會給他看的四份「當責清單」</a></li>
+<li><a href="/2026/04/24/problem-driven-testing-intro/">問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡</a></li>
+<li><a href="/2026/04/17/rethinking-regression-test-value/">我們真的跑了太多「無意義」的回歸測試嗎？從 MoT 論壇看測試的精簡與價值</a></li>
+</ul>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI/">AI</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI%E7%94%9F%E6%88%90%E6%B8%AC%E8%A9%A6/">AI生成測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/vibe-coding/">vibe coding</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%96%87%E4%BB%B6%E7%B6%AD%E8%AD%B7/">文件維護</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%A6%8F%E6%A0%BC/">規格</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%81%B0%E8%89%B2%E5%9C%B0%E5%B8%B6/">灰色地帶</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%95%B6%E8%B2%AC/">當責</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/problem-driven-testing-intro/"
+                                   title="問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%B8%80%E5%80%8B%E8%81%BD%E8%B5%B7%E4%BE%86%E5%BE%88%E5%90%88%E7%90%86%E7%9A%84%E6%8F%90%E6%A1%88"><span class="nav-text">前言：一個聽起來很合理的提案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81AI-%E7%94%9F%E6%B8%AC%E8%A9%A6%E6%A1%88%E4%BE%8B%E9%80%99%E6%A2%9D%E9%8F%88%EF%BC%8C%E6%9C%80%E5%BC%B1%E7%9A%84%E4%B8%80%E7%92%B0%E6%98%AF%E5%93%AA%E8%A3%A1%EF%BC%9F"><span class="nav-text">一、AI 生測試案例這條鏈，最弱的一環是哪裡？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E4%B8%8D%E6%9C%83%E8%87%AA%E5%B7%B1%E9%81%8E%E6%9C%9F%EF%BC%8C%E6%98%AF%E3%80%8C%E6%B2%92%E4%BA%BA%E8%B2%A0%E8%B2%AC%E3%80%8D%E8%AE%93%E5%AE%83%E9%81%8E%E6%9C%9F"><span class="nav-text">二、文件不會自己過期，是「沒人負責」讓它過期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E3%80%8C%E7%B6%AD%E8%AD%B7%E6%96%87%E4%BB%B6%E3%80%8D%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AF%E4%B8%80%E4%BB%BD%E5%85%B8%E5%9E%8B%E7%9A%84%E7%81%B0%E8%89%B2%E5%9C%B0%E5%B8%B6%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="nav-text">三、「維護文件」為什麼是一份典型的灰色地帶工作？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%83%E6%B2%92%E6%9C%89%E4%BA%A4%E4%BB%98%E5%84%80%E5%BC%8F"><span class="nav-text">1. 它沒有交付儀式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%83%E7%9A%84%E5%83%B9%E5%80%BC%E6%98%AF%E8%B2%A0%E9%9D%A2%E8%AD%89%E6%98%8E%E7%9A%84"><span class="nav-text">2. 它的價值是負面證明的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%83%E4%B8%8D%E6%98%AF%E4%BB%BB%E4%BD%95%E4%BA%BA%E7%9A%84%E3%80%8C%E4%B8%BB%E6%A5%AD%E3%80%8D"><span class="nav-text">3. 它不是任何人的「主業」</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%86%8D%E5%BE%80%E4%B8%8A%E4%B8%80%E5%B1%A4%EF%BC%9A%E9%80%99%E5%85%B6%E5%AF%A6%E6%98%AF%E3%80%8C%E5%85%AC%E5%8F%B8%E6%80%8E%E9%BA%BC%E7%9C%8B%E5%BE%85%E7%94%A2%E5%93%81%E3%80%8D%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">四、再往上一層：這其實是「公司怎麼看待產品」的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%89%80%E4%BB%A5%E3%80%8Cspecs-md-%E9%A4%B5-AI%E3%80%8D%E4%B8%8D%E6%98%AF-AI-%E7%9A%84%E5%95%8F%E9%A1%8C%EF%BC%8C%E6%98%AF%E7%B5%84%E7%B9%94%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">五、所以「specs.md 餵 AI」不是 AI 的問題，是組織的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%82%A3%E9%80%99%E4%BB%B6%E4%BA%8B%E3%80%8C%E6%87%89%E8%A9%B2%E3%80%8D%E6%98%AF%E8%AA%B0%E7%9A%84%E8%B2%AC%E4%BB%BB%EF%BC%9F"><span class="nav-text">六、那這件事「應該」是誰的責任？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%A6%82%E6%9E%9C%E6%88%91%E6%98%AF%E9%82%A3%E5%80%8B%E6%9C%89%E8%A9%B1%E8%AA%9E%E6%AC%8A%E7%9A%84-QA%EF%BC%8C%E6%88%91%E6%9C%83%E8%AA%AA%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">七、如果我是那個有話語權的 QA，我會說什麼？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E9%82%A3%E4%B8%80%E5%80%8B%E9%82%84%E6%B2%92%E6%9C%89%E5%8F%96%E5%BE%97%E5%A4%A7%E5%AE%B6%E4%BF%A1%E4%BB%BB%E7%9A%84%E5%88%9D%E9%9A%8E-QA%EF%BC%8C%E5%88%B0%E5%BA%95%E8%83%BD%E5%81%9A%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">八、那一個還沒有取得大家信任的初階 QA，到底能做什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%BB%98%E9%BB%98%E8%A8%98%E9%8C%84%EF%BC%8C%E4%B8%8D%E8%A6%81%E9%BB%98%E9%BB%98%E6%8C%A8%E6%89%93"><span class="nav-text">1. 默默記錄，不要默默挨打</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9C%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B0%8F%E7%AF%84%E5%9C%8D%E8%A3%A1%E7%A4%BA%E7%AF%84%E3%80%8C%E6%96%87%E4%BB%B6%E5%85%88%E8%A1%8C%E3%80%8D"><span class="nav-text">2. 在自己的小範圍裡示範「文件先行」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8A%8A%E9%80%99%E4%BB%BD%E8%A7%80%E5%AF%9F%E7%95%B6%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84%E8%81%B7%E6%B6%AF%E8%B3%87%E6%9C%AC"><span class="nav-text">3. 把這份觀察當作自己的職涯資本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9AAI-%E4%B8%8D%E6%9C%83%E5%B9%AB%E4%B8%80%E5%80%8B%E4%B8%8D%E7%B6%AD%E8%AD%B7%E6%96%87%E4%BB%B6%E7%9A%84%E7%B5%84%E7%B9%94%E5%8A%A0%E9%80%9F%EF%BC%8C%E5%AE%83%E5%8F%AA%E6%9C%83%E6%94%BE%E5%A4%A7%E6%94%BE%E4%BB%BB%E7%9A%84%E5%BE%8C%E6%9E%9C"><span class="nav-text">九、結語：AI 不會幫一個不維護文件的組織加速，它只會放大放任的後果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%B8%80%E5%80%8B%E8%81%BD%E8%B5%B7%E4%BE%86%E5%BE%88%E5%90%88%E7%90%86%E7%9A%84%E6%8F%90%E6%A1%88"><span class="nav-text">前言：一個聽起來很合理的提案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81AI-%E7%94%9F%E6%B8%AC%E8%A9%A6%E6%A1%88%E4%BE%8B%E9%80%99%E6%A2%9D%E9%8F%88%EF%BC%8C%E6%9C%80%E5%BC%B1%E7%9A%84%E4%B8%80%E7%92%B0%E6%98%AF%E5%93%AA%E8%A3%A1%EF%BC%9F"><span class="nav-text">一、AI 生測試案例這條鏈，最弱的一環是哪裡？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E4%B8%8D%E6%9C%83%E8%87%AA%E5%B7%B1%E9%81%8E%E6%9C%9F%EF%BC%8C%E6%98%AF%E3%80%8C%E6%B2%92%E4%BA%BA%E8%B2%A0%E8%B2%AC%E3%80%8D%E8%AE%93%E5%AE%83%E9%81%8E%E6%9C%9F"><span class="nav-text">二、文件不會自己過期，是「沒人負責」讓它過期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E3%80%8C%E7%B6%AD%E8%AD%B7%E6%96%87%E4%BB%B6%E3%80%8D%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AF%E4%B8%80%E4%BB%BD%E5%85%B8%E5%9E%8B%E7%9A%84%E7%81%B0%E8%89%B2%E5%9C%B0%E5%B8%B6%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="nav-text">三、「維護文件」為什麼是一份典型的灰色地帶工作？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%83%E6%B2%92%E6%9C%89%E4%BA%A4%E4%BB%98%E5%84%80%E5%BC%8F"><span class="nav-text">1. 它沒有交付儀式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%83%E7%9A%84%E5%83%B9%E5%80%BC%E6%98%AF%E8%B2%A0%E9%9D%A2%E8%AD%89%E6%98%8E%E7%9A%84"><span class="nav-text">2. 它的價值是負面證明的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%83%E4%B8%8D%E6%98%AF%E4%BB%BB%E4%BD%95%E4%BA%BA%E7%9A%84%E3%80%8C%E4%B8%BB%E6%A5%AD%E3%80%8D"><span class="nav-text">3. 它不是任何人的「主業」</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%86%8D%E5%BE%80%E4%B8%8A%E4%B8%80%E5%B1%A4%EF%BC%9A%E9%80%99%E5%85%B6%E5%AF%A6%E6%98%AF%E3%80%8C%E5%85%AC%E5%8F%B8%E6%80%8E%E9%BA%BC%E7%9C%8B%E5%BE%85%E7%94%A2%E5%93%81%E3%80%8D%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">四、再往上一層：這其實是「公司怎麼看待產品」的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%89%80%E4%BB%A5%E3%80%8Cspecs-md-%E9%A4%B5-AI%E3%80%8D%E4%B8%8D%E6%98%AF-AI-%E7%9A%84%E5%95%8F%E9%A1%8C%EF%BC%8C%E6%98%AF%E7%B5%84%E7%B9%94%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">五、所以「specs.md 餵 AI」不是 AI 的問題，是組織的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%82%A3%E9%80%99%E4%BB%B6%E4%BA%8B%E3%80%8C%E6%87%89%E8%A9%B2%E3%80%8D%E6%98%AF%E8%AA%B0%E7%9A%84%E8%B2%AC%E4%BB%BB%EF%BC%9F"><span class="nav-text">六、那這件事「應該」是誰的責任？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%A6%82%E6%9E%9C%E6%88%91%E6%98%AF%E9%82%A3%E5%80%8B%E6%9C%89%E8%A9%B1%E8%AA%9E%E6%AC%8A%E7%9A%84-QA%EF%BC%8C%E6%88%91%E6%9C%83%E8%AA%AA%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">七、如果我是那個有話語權的 QA，我會說什麼？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E9%82%A3%E4%B8%80%E5%80%8B%E9%82%84%E6%B2%92%E6%9C%89%E5%8F%96%E5%BE%97%E5%A4%A7%E5%AE%B6%E4%BF%A1%E4%BB%BB%E7%9A%84%E5%88%9D%E9%9A%8E-QA%EF%BC%8C%E5%88%B0%E5%BA%95%E8%83%BD%E5%81%9A%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">八、那一個還沒有取得大家信任的初階 QA，到底能做什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%BB%98%E9%BB%98%E8%A8%98%E9%8C%84%EF%BC%8C%E4%B8%8D%E8%A6%81%E9%BB%98%E9%BB%98%E6%8C%A8%E6%89%93"><span class="nav-text">1. 默默記錄，不要默默挨打</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9C%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B0%8F%E7%AF%84%E5%9C%8D%E8%A3%A1%E7%A4%BA%E7%AF%84%E3%80%8C%E6%96%87%E4%BB%B6%E5%85%88%E8%A1%8C%E3%80%8D"><span class="nav-text">2. 在自己的小範圍裡示範「文件先行」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8A%8A%E9%80%99%E4%BB%BD%E8%A7%80%E5%AF%9F%E7%95%B6%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84%E8%81%B7%E6%B6%AF%E8%B3%87%E6%9C%AC"><span class="nav-text">3. 把這份觀察當作自己的職涯資本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9AAI-%E4%B8%8D%E6%9C%83%E5%B9%AB%E4%B8%80%E5%80%8B%E4%B8%8D%E7%B6%AD%E8%AD%B7%E6%96%87%E4%BB%B6%E7%9A%84%E7%B5%84%E7%B9%94%E5%8A%A0%E9%80%9F%EF%BC%8C%E5%AE%83%E5%8F%AA%E6%9C%83%E6%94%BE%E5%A4%A7%E6%94%BE%E4%BB%BB%E7%9A%84%E5%BE%8C%E6%9E%9C"><span class="nav-text">九、結語：AI 不會幫一個不維護文件的組織加速，它只會放大放任的後果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>
