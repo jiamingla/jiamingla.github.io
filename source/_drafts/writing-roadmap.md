@@ -1,12 +1,18 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-05-06
+**最後更新**：2026-05-08
 **對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外推廣。
 **並進文件**：[tools-roadmap.md](tools-roadmap.md)（工具優先策略，文章是副產品）
 
+> ⚠️ **每次發新文章後都要回來更新此檔**：把該篇從「完稿待上」移到「已上稿」表格，並更新主題線狀態。這個 roadmap 是 live 文件，stale 之後會比沒有更糟。
+
 ---
 
-## 進度快照（2026-05-06）
+## 進度快照（2026-05-08）
+
+### 推廣里程碑
+
+- **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
 ### 已上稿（11 篇，依日期倒序）
 
@@ -24,7 +30,7 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（5 篇）
+### 完稿草稿待上稿（7 篇）
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
@@ -33,13 +39,24 @@
 | [qa-report-workplace-wisdom](qa-report-workplace-wisdom.md) | 大人學 / 向上管理 | 完稿，已清公司指紋 |
 | [letter-to-new-qa-two-day-regression](letter-to-new-qa-two-day-regression.md) | 新進 QA / 回歸方法論 | 完稿 |
 | [pom-refactor-from-runnable-to-maintainable](pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | 草稿，等思考完才動 |
+| [empty-result-ambiguity-in-filter-testing](empty-result-ambiguity-in-filter-testing.md) | 測試設計 / 篩選功能 | 完稿，**押 2026-06-06 發布** |
+| [page-source-vs-find-element](page-source-vs-find-element.md) | 自動化效能 / Appium | 完稿，**押 2026-06-20 發布** |
+
+### 草稿（已寫但尚未確認完稿，2026-05-08 加入）
+
+| 文章 | 主題線 | 狀態備註 |
+|---|---|---|
+| [survival-kit-when-test-stage-down](survival-kit-when-test-stage-down.md) | 突發狀況 / QA 當責 / 信仰 | 草稿，敘事＋決策＋信仰三層合流（原 partial-report-and-responsibility 已合併進來） |
 
 ### 規劃文件（_drafts/，不會直接成為文章）
 
 - [analogy-series-proposals.md](analogy-series-proposals.md) — PDT 類比系列（醫生 / 記者 / 偵探 / 讀者）
 - [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md) — 讀書延伸題目（《QA 職涯手冊》七個切角）
 - [tools-roadmap.md](tools-roadmap.md) — PDT/Self-Review Agent 工具路線
-- [idea-2.md](idea-2.md) — AI 取代系列原始素材（已被使用，可考慮歸檔）
+
+### 已歸檔
+
+- `archive/idea-2.md` — AI 取代系列原始素材（已被 accountability-checklist 與 seminary-calling 吸收）
 
 ---
 
@@ -81,13 +98,15 @@
 - [Appium v2 → v3 遷移](/post/appium-v2-to-v3-migration/)
 - [語音測試 × FFmpeg](/post/audio-testing-ffmpeg/)
 
-**完稿待上**：[pom-refactor-from-runnable-to-maintainable](pom-refactor-from-runnable-to-maintainable.md)（教材潛力，可考慮給同事看）
+**完稿待上**：
+- [pom-refactor-from-runnable-to-maintainable](pom-refactor-from-runnable-to-maintainable.md)（教材潛力，可考慮給同事看）
+- [page-source-vs-find-element](page-source-vs-find-element.md)（押 2026-06-20，UI 自動化 cost model）
 
 **規劃中**：
 - Claude Code + MCP 寫 Android 自動化測試（Python）
 - 語音測試之二：延遲、回聲、背景噪音的自動化驗證
 
-**狀態**：基礎已建立。POM 上稿後會把「PDT 高層次主張 → 工程實踐」的橋接補完。
+**狀態**：基礎已建立 + 兩篇深度文（POM 設計、page_source 效能）即將上線。POM + page_source 上稿後會把「PDT 高層次主張 → 工程實踐」的橋接補完。
 
 ---
 
@@ -109,16 +128,18 @@
 
 ---
 
-## 線五：自動化決策（鏡像線）
+## 線五：自動化決策 / 測試設計
 
 **已上稿**：[boredom-is-a-signal](/post/boredom-is-a-signal/)（與 spec-maintenance 鏡像對）
+
+**完稿待上**：[empty-result-ambiguity-in-filter-testing](empty-result-ambiguity-in-filter-testing.md)（押 2026-06-06，篩選 empty 歧義五種解法）
 
 **規劃中**：
 - 篩選功能的組合爆炸：Pairwise / 正交實驗設計入門
 - PDT 視角下，篩選功能真正會壞掉的 7 個地方
 - 自動化的 ROI 怎麼算？我用篩選功能算給你看
 
-**狀態**：主菜已上。延伸題目都有素材，等情緒回流再寫。
+**狀態**：empty-result 上稿後這條線變得很厚——「該不該自動化」+「怎麼設計」都打到了。延伸題目都有素材，等情緒回流再寫。
 
 ---
 
@@ -158,22 +179,51 @@
 
 ---
 
-# 整體寫作節奏（2026-05-06 重新校準）
+## 線九：突發狀況 / Survival Kit / 工程紀律（新加，2026-05-08）
 
-> 上次校準是 2026-04-30，當時建議「先 spec-maintenance + boredom 鏡像對」——這兩篇已上稿。
+**起源**：2026-05-08 測試站登入服務壞掉、所有功能因相依登入無法測試。Jersey Su〈計畫趕得上變化〉的 Survival Kit 比喻打開了一條新的寫作主軸。
 
-## 庫存壓力
+**草稿（待自己審）**：
+- [survival-kit-when-test-stage-down](survival-kit-when-test-stage-down.md) — 三層合流：Survival Kit 三件事 → 報告寫法的小聲音 → 「忠心」信仰收尾（原 partial-report 已合併進此篇）
 
-目前有 **5 篇完稿草稿沒上**：accountability-checklist、seminary-calling、qa-report-workplace-wisdom、letter-to-new-qa、pom-refactor。寫作不缺東西，**缺的是發稿節奏**。
+**規劃中**：
+- 工程化的「應變紀律」：how to plan for tools failing
+- 「降級交付」的職場政治學：怎麼讓人理解 vs 怎麼讓人原諒
+
+**狀態**：5/8 一個工作日生出一篇厚度足夠的合流草稿（~1500 字）。**這條線首發已就緒，等審完就可以排上稿節奏**。
+
+---
+
+# 整體寫作節奏（2026-05-08 校準）
+
+> 上次校準是 2026-05-06。這幾天的進展：boredom 已上稿、empty-result + page-source 兩篇技術深度文寫好排程、線九（Survival Kit）開出來。
+
+## 庫存壓力（仍存在）
+
+目前 **7 篇完稿草稿沒上**：
+- 5 篇彈性發布：accountability-checklist、seminary-calling、qa-report-workplace-wisdom、letter-to-new-qa、pom-refactor
+- 2 篇排程發布：empty-result（6/6）、page-source（6/20）
+
+寫作不缺東西，**缺的還是發稿節奏**。
 
 ## 接下來 1-2 週的建議節奏
 
-每 3-5 天上一篇，把庫存清完：
+每 3-5 天上一篇，把彈性庫存清完：
 
 1. **letter-to-new-qa-two-day-regression** — 新進 QA 教材，溫度高
 2. **pom-refactor**（思考完之後）— 技術深度，可介紹給同事
 3. **ai-replacement-accountability-checklist + seminary-calling** — AI 取代系列雙篇，連發效果好
 4. **qa-report-workplace-wisdom** — 大人學 / 向上管理
+
+## 下一篇要新寫的
+
+**〈測試機掛了那天：QA 的 Survival Kit〉**（線九主菜）
+
+理由：
+- 情緒新鮮（今天剛發生）
+- 主題線完全空白，新內容會打開部落格的新切面
+- 跟既有的當責 / PDT / 不和諧感主題連結度高
+- Jersey Su 的 Medium 文剛好提供類比的 reference point
 
 ## 接下來 1 個月的寫作目標
 
@@ -182,7 +232,7 @@
 1. **PDT × 醫生問診類比**（補招牌主張深度，[analogy-series-proposals 主菜](analogy-series-proposals.md)）
 2. **Bug Report 寫作教學**（補入門 / SEO 長尾，品牌缺）
 
-寫完這兩篇，部落格從「招牌＋零散技術文」推進到「招牌 × 技術 × 入門 × 信仰 × 職涯」六線並進。
+寫完這兩篇 + Survival Kit，部落格從「招牌＋零散技術文」推進到「招牌 × 技術 × 入門 × 信仰 × 職涯 × 突發應變」**七線並進**。
 
 ## 與工具路線的分工
 
@@ -247,7 +297,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 | 期間 | 動作 |
 |---|---|
-| 5-7 月 | 把現有 5 篇完稿庫存全部上稿（清掉壓力，騰出 8 月專注準備） |
+| 5-7 月 | 把現有完稿庫存全部上稿（清掉壓力，騰出 8 月專注準備） |
 | 6 月起 | 開始建 self-review agent（如果走方向 C）——9 月開賽時不是從零開始，是記錄一個已跑三個月工具的優化過程 |
 | 8 月 | 排 30 天 outline，**至少預寫 5-7 篇 buffer**（家庭事 / 病假時不致斷賽） |
 | 8 月底 | 心理體檢：還有沒有想做？是不是被「應該要做」綁架？ |
@@ -260,6 +310,8 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 ### 1. 對外發表的試水
 過去從沒在測試社群外公開推廣，從 0 直接跳到 30 天連載是大躍進。**先做一次小規模試水可能比直接報名更扎實**——例如：在 6-7 月把一篇現有文章丟到 MoT 論壇或 Medium，看看能不能承受不熟悉的回饋（或 0 回饋）。試水的結果會告訴你 30 天連載扛不扛得住。
+
+> 進度：2026-05-07 已做第一次「同事級」試水（貼給 QA 同事看）。下一階段可考慮匿名／國外圈。
 
 ### 2. 主管可見度的盤點
 - 主管會不會在 9 月看到你連續 30 天發技術文？大概率會（鐵人賽在台灣 QA 圈太顯眼）
@@ -286,7 +338,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 無論最後報不報，都不影響：
 
-- **持續寫作這件事本身**（你已經證明會寫，2026-01 至 2026-05 累積 11 篇上稿 + 5 篇完稿待上）
+- **持續寫作這件事本身**（你已經證明會寫，2026-01 至 2026-05 累積 11 篇上稿 + 7 篇完稿待上）
 - **tools-roadmap.md 的 self-review agent**（這件事獨立進行）
 - **部落格的長期累積跟 SEO**（時間複利會替你做事）
 
