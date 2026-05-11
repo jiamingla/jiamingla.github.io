@@ -1,7 +1,7 @@
 ---
 urlname: ten-minute-test-plan-when-test-stage-down
 title: 測試站登入壞了那天，我才被迫面對：我真的測完了嗎？
-date: 2026-05-08 22:00:00
+date: 2026-05-11 22:00:00
 tags: [軟體測試, QA當責, 測試計畫, 測試覆蓋率, 自我審視, One Page Test Plan, James Whittaker, ACC, Attribute Component Capability, 跨團隊溝通, 基督徒工作觀, 忠心, 品質工程]
 ---
 
