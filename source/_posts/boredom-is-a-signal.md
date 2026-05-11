@@ -143,7 +143,7 @@ QA 圈最常被低估的痛點之一。
 
 ---
 
-## 五、與〈spec-maintenance-gray-zone〉互為鏡像
+## 五、與前一篇〈用 specs.md 餵 AI〉互為鏡像
 
 我前一篇 [〈用 specs.md 餵 AI 生測試案例之前——先問一句：誰負責讓那份文件不過期？〉](/post/spec-maintenance-gray-zone/) 寫的是組織層面的失靈：**公司把「文件維護」這種灰色地帶的工作丟給沒能力扛的人，然後期待 AI 能幫他們收尾**。
 
