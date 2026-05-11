@@ -1,0 +1,57 @@
+name: Build & Deploy Hexo Site
+
+# 三種觸發方式：
+# 1. push 到 main（除了 _drafts/ 跟操作型文件）→ 推送後立刻 deploy
+# 2. 每天 00:30 台北時間（= 16:30 UTC）→ 把當天到期的未來日期文章發出來
+# 3. 手動觸發（Actions 頁面點 Run workflow）→ 立刻 deploy
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.gitignore'
+      - 'README.md'
+      - 'deployment-notes.md'
+      - 'source/_drafts/**'
+  schedule:
+    - cron: '30 16 * * *'
+  workflow_dispatch:
+
+# 允許 workflow 寫入 gh-pages branch
+permissions:
+  contents: write
+
+# 同時只跑一個 deploy，避免推送衝突
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source (main branch)
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Hexo site
+        run: npx hexo generate
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Site updated (Actions)'
+          # force_orphan: false 表示沿用既有 gh-pages 歷史，不重置
+          force_orphan: false
