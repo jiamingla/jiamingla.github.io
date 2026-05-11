@@ -1,6 +1,6 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-05-08
+**最後更新**：2026-05-11
 **對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外推廣。
 **並進文件**：[tools-roadmap.md](tools-roadmap.md)（工具優先策略，文章是副產品）
 
@@ -8,16 +8,17 @@
 
 ---
 
-## 進度快照（2026-05-08）
+## 進度快照（2026-05-11）
 
 ### 推廣里程碑
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（11 篇，依日期倒序）
+### 已上稿（12 篇，含排程；依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-05-13 ⏰排程 | 測試站登入壞了那天：我真的測完了嗎？ | ten-minute-test-plan-when-test-stage-down | 突發應變 / 自我審視 / 信仰 |
 | 2026-05-06 | 「煩」是 QA 的診斷工具 | boredom-is-a-signal | 自動化決策 / 信仰 |
 | 2026-05-03 | 用 specs.md 餵 AI 之前 | spec-maintenance-gray-zone | AI 取代 / 組織 |
 | 2026-04-24 | 問題驅動測試（PDT） | problem-driven-testing-intro | **招牌主張** ✓ |
@@ -37,16 +38,17 @@
 | [ai-replacement-accountability-checklist](ai-replacement-accountability-checklist.md) | AI 取代 / 當責 | 完稿（2026-04-28） |
 | [ai-replacement-seminary-calling](ai-replacement-seminary-calling.md) | AI 取代 / 信仰 | 完稿（2026-04-28） |
 | [qa-report-workplace-wisdom](qa-report-workplace-wisdom.md) | 大人學 / 向上管理 | 完稿，已清公司指紋 |
-| [letter-to-new-qa-two-day-regression](letter-to-new-qa-two-day-regression.md) | 新進 QA / 回歸方法論 | 完稿 |
+| [letter-to-new-qa-two-day-regression](letter-to-new-qa-two-day-regression.md) | 新進 QA / 回歸方法論 | 完稿(20260511下一篇想這個方向) |
 | [empty-result-ambiguity-in-filter-testing](empty-result-ambiguity-in-filter-testing.md) | 測試設計 / 篩選功能 | 完稿，**押 2026-06-06 發布** |
 | [page-source-vs-find-element](page-source-vs-find-element.md) | 自動化效能 / Appium | 完稿，**押 2026-06-20 發布** |
 
-### 草稿（已寫但尚未確認完稿，2026-05-08 加入）
+### 草稿（已寫但尚未確認完稿）
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
-| [survival-kit-when-test-stage-down](survival-kit-when-test-stage-down.md) | 突發狀況 / QA 當責 / 信仰 | 草稿，敘事＋決策＋信仰三層合流（原 partial-report-and-responsibility 已合併進來） |
 | [pom-refactor-from-runnable-to-maintainable](pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | 草稿，等思考完才動 |
+
+> 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
 ### 規劃文件（_drafts/，不會直接成為文章）
 
@@ -180,26 +182,27 @@
 
 ---
 
-## 線九：突發狀況 / Survival Kit / 工程紀律（新加，2026-05-08）
+## 線九：突發狀況 / 自我審視 / 工程紀律（2026-05-08 新加）
 
-**起源**：2026-05-08 測試站登入服務壞掉、所有功能因相依登入無法測試。Jersey Su〈計畫趕得上變化〉的 Survival Kit 比喻打開了一條新的寫作主軸。
+**起源**：2026-05-08 測試站登入服務壞掉、所有功能因相依登入無法測試。Jersey Su〈計畫趕得上變化〉與 James Whittaker 的 ACC 框架打開了一條新的寫作主軸。
 
-**草稿（待自己審）**：
-- [survival-kit-when-test-stage-down](survival-kit-when-test-stage-down.md) — 三層合流：Survival Kit 三件事 → 報告寫法的小聲音 → 「忠心」信仰收尾（原 partial-report 已合併進此篇）
+**已排程上稿**：
+- [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)（排程 2026-05-13）— 三層合流：ACC 自審覆蓋率 → 報告寫法的小聲音 → 忠心信仰收尾。原 Survival Kit 三件事框架在 5/11 重寫中被 ACC 工具線取代
 
 **規劃中**：
 - 工程化的「應變紀律」：how to plan for tools failing
 - 「降級交付」的職場政治學：怎麼讓人理解 vs 怎麼讓人原諒
+- Survival Kit 三件事（重寫前的原版被 ACC 取代，但仍是有效題材——可獨立成篇）
 
-**狀態**：5/8 一個工作日生出一篇厚度足夠的合流草稿（~1500 字）。**這條線首發已就緒，等審完就可以排上稿節奏**。
+**狀態**：5/8 開出來，5/11 完成重寫並排程 5/13。線九首發已就位。
 
 ---
 
-# 整體寫作節奏（2026-05-08 校準）
+# 整體寫作節奏（2026-05-11 校準）
 
-> 上次校準是 2026-05-06。這幾天的進展：boredom 已上稿、empty-result + page-source 兩篇技術深度文寫好排程、線九（Survival Kit）開出來。
+> 上次校準是 2026-05-08。這幾天的進展：線九首發 ten-minute-test-plan 5/11 重寫完成並排程 5/13、引入 ACC 框架、〈如何閱讀一本書〉跨領域類比加進 PDT 那篇、PDT 首篇加入 Bach / Kaner 兩句英文金句 + 延伸閱讀區塊。
 
-## 庫存壓力（仍存在）
+## 庫存壓力（持續）
 
 目前 **6 篇完稿草稿沒上**：
 - 4 篇彈性發布：accountability-checklist、seminary-calling、qa-report-workplace-wisdom、letter-to-new-qa
@@ -209,12 +212,10 @@
 
 ## 接下來 1-2 週的建議發佈節奏
 
-趁著情緒最新鮮，打鐵趁熱先發佈 Survival Kit，接著再逐步消化完稿庫存：
-
-1. **survival-kit-when-test-stage-down** — （插隊首發）情緒最新鮮、新切面、文章已具備高度完成度
-2. **letter-to-new-qa-two-day-regression** — 新進 QA 教材，溫度高
+1. ~~survival-kit-when-test-stage-down~~ → **ten-minute-test-plan-when-test-stage-down** — ✅ **已排程 2026-05-13**
+2. **letter-to-new-qa-two-day-regression** — 跟 ten-minute 是「兩天回歸 × 有限時間 × 覆蓋率焦慮」同一題的兩個面向（**內省版** / **教材版**）。**建議三到五天內接著發**，形成雙篇記憶點。目標發稿：2026-05-16 前後
 3. **ai-replacement-accountability-checklist + seminary-calling** — AI 取代系列雙篇，連發效果好
-4. **qa-report-workplace-wisdom** — 大人學 / 向上管理
+4. **qa-report-workplace-wisdom** — 大人學 / 向上管理（注意：跟 ten-minute 結尾隱約撞「報告 vs 真實品質」，建議排在 #3 之後拉開距離）
 
 ## 接下來 1 個月的寫作目標
 
