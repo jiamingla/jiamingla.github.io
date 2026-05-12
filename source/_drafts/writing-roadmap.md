@@ -55,10 +55,10 @@
 - [analogy-series-proposals.md](analogy-series-proposals.md) — PDT 類比系列（醫生 / 記者 / 偵探 / 讀者）
 - [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md) — 讀書延伸題目（《QA 職涯手冊》七個切角）
 - [tools-roadmap.md](tools-roadmap.md) — PDT/Self-Review Agent 工具路線
+- [pdt-coach-session-2026-05-12-insights.md](pdt-coach-session-2026-05-12-insights.md) — **PDT Coach 首次使用意外牽出的三條題目**（自我審查 / 跨團隊協作 / 金流無主之地）
+- [pm-bug-management-structural-DRAWER.md](pm-bug-management-structural-DRAWER.md) — 🗄️ Framing B 抽屜文（暫不發表）
+- [qa-self-review-agent-prompt-v1.md](qa-self-review-agent-prompt-v1.md) — PDT Coach v1 系統 prompt
 
-### 已歸檔
-
-- `archive/idea-2.md` — AI 取代系列原始素材（已被 accountability-checklist 與 seminary-calling 吸收）
 
 ---
 
@@ -156,6 +156,8 @@
 - PM 要的不是測試報告，是決策依據
 - 從需求會議抓出「沒說出口的驗收條件」
 - 三種 PM 類型 × QA 協作策略（重交付 / 重數據 / 重用戶）
+- 🆕 **〈我寫文章很犀利，講話會自我審查〉**（B 文，2026-05-12 從 PDT Coach session 浮現，可較早動筆）→ 詳見 [pdt-coach-session-2026-05-12-insights.md](pdt-coach-session-2026-05-12-insights.md)
+- 🆕 **〈客服跑來敲門那天：30 分鐘串 4 個角色〉**（A 文，等案例累積 1-2 次再寫）→ 同上 insights 檔
 
 ---
 
@@ -223,6 +225,7 @@
 - 主軸：你做了什麼工具、解決了什麼、學到什麼
 - PM 不擅長管 bug 這個觀察**藏在背景**，不正面寫
 - **沒有實作就不要動筆**
+- 🆕 **合寫候選素材**：金流測試的「四層卡點」是另一個「無主之地」具體案例——2026-05-12 PDT Coach session 浮現，詳見 [pdt-coach-session-2026-05-12-insights.md](pdt-coach-session-2026-05-12-insights.md) 文章 C。可以跟 bug-triage agent 案例合寫成「兩個無主之地」。
 
 ### 🗄️ 深度版（抽屜文，暫不發表）：[pm-bug-management-structural-DRAWER.md](pm-bug-management-structural-DRAWER.md)
 
