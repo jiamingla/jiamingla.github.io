@@ -5,6 +5,12 @@
 **並進文件**：[tools-roadmap.md](tools-roadmap.md)（工具優先策略，文章是副產品）
 
 > ⚠️ **每次發新文章後都要回來更新此檔**：把該篇從「完稿待上」移到「已上稿」表格，並更新主題線狀態。這個 roadmap 是 live 文件，stale 之後會比沒有更糟。
+>
+> ⚠️ **更新前先檢查 git 進度**：跑 `git log --oneline -20 -- source/_drafts source/_posts` 看實際 commit，並 cross-check `source/_posts/` 確認 urlname 是否已發布。**不要只信 roadmap 自己的宣告**——roadmap 是 git 狀態的 downstream artifact，不是 source of truth。具體分流：
+>
+> - 草稿從 `_drafts/` 移到 `_posts/` → 標為「已上稿」並填實際日期
+> - 草稿 commit 了但仍在 `_drafts/` → 標為「完稿待上」（如知 commit 日期請註記）
+> - 其他情況 → 「規劃中」
 
 ---
 
