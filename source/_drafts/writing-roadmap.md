@@ -1,6 +1,6 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-05-11
+**最後更新**：2026-05-13
 **對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外推廣。
 **並進文件**：[tools-roadmap.md](tools-roadmap.md)（工具優先策略，文章是副產品）
 
@@ -90,7 +90,10 @@
 - [ai-replacement-accountability-checklist](ai-replacement-accountability-checklist.md)（四份當責清單）
 - [ai-replacement-seminary-calling](ai-replacement-seminary-calling.md)（信仰收尾）
 
-**狀態**：核心論述已打到位（spec / 煩 / 當責 / 呼召），四篇形成完整系列。**待上稿的兩篇可以排進接下來的節奏**。
+**規劃中**：
+- 🆕 **[ai-as-yes-man-rd-pm-trust-calibration](ai-as-yes-man-rd-pm-trust-calibration.md)** — 給 RD/PM 的 AI 測試結果信任校準（三個必問問題）。**主論點**：AI 不是你的 QA，是你的 Yes Man——QA 內建對你產品的敵意懷疑，AI 內建對你的對齊配合。**跟 [notest-ambiguity](notest-ambiguity-skip-vs-low-confidence.md) 是姐妹篇**：QA 升級 schema、RD/PM 升級提問習慣，[PDT Coach 工具](tools-roadmap.md) 填中間。**起源**：2026-05-13 跟 notest 那篇同源討論。**順序**：**先於 notest 上稿**（2026-05-13 訂）——awareness（這篇）→ tooling（notest）→ 配合 [accountability-checklist](ai-replacement-accountability-checklist.md) 形成「問題 → 責任 → 工具」三連發弧線
+
+**狀態**：核心論述已打到位（spec / 煩 / 當責 / 呼召），四篇形成完整系列。**待上稿的兩篇可以排進接下來的節奏**。新加的 yes-man 篇把這條線從「QA 觀點的 AI 取代」推到「**RD/PM 觀點的 AI 信任**」——半徑更廣，也是 PDT Coach 工具對外推廣的合理性背書文。
 
 ---
 
@@ -138,11 +141,12 @@
 **完稿待上**：[empty-result-ambiguity-in-filter-testing](empty-result-ambiguity-in-filter-testing.md)（押 2026-06-06，篩選 empty 歧義五種解法）
 
 **規劃中**：
+- 🆕 **[notest-ambiguity-skip-vs-low-confidence](notest-ambiguity-skip-vs-low-confidence.md)** — AI 跑測試標 `notest`：跳過 vs 低信心 vs 執行失敗 vs 無判斷規則。**母題與 empty-result 同源**（「中間態被當成終態」），是它的姐妹篇。起源：2026-05-13 主管的提問。**讀者已確定**：QA，且預設只有 `pass/fail`（走 B 路線：公開＋去個人化，避免「應測但測不想」的自我揭露被同公司同事對號入座）。**觸發**：等 empty-result（6/6）上稿後再啟動。**配對作品**：[ai-as-yes-man-rd-pm-trust-calibration](ai-as-yes-man-rd-pm-trust-calibration.md) 是 RD/PM 視角的姐妹篇（見線二）——**先於本篇上稿**，本篇接著從 schema 層延伸
 - 篩選功能的組合爆炸：Pairwise / 正交實驗設計入門
 - PDT 視角下，篩選功能真正會壞掉的 7 個地方
 - 自動化的 ROI 怎麼算？我用篩選功能算給你看
 
-**狀態**：empty-result 上稿後這條線變得很厚——「該不該自動化」+「怎麼設計」都打到了。延伸題目都有素材，等情緒回流再寫。
+**狀態**：empty-result 上稿後這條線變得很厚——「該不該自動化」+「怎麼設計」都打到了。延伸題目都有素材，等情緒回流再寫。notest-ambiguity 是新加入的「同母題姐妹篇」，把這條線從「篩選功能特化」推廣到「AI 測試判讀」這層更抽象的命題。
 
 ---
 
