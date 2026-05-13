@@ -183,8 +183,9 @@
 **規劃中**：
 - Bug Report 寫作教學（流量穩、長尾高）
 - 測試工程師養成書單／學習路徑（合流到 [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md)）
+- 🆕 **[bug-triage-six-patterns-industry-survey](bug-triage-six-patterns-industry-survey.md)** — 業界 Bug 預設指派的六種 pattern 對照（PM / Tech Lead / QA / Unassigned / Committee / CODEOWNER）+ 七種 backlog workaround（bug bash / bankruptcy / Zero bug / Severity-only / Fix-it Friday / SLA-based / Embedded QA）。**起源**：2026-05-13 為線十做業界 survey 時發現本身就值得獨立成篇。**讀者**：QA 為主，PM / Tech Lead 也讀得進去。**SEO**：「bug triage」是穩定長尾關鍵字。**配對**：是線十兩篇的入門前傳，**發稿順序未定**（先入門引流 / 後深度延伸都可）
 
-**狀態**：品牌目前缺，**短期內加一篇 Bug Report 教學會讓部落格定位更完整**。
+**狀態**：品牌目前缺，**短期內加一篇 Bug Report 教學會讓部落格定位更完整**。新加的 bug-triage-six-patterns 篇是 SEO 雙保險——「Bug Report 教學」打內容入門、「Bug Triage Pattern」打組織入門，兩篇都吃長尾。
 
 ---
 
