@@ -97,9 +97,10 @@
 - [ai-replacement-seminary-calling](ai-replacement-seminary-calling.md)（信仰收尾）
 
 **規劃中**：
-- 🆕 **[ai-as-yes-man-rd-pm-trust-calibration](ai-as-yes-man-rd-pm-trust-calibration.md)** — 給 RD/PM 的 AI 測試結果信任校準（三個必問問題）。**主論點**：AI 不是你的 QA，是你的 Yes Man——QA 內建對你產品的敵意懷疑，AI 內建對你的對齊配合。**跟 [notest-ambiguity](notest-ambiguity-skip-vs-low-confidence.md) 是姐妹篇**：QA 升級 schema、RD/PM 升級提問習慣，[PDT Coach 工具](tools-roadmap.md) 填中間。**起源**：2026-05-13 跟 notest 那篇同源討論。**順序**：**先於 notest 上稿**（2026-05-13 訂）——awareness（這篇）→ tooling（notest）→ 配合 [accountability-checklist](ai-replacement-accountability-checklist.md) 形成「問題 → 責任 → 工具」三連發弧線
+- 🆕 **[ai-as-yes-man-rd-pm-trust-calibration](ai-as-yes-man-rd-pm-trust-calibration.md)** — 給 RD/PM 的 AI 測試結果信任校準（三個必問問題）。**主論點**：AI 不是你的 QA，是你的 Yes Man——QA 內建對你產品的敵意懷疑，AI 內建對你的對齊配合。**跟 [notest-ambiguity](notest-ambiguity-skip-vs-low-confidence.md) 是姐妹篇**：QA 升級 schema、RD/PM 升級提問習慣，[PDT Coach 工具](tools-roadmap.md) 填中間。**起源**：2026-05-13 跟 notest 那篇同源討論。**順序**：**先於 notest 上稿**（2026-05-13 訂）——awareness（這篇）→ tooling（notest）→ 配合 [accountability-checklist](ai-replacement-accountability-checklist.md) 形成「問題 → 責任 → 工具」三連發弧線。**配對篇**：跟 [ai-test-output-default-reader-is-ai](ai-test-output-default-reader-is-ai.md) 形成「**Working with AI Output**」雙篇——本篇講「問」、配對篇講「讀」
+- 🆕 **[ai-test-output-default-reader-is-ai](ai-test-output-default-reader-is-ai.md)** — 為什麼 AI 給的測試案例讀起來特別累？因為它的預設讀者不是你。三層 mismatch（專業 / 語言 / 基礎假設）+ 四個讀 AI 輸出的具體技巧（為自己 prompt design / 詞彙考試 / 翻譯 / glossary）。**起源**：2026-05-14 寫 [frontend-ui-vocabulary](frontend-ui-vocabulary-for-backend-qa.md) 篇時衍生出來的更大命題。**讀者**：中文圈 QA + 單一專業背景——這是**繁體中文 QA 部落格的 differentiator**（英文圈不討論這個 angle）。**配對**：跟 [yes-man](ai-as-yes-man-rd-pm-trust-calibration.md) 形成「**Working with AI Output 雙篇**」（會問 + 會讀）
 
-**狀態**：核心論述已打到位（spec / 煩 / 當責 / 呼召），四篇形成完整系列。**待上稿的兩篇可以排進接下來的節奏**。新加的 yes-man 篇把這條線從「QA 觀點的 AI 取代」推到「**RD/PM 觀點的 AI 信任**」——半徑更廣，也是 PDT Coach 工具對外推廣的合理性背書文。
+**狀態**：核心論述已打到位（spec / 煩 / 當責 / 呼召），四篇形成完整系列。**待上稿的兩篇可以排進接下來的節奏**。新加的 yes-man + ai-test-output-default-reader 形成「**Working with AI Output**」雙篇（會問 + 會讀），讓這條線從「**AI 取代焦慮**」往「**AI literacy 操作技能**」進化——半徑更廣、actionable 更強，也都是 PDT Coach 工具對外推廣的合理性背書文。
 
 ---
 
@@ -190,8 +191,9 @@
 - Bug Report 寫作教學（流量穩、長尾高）
 - 測試工程師養成書單／學習路徑（合流到 [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md)）
 - 🆕 **[bug-triage-six-patterns-industry-survey](bug-triage-six-patterns-industry-survey.md)** — 業界 Bug 預設指派的六種 pattern 對照（PM / Tech Lead / QA / Unassigned / Committee / CODEOWNER）+ 七種 backlog workaround（bug bash / bankruptcy / Zero bug / Severity-only / Fix-it Friday / SLA-based / Embedded QA）。**起源**：2026-05-13 為線十做業界 survey 時發現本身就值得獨立成篇。**讀者**：QA 為主，PM / Tech Lead 也讀得進去。**SEO**：「bug triage」是穩定長尾關鍵字。**配對**：是線十兩篇的入門前傳，**發稿順序未定**（先入門引流 / 後深度延伸都可）
+- 🆕 **[frontend-ui-vocabulary-for-backend-qa](frontend-ui-vocabulary-for-backend-qa.md)** — **「後端 QA 該認識的 31 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補課」**。七類覆蓋：**載入狀態** / **用戶反饋**（含 Optimistic UI） / **表單狀態** / **導航結構**（含麵包屑） / **訊息密度**（含 CTA、Empty state） / **動畫術語** / **存取控制 / 商業化**（含 Paywall、Feature gate、Login wall）。**起源**：2026-05-14 AI 給的測試案例寫了 `skeleton loading`，作者意識到自己後端背景對前端詞彙有缺口；草擬過程中持續發現「麵包屑、Optimistic UI、Paywall...」也在缺口裡，從原本 4 類 16 詞擴張成 7 類 31 詞。**讀者**：背景以後端為主、開始要碰前端的 QA。**SEO**：「skeleton loading 是什麼」等長尾 + 數字 listicle pattern 雙重信號。**意外的 PDT 角度**：「AI 暴露 QA 不知道自己有的缺口」——連到線二「**AI 是 QA 的擴張鏡**」這條軸；也是 [ai-test-output-default-reader-is-ai](ai-test-output-default-reader-is-ai.md) 的具體子題（vocab 是「這些詞是什麼」、AI-reader 是「為什麼 AI 用了你不懂的詞」）
 
-**狀態**：品牌目前缺，**短期內加一篇 Bug Report 教學會讓部落格定位更完整**。新加的 bug-triage-six-patterns 篇是 SEO 雙保險——「Bug Report 教學」打內容入門、「Bug Triage Pattern」打組織入門，兩篇都吃長尾。
+**狀態**：品牌目前缺，**短期內加一篇 Bug Report 教學會讓部落格定位更完整**。線八現有四篇規劃 + bug-triage-six-patterns + frontend-ui-vocabulary 形成「入門三線」覆蓋——「Bug Report 教學」打**內容寫作入門**、「Bug Triage Pattern」打**組織流程入門**、「Frontend UI Vocabulary」打**詞彙跨領域入門**。三線都吃 SEO 長尾。
 
 ---
 
