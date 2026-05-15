@@ -4,7 +4,7 @@
 
 PDT 剛開始講的時候，讀者容易以為這是 QA 圈的奇技。但它其實是**人類通用的求知姿態**——用不同領域的類比疊加，可以把這個主張變得牢不可破，順便把 PDT 從「測試方法」升級成「職業姿態」。
 
-目前 [problem-driven-testing-intro.md](problem-driven-testing-intro.md) 的第二節已經埋了《如何閱讀一本書》的印證，這個系列是把類比展開寫成獨立文章。
+目前 [problem-driven-testing-intro](/post/problem-driven-testing-intro/) 的第二節已經埋了《如何閱讀一本書》的印證，這個系列是把類比展開寫成獨立文章。
 
 ---
 

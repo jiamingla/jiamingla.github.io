@@ -41,18 +41,18 @@
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
-| [ai-replacement-accountability-checklist](ai-replacement-accountability-checklist.md) | AI 取代 / 當責 | 完稿（2026-04-28） |
-| [ai-replacement-seminary-calling](ai-replacement-seminary-calling.md) | AI 取代 / 信仰 | 完稿（2026-04-28） |
-| [qa-report-workplace-wisdom](qa-report-workplace-wisdom.md) | 大人學 / 向上管理 | 完稿，已清公司指紋 |
-| [letter-to-new-qa-two-day-regression](letter-to-new-qa-two-day-regression.md) | 新進 QA / 回歸方法論 | 完稿(20260511下一篇想這個方向) |
-| [empty-result-ambiguity-in-filter-testing](empty-result-ambiguity-in-filter-testing.md) | 測試設計 / 篩選功能 | 完稿，**押 2026-06-06 發布** |
-| [page-source-vs-find-element](page-source-vs-find-element.md) | 自動化效能 / Appium | 完稿，**押 2026-06-20 發布** |
+| [ai-replacement-accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md) | AI 取代 / 當責 | 完稿（2026-04-28） |
+| [ai-replacement-seminary-calling](../source/_drafts/ai-replacement-seminary-calling.md) | AI 取代 / 信仰 | 完稿（2026-04-28） |
+| [qa-report-workplace-wisdom](../source/_drafts/qa-report-workplace-wisdom.md) | 大人學 / 向上管理 | 完稿，已清公司指紋 |
+| [letter-to-new-qa-two-day-regression](../source/_drafts/letter-to-new-qa-two-day-regression.md) | 新進 QA / 回歸方法論 | 完稿(20260511下一篇想這個方向) |
+| [empty-result-ambiguity-in-filter-testing](../source/_drafts/empty-result-ambiguity-in-filter-testing.md) | 測試設計 / 篩選功能 | 完稿，**押 2026-06-06 發布** |
+| [page-source-vs-find-element](../source/_drafts/page-source-vs-find-element.md) | 自動化效能 / Appium | 完稿，**押 2026-06-20 發布** |
 
 ### 草稿（已寫但尚未確認完稿）
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
-| [pom-refactor-from-runnable-to-maintainable](pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | 草稿，等思考完才動 |
+| [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | 草稿，等思考完才動 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
@@ -61,7 +61,9 @@
 - [analogy-series-proposals.md](analogy-series-proposals.md) — PDT 類比系列（醫生 / 記者 / 偵探 / 讀者）
 - [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md) — 讀書延伸題目（《QA 職涯手冊》七個切角）
 - [tools-roadmap.md](tools-roadmap.md) — PDT/Self-Review Agent 工具路線
-- [pdt-coach-session-2026-05-12-insights.md](pdt-coach-session-2026-05-12-insights.md) — **PDT Coach 首次使用意外牽出的三條題目**（自我審查 / 跨團隊協作 / 金流無主之地）
+- [pdt-coach-session-2026-05-12-insights.md](coach-sessions/2026-05-12-insights.md) — PDT Coach 首次使用：自我審查 / 跨團隊協作 / 金流無主之地
+- [pdt-coach-session-2026-05-13-insights.md](coach-sessions/2026-05-13-insights.md) — **「該做 vs 想做」**（首次下載三種語義 / A-B 工作取捨 / PM 訪談）
+- [pdt-coach-session-2026-05-14-insights.md](coach-sessions/2026-05-14-insights.md) — **「不是退讓，是調整佔用」**（三天故事收尾 / Owner 敘事 / Coach 沒給安慰）
 - [pm-bug-management-structural-DRAWER.md](pm-bug-management-structural-DRAWER.md) — 🗄️ Framing B 抽屜文（暫不發表）
 - [qa-self-review-agent-prompt-v1.md](qa-self-review-agent-prompt-v1.md) — PDT Coach v1 系統 prompt
 
@@ -81,6 +83,8 @@
 - PDT × 廣度類比（記者 / 偵探 / 讀者，4 種職業同構）
 - 詳細提案見 [analogy-series-proposals.md](analogy-series-proposals.md)
 - [ ] 從 Self-review Agent 學到的事：我如何把 PDT 變成自動化提示（佔位符：先做工具，再產出這篇）
+- 🆕 **〈AI Coach 沒給安慰：當你需要的不是被理解，是被點破〉**（5/14 D 文，PDT 哲學延伸）→ [insights](coach-sessions/2026-05-14-insights.md)
+- 🆕 **〈跨對話的記憶才是 AI 助理的真正價值〉**（5/14 E 文，跟 tools-roadmap 合流）→ 同上
 
 **狀態**：招牌主張已立，類比系列是補強深度。**短期內最值得動**，因為這條線在部落格定位的權重最大。
 
@@ -93,12 +97,12 @@
 - [boredom-is-a-signal](/post/boredom-is-a-signal/)（2026-05-06，與 spec-maintenance 互為鏡像）
 
 **完稿待上**：
-- [ai-replacement-accountability-checklist](ai-replacement-accountability-checklist.md)（四份當責清單）
-- [ai-replacement-seminary-calling](ai-replacement-seminary-calling.md)（信仰收尾）
+- [ai-replacement-accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md)（四份當責清單）
+- [ai-replacement-seminary-calling](../source/_drafts/ai-replacement-seminary-calling.md)（信仰收尾）
 
 **規劃中**：
-- 🆕 **[ai-as-yes-man-rd-pm-trust-calibration](ai-as-yes-man-rd-pm-trust-calibration.md)** — 給 RD/PM 的 AI 測試結果信任校準（三個必問問題）。**主論點**：AI 不是你的 QA，是你的 Yes Man——QA 內建對你產品的敵意懷疑，AI 內建對你的對齊配合。**跟 [notest-ambiguity](notest-ambiguity-skip-vs-low-confidence.md) 是姐妹篇**：QA 升級 schema、RD/PM 升級提問習慣，[PDT Coach 工具](tools-roadmap.md) 填中間。**起源**：2026-05-13 跟 notest 那篇同源討論。**順序**：**先於 notest 上稿**（2026-05-13 訂）——awareness（這篇）→ tooling（notest）→ 配合 [accountability-checklist](ai-replacement-accountability-checklist.md) 形成「問題 → 責任 → 工具」三連發弧線。**配對篇**：跟 [ai-test-output-default-reader-is-ai](ai-test-output-default-reader-is-ai.md) 形成「**Working with AI Output**」雙篇——本篇講「問」、配對篇講「讀」
-- 🆕 **[ai-test-output-default-reader-is-ai](ai-test-output-default-reader-is-ai.md)** — 為什麼 AI 給的測試案例讀起來特別累？因為它的預設讀者不是你。三層 mismatch（專業 / 語言 / 基礎假設）+ 四個讀 AI 輸出的具體技巧（為自己 prompt design / 詞彙考試 / 翻譯 / glossary）。**起源**：2026-05-14 寫 [frontend-ui-vocabulary](frontend-ui-vocabulary-for-backend-qa.md) 篇時衍生出來的更大命題。**讀者**：中文圈 QA + 單一專業背景——這是**繁體中文 QA 部落格的 differentiator**（英文圈不討論這個 angle）。**配對**：跟 [yes-man](ai-as-yes-man-rd-pm-trust-calibration.md) 形成「**Working with AI Output 雙篇**」（會問 + 會讀）
+- 🆕 **[ai-as-yes-man-rd-pm-trust-calibration](../source/_drafts/ai-as-yes-man-rd-pm-trust-calibration.md)** — 給 RD/PM 的 AI 測試結果信任校準（三個必問問題）。**主論點**：AI 不是你的 QA，是你的 Yes Man——QA 內建對你產品的敵意懷疑，AI 內建對你的對齊配合。**跟 [notest-ambiguity](../source/_drafts/notest-ambiguity-skip-vs-low-confidence.md) 是姐妹篇**：QA 升級 schema、RD/PM 升級提問習慣，[PDT Coach 工具](tools-roadmap.md) 填中間。**起源**：2026-05-13 跟 notest 那篇同源討論。**順序**：**先於 notest 上稿**（2026-05-13 訂）——awareness（這篇）→ tooling（notest）→ 配合 [accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md) 形成「問題 → 責任 → 工具」三連發弧線。**配對篇**：跟 [ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md) 形成「**Working with AI Output**」雙篇——本篇講「問」、配對篇講「讀」
+- 🆕 **[ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md)** — 為什麼 AI 給的測試案例讀起來特別累？因為它的預設讀者不是你。三層 mismatch（專業 / 語言 / 基礎假設）+ 四個讀 AI 輸出的具體技巧（為自己 prompt design / 詞彙考試 / 翻譯 / glossary）。**起源**：2026-05-14 寫 [frontend-ui-vocabulary](../source/_drafts/frontend-ui-vocabulary-for-backend-qa.md) 篇時衍生出來的更大命題。**讀者**：中文圈 QA + 單一專業背景——這是**繁體中文 QA 部落格的 differentiator**（英文圈不討論這個 angle）。**配對**：跟 [yes-man](../source/_drafts/ai-as-yes-man-rd-pm-trust-calibration.md) 形成「**Working with AI Output 雙篇**」（會問 + 會讀）
 
 **狀態**：核心論述已打到位（spec / 煩 / 當責 / 呼召），四篇形成完整系列。**待上稿的兩篇可以排進接下來的節奏**。新加的 yes-man + ai-test-output-default-reader 形成「**Working with AI Output**」雙篇（會問 + 會讀），讓這條線從「**AI 取代焦慮**」往「**AI literacy 操作技能**」進化——半徑更廣、actionable 更強，也都是 PDT Coach 工具對外推廣的合理性背書文。
 
@@ -112,10 +116,10 @@
 - [語音測試 × FFmpeg](/post/audio-testing-ffmpeg/)
 
 **完稿待上**：
-- [page-source-vs-find-element](page-source-vs-find-element.md)（押 2026-06-20，UI 自動化 cost model）
+- [page-source-vs-find-element](../source/_drafts/page-source-vs-find-element.md)（押 2026-06-20，UI 自動化 cost model）
 
 **規劃中/草稿**：
-- [pom-refactor-from-runnable-to-maintainable](pom-refactor-from-runnable-to-maintainable.md)（草稿階段，教材潛力，可考慮給同事看）
+- [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md)（草稿階段，教材潛力，可考慮給同事看）
 - Claude Code + MCP 寫 Android 自動化測試（Python）
 - 語音測試之二：延遲、回聲、背景噪音的自動化驗證
 
@@ -130,14 +134,15 @@
 - [太多「無意義」的回歸測試嗎？](/post/rethinking-regression-test-value/)
 - [PDT](/post/problem-driven-testing-intro/)
 
-**完稿待上**：[letter-to-new-qa-two-day-regression](letter-to-new-qa-two-day-regression.md)（新進 QA 信，兩天回歸方法論）
+**完稿待上**：[letter-to-new-qa-two-day-regression](../source/_drafts/letter-to-new-qa-two-day-regression.md)（新進 QA 信，兩天回歸方法論）
 
 **規劃中**：
 - 回歸測試的精簡 SOP（接 rethinking-regression-test-value）
 - 灰箱測試的入門路徑（接 black-box-limitations-and-strategy）
 - Bug Report 寫作教學：初階 QA 最常被退件的原因
+- 🆕 **〈「首次下載」這三個字其實有三種意思〉**（5/13 B 文，純技術 / 零風險，可立刻動筆）→ [insights](coach-sessions/2026-05-13-insights.md)
 
-**狀態**：這是部落格最厚的一條線。Bug Report 寫作教學 SEO 長尾值得早寫。
+**狀態**：這是部落格最厚的一條線。Bug Report 寫作教學 SEO 長尾值得早寫。**5/13 B 文是這條線目前最容易動筆的——零風險、有技術深度、跟 PDT 提問精準度同源**。
 
 ---
 
@@ -145,10 +150,10 @@
 
 **已上稿**：[boredom-is-a-signal](/post/boredom-is-a-signal/)（與 spec-maintenance 鏡像對）
 
-**完稿待上**：[empty-result-ambiguity-in-filter-testing](empty-result-ambiguity-in-filter-testing.md)（押 2026-06-06，篩選 empty 歧義五種解法）
+**完稿待上**：[empty-result-ambiguity-in-filter-testing](../source/_drafts/empty-result-ambiguity-in-filter-testing.md)（押 2026-06-06，篩選 empty 歧義五種解法）
 
 **規劃中**：
-- 🆕 **[notest-ambiguity-skip-vs-low-confidence](notest-ambiguity-skip-vs-low-confidence.md)** — AI 跑測試標 `notest`：跳過 vs 低信心 vs 執行失敗 vs 無判斷規則。**母題與 empty-result 同源**（「中間態被當成終態」），是它的姐妹篇。起源：2026-05-13 主管的提問。**讀者已確定**：QA，且預設只有 `pass/fail`（走 B 路線：公開＋去個人化，避免「應測但測不想」的自我揭露被同公司同事對號入座）。**觸發**：等 empty-result（6/6）上稿後再啟動。**配對作品**：[ai-as-yes-man-rd-pm-trust-calibration](ai-as-yes-man-rd-pm-trust-calibration.md) 是 RD/PM 視角的姐妹篇（見線二）——**先於本篇上稿**，本篇接著從 schema 層延伸
+- 🆕 **[notest-ambiguity-skip-vs-low-confidence](../source/_drafts/notest-ambiguity-skip-vs-low-confidence.md)** — AI 跑測試標 `notest`：跳過 vs 低信心 vs 執行失敗 vs 無判斷規則。**母題與 empty-result 同源**（「中間態被當成終態」），是它的姐妹篇。起源：2026-05-13 主管的提問。**讀者已確定**：QA，且預設只有 `pass/fail`（走 B 路線：公開＋去個人化，避免「應測但測不想」的自我揭露被同公司同事對號入座）。**觸發**：等 empty-result（6/6）上稿後再啟動。**配對作品**：[ai-as-yes-man-rd-pm-trust-calibration](../source/_drafts/ai-as-yes-man-rd-pm-trust-calibration.md) 是 RD/PM 視角的姐妹篇（見線二）——**先於本篇上稿**，本篇接著從 schema 層延伸
 - 篩選功能的組合爆炸：Pairwise / 正交實驗設計入門
 - PDT 視角下，篩選功能真正會壞掉的 7 個地方
 - 自動化的 ROI 怎麼算？我用篩選功能算給你看
@@ -161,14 +166,21 @@
 
 **已上稿**：[QA 績效指標視角](/post/qa-performance-metrics-perspective/)
 
-**完稿待上**：[qa-report-workplace-wisdom](qa-report-workplace-wisdom.md)（已清公司指紋）
+**完稿待上**：[qa-report-workplace-wisdom](../source/_drafts/qa-report-workplace-wisdom.md)（已清公司指紋）
 
 **規劃中**：
 - PM 要的不是測試報告，是決策依據
 - 從需求會議抓出「沒說出口的驗收條件」
 - 三種 PM 類型 × QA 協作策略（重交付 / 重數據 / 重用戶）
-- 🆕 **〈我寫文章很犀利，講話會自我審查〉**（B 文，2026-05-12 從 PDT Coach session 浮現，可較早動筆）→ 詳見 [pdt-coach-session-2026-05-12-insights.md](pdt-coach-session-2026-05-12-insights.md)
-- 🆕 **〈客服跑來敲門那天：30 分鐘串 4 個角色〉**（A 文，等案例累積 1-2 次再寫）→ 同上 insights 檔
+- 🆕 **〈我寫文章很犀利，講話會自我審查〉**（5/12 B 文，可較早動筆）→ [5/12 insights](coach-sessions/2026-05-12-insights.md)
+- 🆕 **〈客服跑來敲門那天：30 分鐘串 4 個角色〉**（5/12 A 文，等案例累積 1-2 次再寫）
+- 🆕 **〈「該做」與「想做」之間，QA 容易把自己騙過去〉**（5/13 A 文，跟 5/12 B 文可合寫成系列）→ [5/13 insights](coach-sessions/2026-05-13-insights.md)
+- 🆕 **〈訪談非測試導向的 PM：問事實不問需求〉**（5/13 C 文，等案例累積）
+- 🆕 ⭐ **〈「不是退讓，是調整佔用」〉**（5/14 A 文，三天故事收尾，等 3 週後檢查點過了再寫）→ [5/14 insights](coach-sessions/2026-05-14-insights.md)
+- 🆕 **〈中午被否定三次後：「方案不好」vs「你不在那個位置上」〉**（5/14 B 文，需洗指紋）
+- 🆕 **〈被動承接員 vs 主動承接員 vs Owner 敘事〉**（5/14 C 文，等 6-8 週累積實際嘗試經驗）
+
+> **線六近期密度警示**：2026-05-12 起的 PDT Coach 三場 session 一口氣孕育 7 個自省式題目。**寫的時候要記得分散到其他線、不要連發**——否則部落格會給人「自省過載」的觀感。建議跟線一（PDT 哲學）、線四（方法論）輪流發。
 
 ---
 
@@ -176,7 +188,7 @@
 
 **已上稿**：boredom-is-a-signal 結尾的禱告（小型）
 
-**完稿待上**：[ai-replacement-seminary-calling](ai-replacement-seminary-calling.md)（信仰深寫）
+**完稿待上**：[ai-replacement-seminary-calling](../source/_drafts/ai-replacement-seminary-calling.md)（信仰深寫）
 
 **規劃中**：
 - 基督徒的測試視角：挑錯這份工作的召命與價值（深度版）
@@ -190,8 +202,8 @@
 **規劃中**：
 - Bug Report 寫作教學（流量穩、長尾高）
 - 測試工程師養成書單／學習路徑（合流到 [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md)）
-- 🆕 **[bug-triage-six-patterns-industry-survey](bug-triage-six-patterns-industry-survey.md)** — 業界 Bug 預設指派的六種 pattern 對照（PM / Tech Lead / QA / Unassigned / Committee / CODEOWNER）+ 七種 backlog workaround（bug bash / bankruptcy / Zero bug / Severity-only / Fix-it Friday / SLA-based / Embedded QA）。**起源**：2026-05-13 為線十做業界 survey 時發現本身就值得獨立成篇。**讀者**：QA 為主，PM / Tech Lead 也讀得進去。**SEO**：「bug triage」是穩定長尾關鍵字。**配對**：是線十兩篇的入門前傳，**發稿順序未定**（先入門引流 / 後深度延伸都可）
-- 🆕 **[frontend-ui-vocabulary-for-backend-qa](frontend-ui-vocabulary-for-backend-qa.md)** — **「後端 QA 該認識的 31 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補課」**。七類覆蓋：**載入狀態** / **用戶反饋**（含 Optimistic UI） / **表單狀態** / **導航結構**（含麵包屑） / **訊息密度**（含 CTA、Empty state） / **動畫術語** / **存取控制 / 商業化**（含 Paywall、Feature gate、Login wall）。**起源**：2026-05-14 AI 給的測試案例寫了 `skeleton loading`，作者意識到自己後端背景對前端詞彙有缺口；草擬過程中持續發現「麵包屑、Optimistic UI、Paywall...」也在缺口裡，從原本 4 類 16 詞擴張成 7 類 31 詞。**讀者**：背景以後端為主、開始要碰前端的 QA。**SEO**：「skeleton loading 是什麼」等長尾 + 數字 listicle pattern 雙重信號。**意外的 PDT 角度**：「AI 暴露 QA 不知道自己有的缺口」——連到線二「**AI 是 QA 的擴張鏡**」這條軸；也是 [ai-test-output-default-reader-is-ai](ai-test-output-default-reader-is-ai.md) 的具體子題（vocab 是「這些詞是什麼」、AI-reader 是「為什麼 AI 用了你不懂的詞」）
+- 🆕 **[bug-triage-six-patterns-industry-survey](../source/_drafts/bug-triage-six-patterns-industry-survey.md)** — 業界 Bug 預設指派的六種 pattern 對照（PM / Tech Lead / QA / Unassigned / Committee / CODEOWNER）+ 七種 backlog workaround（bug bash / bankruptcy / Zero bug / Severity-only / Fix-it Friday / SLA-based / Embedded QA）。**起源**：2026-05-13 為線十做業界 survey 時發現本身就值得獨立成篇。**讀者**：QA 為主，PM / Tech Lead 也讀得進去。**SEO**：「bug triage」是穩定長尾關鍵字。**配對**：是線十兩篇的入門前傳，**發稿順序未定**（先入門引流 / 後深度延伸都可）
+- 🆕 **[frontend-ui-vocabulary-for-backend-qa](../source/_drafts/frontend-ui-vocabulary-for-backend-qa.md)** — **「後端 QA 該認識的 31 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補課」**。七類覆蓋：**載入狀態** / **用戶反饋**（含 Optimistic UI） / **表單狀態** / **導航結構**（含麵包屑） / **訊息密度**（含 CTA、Empty state） / **動畫術語** / **存取控制 / 商業化**（含 Paywall、Feature gate、Login wall）。**起源**：2026-05-14 AI 給的測試案例寫了 `skeleton loading`，作者意識到自己後端背景對前端詞彙有缺口；草擬過程中持續發現「麵包屑、Optimistic UI、Paywall...」也在缺口裡，從原本 4 類 16 詞擴張成 7 類 31 詞。**讀者**：背景以後端為主、開始要碰前端的 QA。**SEO**：「skeleton loading 是什麼」等長尾 + 數字 listicle pattern 雙重信號。**意外的 PDT 角度**：「AI 暴露 QA 不知道自己有的缺口」——連到線二「**AI 是 QA 的擴張鏡**」這條軸；也是 [ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md) 的具體子題（vocab 是「這些詞是什麼」、AI-reader 是「為什麼 AI 用了你不懂的詞」）
 
 **狀態**：品牌目前缺，**短期內加一篇 Bug Report 教學會讓部落格定位更完整**。線八現有四篇規劃 + bug-triage-six-patterns + frontend-ui-vocabulary 形成「入門三線」覆蓋——「Bug Report 教學」打**內容寫作入門**、「Bug Triage Pattern」打**組織流程入門**、「Frontend UI Vocabulary」打**詞彙跨領域入門**。三線都吃 SEO 長尾。
 
@@ -236,7 +248,7 @@
 - 第一篇：「QA 是 default assignee 不是 originator」這個 reframe 讓論述更乾淨
 - 第二篇：AI 是「**跨角色語意翻譯者**」這個定位，比「自動化 triage」強很多
 
-詳見 [pdt-coach-session-2026-05-12-insights.md](pdt-coach-session-2026-05-12-insights.md) 末段「後續延伸觀察」。
+詳見 [pdt-coach-session-2026-05-12-insights.md](coach-sessions/2026-05-12-insights.md) 末段「後續延伸觀察」。
 
 **規劃中（現狀 + 解方，雙篇）**：
 
@@ -251,7 +263,7 @@
 - 主軸：你做了什麼工具、解決了什麼、學到什麼
 - PM 不擅長管 bug 這個觀察**藏在背景**，不正面寫
 - **沒有實作就不要動筆**
-- 🆕 **合寫候選素材**：金流測試的「四層卡點」是另一個「無主之地」具體案例——2026-05-12 PDT Coach session 浮現，詳見 [pdt-coach-session-2026-05-12-insights.md](pdt-coach-session-2026-05-12-insights.md) 文章 C。可以跟 bug-triage agent 案例合寫成「兩個無主之地」。
+- 🆕 **合寫候選素材**：金流測試的「四層卡點」是另一個「無主之地」具體案例——2026-05-12 PDT Coach session 浮現，詳見 [pdt-coach-session-2026-05-12-insights.md](coach-sessions/2026-05-12-insights.md) 文章 C。可以跟 bug-triage agent 案例合寫成「兩個無主之地」。
 
 ### 🗄️ 深度版（抽屜文，暫不發表）：[pm-bug-management-structural-DRAWER.md](pm-bug-management-structural-DRAWER.md)
 

@@ -197,5 +197,5 @@ https://jiamingla.github.io
 - `.github/workflows/deploy.yml` — Build & deploy 自動化（2026-05-11 新增）
 - `.github/dependabot.yml` — 依賴更新提醒
 - `package.json` / `package-lock.json` — Node 依賴清單
-- `source/_drafts/writing-roadmap.md` — 寫作節奏與進度
-- `source/_drafts/tools-roadmap.md` — 工具開發路線
+- `writing-roadmap.md` — 寫作節奏與進度
+- `tools-roadmap.md` — 工具開發路線
