@@ -53,6 +53,7 @@
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
 | [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | 草稿，等思考完才動 |
+| [not-just-make-manual-script-automate](../source/_drafts/not-just-make-manual-script-automate.md) | 線三 + 線五（UI 自動化 / 自動化決策） | **2026-05-15 骨架完成、4 個反思問題待答**，等想清楚 Q1-Q4 再填內容 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
@@ -119,11 +120,12 @@
 - [page-source-vs-find-element](../source/_drafts/page-source-vs-find-element.md)（押 2026-06-20，UI 自動化 cost model）
 
 **規劃中/草稿**：
+- 🆕 **[not-just-make-manual-script-automate](../source/_drafts/not-just-make-manual-script-automate.md)** — 〈你從不知道，我想做的不只是將手動測試給自動化〉。**主論點**：手動測試案例直接翻譯成自動化腳本是業界最常見的浪費——兩者本質上是不同物種，該分工而非轉換。手動專責探索 + UX 判斷 + 關鍵 path；自動化專責 API / DB / 結構性資料一致性。**起源**：2026-05-15 對話。骨架已建（前言 + 五節 + 結語）、4 個反思問題嵌入待答。**形成 UI 自動化子三部曲**：[boredom-is-a-signal](/post/boredom-is-a-signal/)（該不該自動化）→ 本篇（該驗什麼）→ page-source-vs-find-element（怎麼驗有效率）
 - [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md)（草稿階段，教材潛力，可考慮給同事看）
 - Claude Code + MCP 寫 Android 自動化測試（Python）
 - 語音測試之二：延遲、回聲、背景噪音的自動化驗證
 
-**狀態**：基礎已建立 + 兩篇深度文（POM 設計、page_source 效能）即將上線。POM + page_source 上稿後會把「PDT 高層次主張 → 工程實踐」的橋接補完。
+**狀態**：基礎已建立 + 兩篇深度文（POM 設計、page_source 效能）即將上線。POM + page_source 上稿後會把「PDT 高層次主張 → 工程實踐」的橋接補完。**新增 not-just-make-manual-script-automate（骨架已建）會跟 boredom + page-source 形成「UI 自動化三部曲」——子線辨識度大增**。
 
 ---
 
@@ -157,6 +159,7 @@
 - 篩選功能的組合爆炸：Pairwise / 正交實驗設計入門
 - PDT 視角下，篩選功能真正會壞掉的 7 個地方
 - 自動化的 ROI 怎麼算？我用篩選功能算給你看
+- 🔗 **[not-just-make-manual-script-automate](../source/_drafts/not-just-make-manual-script-automate.md)**（主要落線三，但跨線五——「該自動化什麼」這題的具體解，呼應 boredom-is-a-signal 從「該不該」進一步到「該驗什麼」）
 
 **狀態**：empty-result 上稿後這條線變得很厚——「該不該自動化」+「怎麼設計」都打到了。延伸題目都有素材，等情緒回流再寫。notest-ambiguity 是新加入的「同母題姐妹篇」，把這條線從「篩選功能特化」推廣到「AI 測試判讀」這層更抽象的命題。
 
