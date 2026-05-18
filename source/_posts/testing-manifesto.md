@@ -31,4 +31,46 @@ sticky: 100
 
 希望這些內容能為同樣在測試領域奮鬥的你，帶來一點啟發與共鳴。搬家事宜告一段落後，我會儘快開始第一篇的更新，敬請期待。
 
+---
+
+> 📅 **更新（2026-05-15）**：開台幾個月後，藍圖裡的題目部分已寫、部分還在思考，也意外多出原本沒列的篇目。整理一份對照地圖給讀者，也給自己備忘。
+
+### 對照藍圖：已上稿的文章
+
+**一、核心思維**
+- ✅ **PDT 專題** → [問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡](/post/problem-driven-testing-intro/)
+- 推動變革：仍在思考與實踐中
+
+**二、技術實踐**
+- Claude Code + MCP：仍規劃中
+- Page Object Pattern：仍規劃中
+
+**三、職場生存**
+- ✅ **期待管理 / 績效視角** → [測試工程師的「價值」如何量化？](/post/qa-performance-metrics-perspective/)
+- ✅ **利害關係人溝通（部分回應）** → [用 specs.md 餵 AI 之前](/post/spec-maintenance-gray-zone/)
+
+**四、信仰與工作**
+- ✅ **基督徒的測試視角（穿插式回應）** → [「煩」是 QA 的診斷工具](/post/boredom-is-a-signal/) 結尾的禱告 + [測試站登入壞了那天](/post/ten-minute-test-plan-when-test-stage-down/) 的「忠心」收尾
+
+### 藍圖之外、實際走出的篇目
+
+**技術實戰**：
+- [Selenium 踩坑筆記](/post/selenium-troubleshooting/)
+- [Appium 3.0 遷移指南](/post/appium-v2-to-v3-migration/)
+- [語音聊天室錄音測試 × FFmpeg](/post/audio-testing-ffmpeg/)
+
+**測試紀律 / 方法論**：
+- [當主管只想做「黑箱測試」](/post/black-box-limitations-and-strategy/)
+- [太多「無意義」的回歸測試嗎？](/post/rethinking-regression-test-value/)
+
+**自動化決策**：
+- [「煩」是 QA 的診斷工具](/post/boredom-is-a-signal/)（與 spec-maintenance 互為鏡像）
+
+**突發應變 / 自我審視**：
+- [測試站登入壞了那天：我真的測完了嗎？](/post/ten-minute-test-plan-when-test-stage-down/)
+
+藍圖是方向，不是限制——寫的過程中冒出來的新題目，往往比一開始計畫的更貼近我正在面對，真實在思考的事。
+
+寫部落格到現在，沒什麼人觀看、更沒什麼回饋，AI 參與的比例也遠超過鋁箔包飲料標示的 10% 純果汁含量，寫作能力也沒有明顯提升。但能寫出一些文章分享給身邊的朋友，這件事其實很有成就感——也支撐著我繼續寫下去。
+
 **一切順利。**
