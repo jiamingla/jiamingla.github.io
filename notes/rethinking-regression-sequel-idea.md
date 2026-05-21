@@ -23,7 +23,7 @@
 
 ---
 
-## 結構分析：這是 [線十 無主之地](writing-roadmap.md) 的另一個活體案例
+## 結構分析：這是 [線十 無主之地](writing-themes.md) 的另一個活體案例
 
 | 問題 | 該不該存在 / 修 | 誰來真正執行 |
 |---|---|---|
@@ -32,7 +32,7 @@
 
 **共同 pattern**：分析能力 ≠ 執行授權。即使有判定框架，**無人承擔「按下按鈕」這個動作的後果**，事情就停在原地。
 
-**這已是第二個落在同一個 pattern 上的觀察**——「無主之地」的主張在工作中默默累積證據。**未來寫 [線十的兩篇](writing-roadmap.md) 時，這是天然的素材庫**。
+**這已是第二個落在同一個 pattern 上的觀察**——「無主之地」的主張在工作中默默累積證據。**未來寫 [線十的兩篇](writing-themes.md) 時，這是天然的素材庫**。
 
 ---
 
@@ -169,7 +169,7 @@
 
 **呼應 / 連結**：
 - 接 [rethinking-regression-test-value](/post/rethinking-regression-test-value/)（直接續篇）
-- 跟 [線十 無主之地](writing-roadmap.md) 雙篇形成同 pattern 的不同實例
+- 跟 [線十 無主之地](writing-themes.md) 雙篇形成同 pattern 的不同實例
 - 跟 [spec-maintenance-gray-zone](/post/spec-maintenance-gray-zone/) 同源（組織縫隙的另一面）
 
 ---
