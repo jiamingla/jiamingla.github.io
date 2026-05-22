@@ -4,15 +4,20 @@
 **Original article**: [我們真的跑了太多「無意義」的回歸測試嗎？](/post/rethinking-regression-test-value/)
 **Format**: Reply comment (NOT new thread)
 **Length**: ~410 words — fits MoT reply norms
-**Strategy**: Build on @kinofrost's "fear of large suites" critique, add Sieve Theory framing + 4 actionable questions + accountability angle, link back to Mandarin original for full version.
+**Strategy**: Frame the timeline correctly — **MoT thread came first, inspired the Mandarin article**（不是反過來，這跟中文原文「最近在 MoT 論壇看到一個值得深思的討論」的時序一致）。Build on @kinofrost's "fear of large suites" critique, add Sieve Theory framing + 4 actionable questions + accountability angle, link back to Mandarin original for full version.
+
+**Framing 修正紀錄（2026-05-21）**：原本版本是「我寫完文章後才發現這個 thread」——時序錯了。校正後是「**讀了這個 thread → 被啟發 → 寫了中文版**」——這個 framing：
+- 跟中文原文的時序一致
+- 更謙遜的入場姿態（被既有討論啟發，而不是「我有外部成品要 plug」）
+- 更符合 MoT 文化（給原 thread 應有的功勞）
 
 ---
 
 ## ✂️ 直接複製下方這段貼到 MoT
 
-I came across this thread after writing a piece in Mandarin on the same question, and @kinofrost's observation about "fear of large suites" really landed for me — it names something I've been trying to articulate.
+I came across this thread a while back and it stuck with me — @kinofrost's framing of the "fear of large suites" was the part that landed hardest, and it eventually pushed me to write a longer reflection in Mandarin. Bringing the core framing back here as a small contribution to the conversation.
 
-What I've been calling it (translated from my own writing): **the Sieve Theory**.
+What I ended up calling it: **the Sieve Theory**.
 
 Imagine bugs as gravel and sand falling through a funnel:
 
@@ -33,7 +38,7 @@ I now ask myself four questions before adding any regression script:
 
 The hardest part isn't the analysis — it's the **accountability problem**. Deleting a test is technically easy, psychologically much harder. Whoever proposes the cleanup tends to inherit the cleanup work, and if anything goes wrong post-deletion, they own the consequence. Without explicit ownership of "this test exists because X", every test eventually becomes technical debt no one can responsibly remove.
 
-I wrote a longer reflection on this in Mandarin: https://jiamingla.github.io/post/rethinking-regression-test-value/ — happy to dig into any of these threads further.
+Full piece here: https://jiamingla.github.io/post/rethinking-regression-test-value/ — happy to dig into any of these threads further.
 
 ---
 
