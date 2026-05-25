@@ -1,6 +1,6 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-05-21
+**最後更新**：2026-05-25
 **對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外推廣。
 **並進文件**：
 - [writing-themes.md](writing-themes.md) — 10 條主題線的長期版圖（策略型，較少更新）
@@ -15,6 +15,14 @@
 > - 草稿從 `_drafts/` 移到 `_posts/` → 標為「已上稿」並填實際日期
 > - 草稿 commit 了但仍在 `_drafts/` → 標為「完稿待上」（如知 commit 日期請註記）
 > - 其他情況 → 「規劃中」
+>
+> ⚠️ **更新時優先改舊段、不要直接 append**（2026-05-25 加紀律）：這個檔案非常容易累積「5/20 校準的」「5/21 加的」「5/25 加的」三個版本同時存在的混亂。**動筆前先問自己**：
+>
+> 1. 我要改的是哪個既有 section？能不能就地更新，而不是在底下新加？
+> 2. 如果我在新加，是否其實該**替換掉**某個舊的？
+> 3. 既有的「（YYYY-MM-DD 加）」標記是否該升日期 / 已 stale 該刪？
+>
+> Append 比 update 容易，但 append 會讓檔案逐月變沉。**讀者（包括未來的自己）要在三個版本之間判斷哪個才是真的——那一刻 roadmap 就失去 source-of-truth 的功能了**。
 
 ---
 
@@ -90,58 +98,52 @@
 
 ---
 
-# 整體寫作節奏（2026-05-20 校準）
+# 整體寫作節奏（2026-05-25 校準）
 
-> 上次校準是 2026-05-11。9 天進展：ten-minute-test-plan 5/13 已上稿、新加 5 條線（線十無主之地、PDT Coach session insights 等）、PDT Coach 四場連續對話累計 13 個自省題目擠在線六、yes-man 5/20 即將發。
+> 上次校準是 2026-05-20（5 天前）。這 5 天進展：ai-as-yes-man 5/20 已上稿、letter-to-new-qa 5/21 提前上稿（含 P.S. hub 設計）、boredom-is-a-signal 5/21 補強第八節 + SEO 標題校準、frontend-ui-vocabulary 5/25 framing 校準（後端 QA → QA 通用視角）+ MoT 雙語規劃。
 
 ## 庫存壓力（持續）
 
-目前完稿草稿庫存：
-- 4 篇彈性發布：accountability-checklist、seminary-calling、qa-report-workplace-wisdom、letter-to-new-qa
-- 2 篇排程發布：empty-result（6/6）、page-source（6/20）
-- 1 篇骨架完成、4 個反思問題待答：not-just-make-manual-script-automate
-- 1 篇剛完成、即將發：ai-as-yes-man-rd-pm-trust-calibration（5/20）
+目前 _drafts/ 有 11 支，按發稿成熟度：
+- **下一篇候選**：frontend-ui-vocabulary-for-qa（5/28-30，文章 ⭐⭐⭐⭐ 長尾）
+- **排程發布**：empty-result（6/6）、page-source（6/20）
+- **完稿待上**：accountability-checklist、seminary-calling、qa-report-workplace-wisdom、ai-test-output-default-reader、bug-triage-six-patterns
+- **骨架階段**：not-just-make-manual-script-automate（4 個反思問題待答）、pom-refactor、notest-ambiguity
 
 寫作不缺東西，**缺的還是發稿節奏 + 主題線輪替紀律**。
 
-## ⚠️ 線六密度警示（2026-05-20 加）
+## ⚠️ 線六密度警示（2026-05-21 升級）
 
-PDT Coach 四場 session 累積 **13 個自省 / 大人學題目**全擠在線六。如果照題目浮現順序連發，**部落格會給人「自省過載 / 心靈雞湯」的觀感**，傷品牌定位。
+PDT Coach 五場 session 累積 **19 個自省 / 大人學題目**全擠在線六。如果照題目浮現順序連發，**部落格會給人「自省過載 / 心靈雞湯」的觀感**，傷品牌定位。
 
 **主題線輪替紀律**：
 - **同一線發稿至少間隔 3-4 週**
 - **連續三篇必須跨至少兩條主題線**
 - **線六每個月最多發 1 篇**——其他自省題目排隊等
 
-## 接下來 1-2 週的建議發佈節奏（2026-05-20 校準）
-
-| # | 文章 | 主題線 | 理由 |
-|---|---|---|---|
-| 1 | **ai-as-yes-man-rd-pm-trust-calibration** ⭐ | 線二 AI 取代 | 5/20 即將發。「方法論為內、AI 為殼」策略第一個對外案例 |
-| 2 | **letter-to-new-qa-two-day-regression** ⭐ | 線四 測試紀律 | 跨線換調性（從 AI 議題回到紮實方法論）。5/21 潤稿完成、加 P.S. hub 設計（回連 4 篇舊文）。**frontmatter 排 2026-05-22 23:00**，比原 5/24-5/25 目標提前 2-3 天 |
-| 3 | **ai-test-output-default-reader-is-ai** | 線二 AI literacy | 跟 yes-man 配對形成「Working with AI Output 雙篇」（會問 + 會讀）。**目標發稿：5/28-5/30**，跟 yes-man 隔 8-10 天最有記憶點 |
-| 4 | empty-result-ambiguity-in-filter-testing | 線五 測試設計 | 排程 6/6，自動上 |
-
-## 接下來 4-6 週的紀律建議（2026-05-20 加，**特別重要**）
+## 接下來 4-6 週的紀律建議（**特別重要**）
 
 **🚫 4-6 週內避開的事**：
-- 不要發**任何**線六（自省 / 大人學 / 向上管理）的文章——13 個題目排隊，但**現在發任何一篇都會被讀成「最近怎麼一直在抱怨 / 反省」**
-- 不要連發兩篇 AI 議題（yes-man → ai-test-output 之間必須插一篇別線）
+- 不要發**任何**線六（自省 / 大人學 / 向上管理）的文章——19 個題目排隊，但**現在發任何一篇都會被讀成「最近怎麼一直在抱怨 / 反省」**
+- 不要連發兩篇 AI 議題（中間必須插別線）
 - 不要連發兩篇「跟 PM/RD 溝通」題材的文章
 
-**✅ 4-6 週內值得排的順序**：
-1. AI 議題（yes-man）→ 2. 測試紀律（letter-to-new-qa）→ 3. AI literacy（ai-test-output）→ 4. 測試設計（empty-result 排程）→ 5. **技術深度文**（pom-refactor 或 page-source，**這時候特別需要**——讓品牌從近期偏軟的「自省 + AI 議題」拉回「技術紮實」）
+**✅ 6-7 月才考慮重啟線六**：
+等所有人都看清楚你最近不只在反省之後再排——大約 6-7 月。**特別是 5/14 那篇〈不是退讓，是調整佔用〉**——它已標「等 3 週後檢查點過了再寫」，cooling-off 期跟密度警示剛好對得上。
 
-線六的自省題目要等**所有人都看清楚你最近不只在反省**之後再排——大約 6-7 月才考慮重新動。**特別是 5/14 那篇〈不是退讓，是調整佔用〉**——它已經標「等 3 週後檢查點過了再寫」，那個自然 cooling-off 期跟現在的密度警示剛好對得上。
+## 📌 接下來節奏（具體排程）
 
-## 接下來 1 個月的寫作目標
+**現役表格在下方 SEO 策略段的「[從長尾力看接下來該發什麼](#從長尾力看接下來該發什麼)」**——SEO 策略升級了原本的 5/20 純主題線排程，把長尾力評估納入排序邏輯。**請以下方那張表為準**，這裡不重複列。
 
-庫存清完後動的新題目：
+## 接下來 1 個月的長線目標（非排程文章）
 
-1. **PDT × 醫生問診類比**（補招牌主張深度，[analogy-series-proposals 主菜](analogy-series-proposals.md)）
-2. **Bug Report 寫作教學**（補入門 / SEO 長尾，品牌缺）
+下方 SEO 段的「接下來節奏」處理 4-6 週內具體要發什麼。這節是**更遠的長線題目**——還沒進排程，但會持續放在腦中：
 
-寫完這兩篇，部落格從「招牌＋零散技術文」推進到「招牌 × 技術 × 入門 × 信仰 × 職涯 × 突發應變」**七線並進**。
+1. **PDT × 醫生問診類比**（補招牌主張深度，[analogy-series-proposals 主菜](analogy-series-proposals.md)）——等線六冷卻 + 招牌系列再延伸時動
+2. **Bug Report 寫作教學**（補入門 / SEO 長尾——這是線八目前完全空白的位置）
+3. **PDT Coach 工具實作後的反思文**（呼應 tools-first 策略——等工具用過 1-2 個月再寫）
+
+主題線已從開台時的 4 條擴張到 10 條（見 [writing-themes.md](writing-themes.md)），結構性版圖已不缺主題線，**缺的是每條線的代表作**。
 
 ## 與工具路線的分工
 
@@ -186,7 +188,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 草稿 | 長尾關鍵字方向 | 長尾力 | 建議發稿時機 |
 |---|---|---|---|
 | **bug-triage-six-patterns-industry-survey** | Bug Triage 業界六種模式、QA bug 指派 | ⭐⭐⭐⭐ | 完稿即可，長尾力極強 |
-| **frontend-ui-vocabulary-for-backend-qa** | 後端 QA 前端 UI 詞彙、skeleton loading | ⭐⭐⭐⭐ | 完稿即可，題目稀缺 |
+| **frontend-ui-vocabulary-for-qa** ⭐ | QA 前端 UI 詞彙、skeleton loading、frontend ui terms for testers | ⭐⭐⭐⭐ | **5/28-30 排程**。5/25 framing 校準（從「後端 QA 補課」改成「QA 的前端 UI 視角」）+ MoT 雙語規劃 |
 | **page-source-vs-find-element** | page_source vs find_element、UI 自動化效能 | ⭐⭐⭐⭐ | 已排 6/20，極具長尾 |
 | **empty-result-ambiguity-in-filter-testing** | 篩選沒結果、自動化測試 empty | ⭐⭐⭐ | 已排 6/6 |
 | **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | 等 4 題反思答完 |
@@ -203,19 +205,22 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 **但長尾力角度建議調整**——目前**最強的長尾候選**有三篇是「完稿即可、未排程」：
 1. ⭐⭐⭐⭐ **bug-triage-six-patterns-industry-survey**
-2. ⭐⭐⭐⭐ **frontend-ui-vocabulary-for-backend-qa**
+2. ⭐⭐⭐⭐ **frontend-ui-vocabulary-for-qa**（5/25 framing 校準完成）
 3. ⭐⭐⭐⭐ page-source-vs-find-element（已排 6/20）
 
-**新建議節奏（長尾優先版）**：
+**新建議節奏（長尾優先版 + MoT 雙語規劃）**：
 
-| 順序 | 日期 | 文章 | 長尾 | 主題線 |
-|---|---|---|---|---|
-| 1 | 5/24-25 | letter-to-new-qa | ⭐⭐ | 線四（測試紀律） |
-| 2 | 5/28-30 | **frontend-ui-vocabulary**（取代 ai-test-output） | ⭐⭐⭐⭐ | 線二 / 線八 |
-| 3 | 6/3-4 | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十（無主之地） |
-| 4 | 6/6 | empty-result（排程） | ⭐⭐⭐ | 線五 |
-| 5 | 6/12-15 | ai-test-output-default-reader | ⭐⭐ | 線二 |
-| 6 | 6/20 | page-source-vs-find-element（排程） | ⭐⭐⭐⭐ | 線三 |
+| 順序 | 日期 | 文章 | 長尾 | 主題線 | 備註 |
+|---|---|---|---|---|---|
+| 1 | 5/21 | letter-to-new-qa | ⭐⭐ | 線四（測試紀律） | ✅ **已上稿**（提前 3-4 天） |
+| 2 | 5/28-30 | **frontend-ui-vocabulary-for-qa** ⭐ | ⭐⭐⭐⭐ | 線二 / 線八 | **本週要動筆**。中文版主篇 |
+| 3 | ~6/5-7 | 同一篇的 **adapted 英文版**（給 MoT） | — | MoT 推廣 | 中文版發後**等 1 週**再做英文版（不是純翻譯，是 adapt） |
+| 4 | 6/6 | empty-result（排程） | ⭐⭐⭐ | 線五 | 自動上 |
+| 5 | 6/8-10 | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十（無主之地） | 第三篇 ⭐⭐⭐⭐ 長尾文 |
+| 6 | 6/12-15 | ai-test-output-default-reader | ⭐⭐ | 線二 | 配對 yes-man |
+| 7 | 6/20 | page-source-vs-find-element（排程） | ⭐⭐⭐⭐ | 線三 | 自動上 |
+
+**主要調動**：把兩篇 ⭐⭐⭐⭐ 的 SEO 強文（frontend-ui-vocabulary + bug-triage）排前面，ai-test-output 推到 6 月中。**6/20 之前累積 3 篇 ⭐⭐⭐⭐ + 1 篇英文 MoT 版，加速 Google 收錄 + 國際 backlink**。
 
 **主要調動**：把兩篇 ⭐⭐⭐⭐ 的 SEO 強文（frontend-ui-vocabulary + bug-triage）排前面，ai-test-output 推到 6 月中——這樣 **6 月前累積到 3 篇 ⭐⭐⭐⭐ 長尾文，加速 Google 收錄**。
 
@@ -254,12 +259,30 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 5. **不涉及任何台灣公司情境**——translation 阻力最低
 6. **kinofrost 那則批判跟你的主張共鳴**——你的翻譯可以直接 quote 他然後延伸，這在 MoT 文化裡是被歡迎的「building on each other」動作
 
-### 翻譯次選：[ai-as-yes-man-rd-pm-trust-calibration](/post/ai-as-yes-man-rd-pm-trust-calibration/)
+### 翻譯次選（5/25 升級）：[frontend-ui-vocabulary-for-qa](../source/_drafts/frontend-ui-vocabulary-for-qa.md)
 
-理由：
+**5/25 framing 校準後升級為翻譯次選**——理由比 ai-as-yes-man 更強：
+
+1. **31 個 UI 詞彙幾乎全是英文** ——translation friction 最低
+2. **題目稀缺**——「frontend UI vocabulary for testers」這個 angle 英文圈也少見
+3. **不依賴中文文化脈絡**——沒有「煩」「忠心」「我懂了我爸」這類翻不過去的東西
+4. **長尾力 ⭐⭐⭐⭐**——SEO 雙語都強
+5. **發稿規劃明確**：中文版 5/28-30 發、等 **1 週** 後（~6/5-7）做 adapted 英文版
+
+**英文版的 adapt 重點**（不是純翻譯）：
+- Framing 改成 **"A tester's lens on frontend UI patterns"**——強調 testing heuristics，不是 vocabulary lookup
+- 開場 disarm senior readers：「You may already know some of these. The value isn't the definitions — it's the test heuristics in the third column.」
+- 「最小生存集合」→ "starter kit" / "essentials"
+- 「**PDT 的反向應用**」→ "**AI as a vocabulary mirror**" 或 "**reverse exploratory testing**"
+- 自貶式句子 → "I had to look this up too"（humble but not self-deprecating）
+
+→ 詳細 adapt 筆記見 [frontend-ui-vocabulary-for-qa.md](../source/_drafts/frontend-ui-vocabulary-for-qa.md) 頂部「MoT 英文版的差異化」段。
+
+### 翻譯第三順位：[ai-as-yes-man-rd-pm-trust-calibration](/post/ai-as-yes-man-rd-pm-trust-calibration/)
+
 1. **MoT 受眾近期火紅議題**：AI in testing
 2. **觀點尖、辨識度高**——「AI 不是你的 QA，是你的 Yes Man」這種主張在英文圈也少見
-3. 但**剛 5/20 發、還沒累積中文讀者數據**——可能先讓中文版跑 1-2 週看反應再翻
+3. 但**剛 5/20 發、還沒累積中文讀者數據**——讓中文版再跑 2-4 週看反應再決定
 
 ### 不建議首翻
 
