@@ -192,8 +192,9 @@ PM 通常**沒有測試方法論**，所以對綠燈的辨識力比 RD 弱：
 - **下一篇給 QA 的 schema 篇**（即將上線）：當 QA 也想跟著升級——測試結果欄位該怎麼設計才接得住 AI 的不確定？「**awareness 在這篇、tooling 在下一篇**」
 - [問題驅動測試（PDT）：致命 bug 藏在你沒問過的問題裡](/post/problem-driven-testing-intro/) —— 本篇的方法論母題
 - [如果主管想用 AI 取代我，我會給他看的四份「當責清單」](/post/ai-replacement-accountability-checklist/) —— AI 與人類角色的更深一層討論
+- [AI 寫的測試在騙你——而 agent 框架補不上這個洞](https://agile3uncles.com/2026/05/19/ai-test-lie-to-you-agent-cannot-help/)（敏捷三叔公 David Ko） —— 跟本篇主張共鳴的技術深層版：研究數據顯示頂尖 AI agent 約 20% 的「修復」存在語義錯誤，而 agent 框架補不上這個方向性的洞
 
 ---
 
 > **一句話帶走**：你以為你請了一個 QA，其實你請了一個 Yes Man——而 Yes Man 不會告訴你他在敷衍你。  
-> **這三個問題，就是把 Yes Man 翻成 critic 的最小代價**。
+> **這三個問題，就是把 Yes Man 翻成責任編輯的最小代價**。

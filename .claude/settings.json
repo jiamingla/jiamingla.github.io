@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:club.ministryoftesting.com)"
+      "WebFetch(domain:club.ministryoftesting.com)",
+      "WebFetch(domain:agile3uncles.com)"
     ]
   }
 }
