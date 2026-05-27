@@ -80,6 +80,7 @@
 - [pdt-coach-session-2026-05-14-insights.md](coach-sessions/2026-05-14-insights.md) — **「不是退讓，是調整佔用」**（三天故事收尾 / Owner 敘事 / Coach 沒給安慰）
 - [pdt-coach-session-2026-05-20-insights.md](coach-sessions/2026-05-20-insights.md) — **D4-D9「不是退讓，是調整射程」**（90/10 節奏 / 八個月醞釀 / 三選項框架 / 自我打折 / facilitator / 失落是 senior 成本）— **六天累積，密度最高的一場**
 - [pdt-coach-session-2026-05-21-insights.md](coach-sessions/2026-05-21-insights.md) — **Org-Signal Coach 模式**「想要偽裝成怕失去」+「B 堆是流量不是存量」（會議真相 / 站位戰略 / prototype 權力學 / 馬拉松配速）— **最深揭曉：三個月期待往顧問走偽裝成怕被裁**
+- [pdt-coach-session-2026-05-27-insights.md](coach-sessions/2026-05-27-insights.md) — **Org-Signal Coach 三天**（5/25-27）：北極星 + Ming 被拒不受傷 + **比較表上桌**。**最深揭曉：B 堆不是 QA 主場、C 堆才是；訓練面對反駁是練論點硬度不是膽量**。新孕育 7 個文章角度（A 文「UX vs 系統行為裂縫」最強）
 - [rethinking-regression-sequel-idea.md](rethinking-regression-sequel-idea.md) — 〈4 個刪測試問題加第 5 個〉的續篇 idea（5/15）
 - [yes-man-sequel-what-qa-still-owns.md](yes-man-sequel-what-qa-still-owns.md) — yes-man 發後讀者會問的續篇 idea（5/20）
 - [cant-teach-while-doing.md](cant-teach-while-doing.md) — 〈我懂了我爸做水電時為什麼沒辦法邊教邊做〉（5/20）
