@@ -52,8 +52,8 @@
     "urgency": "medium",
     "estimate": "30m",
     "deadline": "today",
-    "status": "todo",
-    "done": false,
+    "status": "done",
+    "done": true,
     "source": null,
     "pdca": {
       "plan": "",
@@ -62,8 +62,9 @@
       "act": ""
     },
     "createdAt": "2026-05-28T08:58:13.365Z",
-    "completedAt": null,
+    "completedAt": "2026-05-28T08:58:15.596Z",
     "dayKey": "2026-05-28",
-    "actualMinutes": 0
+    "actualMinutes": 0,
+    "order": 0
   }
 ]
