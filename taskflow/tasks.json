@@ -43,5 +43,27 @@
     "completedAt": null,
     "dayKey": "2026-05-28",
     "actualMinutes": 0
+  },
+  {
+    "id": "t_1779958693365_389",
+    "title": "完成",
+    "body": "",
+    "links": [],
+    "urgency": "medium",
+    "estimate": "30m",
+    "deadline": "today",
+    "status": "todo",
+    "done": false,
+    "source": null,
+    "pdca": {
+      "plan": "",
+      "do": "",
+      "check": "",
+      "act": ""
+    },
+    "createdAt": "2026-05-28T08:58:13.365Z",
+    "completedAt": null,
+    "dayKey": "2026-05-28",
+    "actualMinutes": 0
   }
 ]
