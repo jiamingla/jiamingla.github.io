@@ -61,10 +61,11 @@
 **規劃中/草稿**：
 - 🆕 **[not-just-make-manual-script-automate](../source/_drafts/not-just-make-manual-script-automate.md)** — 〈你從不知道，我想做的不只是將手動測試給自動化〉。**主論點**：手動測試案例直接翻譯成自動化腳本是業界最常見的浪費——兩者本質上是不同物種，該分工而非轉換。手動專責探索 + UX 判斷 + 關鍵 path；自動化專責 API / DB / 結構性資料一致性。**起源**：2026-05-15 對話。骨架已建（前言 + 五節 + 結語）、4 個反思問題嵌入待答。**形成 UI 自動化子三部曲**：[boredom-is-a-signal](/post/boredom-is-a-signal/)（該不該自動化）→ 本篇（該驗什麼）→ page-source-vs-find-element（怎麼驗有效率）
 - [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md)（草稿階段，教材潛力，可考慮給同事看）
+- 🆕 ⭐⭐ **〈一份測試 lib 服務 20 個 APP——元素定位的漸進式抽象策略〉**（5/28 從工作觀察整理）。**主論點**：跨產品線共用測試 lib 的元素定位設計——漸進式三階段（fallback chain → LocatorStrategy → per-APP class），「重複 3 次才抽象」「抽通用 pattern 不抽 APP」。**起源**：2026-05-28 cross-app-locator-strategy 工程備忘。**含公司指紋需洗**，但長尾力極強。**跟 pom-refactor 形成「POM 雙篇」**：pom-refactor 處理 single APP「能跑→可維護」、本篇處理「single APP → multi APP」規模化。詳見 [cross-app-locator-strategy.md](cross-app-locator-strategy.md)
 - Claude Code + MCP 寫 Android 自動化測試（Python）
 - 語音測試之二：延遲、回聲、背景噪音的自動化驗證
 
-**狀態**：基礎已建立 + 兩篇深度文（POM 設計、page_source 效能）即將上線。POM + page_source 上稿後會把「PDT 高層次主張 → 工程實踐」的橋接補完。**新增 not-just-make-manual-script-automate（骨架已建）會跟 boredom + page-source 形成「UI 自動化三部曲」——子線辨識度大增**。
+**狀態**：基礎已建立 + 兩篇深度文（POM 設計、page_source 效能）即將上線。POM + page_source 上稿後會把「PDT 高層次主張 → 工程實踐」的橋接補完。**新增 not-just-make-manual-script-automate（骨架已建）會跟 boredom + page-source 形成「UI 自動化三部曲」**。**5/28 新加 cross-app-locator-strategy 跟 pom-refactor 形成「POM 雙篇」**——子線（UI 自動化設計）累積深度大幅提升。
 
 ---
 

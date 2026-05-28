@@ -84,6 +84,7 @@
 - [rethinking-regression-sequel-idea.md](rethinking-regression-sequel-idea.md) — 〈4 個刪測試問題加第 5 個〉的續篇 idea（5/15）
 - [yes-man-sequel-what-qa-still-owns.md](yes-man-sequel-what-qa-still-owns.md) — yes-man 發後讀者會問的續篇 idea（5/20）
 - [cant-teach-while-doing.md](cant-teach-while-doing.md) — 〈我懂了我爸做水電時為什麼沒辦法邊教邊做〉（5/20）
+- [cross-app-locator-strategy.md](cross-app-locator-strategy.md) — 跨 APP 測試框架的元素定位策略（漸進式三階段：fallback chain → LocatorStrategy → per-APP class）。**含公司指紋**，blog 化需洗（5/28）→ ⭐⭐⭐⭐ 長尾力，建議落線三、跟 pom-refactor 形成 POM 雙篇
 - [pm-bug-management-structural-DRAWER.md](pm-bug-management-structural-DRAWER.md) — 🗄️ Framing B 抽屜文（暫不發表）
 - [qa-self-review-agent-prompt-v1.md](qa-self-review-agent-prompt-v1.md) — PDT Coach v1 系統 prompt
 
