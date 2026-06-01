@@ -107,7 +107,7 @@ URL：https://preely.com/academy/create-a-test-step-by-step-question-based-test/
 - 需要寫一篇對 PDT 主篇的 cross-reference 段
 - **英文版 QBT 命名要小心**——可能撞 Preely SEO（雖然不撞義）
 
-**寫作時機**：等下一份 PDT 顯性化文件累積 + Ming 對話延伸後再寫，**不急動筆**
+**寫作時機**：等下一份 PDT 顯性化文件累積 + Head 對話延伸後再寫，**不急動筆**
 
 ### 選項 B：補強 PDT 主篇加一節「QBT：對外的責任編輯切角」
 
@@ -152,7 +152,7 @@ URL：https://preely.com/academy/create-a-test-step-by-step-question-based-test/
 ## 待決定 / 待觀察
 
 - [ ] **PDT 主篇要不要加「QBT 責任編輯」段**——等 6-7 月線六冷卻、且 PDT 顯性化第二份完成後再決定
-- [ ] **獨立 QBT 主篇何時動筆**——觀察「責任編輯」這個說法用在 Coach session / 跟 Ming 對話時的接受度
+- [ ] **獨立 QBT 主篇何時動筆**——觀察「責任編輯」這個說法用在 Coach session / 跟 Head 對話時的接受度
 - [ ] **英文版命名**——MoT 推廣時，QBT 還是「Responsible Editor Frame」？看英文圈反應再定
 - [ ] **跟 [analogy-series-proposals.md](analogy-series-proposals.md) 整合**——責任編輯是 PDT 類比系列的一員嗎？還是獨立框架？
 
