@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:club.ministryoftesting.com)",
       "WebFetch(domain:agile3uncles.com)",
-      "WebFetch(domain:preely.com)"
+      "WebFetch(domain:preely.com)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
