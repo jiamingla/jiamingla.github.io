@@ -198,22 +198,25 @@
 ## 十、實作啟動（2026-06-02 週）
 
 **日期**：2026-06-02  
-**狀態**：🚀 從提案轉入實作
+**狀態**：🟡 Pilot 進行中
 
 ### 決策
 本週正式開始在幾個作者 APP 上實作最核心的冒煙測試腳本。不等資源正式核准，先用「影子自動化」模式悄悄建起第一版 Golden Set。
 
-### 這週的行動目標
-- 選定 2–3 個代表性 APP 作為 Pilot（涵蓋 standard locator 與 container-wrapped 兩種 XML pattern）
-- 每個 APP 完成至少 1 條核心路徑（優先：App 啟動 → 登入狀態確認 → 首頁主功能可用）
-- 腳本能在 < 5 分鐘內跑完、輸出 pass/fail 摘要
-- 實作規格見：[smoke-test-golden-set-spec.md](smoke-test-golden-set-spec.md)
+### 行動目標進度
+- [x] 選定代表性 APP 作為 Pilot，建立獨立 `smoke_script/` 框架
+- [x] app_a：S01–S11 全部完成，xfail 機制驗收通過
+- [x] `page_factory.py` 注入機制建立，新增 App 只需補 locators + app_config
+- [ ] app_b：locators 建置中，目標本週完成 P0（S01–S03）
+- [ ] 全套執行時間量測（目標 < 5 分鐘）
 
 ### 起手原則
 - 不追求覆蓋率，只守住「絕對不能壞」的最底線
-- 定位策略複用既有 fallback chain（見 [cross-app-locator-strategy.md](cross-app-locator-strategy.md)）
+- 新框架獨立於現有回歸測試，兩者不互相汙染
 - 失敗只輸出 log，**不 blocking 任何現有流程**（影子執行）
-- 維護入口集中在 `per_app_quirks.md`
+- 已知 bug 用 `@pytest.mark.xfail` 記錄，不 skip 不靜默
+
+詳細實作規格見：[smoke-test-golden-set-spec.md](smoke-test-golden-set-spec.md)
 
 ---
 

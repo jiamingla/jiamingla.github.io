@@ -4,7 +4,12 @@
       "WebFetch(domain:club.ministryoftesting.com)",
       "WebFetch(domain:agile3uncles.com)",
       "WebFetch(domain:preely.com)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git -C \"c:\\\\Users\\\\user1\\\\Documents\\\\GitHub\\\\jiamingla.github.io\" status)",
+      "Bash(git -C \"c:\\\\Users\\\\user1\\\\Documents\\\\GitHub\\\\jiamingla.github.io\" log --oneline -3)",
+      "Bash(git -C \"c:\\\\Users\\\\user1\\\\Documents\\\\GitHub\\\\jiamingla.github.io\" add notes/brand-value-and-smoke-test-proposal.md notes/smoke-test-golden-set-spec.md)",
+      "Bash(git -C 'c:\\\\Users\\\\user1\\\\Documents\\\\GitHub\\\\jiamingla.github.io' commit -m ' *)"
     ]
   }
 }
