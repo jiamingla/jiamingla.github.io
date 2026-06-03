@@ -32,11 +32,12 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（14 篇，依日期倒序）
+### 已上稿（15 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
 | 2026-06-03 | QA 該認識的 32 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補的課 | frontend-ui-vocabulary-for-qa | 線二 / 線八 |
+| 2026-05-22 | 給新進 QA 的第一封信：如何在兩天內穩定的回歸測試完一個產品？ | letter-to-new-qa-two-day-regression | 線十一 / 線四 |
 | 2026-05-20 | 你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man | ai-as-yes-man-rd-pm-trust-calibration | AI literacy / 「方法論為內、AI 為殼」策略首發 |
 | 2026-05-13 | 測試站登入壞了那天：我真的測完了嗎？ | ten-minute-test-plan-when-test-stage-down | 突發應變 / 自我審視 / 信仰 |
 | 2026-05-06 | 「煩」是 QA 的診斷工具 | boredom-is-a-signal | 自動化決策 / 信仰 |
@@ -51,14 +52,13 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（6 篇）
+### 完稿草稿待上稿（5 篇）
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
 | [ai-replacement-accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md) | AI 取代 / 當責 | 完稿（2026-04-28） |
 | [ai-replacement-seminary-calling](../source/_drafts/ai-replacement-seminary-calling.md) | AI 取代 / 信仰 | 完稿（2026-04-28） |
 | [qa-report-workplace-wisdom](../source/_drafts/qa-report-workplace-wisdom.md) | 大人學 / 向上管理 | 完稿，已清公司指紋 |
-| [letter-to-new-qa-two-day-regression](../source/_drafts/letter-to-new-qa-two-day-regression.md) | 新進 QA / 回歸方法論 | 完稿，**押 2026-05-22 23:00 發布**（5/21 潤稿：加 Herzberg 保健因子段 + 文末 P.S. 回連 4 篇舊文） |
 | [empty-result-ambiguity-in-filter-testing](../source/_drafts/empty-result-ambiguity-in-filter-testing.md) | 測試設計 / 篩選功能 | 完稿，**押 2026-06-06 發布** |
 | [page-source-vs-find-element](../source/_drafts/page-source-vs-find-element.md) | 自動化效能 / Appium | 完稿，**押 2026-06-20 發布** |
 
