@@ -26,6 +26,45 @@
 
 ---
 
+## 統計學 lineage：軟體測試 = 統計第一性原理的 domain application
+
+「**軟體永遠 partial**」這個觀察不是新發明——是 **統計學第一性原理 200 年累積的 framework** 在軟體 domain 的 application：任何 system 不可窮盡時，就要用 **sampling + inference**。
+
+| 統計學 | 軟體測試 |
+|---|---|
+| 母體不可窮盡 | software state 不可窮盡 |
+| 抽樣 + 推論 | test cases + behavior inference |
+| 隨機 vs 結構抽樣 | exploratory vs structured testing |
+| confidence interval | risk-based「我有多確定」 |
+| sampling bias | 「沒測到的角落」 |
+| representative sample design | test plan / ACC 覆蓋率設計 |
+
+### 煮飯試吃 metaphor（文章 hook 候選）
+
+統計學書常用的入門 metaphor：**一鍋飯 / 湯試吃**。
+
+| 動作 | 對應 |
+|---|---|
+| 整鍋飯 / 湯 | 母體（軟體所有可能 state） |
+| 一小匙試吃 | 樣本（具體 test case） |
+| 攪一攪再試 | 隨機抽樣（提高代表性） |
+| 鍋邊還沒攪到 | sampling bias（沒測到的角落） |
+| 廚師的舌頭 | informed judgment（取代「客觀 metric」幻覺） |
+
+→ 這個 metaphor 可以當文章 hook、讓抽象「partial」**一秒理解**。
+
+### Personal angle 候選文章
+
+> **〈資管系最愛的初級統計學，居然能用在軟體測試〉**
+
+個人 narrative 版本，跨領域整合招牌延續（呼應 [ai-test-case-reading-bottleneck](ai-test-case-reading-bottleneck.md) 的神經科學 × QA、[letter-to-new-qa](../source/_drafts/letter-to-new-qa-two-day-regression.md) 的 Herzberg × QA、未來可能的 Joe 論斷層次 × QA 溝通）。
+
+兩種寫法：
+- **獨立成篇**（個人 story 為主、first principle 為輔）
+- **當 first principle 主篇的 personal hook**（開場 1-2 段用統計學課回憶切入）
+
+---
+
 ## 既有文章 → derivative mapping（這篇寫好 = 整合 5 個月所有招牌）
 
 | 方法論 | 是 first principle 的哪個面向 |
@@ -108,6 +147,8 @@ spec 跟使用者期待一樣嗎？→ 不一樣，partial...
 - [ ] 跟 PDT 主篇的關係：取代 / 升級 / 並列？
 - [ ] AI 時代怎麼影響這 framework？AI 是新一方 partial、還是放在現有三方裡？
 - [ ] 「主動」這個詞 vs「被動發現」——tester 的 active stance 要不要 framework 化進去？
+- [ ] 統計學 lineage 要寫多深？hard math（confidence interval、p-value、power）vs metaphor only（煮飯試吃）？
+- [ ] 〈資管系初級統計學 × 軟體測試〉是單篇還是 first principle 主篇的 personal hook？
 
 ---
 
@@ -119,7 +160,7 @@ spec 跟使用者期待一樣嗎？→ 不一樣，partial...
 | 線二 AI literacy | AI 進來是新一方 partial（或加深既有 partial） |
 | 線四 測試紀律 | 所有方法論都 derivative |
 | 線八 入門 SEO | 「軟體測試 first principle」「軟體測試 是什麼」長尾 |
-| 線十三 書評 | 對話 Kaner / Bach / Myers 的天然題目 |
+| 線十三 書評 | 對話 Kaner / Bach / Myers 的天然題目 + **統計學書 × QA 對話篇**（候選書：《統計學七支柱》/《赤裸的統計學》/ 初級統計教科書） |
 
 ---
 
