@@ -36,6 +36,7 @@
 **已上稿**：
 - [spec-maintenance-gray-zone](/post/spec-maintenance-gray-zone/)（2026-05-03）
 - [boredom-is-a-signal](/post/boredom-is-a-signal/)（2026-05-06，與 spec-maintenance 互為鏡像）
+- [frontend-ui-vocabulary-for-qa](/post/frontend-ui-vocabulary-for-qa/)（2026-06-03，與線八交叉）
 
 **完稿待上**：
 - [ai-replacement-accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md)（四份當責清單）
@@ -157,11 +158,13 @@
 
 ## 線八：入門 / 長尾 SEO
 
+**已交付**：
+- [frontend-ui-vocabulary-for-qa](/post/frontend-ui-vocabulary-for-qa/)（2026-06-03，與線二交叉）
+
 **規劃中**：
 - Bug Report 寫作教學（流量穩、長尾高）
 - 測試工程師養成書單／學習路徑（合流到 [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md)）
 - 🆕 **[bug-triage-six-patterns-industry-survey](../source/_drafts/bug-triage-six-patterns-industry-survey.md)** — 業界 Bug 預設指派的六種 pattern 對照（PM / Tech Lead / QA / Unassigned / Committee / CODEOWNER）+ 七種 backlog workaround（bug bash / bankruptcy / Zero bug / Severity-only / Fix-it Friday / SLA-based / Embedded QA）。**起源**：2026-05-13 為線十做業界 survey 時發現本身就值得獨立成篇。**讀者**：QA 為主，PM / Tech Lead 也讀得進去。**SEO**：「bug triage」是穩定長尾關鍵字。**配對**：是線十兩篇的入門前傳，**發稿順序未定**（先入門引流 / 後深度延伸都可）
-- 🆕 **[frontend-ui-vocabulary-for-backend-qa](../source/_drafts/frontend-ui-vocabulary-for-backend-qa.md)** — **「後端 QA 該認識的 31 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補課」**。七類覆蓋：**載入狀態** / **用戶反饋**（含 Optimistic UI） / **表單狀態** / **導航結構**（含麵包屑） / **訊息密度**（含 CTA、Empty state） / **動畫術語** / **存取控制 / 商業化**（含 Paywall、Feature gate、Login wall）。**起源**：2026-05-14 AI 給的測試案例寫了 `skeleton loading`，作者意識到自己後端背景對前端詞彙有缺口；草擬過程中持續發現「麵包屑、Optimistic UI、Paywall...」也在缺口裡，從原本 4 類 16 詞擴張成 7 類 31 詞。**讀者**：背景以後端為主、開始要碰前端的 QA。**SEO**：「skeleton loading 是什麼」等長尾 + 數字 listicle pattern 雙重信號。**意外的 PDT 角度**：「AI 暴露 QA 不知道自己有的缺口」——連到線二「**AI 是 QA 的擴張鏡**」這條軸；也是 [ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md) 的具體子題（vocab 是「這些詞是什麼」、AI-reader 是「為什麼 AI 用了你不懂的詞」）
 
 **狀態**：品牌目前缺，**短期內加一篇 Bug Report 教學會讓部落格定位更完整**。線八現有四篇規劃 + bug-triage-six-patterns + frontend-ui-vocabulary 形成「入門三線」覆蓋——「Bug Report 教學」打**內容寫作入門**、「Bug Triage Pattern」打**組織流程入門**、「Frontend UI Vocabulary」打**詞彙跨領域入門**。三線都吃 SEO 長尾。
 

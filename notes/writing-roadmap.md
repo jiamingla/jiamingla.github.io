@@ -32,10 +32,11 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（13 篇，依日期倒序）
+### 已上稿（14 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-03 | QA 該認識的 32 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補的課 | frontend-ui-vocabulary-for-qa | 線二 / 線八 |
 | 2026-05-20 | 你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man | ai-as-yes-man-rd-pm-trust-calibration | AI literacy / 「方法論為內、AI 為殼」策略首發 |
 | 2026-05-13 | 測試站登入壞了那天：我真的測完了嗎？ | ten-minute-test-plan-when-test-stage-down | 突發應變 / 自我審視 / 信仰 |
 | 2026-05-06 | 「煩」是 QA 的診斷工具 | boredom-is-a-signal | 自動化決策 / 信仰 |
@@ -110,13 +111,13 @@
 > - 5/29 早上完成第一份顯性化 PDT 文件（影音直播 + 語音直播），自己用立「QBT 責任編輯」框架
 > - 5/30 Coach 主動踩煞車（週六不展開）、使用者重新檢視部落格方向
 > - **2026-06-01：發現 PDT vs QBT 命名戰略議題**——驗證後 QBT 不是業界 established term、Preely 的 QBT 在 UX 領域不撞義。詳見 [pdt-vs-qbt-positioning.md](pdt-vs-qbt-positioning.md)
-> - **frontend-ui-vocabulary 發稿暫緩**（6/1 重新檢視部落格方向，6 個問題待使用者過幾天思考）
+> - **frontend-ui-vocabulary 順利解鎖**（6/4 融入週會 AI 案例痛點重新定位，6 個問題已修改完畢，隨時可排程發布）
 > - 5/28-30 Org-Signal Coach 三天：本年地圖大校正、混合動機承認、個人化歸因警覺 —— 衍生 5 個新文章角度，最強是「QBT 責任編輯」⭐⭐⭐⭐
 
 ## 庫存壓力（持續）
 
-目前 _drafts/ 有 11 支，按發稿成熟度：
-- **下一篇候選（暫緩、重新檢視中）**：frontend-ui-vocabulary-for-qa（原 5/28-30 排程，6/1 暫不發、6 個問題待思考）
+目前 _drafts/ 有 10 支，按發稿成熟度：
+- **下一篇候選（排程中）**：empty-result-ambiguity-in-filter-testing（6/6 自動發布，已排程）
 - **排程發布**：empty-result（6/6）、page-source（6/20）
 - **完稿待上**：accountability-checklist、seminary-calling、qa-report-workplace-wisdom、ai-test-output-default-reader、bug-triage-six-patterns
 - **骨架階段**：not-just-make-manual-script-automate（4 個反思問題待答）、pom-refactor、notest-ambiguity
@@ -208,7 +209,6 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 草稿 | 長尾關鍵字方向 | 長尾力 | 建議發稿時機 |
 |---|---|---|---|
 | **bug-triage-six-patterns-industry-survey** | Bug Triage 業界六種模式、QA bug 指派 | ⭐⭐⭐⭐ | 完稿即可，長尾力極強 |
-| **frontend-ui-vocabulary-for-qa** ⭐ | QA 前端 UI 詞彙、skeleton loading、frontend ui terms for testers | ⭐⭐⭐⭐ | **6/1 暫緩** — 6 個問題待思考（Q1 callout box / Q2 anchor / Q3 transition prose / Q4 accessibility / Q5 延伸閱讀 / Q6 MoT 雙語 sanity check）。5/25 framing 校準完成、5/28 結構整理完成 |
 | **page-source-vs-find-element** | page_source vs find_element、UI 自動化效能 | ⭐⭐⭐⭐ | 已排 6/20，極具長尾 |
 | **empty-result-ambiguity-in-filter-testing** | 篩選沒結果、自動化測試 empty | ⭐⭐⭐ | 已排 6/6 |
 | **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | 等 4 題反思答完 |
@@ -233,7 +233,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 順序 | 日期 | 文章 | 長尾 | 主題線 | 備註 |
 |---|---|---|---|---|---|
 | 1 | 5/21 | letter-to-new-qa | ⭐⭐ | 線四（測試紀律） | ✅ **已上稿**（提前 3-4 天） |
-| 2 | **暫緩** | **frontend-ui-vocabulary-for-qa** ⭐ | ⭐⭐⭐⭐ | 線二 / 線八 | **6/1 重新檢視**——6 個問題待思考、結構已整理完成（過幾天回來決定後再排） |
+| 2 | 6/3 | **frontend-ui-vocabulary-for-qa** ⭐ | ⭐⭐⭐⭐ | 線二 / 線八 | ✅ **已上稿** |
 | 3 | ~6/5-7 | 同一篇的 **adapted 英文版**（給 MoT） | — | MoT 推廣 | 中文版發後**等 1 週**再做英文版（不是純翻譯，是 adapt） |
 | 4 | 6/6 | empty-result（排程） | ⭐⭐⭐ | 線五 | 自動上 |
 | 5 | 6/8-10 | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十（無主之地） | 第三篇 ⭐⭐⭐⭐ 長尾文 |
