@@ -84,6 +84,7 @@
 - [pdt-coach-session-2026-05-27-insights.md](coach-sessions/2026-05-27-insights.md) — **Org-Signal Coach 三天**（5/25-27）：北極星 + Head 被拒不受傷 + **比較表上桌**。**最深揭曉：B 堆不是 QA 主場、C 堆才是；訓練面對反駁是練論點硬度不是膽量**。新孕育 7 個文章角度（A 文「UX vs 系統行為裂縫」最強）
 - [2026-05-31-brand-value-and-smoke-test-proposal.md](coach-sessions/brand-value-and-smoke-test-proposal.md) — **品牌價值與冒煙測試提案**（異常處理價值 / 向上管理劇本 / 技術與業務共生策略）
 - [pdt-coach-session-2026-05-28-insights.md](coach-sessions/2026-05-28-insights.md) — **Org-Signal Coach 三天**（5/28-30）：**本年地圖大校正**（Head 是支撐桿、接班 = 接 Head 不是 Manager）+ 跟接班對象第一次微妙分歧 + 混合動機承認 + 個人化歸因警覺 + Coach 5/30 主動踩煞車。新孕育 5 個文章角度（A 文「QBT 責任編輯」⭐⭐⭐⭐ + E 文「Coach 該何時叫使用者離開」⭐⭐⭐⭐ 最強）
+- [pdt-coach-session-2026-06-01-insights.md](coach-sessions/2026-06-01-insights.md) — **Org-Signal Coach 三天**（6/1-3）：**「被看見會自然發生」實證**（IB 事件鏈印證 5/28 權力地圖）+ 「工作不是全部的出口」personal 覺察 + 「你跟 QA-A 的分野」定位浮現（組織派 vs 技術派）+ 綠燈做決策 / 紅燈做執行內化。新孕育 8 個文章角度（C「組織派 vs 技術派」⭐⭐⭐⭐ + G「報告一眼看懂」⭐⭐⭐⭐ 最強、跟 [first-principle](software-testing-first-principle.md) 強連動）
 - [pdt-vs-qbt-positioning.md](pdt-vs-qbt-positioning.md) — **2026-06-01 戰略檔**：QBT 不是業界 established term（WebSearch + Preely 驗證後）；Preely 的 QBT 在 UX 領域、不撞義；PDT 對內 / QBT 對外的雙層架構討論。**rebrand 成本評估：PDT 投資 47 檔案不划算**
 - [rethinking-regression-sequel-idea.md](rethinking-regression-sequel-idea.md) — 〈4 個刪測試問題加第 5 個〉的續篇 idea（5/15）
 - [yes-man-sequel-what-qa-still-owns.md](yes-man-sequel-what-qa-still-owns.md) — yes-man 發後讀者會問的續篇 idea（5/20）
@@ -104,9 +105,15 @@
 
 ---
 
-# 整體寫作節奏（2026-06-01 校準）
+# 整體寫作節奏（2026-06-04 校準）
 
-> 上次校準是 2026-05-25（7 天前）。這 7 天進展：
+> 上次校準是 2026-06-01（3 天前）。這 3 天進展：
+> - 6/1-3 Org-Signal Coach 三天：**「被看見會自然發生」實證**（IB 帳號誠實事件 → Head 帶到 Lead → Lead 拍板）、印證 5/28 校正權力地圖
+> - **6/3 最深揭曉**：你跟 QA-A 的分野——他走技術 / AI 賦能、你走組織 / 流程 / 可讀性。**這正是 RD Head-style QA Head 的位置**
+> - 衍生 8 個新文章角度（C「組織派 vs 技術派」⭐⭐⭐⭐ + G「報告一眼看懂」⭐⭐⭐⭐ 最強）
+> - 線六累積已破 40 candidates、配額**長期透支**——這場應優先發 C / G（**不是線六**）
+>
+> 上次校準是 2026-05-25（7 天前）。前 7 天進展：
 > - 5/28 frontend-ui-vocabulary-for-qa 結構整理完成（H2 整理、章節從六章重整為五章 + 結語、6 個待思考問題嵌入正文）
 > - 5/29 早上完成第一份顯性化 PDT 文件（影音直播 + 語音直播），自己用立「QBT 責任編輯」框架
 > - 5/30 Coach 主動踩煞車（週六不展開）、使用者重新檢視部落格方向

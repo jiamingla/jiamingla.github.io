@@ -90,6 +90,83 @@
 
 ---
 
+## 2026-06-01 Disclosure Strategy（操作層補充）
+
+> 🎯 **這段是 4 個月準備期的操作層細節**——6/1 對話 surface 出來、5/14 plan 還沒寫的「跟誰講、何時講、怎麼講」具體做法。
+
+### Disclosure 對象分三層
+
+| Layer | 對象 | 用途 | Timing |
+|---|---|---|---|
+| **Advisor / Reference** | **RD Head**（處得不錯、是 living role model） | 學 build role know-how、收 cross-functional perspective、信任測試 | 6 月起、最早 |
+| **直接 Stakeholder** | **Ming**（實質 Head / 接班路徑） | 必須 inform、動作影響他直接 | 7 月底 |
+| **Decision Maker** | **Coin**（隔一層 Lead） | 升遷預算等 ultimate authority | 8 月初-中 |
+
+→ RD Head 諮詢**不替代** Ming/Coin disclosure、是**平行 channel**。
+
+### 完整 sequence
+
+| 時機 | 動作 |
+|---|---|
+| **6 月起** | RD Head approach B（professional reference、不講 ambition）；Coin 摸底 Channel 1-2（既有訊號 + passive 觀察）；MoT 試水 |
+| **7 月觀察** | 觀察 MoT 反應 + RD Head 是否 see through |
+| **7 月開放報名後** | 報名鐵人賽（committed action 才有資格 disclose、不是 ask permission） |
+| **7 月底** | 跟 Ming 1:1 講（role-modeled framing） |
+| **同次對話結尾** | 問 Ming「你建議我怎麼跟 Coin 提？」（Ming 從傳達者 → advisor、你 own outcome） |
+| **8 月初-中** | 根據 Ming advice、**你主動**跟 Coin 講（不依賴 Ming 傳達、避免「Ming 不講 → Coin 被動發現」最差情境） |
+| **8 月底** | 心理體檢 + 預寫 buffer |
+| **9 月** | 開賽 |
+
+### Framing：整公司 first mover
+
+「**整公司目前沒人在做**」這個 first mover 位置容易被讀成野心過大。**用 role-modeled framing 最 safe**：
+
+| Anchor 類型 | 對主管感知 |
+|---|---|
+| Title-anchored「我想當 QA Head」 | ❌「他想 title / 搶資源」 |
+| **Role-modeled「像 RD Head 但 QA 版」**（推） | ✅ 「他在 reference 既有 working pattern」 |
+| Problem-anchored「我想解決 PM-QA 介面問題」 | ✅ 「他在 framing 公司需求」 |
+| 三者疊加 | **全方位 senior 訊號** |
+
+**注意**：對 Ming 講時、把「整公司沒人在做」改成「**RD 端有、QA 端缺**」更安全（公司已 know-how、只是擴張到 QA、不是「你比 Ming 看得遠」）。
+
+### Ming disclosure 腳本（待校準）
+
+> 「Ming，我報名了鐵人賽——下班時間做、9 月 30 天連續發 PDT 系列。
+>
+> 也順便講一下背後的想法：我看到 RD Head 那種 role 在 QA 端沒人在做，想試試 build 對應版本，所以在看管理系所、鐵人賽會是 portfolio 之一。
+>
+> **你怎麼看？**」
+>
+> → 結尾追加：「**你建議我什麼時候、用什麼方式跟 Coin 提比較好？或者你會自然跟他提？**」
+
+### RD Head approach B 的 4 個切入問題
+
+1. 「你怎麼 build 你目前的 role？過去 X 年怎麼演化成這樣？」（history）
+2. 「跟 PM 端 / 跨團隊 collaborate 時你 setup 什麼 structure？」（operations）
+3. 「公司其他 head 怎麼看你這種 product-embedded role？」（political landscape）
+4. 「如果有人想 build 類似的 role，你會建議從哪裡切入？」（半 disclosure、但合理 framing）
+
+→ 6/1 user 決定：**先 B、觀察反應、有 signal 再升 C**（半 disclosure）。
+
+跟 RD Head 諮詢的對話本身是個**信任測試**：守住 = 真 advisor、leak = 收到 valuable signal 公司 politics 真實樣貌。**無論哪種 outcome 都得到 data**。
+
+### 卡點 / 還沒答的（給未來自己想，不急）
+
+- [ ] **念書是真實 driver 還是 instrumental？** 對 Ming/Coin 講「念書」前要先誠實面對——不然 Coin 會聞到 instrumental 味道
+- [ ] MoT 試水如果反應差（0 回應），sequence 是否還照走？
+- [ ] RD Head 如果是 leak 型 advisor、6 月 approach B 之後就會 surface、那時要重新評估 7 月 sequence
+- [ ] Coin disclosure 完後 Coin 反應差、鐵人賽中段（Day 12+ 出狀況時）怎麼處理？
+- [ ] 「念書」真的要在 disclosure 講嗎？還是等 8 月後再升 surface（避免一次訊息密度過高）？
+
+### 這段對應的 Coach session insight
+
+- **5/29 混合動機承認**：報名鐵人賽動機可能混合「我想做」+「我想被看見」——不選邊、但**動作的形成**要校準對方真實需要
+- **5/28 接班路徑校正**：Head 是 Ming、但 user 想的 endgame 是 build RD Head-style QA Head（升級版、Ming 椅是 stepping stone）
+- **6/1 Vocus 案例**（WebSearch 找到）：「不講 + 公開累積 = 被動發現」是 worst case、必須主動 inform——Ming/Coin disclosure 不可省
+
+---
+
 ## 釐清「是否準備好」——給自己的問題清單
 
 報名前要誠實回答自己的問題（沒有對錯，但有需要釐清）：
