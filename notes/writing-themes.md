@@ -91,9 +91,9 @@
 
 ## 線五：自動化決策 / 測試設計
 
-**已上稿**：[boredom-is-a-signal](/post/boredom-is-a-signal/)（與 spec-maintenance 鏡像對）
-
-**完稿待上**：[empty-result-ambiguity-in-filter-testing](../source/_drafts/empty-result-ambiguity-in-filter-testing.md)（押 2026-06-06，篩選 empty 歧義五種解法）
+**已上稿**：
+- [boredom-is-a-signal](/post/boredom-is-a-signal/)（與 spec-maintenance 鏡像對）
+- [empty-result-ambiguity-in-filter-testing](/post/empty-result-ambiguity-in-filter-testing/)（2026-06-06，篩選 empty 歧義五種解法）
 
 **規劃中**：
 - 🆕 **[notest-ambiguity-skip-vs-low-confidence](../source/_drafts/notest-ambiguity-skip-vs-low-confidence.md)** — AI 跑測試標 `notest`：跳過 vs 低信心 vs 執行失敗 vs 無判斷規則。**母題與 empty-result 同源**（「中間態被當成終態」），是它的姐妹篇。起源：2026-05-13 主管的提問。**讀者已確定**：QA，且預設只有 `pass/fail`（走 B 路線：公開＋去個人化，避免「應測但測不想」的自我揭露被同公司同事對號入座）。**觸發**：等 empty-result（6/6）上稿後再啟動。**配對作品**：[ai-as-yes-man-rd-pm-trust-calibration](../source/_drafts/ai-as-yes-man-rd-pm-trust-calibration.md) 是 RD/PM 視角的姐妹篇（見線二）——**先於本篇上稿**，本篇接著從 schema 層延伸

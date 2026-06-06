@@ -1,6 +1,6 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-06-04
+**最後更新**：2026-06-06
 **對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外大肆推廣，但 6 月起啟動國際社群（Ministry of Testing）的精準試水。
 **並進文件**：
 - [writing-themes.md](writing-themes.md) — 13 條主題線的長期版圖（策略型，較少更新）
@@ -26,16 +26,17 @@
 
 ---
 
-## 進度快照（2026-05-20）
+## 進度快照（2026-06-06）
 
 ### 推廣里程碑
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（15 篇，依日期倒序）
+### 已上稿（16 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-06 | 篩選後沒結果，是資料真的沒符合條件，還是篩選功能壞掉了？——自動化測試的五種解法 | empty-result-ambiguity-in-filter-testing | 線五 |
 | 2026-06-03 | QA 該認識的 32 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補的課 | frontend-ui-vocabulary-for-qa | 線二 / 線八 |
 | 2026-05-22 | 給新進 QA 的第一封信：如何在兩天內穩定的回歸測試完一個產品？ | letter-to-new-qa-two-day-regression | 線十一 / 線四 |
 | 2026-05-20 | 你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man | ai-as-yes-man-rd-pm-trust-calibration | AI literacy / 「方法論為內、AI 為殼」策略首發 |
@@ -52,14 +53,13 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（5 篇）
+### 完稿草稿待上稿（4 篇）
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
 | [ai-replacement-accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md) | AI 取代 / 當責 | 完稿（2026-04-28） |
 | [ai-replacement-seminary-calling](../source/_drafts/ai-replacement-seminary-calling.md) | AI 取代 / 信仰 | 完稿（2026-04-28） |
 | [qa-report-workplace-wisdom](../source/_drafts/qa-report-workplace-wisdom.md) | 大人學 / 向上管理 | 完稿，已清公司指紋 |
-| [empty-result-ambiguity-in-filter-testing](../source/_drafts/empty-result-ambiguity-in-filter-testing.md) | 測試設計 / 篩選功能 | 完稿，**押 2026-06-06 發布** |
 | [page-source-vs-find-element](../source/_drafts/page-source-vs-find-element.md) | 自動化效能 / Appium | 完稿，**押 2026-06-20 發布** |
 
 ### 草稿（已寫但尚未確認完稿）
@@ -123,9 +123,8 @@
 
 ## 庫存壓力（持續）
 
-目前 _drafts/ 有 10 支，按發稿成熟度：
-- **下一篇候選（排程中）**：empty-result-ambiguity-in-filter-testing（6/6 自動發布，已排程）
-- **排程發布**：empty-result（6/6）、page-source（6/20）
+目前 _drafts/ 有 9 支，按發稿成熟度：
+- **排程發布**：page-source（6/20）
 - **完稿待上**：accountability-checklist、seminary-calling、qa-report-workplace-wisdom、ai-test-output-default-reader、bug-triage-six-patterns
 - **骨架階段**：not-just-make-manual-script-automate（4 個反思問題待答）、pom-refactor、notest-ambiguity
 
@@ -242,7 +241,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 1 | 5/21 | letter-to-new-qa | ⭐⭐ | 線四（測試紀律） | ✅ **已上稿**（提前 3-4 天） |
 | 2 | 6/3 | **frontend-ui-vocabulary-for-qa** ⭐ | ⭐⭐⭐⭐ | 線二 / 線八 | ✅ **已上稿** |
 | 3 | ~6/5-7 | 同一篇的 **adapted 英文版**（給 MoT） | — | MoT 推廣 | 中文版發後**等 1 週**再做英文版（不是純翻譯，是 adapt） |
-| 4 | 6/6 | empty-result（排程） | ⭐⭐⭐ | 線五 | 自動上 |
+| 4 | 6/6 | **empty-result-ambiguity-in-filter-testing** | ⭐⭐⭐ | 線五 | ✅ **已上稿** |
 | 5 | 6/8-10 | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十（無主之地） | 第三篇 ⭐⭐⭐⭐ 長尾文 |
 | 6 | 6/12-15 | ai-test-output-default-reader | ⭐⭐ | 線二 | 配對 yes-man |
 | 7 | 6/20 | page-source-vs-find-element（排程） | ⭐⭐⭐⭐ | 線三 | 自動上 |
