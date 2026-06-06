@@ -285,7 +285,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 5. **不涉及任何台灣公司情境**——translation 阻力最低
 6. **kinofrost 那則批判跟你的主張共鳴**——你的翻譯可以直接 quote 他然後延伸，這在 MoT 文化裡是被歡迎的「building on each other」動作
 
-### 翻譯次選（5/25 升級）：[frontend-ui-vocabulary-for-qa](../source/_drafts/frontend-ui-vocabulary-for-qa.md)
+### 翻譯次選（5/25 升級）：[frontend-ui-vocabulary-for-qa](frontend-ui-vocabulary-planning.md)
 
 **5/25 framing 校準後升級為翻譯次選**——理由比 ai-as-yes-man 更強：
 
@@ -302,7 +302,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 - 「**PDT 的反向應用**」→ "**AI as a vocabulary mirror**" 或 "**reverse exploratory testing**"
 - 自貶式句子 → "I had to look this up too"（humble but not self-deprecating）
 
-→ 詳細 adapt 筆記見 [frontend-ui-vocabulary-for-qa.md](../source/_drafts/frontend-ui-vocabulary-for-qa.md) 頂部「MoT 英文版的差異化」段。
+→ 詳細 adapt 筆記見 [frontend-ui-vocabulary-planning.md](frontend-ui-vocabulary-planning.md) 頂部「MoT 英文版的差異化」段。
 
 ### 翻譯第三順位：[ai-as-yes-man-rd-pm-trust-calibration](/post/ai-as-yes-man-rd-pm-trust-calibration/)
 
