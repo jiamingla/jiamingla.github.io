@@ -123,8 +123,8 @@
 
 ## 庫存壓力（持續）
 
-目前 _drafts/ 有 6 支主草稿，按發稿成熟度：
-- **完稿待上**：ai-replacement-accountability-checklist、ai-test-output-default-reader、bug-triage-six-patterns
+目前 _drafts/ 有 7 支主草稿，按發稿成熟度：
+- **完稿待上**：ai-replacement-accountability-checklist、how-to-start-low-pressure-book-club、ai-test-output-default-reader、bug-triage-six-patterns
 - **骨架階段**：not-just-make-manual-script-automate（4 個反思問題待答）、pom-refactor、notest-ambiguity
 
 寫作不缺東西，**缺的還是發稿節奏 + 主題線輪替紀律**。
