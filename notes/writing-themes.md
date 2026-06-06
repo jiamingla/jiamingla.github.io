@@ -37,10 +37,11 @@
 - [spec-maintenance-gray-zone](/post/spec-maintenance-gray-zone/)（2026-05-03）
 - [boredom-is-a-signal](/post/boredom-is-a-signal/)（2026-05-06，與 spec-maintenance 互為鏡像）
 - [frontend-ui-vocabulary-for-qa](/post/frontend-ui-vocabulary-for-qa/)（2026-06-03，與線八交叉）
+- [ai-replacement-accountability-checklist](/post/ai-replacement-accountability-checklist/)（2026-04-28，四份當責清單）
+- [ai-replacement-seminary-calling](/post/ai-replacement-seminary-calling/)（2026-04-28，信仰收尾，與線七交叉）
 
 **完稿待上**：
-- [ai-replacement-accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md)（四份當責清單）
-- [ai-replacement-seminary-calling](../source/_drafts/ai-replacement-seminary-calling.md)（信仰收尾）
+- 暫無
 
 **規劃中**：
 - 🆕 **[ai-as-yes-man-rd-pm-trust-calibration](../source/_drafts/ai-as-yes-man-rd-pm-trust-calibration.md)** — 給 RD/PM 的 AI 測試結果信任校準（三個必問問題）。**主論點**：AI 不是你的 QA，是你的 Yes Man——QA 內建對你產品的敵意懷疑，AI 內建對你的對齊配合。**跟 [notest-ambiguity](../source/_drafts/notest-ambiguity-skip-vs-low-confidence.md) 是姐妹篇**：QA 升級 schema、RD/PM 升級提問習慣，[PDT Coach 工具](tools-roadmap.md) 填中間。**起源**：2026-05-13 跟 notest 那篇同源討論。**順序**：**先於 notest 上稿**（2026-05-13 訂）——awareness（這篇）→ tooling（notest）→ 配合 [accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md) 形成「問題 → 責任 → 工具」三連發弧線。**配對篇**：跟 [ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md) 形成「**Working with AI Output**」雙篇——本篇講「問」、配對篇講「讀」
@@ -56,9 +57,10 @@
 - [Selenium 踩坑筆記](/post/selenium-troubleshooting/)
 - [Appium v2 → v3 遷移](/post/appium-v2-to-v3-migration/)
 - [語音測試 × FFmpeg](/post/audio-testing-ffmpeg/)
+- [page-source-vs-find-element](/post/page-source-vs-find-element/)（2026-06-06，UI 自動化 cost model）
 
 **完稿待上**：
-- [page-source-vs-find-element](../source/_drafts/page-source-vs-find-element.md)(押 2026-06-20，UI 自動化 cost model)
+- 暫無
 
 **規劃中/草稿**：
 - 🆕 **[not-just-make-manual-script-automate](../source/_drafts/not-just-make-manual-script-automate.md)** — 〈你從不知道，我想做的不只是將手動測試給自動化〉。**主論點**：手動測試案例直接翻譯成自動化腳本是業界最常見的浪費——兩者本質上是不同物種，該分工而非轉換。手動專責探索 + UX 判斷 + 關鍵 path；自動化專責 API / DB / 結構性資料一致性。**起源**：2026-05-15 對話。骨架已建（前言 + 五節 + 結語）、4 個反思問題嵌入待答。**形成 UI 自動化子三部曲**：[boredom-is-a-signal](/post/boredom-is-a-signal/)（該不該自動化）→ 本篇（該驗什麼）→ page-source-vs-find-element（怎麼驗有效率）
@@ -108,9 +110,12 @@
 
 ## 線六：職涯 / 大人學 / 向上管理
 
-**已上稿**：[QA 績效指標視角](/post/qa-performance-metrics-perspective/)
+**已上稿**：
+- [QA 績效指標視角](/post/qa-performance-metrics-perspective/)
+- [qa-report-workplace-wisdom](/post/qa-report-workplace-wisdom/)（2026-05-04，已清公司指紋）
 
-**完稿待上**：[qa-report-workplace-wisdom](../source/_drafts/qa-report-workplace-wisdom.md)（已清公司指紋）
+**完稿待上**：
+- 暫無
 
 **規劃中**：
 - PM 要的不是測試報告，是決策依據
@@ -144,9 +149,12 @@
 
 ## 線七：信仰 / 基督徒工作觀
 
-**已上稿**：boredom-is-a-signal 結尾的禱告（小型）
+**已上稿**：
+- boredom-is-a-signal 結尾的禱告（小型）
+- [ai-replacement-seminary-calling](/post/ai-replacement-seminary-calling/)（2026-04-28，信仰深寫）
 
-**完稿待上**：[ai-replacement-seminary-calling](../source/_drafts/ai-replacement-seminary-calling.md)（信仰深寫）
+**完稿待上**：
+- 暫無
 
 **規劃中**：
 - 基督徒的測試視角：挑錯這份工作的召命與價值（深度版）

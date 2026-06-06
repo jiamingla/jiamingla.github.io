@@ -1,7 +1,7 @@
 ---
 urlname: page-source-vs-find-element
 title: UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同
-date: 2026-06-20 22:00:00
+date: 2026-06-06 07:00:00
 tags: [軟體測試, 自動化測試, Appium, Selenium, 效能優化, UI scraping, page_source, find_element, 測試架構, 品質工程]
 ---
 
