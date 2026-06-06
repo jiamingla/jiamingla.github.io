@@ -32,10 +32,12 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（20 篇，依日期倒序）
+### 已上稿（19 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-08 | 【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？ | qa-report-workplace-wisdom | 線六 |
+| 2026-06-07 | 如果有一天我被 AI 取代了，我大概會去讀神學院 | ai-replacement-seminary-calling | 線七 |
 | 2026-06-06 | UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同 | page-source-vs-find-element | 線三 |
 | 2026-06-06 | 篩選後沒結果，是資料真的沒符合條件，還是篩選功能壞掉了？——自動化測試的五種解法 | empty-result-ambiguity-in-filter-testing | 線五 |
 | 2026-06-03 | QA 該認識的 32 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補的課 | frontend-ui-vocabulary-for-qa | 線二 / 線八 |
@@ -43,10 +45,7 @@
 | 2026-05-20 | 你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man | ai-as-yes-man-rd-pm-trust-calibration | AI literacy / 「方法論為內、AI 為殼」策略首發 |
 | 2026-05-13 | 測試站登入壞了那天：我真的測完了嗎？ | ten-minute-test-plan-when-test-stage-down | 突發應變 / 自我審視 / 信仰 |
 | 2026-05-06 | 「煩」是 QA 的診斷工具 | boredom-is-a-signal | 自動化決策 / 信仰 |
-| 2026-05-04 | 【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？ | qa-report-workplace-wisdom | 線六 |
 | 2026-05-03 | 用 specs.md 餵 AI 之前 | spec-maintenance-gray-zone | AI 取代 / 組織 |
-| 2026-04-28 | 如果有一天我被 AI 取代了，我大概會去讀神學院 | ai-replacement-seminary-calling | 線七 |
-| 2026-04-28 | 如果主管想用 AI 取代我，我會給他看的四份「當責清單」 | ai-replacement-accountability-checklist | 線二 |
 | 2026-04-24 | 問題驅動測試（PDT） | problem-driven-testing-intro | **招牌主張** ✓ |
 | 2026-04-17 | 太多「無意義」的回歸測試嗎？ | rethinking-regression-test-value | 測試紀律 |
 | 2026-04-08 | QA 績效指標視角 | qa-performance-metrics-perspective | 職涯 / KPI |
@@ -57,11 +56,11 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（0 篇）
+### 完稿草稿待上稿（1 篇）
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
-| — | — | 暫無完稿草稿 |
+| [ai-replacement-accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md) | AI 取代 / 當責 | 完稿（2026-04-28），暫緩發布，待改寫 |
 
 ### 草稿（已寫但尚未確認完稿）
 
@@ -124,8 +123,8 @@
 
 ## 庫存壓力（持續）
 
-目前 _drafts/ 有 5 支主草稿，按發稿成熟度：
-- **完稿待上**：ai-test-output-default-reader、bug-triage-six-patterns
+目前 _drafts/ 有 6 支主草稿，按發稿成熟度：
+- **完稿待上**：ai-replacement-accountability-checklist、ai-test-output-default-reader、bug-triage-six-patterns
 - **骨架階段**：not-just-make-manual-script-automate（4 個反思問題待答）、pom-refactor、notest-ambiguity
 
 寫作不缺東西，**缺的還是發稿節奏 + 主題線輪替紀律**。
@@ -238,13 +237,14 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 | 順序 | 日期 | 文章 | 長尾 | 主題線 | 備註 |
 |---|---|---|---|---|---|
-| 1 | 5/21 | letter-to-new-qa | ⭐⭐ | 線四（測試紀律） | ✅ **已上稿**（提前 3-4 天） |
+| 1 | 5/21 | letter-to-new-qa | ⭐⭐ | 線四（測試紀律） | ✅ **已上稿** |
 | 2 | 6/3 | **frontend-ui-vocabulary-for-qa** ⭐ | ⭐⭐⭐⭐ | 線二 / 線八 | ✅ **已上稿** |
-| 3 | ~6/5-7 | 同一篇的 **adapted 英文版**（給 MoT） | — | MoT 推廣 | 中文版發後**等 1 週**再做英文版（不是純翻譯，是 adapt） |
+| 3 | 6/6 | **page-source-vs-find-element** | ⭐⭐⭐⭐ | 線三 | ✅ **已上稿** |
 | 4 | 6/6 | **empty-result-ambiguity-in-filter-testing** | ⭐⭐⭐ | 線五 | ✅ **已上稿** |
-| 5 | 6/8-10 | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十（無主之地） | 第三篇 ⭐⭐⭐⭐ 長尾文 |
-| 6 | 6/12-15 | ai-test-output-default-reader | ⭐⭐ | 線二 | 配對 yes-man |
-| 7 | 6/20 | **page-source-vs-find-element** | ⭐⭐⭐⭐ | 線三 | ✅ **已上稿** |
+| 5 | 6/7 | **ai-replacement-seminary-calling** | ⭐⭐ | 線七 | ⏳ **已排程明午 12:00** |
+| 6 | 6/8 | **qa-report-workplace-wisdom** | ⭐⭐ | 線六 | ⏳ **已排程下週一 20:00** |
+| 7 | 6/8-10 | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十（無主之地） | 規劃中 / 第三篇 ⭐⭐⭐⭐ 長尾文 |
+| 8 | 6/12-15 | ai-test-output-default-reader | ⭐⭐ | 線二 | 規劃中 / 配對 yes-man |
 
 **主要調動**：把兩篇 ⭐⭐⭐⭐ 的 SEO 強文（frontend-ui-vocabulary + bug-triage）排前面，ai-test-output 推到 6 月中。**6/20 之前累積 3 篇 ⭐⭐⭐⭐ + 1 篇英文 MoT 版，加速 Google 收錄 + 國際 backlink**。
 

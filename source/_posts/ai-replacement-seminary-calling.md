@@ -1,7 +1,7 @@
 ---
 urlname: ai-replacement-seminary-calling
 title: 如果有一天我被 AI 取代了，我大概會去讀神學院
-date: 2026-04-28 22:30:00
+date: 2026-06-07 12:00:00
 tags: [AI, AI取代, 呼召, 信仰, 職涯, 軟體測試, 品質工程]
 ---
 

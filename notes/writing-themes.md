@@ -37,11 +37,10 @@
 - [spec-maintenance-gray-zone](/post/spec-maintenance-gray-zone/)（2026-05-03）
 - [boredom-is-a-signal](/post/boredom-is-a-signal/)（2026-05-06，與 spec-maintenance 互為鏡像）
 - [frontend-ui-vocabulary-for-qa](/post/frontend-ui-vocabulary-for-qa/)（2026-06-03，與線八交叉）
-- [ai-replacement-accountability-checklist](/post/ai-replacement-accountability-checklist/)（2026-04-28，四份當責清單）
-- [ai-replacement-seminary-calling](/post/ai-replacement-seminary-calling/)（2026-04-28，信仰收尾，與線七交叉）
+- [ai-replacement-seminary-calling](/post/ai-replacement-seminary-calling/)（2026-06-07，信仰收尾，與線七交叉）
 
 **完稿待上**：
-- 暫無
+- [ai-replacement-accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md)（四份當責清單，暫緩發布待改寫）
 
 **規劃中**：
 - 🆕 **[ai-as-yes-man-rd-pm-trust-calibration](../source/_drafts/ai-as-yes-man-rd-pm-trust-calibration.md)** — 給 RD/PM 的 AI 測試結果信任校準（三個必問問題）。**主論點**：AI 不是你的 QA，是你的 Yes Man——QA 內建對你產品的敵意懷疑，AI 內建對你的對齊配合。**跟 [notest-ambiguity](../source/_drafts/notest-ambiguity-skip-vs-low-confidence.md) 是姐妹篇**：QA 升級 schema、RD/PM 升級提問習慣，[PDT Coach 工具](tools-roadmap.md) 填中間。**起源**：2026-05-13 跟 notest 那篇同源討論。**順序**：**先於 notest 上稿**（2026-05-13 訂）——awareness（這篇）→ tooling（notest）→ 配合 [accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md) 形成「問題 → 責任 → 工具」三連發弧線。**配對篇**：跟 [ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md) 形成「**Working with AI Output**」雙篇——本篇講「問」、配對篇講「讀」
@@ -112,7 +111,7 @@
 
 **已上稿**：
 - [QA 績效指標視角](/post/qa-performance-metrics-perspective/)
-- [qa-report-workplace-wisdom](/post/qa-report-workplace-wisdom/)（2026-05-04，已清公司指紋）
+- [qa-report-workplace-wisdom](/post/qa-report-workplace-wisdom/)（2026-06-08，已清公司指紋）
 
 **完稿待上**：
 - 暫無
@@ -151,7 +150,7 @@
 
 **已上稿**：
 - boredom-is-a-signal 結尾的禱告（小型）
-- [ai-replacement-seminary-calling](/post/ai-replacement-seminary-calling/)（2026-04-28，信仰深寫）
+- [ai-replacement-seminary-calling](/post/ai-replacement-seminary-calling/)（2026-06-07，信仰深寫）
 
 **完稿待上**：
 - 暫無
