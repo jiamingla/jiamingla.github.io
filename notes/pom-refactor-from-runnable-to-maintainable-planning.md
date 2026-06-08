@@ -11,6 +11,9 @@
 *   **如今的頓悟與實踐**：
     多年以後，在職場上面對真實且龐大、脆弱的自動化專案，經歷了無數次 UI 改版導致腳本全面崩潰的痛楚，才終於明白大四學到的這個概念是多麼強大。這篇文章要寫出這種**「多年前種下的子彈，如今正中紅心」**的真實體會，向讀者傳遞：設計模式不是死板的教科書，而是前人踩坑後的求生指南。
 
+*   **履行開台宣言的承諾**：
+    此篇技術實踐正是為了回應開台藍圖 [testing-manifesto.md](../source/_posts/testing-manifesto.md) 中，至今仍標註為「仍規劃中」的 **Page Object Pattern (POM)** 技術支柱。撰寫並發表此文，代表完成了開台初期承諾的核心技術版圖。
+
 ---
 
 ## 🤖 在 AI 時代重新定義 POM 的價值
@@ -29,6 +32,12 @@
 *   **人類的職責**：看懂系統的「局」，負責設計與定義高品質、高語義的 Page Object 介面（API），確保底層定位與等待機制的硬度。
 *   **AI 的職責**：利用人類提供的高階 Page Object 積木，自動撰寫、生成、排列組合出數百條不同的測試案例。
 *   **結論**：**POM 寫得好不好，直接決定了你的自動化架構對 AI 協作是否友善。**
+
+### 4. 後端/API 測試中的「POM 變奏」：API Client / Service Object
+*   **困惑排除**：對於「只測後端、不碰前端 UI」的 QA 而言，POM 模式（代表 Page 網頁）確實沒有用武之地。
+*   **本質心法一致**：雖然 POM 不適用於後端，但它的**封裝心法（Separating Intent from Implementation）**完全是共通的。在後端測試中，我們不寫 Page Object，而是寫 **API Client Wrapper** 或 **Service Object**。
+*   **痛點與解法**：不應該把 HTTP 請求的細節（URL、Header、Payload 結構、Auth 機制）散落到各個 API 測試案例中。我們應該將其封裝進一個 API Class（例如 `UserApiClient.create_member(name, age)`）。
+*   **對 AI 的好處**：這同樣隔離了 API 協定的變動，並為 AI Agent 提供了乾淨的「後端 API 工具箱」，讓 AI 寫後端集成測試時，不需在程式碼中大肆猜測 HTTP 欄位，這本質上就是「POM 思維在後端的完美變奏」。
 
 ---
 
