@@ -39,3 +39,12 @@
 *   **新增章節：〈在 AI 時代，為什麼我們比以前更需要 POM？〉**：
     *   將上述「Tool API 封裝」、「隔離 AI 修改邊界」、「Human-AI 分工」的論點寫進去，作為這篇老技術文章的**新時代 differentiator**。
 *   **結語**：將 POM 與 PDT 連動，強調「POM 寫得爛，PDT 就跑不起來；POM 寫得好，AI 就能幫你跑起來」。
+
+---
+
+## 🔗 與其他規劃/備忘檔案的關聯
+
+*   **[cross-app-locator-strategy.md](cross-app-locator-strategy.md)（跨 APP 元素定位策略）**：
+    *   **實戰案例對照**：此規劃檔記錄了 CMoney 20+ 個作者 App 共用測試 lib 的真實場景。不同 App 的 UI 細節（如 `resource-id` 有無、容器命名）大相逕庭，但「搜尋頁標題」或「鈴鐺按鈕」的**測試意圖完全相同**。
+    *   **POM 作為橋樑的極致展現**：這份實務備忘錄正好可以作為本篇 POM 文章的**硬核技術案例**。在寫作時，可將此情境作為「UI 變動、但測試意圖不變」的真實示範，說明如何透過 `LocatorStrategy` 將這 20+ 個 App 的混亂 XML 結構封裝在 PageObject 底層，對上層測試（以及呼叫測試的 AI Agent）呈現乾淨的統一介面。
+
