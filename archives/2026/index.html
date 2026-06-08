@@ -46,74 +46,14 @@
 
 
 <body>
-.progress-bar-container {
-  position fixed
-  top 0
-  left 0
-  z-index $z-index-9
-  width 100%
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-  if (hexo-config('pjax') && hexo-config('pjax.enable') == true) {
+    
+</div>
 
-    .pjax-progress-bar {
-      position absolute
-      top 0
-      left 0
-      z-index $z-index-8
-      width 0
-      height 2px
-      background var(--pjax-progress-bar-color)
-      visibility hidden
-      opacity 0
-      transition-t("width, opacity", "0, 0", "0.1, 0.1", "linear")
-
-
-      &.show {
-        visibility visible
-        opacity 1
-      }
-    }
-
-
-    .pjax-progress-icon {
-      position absolute
-      top 0.4rem
-      right 0.3rem
-      z-index $z-index-8
-      color var(--text-color-3)
-      font-size 1.1rem
-      visibility hidden
-
-      +keep-tablet() {
-        top 0.3rem
-        right 0.2rem
-        font-size 1rem
-      }
-
-      &.show {
-        visibility visible
-      }
-    }
-  }
-
-  if (hexo-config('scroll') && hexo-config('scroll.progress_bar') == true) {
-    .scroll-progress-bar {
-      position absolute
-      top 0
-      left 0
-      z-index $z-index-7
-      width 0
-      height var(--header-scroll-progress-bar-height)
-      background var(--primary-color)
-      visibility hidden
-      transition-t("width", "0", "0.1", "linear")
-
-      &.hide {
-        display none !important
-      }
-    }
-  }
-}
 
 
 <main class="page-container border-box">
@@ -304,6 +244,14 @@
                 
                     <li class="post-item border-box">
                         <span class="starting-point border-box flex-center"></span>
+                        <span class="post-date border-box">06-08</span>
+                        <a class="post-title border-box text-ellipsis"
+                           href="/post/qa-report-workplace-wisdom/"
+                        >【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？</a>
+                    </li>
+                
+                    <li class="post-item border-box">
+                        <span class="starting-point border-box flex-center"></span>
                         <span class="post-date border-box">06-07</span>
                         <a class="post-title border-box text-ellipsis"
                            href="/post/ai-replacement-seminary-calling/"
@@ -412,14 +360,6 @@
                         <a class="post-title border-box text-ellipsis"
                            href="/post/appium-v2-to-v3-migration/"
                         >【技術升級】Appium 3.0 來了！從 v2 遷移至 v3 的核心重點與避坑指南</a>
-                    </li>
-                
-                    <li class="post-item border-box">
-                        <span class="starting-point border-box flex-center"></span>
-                        <span class="post-date border-box">03-24</span>
-                        <a class="post-title border-box text-ellipsis"
-                           href="/post/audio-testing-ffmpeg/"
-                        >【實戰筆記】語音聊天室錄音測試：從 FFmpeg 安裝到「口頭標記」驗證法</a>
                     </li>
                 
             </ul>

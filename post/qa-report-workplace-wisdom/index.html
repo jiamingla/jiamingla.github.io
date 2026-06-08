@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？ |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-08</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Mon Jun 08 2026 12:00:00 GMT+0000">2026-06-08</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E5%A0%B4%E5%A4%A7%E4%BA%BA%E5%AD%B8/">職場大人學</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%BA%9D%E9%80%9A%E6%8A%80%E5%B7%A7/">溝通技巧</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：那個被無視的「完美報告」"><a href="#前言：那個被無視的「完美報告」" class="headerlink" title="前言：那個被無視的「完美報告」"></a>前言：那個被無視的「完美報告」</h2><p>想像一個你可能非常熟悉的場景：</p>
+<p>迭代進入尾聲，你連續加班兩天，終於跑完了一千多條測試案例。你滿懷成就感地整理出一份精美的 Excel 報表，裡面有詳盡的圓餅圖、長條圖，標註著 98% 的通過率，以及剩下 2% 的已知問題。</p>
+<p>你把這份「戰果」寄給老闆，甚至在會議上投影出來。你期待老闆會稱讚你的嚴謹，或是針對那 2% 的 Bug 展開深度討論。結果老闆只掃了一眼，眉頭一皺，打斷你的簡報問了一句：</p>
+<blockquote>
+<p>「所以，今天下班前這版到底能不能準時上線？會不會出事？」</p>
+</blockquote>
+<p>那一刻，你心裡可能充滿了委屈：「我不是都寫在報告裡了嗎？通過率 98% 欸！剩下的問題我也都列出來了啊！」</p>
+<p>如果你有過這種「對牛彈琴」的無力感，那很可能不是你的專業出了問題，而是你還沒<strong>看懂職場的「局」</strong>。</p>
+<hr>
+<h2 id="一、-看懂老闆的「局」：他在焦慮什麼？"><a href="#一、-看懂老闆的「局」：他在焦慮什麼？" class="headerlink" title="一、 看懂老闆的「局」：他在焦慮什麼？"></a>一、 看懂老闆的「局」：他在焦慮什麼？</h2><p>在「職場大人學」A101 課程中，Bryan 老師一再強調一個核心觀念：<strong>看懂局，是所有策略的起點。</strong></p>
+<p>身為 QA，我們習慣的局是「技術與邏輯」。但在老闆的局裡，他看到的風景完全不同：</p>
+<h3 id="1-資訊不對稱的焦慮"><a href="#1-資訊不對稱的焦慮" class="headerlink" title="1. 資訊不對稱的焦慮"></a>1. 資訊不對稱的焦慮</h3><p>老闆（或是高階主管、PM）通常不直接參與開發細節。他看不懂 Code，也分不清楚什麼是「邊界條件」或「異步處理」。對他來說，測試報告就像是一疊外星語言。當他看不懂時，他唯一能感受到的就是「不確定性」，而<strong>不確定性會轉化為強烈的焦慮</strong>。</p>
+<h3 id="2-目標層級的不同"><a href="#2-目標層級的不同" class="headerlink" title="2. 目標層級的不同"></a>2. 目標層級的不同</h3><ul>
+<li><strong>QA 的局（技術層）：</strong> 關注的是「正確性」。Bug 找出來了沒？邊界測了沒？（解決的是技術問題）</li>
+<li><strong>老闆的局（商業層）：</strong> 關注的是「生存與損益」。產品能不能如期上線？會不會被客戶投訴？會不會導致營收損失？（解決的是生存問題）</li>
+</ul>
+<p>當你一直報告「技術正確性」時，你其實是在增加他的 CPU 負荷，因為他還得在大腦裡幫你把這些數據翻譯成「商業風險」。</p>
+<hr>
+<h2 id="二、-為什麼「純技術數據」是低效溝通？"><a href="#二、-為什麼「純技術數據」是低效溝通？" class="headerlink" title="二、 為什麼「純技術數據」是低效溝通？"></a>二、 為什麼「純技術數據」是低效溝通？</h2><p>我們常以為「專業」就是給出精準的數據。但在向上管理的情境中，<strong>數據不等於資訊</strong>。</p>
+<ul>
+<li><strong>數據（Data）：</strong> 「通過率 98%」、「發現 50 個 Bug」。</li>
+<li><strong>資訊（Information）：</strong> 「剩下的 2% 雖然不多，但會導致購物車在 iOS 14 以下版本無法結帳，預估影響 5% 的營收。」</li>
+</ul>
+<p>大人學教我們：<strong>專業是基礎，但溝通是槓桿。</strong></p>
+<p>如果你只給數據，你就是一個「執行者」，老闆必須自己做判斷。如果你能給出資訊，你就是一個「顧問」，你在幫老闆降低判斷的難度。<strong>當老闆覺得看你的報告能「省腦力」時，你的專業價值才真正體現。</strong></p>
+<hr>
+<h2 id="三、-實踐篇：如何寫一份「大人感」的測試報告？"><a href="#三、-實踐篇：如何寫一份「大人感」的測試報告？" class="headerlink" title="三、 實踐篇：如何寫一份「大人感」的測試報告？"></a>三、 實踐篇：如何寫一份「大人感」的測試報告？</h2><p>結合 <strong>問題驅動測試 (PDT)</strong> 的思維與大人學的職場策略，我們可以從以下三個方向優化測試報告：</p>
+<h3 id="1-從「Bug-清單」轉向「風險地圖」"><a href="#1-從「Bug-清單」轉向「風險地圖」" class="headerlink" title="1. 從「Bug 清單」轉向「風險地圖」"></a>1. 從「Bug 清單」轉向「風險地圖」</h3><p>不要只列出有幾個 Bug，要主動揭露「未知的風險」。</p>
+<ul>
+<li><strong>低效寫法：</strong> 「目前還有 3 個 Priority 2 的 Bug 未修復。」</li>
+<li><strong>大人感寫法：</strong> 「目前支付模組已驗證完畢，風險低；但因為開發時程延遲，『舊會員升級』流程我們僅做了主流程驗證。<strong>目前的風險在於：若舊會員資料異常，可能會導致升級失敗。</strong>」</li>
+</ul>
+<p>這就是我常說的：<strong>測試的靈魂在於提問。</strong> 好的報告會告訴老闆：我們還沒問出答案的地方在哪裡？</p>
+<h3 id="2-給予「選擇題」而非「是非題」"><a href="#2-給予「選擇題」而非「是非題」" class="headerlink" title="2. 給予「選擇題」而非「是非題」"></a>2. 給予「選擇題」而非「是非題」</h3><p>當老闆問「能不能上線」時，不要只給「Yes&#x2F;No」。因為決定上不上線是「選策略」，而策略通常是權衡（Trade-off）後的結果。</p>
+<ul>
+<li><strong>大人感方案：</strong><ul>
+<li><strong>方案 A（如期上線）：</strong> 關閉風險功能，下週一再補上。風險最低。</li>
+<li><strong>方案 B（延後一天）：</strong> 修好關鍵 Bug 並驗證，確保功能完整。風險中等，但會延誤市場活動。</li>
+<li><strong>方案 C（如期上線並監控）：</strong> 派專人即時監控數據，若有異常立即回退。這需要運維與開發的支援。</li>
+</ul>
+</li>
+</ul>
+<p>當你給出選項與對應的代價，老闆會覺得你<strong>懂他的局</strong>，而且是在幫他分擔責任。</p>
+<h3 id="3-建立「人際帳戶」：肯定團隊的努力"><a href="#3-建立「人際帳戶」：肯定團隊的努力" class="headerlink" title="3. 建立「人際帳戶」：肯定團隊的努力"></a>3. 建立「人際帳戶」：肯定團隊的努力</h3><p>大人學提到，職場是「互惠合作」。QA 的工作天生在找錯，容易耗損人際帳戶。在報告中加入一句：</p>
+<blockquote>
+<p>「感謝開發團隊在最後 24 小時高效修復了 10 個阻斷性 Bug，讓核心流程得以穩定。」</p>
+</blockquote>
+<p>這不只是客套，而是透過這份報告，讓老闆看到「整個團隊」的進度，而不是只有 QA 在「抓戰犯」。這會讓開發者更願意配合你未來的測試工作。</p>
+<h3 id="4-預判產能危機：建立「提測分流」的談判籌碼"><a href="#4-預判產能危機：建立「提測分流」的談判籌碼" class="headerlink" title="4. 預判產能危機：建立「提測分流」的談判籌碼"></a>4. 預判產能危機：建立「提測分流」的談判籌碼</h3><p>當你預判到未來工作量即將翻倍——可能是新產品線併入、平台擴展、或測試範圍被重新切分——而主管正為「資源瓶頸」感到焦慮時，這是展現你「向上管理」價值的絕佳時機。</p>
+<p>不要只是在會議上抱怨「這不可能做到」，而是主動提議<strong>如何對測試項目進行分流與妥協 (Risk-based Testing)</strong>。你甚至可以幫主管草擬出跟 PM 談判的規則：</p>
+<blockquote>
+<p>「為了因應未來可能增加的測試量，我建議我們跟 PM 團隊建立新的『提測分流機制』。未來應以**『功能測試 (Feature Testing)』<strong>為預設常態，</strong>『回歸測試 (Regression Testing)』**為例外。」</p>
+</blockquote>
+<ul>
+<li><strong>情境 A (功能測試)：</strong> 當次迭代僅新增單一功能或小範圍調整。QA 只針對變更與關聯範圍驗證。（<strong>對 PM 的誘因：測試週期短，App 可更快速上線</strong>）</li>
+<li><strong>情境 B (回歸測試)：</strong> 只有在底層架構大改、核心模組重構時才發起全量測試，且需提前預約 QA 量能。</li>
+</ul>
+<p>提出這個方案，不僅解決了主管「產能不足」的焦慮，更展現了你具備不當濫好人、主動管理上游需求的「顧問級」思維。</p>
+<hr>
+<h2 id="結語：從「執行者」轉向「品質顧問」"><a href="#結語：從「執行者」轉向「品質顧問」" class="headerlink" title="結語：從「執行者」轉向「品質顧問」"></a>結語：從「執行者」轉向「品質顧問」</h2><p>看完「職場大人學」後，我對 QA 這個角色有了全新的定義：<strong>我們不是「守門員」，我們是「領航員」。</strong></p>
+<p>老闆就像是在迷霧中航行的船長，他需要的不是一張印滿數字的航海圖，而是一個能指著前方告訴他「那邊有碎石，我們換個方向走比較穩」的嚮導。</p>
+<p><strong>看懂局，才能積籌碼、選策略。</strong> 當你的測試報告能解決老闆的焦慮、幫助團隊做決策時，你就不再是一個只能「點點點」的工具人，而是一個不可或缺的專業顧問。</p>
+<hr>
+<p><strong>思考題：</strong> 下次寫報告前，試著問自己：這份報告能幫老闆省下多少大腦 CPU？</p>
+<hr>
+<h3 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h3><ul>
+<li><strong>《A101 職場大人學》</strong> — 推薦給所有覺得自己工作努力卻抓不到要領的朋友。</li>
+<li><strong><a href="/posts/problem-driven-testing-intro">問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡</a></strong> — 了解如何從技術層面提升提問的品質。</li>
+</ul>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%81%B7%E5%A0%B4%E5%A4%A7%E4%BA%BA%E5%AD%B8/">職場大人學</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%BA%9D%E9%80%9A%E6%8A%80%E5%B7%A7/">溝通技巧</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/ai-replacement-seminary-calling/"
+                                   title="如果有一天我被 AI 取代了，我大概會去讀神學院"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">如果有一天我被 AI 取代了，我大概會去讀神學院</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E8%A2%AB%E7%84%A1%E8%A6%96%E7%9A%84%E3%80%8C%E5%AE%8C%E7%BE%8E%E5%A0%B1%E5%91%8A%E3%80%8D"><span class="nav-text">前言：那個被無視的「完美報告」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E7%9C%8B%E6%87%82%E8%80%81%E9%97%86%E7%9A%84%E3%80%8C%E5%B1%80%E3%80%8D%EF%BC%9A%E4%BB%96%E5%9C%A8%E7%84%A6%E6%85%AE%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">一、 看懂老闆的「局」：他在焦慮什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%B3%87%E8%A8%8A%E4%B8%8D%E5%B0%8D%E7%A8%B1%E7%9A%84%E7%84%A6%E6%85%AE"><span class="nav-text">1. 資訊不對稱的焦慮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%9B%AE%E6%A8%99%E5%B1%A4%E7%B4%9A%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="nav-text">2. 目標層級的不同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%82%BA%E4%BB%80%E9%BA%BC%E3%80%8C%E7%B4%94%E6%8A%80%E8%A1%93%E6%95%B8%E6%93%9A%E3%80%8D%E6%98%AF%E4%BD%8E%E6%95%88%E6%BA%9D%E9%80%9A%EF%BC%9F"><span class="nav-text">二、 為什麼「純技術數據」是低效溝通？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E8%B8%90%E7%AF%87%EF%BC%9A%E5%A6%82%E4%BD%95%E5%AF%AB%E4%B8%80%E4%BB%BD%E3%80%8C%E5%A4%A7%E4%BA%BA%E6%84%9F%E3%80%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E5%A0%B1%E5%91%8A%EF%BC%9F"><span class="nav-text">三、 實踐篇：如何寫一份「大人感」的測試報告？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BE%9E%E3%80%8CBug-%E6%B8%85%E5%96%AE%E3%80%8D%E8%BD%89%E5%90%91%E3%80%8C%E9%A2%A8%E9%9A%AA%E5%9C%B0%E5%9C%96%E3%80%8D"><span class="nav-text">1. 從「Bug 清單」轉向「風險地圖」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%B5%A6%E4%BA%88%E3%80%8C%E9%81%B8%E6%93%87%E9%A1%8C%E3%80%8D%E8%80%8C%E9%9D%9E%E3%80%8C%E6%98%AF%E9%9D%9E%E9%A1%8C%E3%80%8D"><span class="nav-text">2. 給予「選擇題」而非「是非題」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%BB%BA%E7%AB%8B%E3%80%8C%E4%BA%BA%E9%9A%9B%E5%B8%B3%E6%88%B6%E3%80%8D%EF%BC%9A%E8%82%AF%E5%AE%9A%E5%9C%98%E9%9A%8A%E7%9A%84%E5%8A%AA%E5%8A%9B"><span class="nav-text">3. 建立「人際帳戶」：肯定團隊的努力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%A0%90%E5%88%A4%E7%94%A2%E8%83%BD%E5%8D%B1%E6%A9%9F%EF%BC%9A%E5%BB%BA%E7%AB%8B%E3%80%8C%E6%8F%90%E6%B8%AC%E5%88%86%E6%B5%81%E3%80%8D%E7%9A%84%E8%AB%87%E5%88%A4%E7%B1%8C%E7%A2%BC"><span class="nav-text">4. 預判產能危機：建立「提測分流」的談判籌碼</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E5%BE%9E%E3%80%8C%E5%9F%B7%E8%A1%8C%E8%80%85%E3%80%8D%E8%BD%89%E5%90%91%E3%80%8C%E5%93%81%E8%B3%AA%E9%A1%A7%E5%95%8F%E3%80%8D"><span class="nav-text">結語：從「執行者」轉向「品質顧問」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E8%A2%AB%E7%84%A1%E8%A6%96%E7%9A%84%E3%80%8C%E5%AE%8C%E7%BE%8E%E5%A0%B1%E5%91%8A%E3%80%8D"><span class="nav-text">前言：那個被無視的「完美報告」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E7%9C%8B%E6%87%82%E8%80%81%E9%97%86%E7%9A%84%E3%80%8C%E5%B1%80%E3%80%8D%EF%BC%9A%E4%BB%96%E5%9C%A8%E7%84%A6%E6%85%AE%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">一、 看懂老闆的「局」：他在焦慮什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%B3%87%E8%A8%8A%E4%B8%8D%E5%B0%8D%E7%A8%B1%E7%9A%84%E7%84%A6%E6%85%AE"><span class="nav-text">1. 資訊不對稱的焦慮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%9B%AE%E6%A8%99%E5%B1%A4%E7%B4%9A%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="nav-text">2. 目標層級的不同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%82%BA%E4%BB%80%E9%BA%BC%E3%80%8C%E7%B4%94%E6%8A%80%E8%A1%93%E6%95%B8%E6%93%9A%E3%80%8D%E6%98%AF%E4%BD%8E%E6%95%88%E6%BA%9D%E9%80%9A%EF%BC%9F"><span class="nav-text">二、 為什麼「純技術數據」是低效溝通？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E8%B8%90%E7%AF%87%EF%BC%9A%E5%A6%82%E4%BD%95%E5%AF%AB%E4%B8%80%E4%BB%BD%E3%80%8C%E5%A4%A7%E4%BA%BA%E6%84%9F%E3%80%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E5%A0%B1%E5%91%8A%EF%BC%9F"><span class="nav-text">三、 實踐篇：如何寫一份「大人感」的測試報告？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BE%9E%E3%80%8CBug-%E6%B8%85%E5%96%AE%E3%80%8D%E8%BD%89%E5%90%91%E3%80%8C%E9%A2%A8%E9%9A%AA%E5%9C%B0%E5%9C%96%E3%80%8D"><span class="nav-text">1. 從「Bug 清單」轉向「風險地圖」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%B5%A6%E4%BA%88%E3%80%8C%E9%81%B8%E6%93%87%E9%A1%8C%E3%80%8D%E8%80%8C%E9%9D%9E%E3%80%8C%E6%98%AF%E9%9D%9E%E9%A1%8C%E3%80%8D"><span class="nav-text">2. 給予「選擇題」而非「是非題」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%BB%BA%E7%AB%8B%E3%80%8C%E4%BA%BA%E9%9A%9B%E5%B8%B3%E6%88%B6%E3%80%8D%EF%BC%9A%E8%82%AF%E5%AE%9A%E5%9C%98%E9%9A%8A%E7%9A%84%E5%8A%AA%E5%8A%9B"><span class="nav-text">3. 建立「人際帳戶」：肯定團隊的努力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%A0%90%E5%88%A4%E7%94%A2%E8%83%BD%E5%8D%B1%E6%A9%9F%EF%BC%9A%E5%BB%BA%E7%AB%8B%E3%80%8C%E6%8F%90%E6%B8%AC%E5%88%86%E6%B5%81%E3%80%8D%E7%9A%84%E8%AB%87%E5%88%A4%E7%B1%8C%E7%A2%BC"><span class="nav-text">4. 預判產能危機：建立「提測分流」的談判籌碼</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E5%BE%9E%E3%80%8C%E5%9F%B7%E8%A1%8C%E8%80%85%E3%80%8D%E8%BD%89%E5%90%91%E3%80%8C%E5%93%81%E8%B3%AA%E9%A1%A7%E5%95%8F%E3%80%8D"><span class="nav-text">結語：從「執行者」轉向「品質顧問」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>
