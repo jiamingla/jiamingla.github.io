@@ -70,9 +70,9 @@
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
-| [notest-ambiguity-skip-vs-low-confidence](../source/_drafts/notest-ambiguity-skip-vs-low-confidence.md) | 線二（AI 測試判讀） | ⭐⭐⭐ 長尾。已積 ~21k 字（比「骨架」成熟，但未確認完稿）。6 月中後 |
+| [notest-ambiguity-skip-vs-low-confidence-planning](../source/_drafts/notest-ambiguity-skip-vs-low-confidence-planning.md) | 線二（AI 測試判讀） | ⭐⭐⭐ 長尾。已積 ~21k 字（比「骨架」成熟，但未確認完稿）。6 月中後 |
 | [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已積 ~17k 字。草稿，等思考完才動 |
-| [not-just-make-manual-script-automate](../source/_drafts/not-just-make-manual-script-automate.md) | 線三 + 線五（UI 自動化 / 自動化決策） | **2026-05-15 骨架完成、4 個反思問題待答**，等想清楚 Q1-Q4 再填內容 |
+| [not-just-make-manual-script-automate-planning](../source/_drafts/not-just-make-manual-script-automate-planning.md) | 線三 + 線五（UI 自動化 / 自動化決策） | **2026-05-15 骨架完成、4 個反思問題待答**，等想清楚 Q1-Q4 再填內容 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
@@ -132,7 +132,7 @@
 目前 _drafts/ **3 支**主草稿，按發稿成熟度：
 - **完稿待上（0）**：所有完稿皆已排程
 - **已積大量字數但未確認完稿（2）**：notest-ambiguity（~21k 字）、pom-refactor（~17k 字）
-- **骨架階段（1）**：not-just-make-manual-script-automate（4 個反思問題待答）
+- **骨架階段（1）**：not-just-make-manual-script-automate-planning（4 個反思問題待答）
 
 > 2026-06-08 校正：原寫「7 支」並把 ai-replacement-accountability-checklist 列為完稿待上——該檔已於 6/5 移回 notes/。同日 bug-triage 因改用前公司第一手案例、揭露邊界待解，移到 notes/ 成規劃檔，_drafts/ 從 6 支再減為 5 支。
 
