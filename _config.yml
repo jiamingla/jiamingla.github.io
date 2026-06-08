@@ -191,3 +191,6 @@ symbols_count_time:
   exclude_codeblock: true
   awl: 2   # 中文处理速度（每分钟字数）
   wpm: 275 # 英文处理速度（每分钟字数）
+
+# 你的網站網址
+urlforgoogle: https://jiamingla.github.io
