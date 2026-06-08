@@ -56,15 +56,15 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（3 篇，在 _drafts/）
+### 完稿草稿待上稿（2 篇，在 _drafts/）
 
 | 文章 | 主題線 | 長尾 | 狀態備註 |
 |---|---|---|---|
-| [bug-triage-six-patterns-industry-survey](../source/_drafts/bug-triage-six-patterns-industry-survey.md) | 線十（無主之地） | ⭐⭐⭐⭐ | 接近完稿（date 仍是 placeholder 9/15）。**下一篇優先發**——六月不推廣，發了再改 |
-| [ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md) | 線二 | ⭐⭐ | 完稿待上（date placeholder 8/15），配對 yes-man |
+| [ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md) | 線二 | ⭐⭐ | 完稿待上（date placeholder 8/15），配對 yes-man。**目前最成熟的下一篇候選** |
 | [how-to-start-low-pressure-book-club](../source/_drafts/how-to-start-low-pressure-book-club.md) | 線十一（團隊 / 協作） | — | 2026-06-06 新加，內容看來完整 |
 
-> 註：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
+> 註 1：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
+> 註 2：**bug-triage-six-patterns 於 2026-06-08 降級**——原本當「下一篇 ⭐⭐⭐⭐」，但決定改用兩間前公司第一手案例後，揭露邊界（去識別化、法務距離、情緒中立）成為 gating decision，需先想清楚才能生成文章。已轉為規劃檔 [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md)，見下方「規劃文件」。
 
 ### 草稿（已寫但尚未確認完稿）
 
@@ -76,8 +76,9 @@
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
-### 規劃文件（_drafts/，不會直接成為文章）
+### 規劃文件（notes/，不會直接成為文章）
 
+- [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) — **2026-06-08 新**：bug-triage 六種模式對照的素材 + 待思考問題。**gating decision = 揭露邊界**（改用兩間前公司第一手案例，去識別化 / 法務距離 / 情緒中立想清楚才生成文章）。⭐⭐⭐⭐ 長尾，線八主場 + 線十前傳
 - [analogy-series-proposals.md](analogy-series-proposals.md) — PDT 類比系列（醫生 / 記者 / 偵探 / 讀者）
 - [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md) — 讀書延伸題目（《QA 職涯手冊》七個切角）
 - [tools-roadmap.md](tools-roadmap.md) — PDT/Self-Review Agent 工具路線
@@ -128,12 +129,12 @@
 
 ## 庫存壓力（2026-06-08 校正）
 
-目前 _drafts/ **6 支**主草稿（6/6-8 連發 4 篇後），按發稿成熟度：
-- **完稿待上（3）**：bug-triage-six-patterns ⭐⭐⭐⭐、ai-test-output-default-reader、how-to-start-low-pressure-book-club（詳見上方「完稿草稿待上稿」表）
+目前 _drafts/ **5 支**主草稿（6/6-8 連發 4 篇 + bug-triage 6/8 降級為規劃檔後），按發稿成熟度：
+- **完稿待上（2）**：ai-test-output-default-reader、how-to-start-low-pressure-book-club（詳見上方「完稿草稿待上稿」表）
 - **已積大量字數但未確認完稿（2）**：notest-ambiguity（~21k 字）、pom-refactor（~17k 字）
 - **骨架階段（1）**：not-just-make-manual-script-automate（4 個反思問題待答）
 
-> 2026-06-08 校正：原寫「7 支」並把 ai-replacement-accountability-checklist 列為完稿待上——該檔已於 6/5 移回 notes/，不再計入。
+> 2026-06-08 校正：原寫「7 支」並把 ai-replacement-accountability-checklist 列為完稿待上——該檔已於 6/5 移回 notes/。同日 bug-triage 因改用前公司第一手案例、揭露邊界待解，移到 notes/ 成規劃檔，_drafts/ 從 6 支再減為 5 支。
 
 **六月策略**：不推廣 = 沒人在看，所以「還沒 100% 滿意」不再是擋發稿的理由。發了再反覆讀、反覆改（publish-then-revise，刻意拿來打完美主義）。主題線輪替紀律仍守，但節奏快慢在六月不是問題。
 
@@ -223,7 +224,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 | 草稿 | 長尾關鍵字方向 | 長尾力 | 建議發稿時機 |
 |---|---|---|---|
-| **bug-triage-six-patterns-industry-survey** | Bug Triage 業界六種模式、QA bug 指派 | ⭐⭐⭐⭐ | 完稿即可，長尾力極強 |
+| **bug-triage-six-patterns**（已轉規劃檔） | Bug Triage 業界六種模式、QA bug 指派 | ⭐⭐⭐⭐ | **6/8 降級**：揭露邊界（兩前公司去識別化）想清楚才生成，見 [planning](bug-triage-six-patterns-planning.md) |
 | **page-source-vs-find-element** | page_source vs find_element、UI 自動化效能 | ⭐⭐⭐⭐ | 已排 6/20，極具長尾 |
 | **empty-result-ambiguity-in-filter-testing** | 篩選沒結果、自動化測試 empty | ⭐⭐⭐ | 已排 6/6 |
 | **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | 等 4 題反思答完 |
@@ -235,6 +236,8 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | **ai-replacement-accountability-checklist** | AI 取代 QA、當責清單 | ⭐⭐ | 6 月 |
 
 ## 從長尾力看「接下來該發什麼」
+
+> 🕐 **2026-06-08 現況**：本段下方三篇 ⭐⭐⭐⭐ 候選中，frontend-ui（6/3）、page-source（6/6）已上稿，bug-triage 已降級為規劃檔。**接下來的真實排程以上方「📌 接下來節奏」表為準**，本段保留作歷史推理脈絡。
 
 原本排程：letter-to-new-qa（5/24）→ ai-test-output（5/28-30）→ empty-result（6/6 排程）→ page-source（6/20 排程）
 
@@ -253,8 +256,9 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 4 | 6/6 | **empty-result-ambiguity-in-filter-testing** | ⭐⭐⭐ | 線五 | ✅ **已上稿** |
 | 5 | 6/7 | **ai-replacement-seminary-calling** | ⭐⭐ | 線七 | ✅ **已上稿** |
 | 6 | 6/8 | **qa-report-workplace-wisdom** | ⭐⭐ | 線六 | ✅ **已上稿** |
-| 7 | 待發 | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十（無主之地） | **下一篇** / 六月發了再改、不卡完稿 |
-| 8 | 待發 | ai-test-output-default-reader | ⭐⭐ | 線二 | 排 bug-triage 之後 / 配對 yes-man |
+| 7 | 待發 | **ai-test-output-default-reader** | ⭐⭐ | 線二 | **下一篇**（bug-triage 降級後遞補）/ 配對 yes-man |
+| 8 | 待發 | how-to-start-low-pressure-book-club | — | 線十一 | 6/6 新加、內容看來完整 |
+| — | 待生成 | ~~bug-triage-six-patterns~~ | ⭐⭐⭐⭐ | 線十 | **6/8 降級為規劃檔**——揭露邊界想清楚才生成文章，見 [planning](bug-triage-six-patterns-planning.md) |
 
 > ⚠️ 線六提醒：qa-report（線六）已於 6/8 上稿——「未來 4-6 週避開線六」的時鐘從 6/8 起算，下一篇線六約等到 7 月中後。
 
