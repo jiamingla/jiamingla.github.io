@@ -36,3 +36,9 @@ When linking from one post's body to another, use the `urlname:` value from the 
 See [related post](/post/related-post-urlname/) for background.
 ```
 
+## AI Assistant Guidelines (Antigravity / Claude Code)
+
+- **No Autocomplete Commits**: Do NOT execute `git commit` or `git push` commands directly. Propose commit chunks and Chinese commit messages in your final text response and let the user execute them manually.
+- **Commit Message Style**: Follow the naming convention rules defined in [.github/copilot-instructions.md](.github/copilot-instructions.md). Ensure the commit message is in Chinese, matches the directories modified, and avoids marketing/corporate puffy phrasing.
+
+
