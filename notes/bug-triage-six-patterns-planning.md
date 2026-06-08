@@ -32,7 +32,7 @@
 
 | # | 問題 | 決定 |
 |---|---|---|
-| 1 | 兩間前公司各落在哪個 pattern？ | **兩間都是「QA 先按 component / owner 分派（F）、再透過每週 triage committee（E）推動」**——實質是 **C（QA 當第一手 default）+ F + E 的混合制**，不是單一 pattern |
+| 1 | 兩間前公司各落在哪個 pattern？ | **兩間都是 F + E 的組合**：按 component / owner 分派（F）+ 每週團隊內跨職能會議（E 輕量版，cross-functional team、非跨部門大委員會）推動。⚠️ **2026-06-08 修正**：原寫「C（QA 第一手）+ F + E」，但使用者對「QA 是否第一手收 bug」沒把握 → **拿掉 C**。前公司只示範 F+E；C（QA 預設）那格改用業界高合規 case、不掛自己。文章三處已改 |
 | 2 | 會不會被反推出是哪間？ | **不擔心**——本來就打算放 LinkedIn，去識別化不是阻力 |
 | 3 | NDA / 營業秘密？ | **講抽象一點即可**——保持流程層級，不帶具體工具 / 數字 / 專案名 |
 | 4 | 對前公司有情緒嗎？ | **沒有**——中立性風險低，不會變「抱怨前東家」 |
@@ -40,12 +40,12 @@
 
 > 🟢 **gating 通過**：五題全綠燈，可以生成文章。
 
-**A1 的意外收穫（要寫進文章）**：兩間前公司都不是「純 pattern」，而是 **C+F+E 的混合**。這正好**印證文章核心論點**——「業界沒有單一最佳解、純 pattern 是簡化、真實世界都是混合制」。第一手案例不只是 anchor，更是論點的活證據。
+**A1 的意外收穫（要寫進文章）**：兩間前公司都不是「純 pattern」，而是 **F + E 的組合**。這正好**印證文章核心論點**——「業界沒有單一最佳解、純 pattern 是簡化、真實世界都是混合制」。第一手案例不只是 anchor，更是論點的活證據。
 
 **對結構的連帶影響**：
-- 第一手錨點 = 兩間前公司的 C+F+E 混合（QA 守門 → component 分派 → committee 推動）
-- 其他 pattern（A. PM 預設 / B. Tech Lead / D. Unassigned）改用業界公開 case 補（見 B 組問題 7）
-- 現公司（原本的 A：PM 預設）**整段拿掉**——「自我定位指南」框架改由「我待過的混合制 vs 業界其他純型」承載，不依賴現公司
+- 第一手錨點 = 兩間前公司的 **F + E 組合**（按 component 分派 → 團隊內跨職能會議推動）；**不宣稱 QA 第一手**（沒把握）
+- C（QA 預設）那格 + A. PM 預設 / B. Tech Lead / D. Unassigned，全改用業界公開 case 補（見 B 組問題 7）
+- 現公司（原本的 A：PM 預設）**整段拿掉**——「自我定位指南」框架改由「我待過的 F+E 組合 vs 業界其他模式」承載，不依賴現公司
 
 ### B. 第一手 vs 二手怎麼編織
 
@@ -55,8 +55,9 @@
 
 ### C. 標題 / 定位的差異化(meta 檔 vs 未來文章)
 
-9. **標題分流**:這份規劃檔用 meta 標題(已改),未來文章保留催讀標題〈你的團隊 Bug 預設給誰?〉——確保 git 裡不會出現兩個長得像、搞混哪個是成品
-10. **定位微調**:文章定位是否從「業界六種對照」微調為「**我經歷過兩種、業界還有四種**」?第一手 angle 更稀缺,但 SEO 主關鍵字(bug triage / bug 指派 / bug 預設)要保住,標題與前段不能因為加了個人敘事就丟掉長尾詞
+9. **標題分流** ✅:這份規劃檔用 meta 標題,未來文章保留催讀標題〈你的團隊 Bug 預設給誰?〉
+10. **定位微調** ✅:文章定位微調為「我待過的 F+E 組合 vs 業界其他模式」,SEO 主關鍵字保住
+11. **Triage 中文備註** ✅(2026-06-08):「Triage 不是中文 QA 常見詞」→ (a) 標題改〈業界六種主流 **Bug 分派(Triage)** 模式對照〉;(b) 前言加 gloss 段落,說明 bug triage = bug 分派 / 分流,後文兩詞交替使用。呼應 memory [feedback_word_choice_xuepiian](C:\Users\user1\.claude\projects\c--Users-user1-Documents-GitHub-jiamingla-github-io\memory\feedback_word_choice_xuepiian.md)
 
 ### D. 原本就還沒解決的(保留)
 
@@ -101,7 +102,7 @@
 | 實作 | 邏輯 | 局限 |
 |---|---|---|
 | **Bug bash** | 釋出前團隊集中獵 bug、有時帶獎勵 | 釋出前 surge capacity,**不解 backlog** |
-| **Bug bankruptcy** | 定期把 N 天以上未處理 bug 全 close | 真 bug 被殺、**假信號** |
+| **Bug bankruptcy** | 定期把 N 天以上未處理 bug 全 close | 真 bug 被殺、**假信號**。**QA 情緒代價**（2026-06-08 加，源自現職、通用化寫）：不修「一個」PM 很容易，但一次宣告幾百個破產，對 QA 是「我記錄這些有沒有意義」的動搖；長期養出「反正會被清就別認真記」的心態。假信號是雙向的（對上騙管理層、對下消耗 QA 信任）。文章已寫進第二節 |
 | **Zero bug policy** | bug 24-48h 內必 triage | 需專職時間 |
 | **Severity-only triage** | 只看 S1 / S2,S3 / S4 永遠在 backlog | paper cuts 累積、體驗折損 |
 | **Fix-it Friday / Bug-fix sprint** | 每隔 N sprint 撥時間清 backlog | 治標、不改流程 |
