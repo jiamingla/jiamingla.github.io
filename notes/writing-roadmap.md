@@ -57,11 +57,10 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（2 篇，在 _drafts/）
+### 完稿草稿待上稿（1 篇，在 _drafts/）
 
 | 文章 | 主題線 | 長尾 | 狀態備註 |
 |---|---|---|---|
-| [ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md) | 線二 | ⭐⭐ | 完稿待上（date placeholder 8/15），配對 yes-man。**目前最成熟的下一篇候選** |
 | [how-to-start-low-pressure-book-club](../source/_drafts/how-to-start-low-pressure-book-club.md) | 線十一（團隊 / 協作） | — | 2026-06-06 新加，內容看來完整 |
 
 > 註 1：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
@@ -130,8 +129,8 @@
 
 ## 庫存壓力（2026-06-08 校正）
 
-目前 _drafts/ **5 支**主草稿（6/6-8 連發 4 篇 + bug-triage 6/8 降級為規劃檔後），按發稿成熟度：
-- **完稿待上（2）**：ai-test-output-default-reader、how-to-start-low-pressure-book-club（詳見上方「完稿草稿待上稿」表）
+目前 _drafts/ **4 支**主草稿，按發稿成熟度：
+- **完稿待上（1）**：how-to-start-low-pressure-book-club（詳見上方「完稿草稿待上稿」表）
 - **已積大量字數但未確認完稿（2）**：notest-ambiguity（~21k 字）、pom-refactor（~17k 字）
 - **骨架階段（1）**：not-just-make-manual-script-automate（4 個反思問題待答）
 
@@ -258,7 +257,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 5 | 6/7 | **ai-replacement-seminary-calling** | ⭐⭐ | 線七 | ✅ **已上稿** |
 | 6 | 6/8 | **qa-report-workplace-wisdom** | ⭐⭐ | 線六 | ✅ **已上稿** |
 | 7 | 6/10（排程） | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十 / 線八 | ✅ **已生成並排程**（前公司 F+E 第一手 + 業界 survey） |
-| 8 | 待發 | ai-test-output-default-reader | ⭐⭐ | 線二 | 下一篇候選 / 配對 yes-man |
+| 8 | 6/13（排程） | **ai-test-output-default-reader** | ⭐⭐ | 線二 | ✅ **已生成並排程**（配對 yes-man，規劃檔為 [ai-test-output-default-reader-is-ai-planning.md](ai-test-output-default-reader-is-ai-planning.md)） |
 | 9 | 待發 | how-to-start-low-pressure-book-club | — | 線十一 | 6/6 新加、內容看來完整 |
 
 > ⚠️ 線六提醒：qa-report（線六）已於 6/8 上稿——「未來 4-6 週避開線六」的時鐘從 6/8 起算，下一篇線六約等到 7 月中後。

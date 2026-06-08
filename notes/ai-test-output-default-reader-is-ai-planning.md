@@ -13,8 +13,7 @@ tags: [軟體測試, AI 測試, AI literacy, 跨領域, 閱讀策略, prompt des
 
 ## 預設讀者（2026-05-14 確定）
 
-**主要讀者：中文圈 QA + 單一專業背景的 QA**——特別是：
-
+**主要讀者：中文圈 QA + 單一專業背景 of QA**——特別是：
 - 中文母語但要讀 AI 用英文 jargon 為主的測試案例
 - 專精單一領域（後端 / 行動 / 自動化 / API）但 AI 給的測試案例跨領域
 - 開始用 AI 寫測試案例，發現「**讀** AI 給的東西比想像中累」
@@ -28,7 +27,6 @@ tags: [軟體測試, AI 測試, AI literacy, 跨領域, 閱讀策略, prompt des
 ## 寫作風險備忘
 
 中度風險：
-
 - **不能寫成「AI 不好」的調性**——你的部落格主軸是「**AI 為殼、方法論為內**」（見 [tools-first 策略](C:\Users\user1\.claude\projects\c--Users-user1-Documents-GitHub-jiamingla-github-io\memory\project_tools_first_strategy.md)），這篇要 stay on brand。框架成「AI 預設行為合理，但**人類讀者該知道怎麼適應**」
 - **避免「中文 / 英文好壞」的政治雷區**——只談「非英文母語讀英文 jargon 的認知負擔」，不評價語言優劣
 - **不點名 AI 工具 / vendor**——這個觀察對所有 LLM-based 測試輸出都成立，點名招敵人
@@ -37,7 +35,7 @@ tags: [軟體測試, AI 測試, AI literacy, 跨領域, 閱讀策略, prompt des
 
 ## 緣起
 
-寫 [frontend-ui-vocabulary-for-backend-qa](frontend-ui-vocabulary-for-backend-qa.md) 時我意識到——「**我看不懂 skeleton loading**」這個現象本身就是個更大命題：
+寫 [frontend-ui-vocabulary-for-backend-qa](frontend-ui-vocabulary-for-backend-qa.md) 時我意會到——「**我看不懂 skeleton loading**」這個現象本身就是個更大命題：
 
 > AI 寫測試案例時，**預設讀者剛好是另一個 AI**——一個讀過全 corpus、跨所有專業、英文流利的讀者。但**真實讀者**是專精某一兩個領域、中文為主、英文 jargon 半懂的人類 QA。
 
@@ -50,7 +48,6 @@ tags: [軟體測試, AI 測試, AI literacy, 跨領域, 閱讀策略, prompt des
 ### 一、開場：你讀 AI 給的測試案例會覺得累嗎？
 
 可能的開頭：
-
 > 你有沒有過這個經驗——叫 AI 幫你寫測試案例，跑出來這麼一段：
 >
 > > 「驗證 modal 彈出時應觸發 focus trap，並在 ESC 鍵按下時 dismiss，同時保留前一個 active element 的 focus state。」
@@ -73,7 +70,6 @@ tags: [軟體測試, AI 測試, AI literacy, 跨領域, 閱讀策略, prompt des
 ### 三、為什麼這個 mismatch 結構性存在
 
 不是 AI 在偷懶——是 **LLM 訓練語料的結構性結果**：
-
 1. **訓練語料是全 corpus** —— StackOverflow / GitHub / MDN / 設計部落格全混在一起
 2. **沒有讀者畫像** —— AI 不知道你是 backend QA 還是 frontend designer
 3. **英文 jargon 是 corpus 的 lingua franca** —— 即使 AI 用中文回答，jargon 仍是英文（`focus trap` 永遠不會被翻成「焦點陷阱」，因為這個翻譯沒在語料裡）
@@ -84,30 +80,23 @@ tags: [軟體測試, AI 測試, AI literacy, 跨領域, 閱讀策略, prompt des
 ### 四、人類 QA 該怎麼讀 AI 測試輸出（具體技巧）
 
 #### 4.1 為自己 prompt design
-
 別讓 AI 用「預設讀者」寫——告訴它你是誰：
-
 ```
 請以後端 QA 的視角寫測試案例，中文為主，
 英文術語第一次出現時用括號加中文簡述。
 我不熟前端 UI 詞彙，請避免假設我懂 `focus trap`、
 `floating label` 這類細節，必要時請帶一句說明。
 ```
-
-光是這段 prompt 加在最前面，AI 給的輸出對你會友善 60%。
+光是這段 prompt加在最前面，AI 給的輸出對你會友善 60%。
 
 #### 4.2 讀不懂的詞當作「免費的詞彙考試」
-
 別跳過不懂的詞——把它當 PDT 的反向應用：
-
 > **AI 給的每個你不懂的詞 = 你下一節該學的詞**
 
 這正是 [frontend-ui-vocabulary-for-backend-qa](/post/frontend-ui-vocabulary-for-backend-qa/) 的核心——學完那一輪詞彙，前端方向你就**至少不會被卡住**。
 
 #### 4.3 翻譯 → 才給團隊
-
 別把 raw AI 輸出貼給團隊。先翻譯：
-
 - 把英文 jargon 換成你團隊用的詞（或括號加註）
 - 把跨領域 reference 拿掉（你團隊不需要的）
 - 把 AI 的 ambiguous 部分明確化（補上「在我們情境下這代表 X」）
@@ -115,7 +104,6 @@ tags: [軟體測試, AI 測試, AI literacy, 跨領域, 閱讀策略, prompt des
 **這也是 [yes-man 提問清單](/post/ai-as-yes-man-rd-pm-trust-calibration/) 第三個問題的延伸**——AI 跳過了什麼、隱含了什麼，讀的時候要主動補上。
 
 #### 4.4 建立你自己的 glossary
-
 每次學到新詞，記下來。一年累積下來，你就是團隊裡那個「**AI 翻譯員**」——這比硬補英文程度更實用、更可被同事看見。
 
 ### 五、跟 yes-man 配對：Working with AI Output 雙篇
@@ -134,7 +122,7 @@ tags: [軟體測試, AI 測試, AI literacy, 跨領域, 閱讀策略, prompt des
 >
 > **AI 的輸出，是你最便宜的『下一階能力檢測』**。你讀不懂的詞，正好是你下次該學的詞。
 >
-> 跟 AI 一起工作幾年，你會發現自己的詞彙、視野、跨領域感知都被它**動拉**著擴張——這比上課還有效。
+> 跟 AI 一起工作幾年，你會發現自己的詞彙、視野、跨領域感知都被它被動地拉著前進——這比上課還有效。
 >
 > 只要你**不被詞彙嚇退、不誤把疲勞當作能力不足**。
 
@@ -159,7 +147,7 @@ tags: [軟體測試, AI 測試, AI literacy, 跨領域, 閱讀策略, prompt des
 - [ ] 例子怎麼選——「`focus trap` 我看不懂」這個例子要不要換成更普及的？
 - [ ] 結語的「動拉」這個動詞——太特別還是有畫面？看寫的時候感覺
 - [ ] **觸發條件**：跟 yes-man 同期或緊接著上稿，當「Working with AI Output 雙篇」連發
-- [ ] 4.1 的 prompt 範例要不要做更完整（含 token 預算、輸出格式期待等）？還是保持精簡？
+- [ ] 4.1 的 prompt 範例要不要做更完整（含 token 預算、輸出格式期待等）等？還是保持精簡？
 
 ---
 
