@@ -1,7 +1,7 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-06-06
-**對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外大肆推廣，但 6 月起啟動國際社群（Ministry of Testing）的精準試水。
+**最後更新**：2026-06-08
+**對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外大肆推廣。**6 月不推廣**——用「沒人在看」的空窗刻意練 publish-then-revise（發了再反覆讀、反覆改）來克服完美主義；國際社群（Ministry of Testing）試水延到**報名 iThome 鐵人賽的當週**才啟動（報名動作 = 「準備好對外」的觸發點，試水搭著那股氣勢一起做）。
 **並進文件**：
 - [writing-themes.md](writing-themes.md) — 13 條主題線的長期版圖（策略型，較少更新）
 - [tools-roadmap.md](tools-roadmap.md) — 工具優先策略（文章是副產品）
@@ -26,7 +26,7 @@
 
 ---
 
-## 進度快照（2026-06-06）
+## 進度快照（2026-06-08）
 
 ### 推廣里程碑
 
@@ -56,17 +56,22 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（1 篇）
+### 完稿草稿待上稿（3 篇，在 _drafts/）
 
-| 文章 | 主題線 | 狀態備註 |
-|---|---|---|
-| [ai-replacement-accountability-checklist](../source/_drafts/ai-replacement-accountability-checklist.md) | AI 取代 / 當責 | 完稿（2026-04-28），暫緩發布，待改寫 |
+| 文章 | 主題線 | 長尾 | 狀態備註 |
+|---|---|---|---|
+| [bug-triage-six-patterns-industry-survey](../source/_drafts/bug-triage-six-patterns-industry-survey.md) | 線十（無主之地） | ⭐⭐⭐⭐ | 接近完稿（date 仍是 placeholder 9/15）。**下一篇優先發**——六月不推廣，發了再改 |
+| [ai-test-output-default-reader-is-ai](../source/_drafts/ai-test-output-default-reader-is-ai.md) | 線二 | ⭐⭐ | 完稿待上（date placeholder 8/15），配對 yes-man |
+| [how-to-start-low-pressure-book-club](../source/_drafts/how-to-start-low-pressure-book-club.md) | 線十一（團隊 / 協作） | — | 2026-06-06 新加，內容看來完整 |
+
+> 註：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
 
 ### 草稿（已寫但尚未確認完稿）
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
-| [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | 草稿，等思考完才動 |
+| [notest-ambiguity-skip-vs-low-confidence](../source/_drafts/notest-ambiguity-skip-vs-low-confidence.md) | 線二（AI 測試判讀） | ⭐⭐⭐ 長尾。已積 ~21k 字（比「骨架」成熟，但未確認完稿）。6 月中後 |
+| [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已積 ~17k 字。草稿，等思考完才動 |
 | [not-just-make-manual-script-automate](../source/_drafts/not-just-make-manual-script-automate.md) | 線三 + 線五（UI 自動化 / 自動化決策） | **2026-05-15 骨架完成、4 個反思問題待答**，等想清楚 Q1-Q4 再填內容 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
@@ -121,11 +126,16 @@
 > - **frontend-ui-vocabulary 順利解鎖**（6/4 融入週會 AI 案例痛點重新定位，6 個問題已修改完畢，隨時可排程發布）
 > - 5/28-30 Org-Signal Coach 三天：本年地圖大校正、混合動機承認、個人化歸因警覺 —— 衍生 5 個新文章角度，最強是「QBT 責任編輯」⭐⭐⭐⭐
 
-## 庫存壓力（持續）
+## 庫存壓力（2026-06-08 校正）
 
-目前 _drafts/ 有 7 支主草稿，按發稿成熟度：
-- **完稿待上**：ai-replacement-accountability-checklist、how-to-start-low-pressure-book-club、ai-test-output-default-reader、bug-triage-six-patterns
-- **骨架階段**：not-just-make-manual-script-automate（4 個反思問題待答）、pom-refactor、notest-ambiguity
+目前 _drafts/ **6 支**主草稿（6/6-8 連發 4 篇後），按發稿成熟度：
+- **完稿待上（3）**：bug-triage-six-patterns ⭐⭐⭐⭐、ai-test-output-default-reader、how-to-start-low-pressure-book-club（詳見上方「完稿草稿待上稿」表）
+- **已積大量字數但未確認完稿（2）**：notest-ambiguity（~21k 字）、pom-refactor（~17k 字）
+- **骨架階段（1）**：not-just-make-manual-script-automate（4 個反思問題待答）
+
+> 2026-06-08 校正：原寫「7 支」並把 ai-replacement-accountability-checklist 列為完稿待上——該檔已於 6/5 移回 notes/，不再計入。
+
+**六月策略**：不推廣 = 沒人在看，所以「還沒 100% 滿意」不再是擋發稿的理由。發了再反覆讀、反覆改（publish-then-revise，刻意拿來打完美主義）。主題線輪替紀律仍守，但節奏快慢在六月不是問題。
 
 寫作不缺東西，**缺的還是發稿節奏 + 主題線輪替紀律**。
 
@@ -241,10 +251,12 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 2 | 6/3 | **frontend-ui-vocabulary-for-qa** ⭐ | ⭐⭐⭐⭐ | 線二 / 線八 | ✅ **已上稿** |
 | 3 | 6/6 | **page-source-vs-find-element** | ⭐⭐⭐⭐ | 線三 | ✅ **已上稿** |
 | 4 | 6/6 | **empty-result-ambiguity-in-filter-testing** | ⭐⭐⭐ | 線五 | ✅ **已上稿** |
-| 5 | 6/7 | **ai-replacement-seminary-calling** | ⭐⭐ | 線七 | ⏳ **已排程明午 12:00** |
-| 6 | 6/8 | **qa-report-workplace-wisdom** | ⭐⭐ | 線六 | ⏳ **已排程下週一 20:00** |
-| 7 | 6/8-10 | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十（無主之地） | 規劃中 / 第三篇 ⭐⭐⭐⭐ 長尾文 |
-| 8 | 6/12-15 | ai-test-output-default-reader | ⭐⭐ | 線二 | 規劃中 / 配對 yes-man |
+| 5 | 6/7 | **ai-replacement-seminary-calling** | ⭐⭐ | 線七 | ✅ **已上稿** |
+| 6 | 6/8 | **qa-report-workplace-wisdom** | ⭐⭐ | 線六 | ✅ **已上稿** |
+| 7 | 待發 | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十（無主之地） | **下一篇** / 六月發了再改、不卡完稿 |
+| 8 | 待發 | ai-test-output-default-reader | ⭐⭐ | 線二 | 排 bug-triage 之後 / 配對 yes-man |
+
+> ⚠️ 線六提醒：qa-report（線六）已於 6/8 上稿——「未來 4-6 週避開線六」的時鐘從 6/8 起算，下一篇線六約等到 7 月中後。
 
 **主要調動**：把兩篇 ⭐⭐⭐⭐ 的 SEO 強文（frontend-ui-vocabulary + bug-triage）排前面，ai-test-output 推到 6 月中。**6/20 之前累積 3 篇 ⭐⭐⭐⭐ + 1 篇英文 MoT 版，加速 Google 收錄 + 國際 backlink**。
 
@@ -252,7 +264,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 ## MoT 論壇試水的英文翻譯選擇
 
-⚠️ **首先確認**：這是推廣節奏的躍進（從內部試水→國際社群），[blog_promotion_stance](C:\Users\user1\.claude\projects\c--Users-user1-Documents-GitHub-jiamingla-github-io\memory\blog_promotion_stance.md) memory 還停在「不主動對外推廣」——MoT 試水代表進一步。決定推之前可以再評估一次心理準備度。
+⚠️ **時程（2026-06-08 定）**：六月不推廣。MoT 試水延到**報名 iThome 鐵人賽的當週**才啟動——報名動作本身就是「我準備好對外了」的觸發點，試水溫剛好搭著那股氣勢一起做。這仍是推廣節奏的躍進（從內部試水→國際社群），[blog_promotion_stance](C:\Users\user1\.claude\projects\c--Users-user1-Documents-GitHub-jiamingla-github-io\memory\blog_promotion_stance.md) memory 已同步此決定；真的要推之前再評估一次心理準備度。
 
 ### 📌 2026-05-21 校準：MoT 並不「嚴格」（事實檢驗版）
 
