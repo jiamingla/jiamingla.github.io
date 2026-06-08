@@ -57,11 +57,11 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（1 篇，在 _drafts/）
+### 完稿草稿待上稿（0 篇，在 _drafts/）
 
 | 文章 | 主題線 | 長尾 | 狀態備註 |
 |---|---|---|---|
-| [how-to-start-low-pressure-book-club](../source/_drafts/how-to-start-low-pressure-book-club.md) | 線十一（團隊 / 協作） | — | 2026-06-06 新加，內容看來完整 |
+| (無) | — | — | 所有完稿皆已移至 posts 排程上稿 |
 
 > 註 1：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
 > 註 2：**bug-triage-six-patterns**——6/8 一度降為規劃檔（揭露邊界 gating），同日揭露邊界定案（前公司只示範 F+E、不掛 QA 第一手、現公司不寫）後**已生成全文並排程 2026-06-10**，移入 _posts/。規劃檔 [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) 保留決策紀錄。
@@ -129,8 +129,8 @@
 
 ## 庫存壓力（2026-06-08 校正）
 
-目前 _drafts/ **4 支**主草稿，按發稿成熟度：
-- **完稿待上（1）**：how-to-start-low-pressure-book-club（詳見上方「完稿草稿待上稿」表）
+目前 _drafts/ **3 支**主草稿，按發稿成熟度：
+- **完稿待上（0）**：所有完稿皆已排程
 - **已積大量字數但未確認完稿（2）**：notest-ambiguity（~21k 字）、pom-refactor（~17k 字）
 - **骨架階段（1）**：not-just-make-manual-script-automate（4 個反思問題待答）
 
@@ -257,8 +257,8 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 5 | 6/7 | **ai-replacement-seminary-calling** | ⭐⭐ | 線七 | ✅ **已上稿** |
 | 6 | 6/8 | **qa-report-workplace-wisdom** | ⭐⭐ | 線六 | ✅ **已上稿** |
 | 7 | 6/10（排程） | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十 / 線八 | ✅ **已生成並排程**（前公司 F+E 第一手 + 業界 survey） |
-| 8 | 6/13（排程） | **ai-test-output-default-reader** | ⭐⭐ | 線二 | ✅ **已生成並排程**（配對 yes-man，規劃檔為 [ai-test-output-default-reader-is-ai-planning.md](ai-test-output-default-reader-is-ai-planning.md)） |
-| 9 | 待發 | how-to-start-low-pressure-book-club | — | 線十一 | 6/6 新加、內容看來完整 |
+| 8 | 6/14（排程） | **ai-test-output-default-reader** | ⭐⭐ | 線二 | ✅ **已生成並排程**（配對 yes-man，規劃檔為 [ai-test-output-default-reader-is-ai-planning.md](ai-test-output-default-reader-is-ai-planning.md)） |
+| 9 | 6/11（排程） | **how-to-start-low-pressure-book-club** | — | 線十一 | ✅ **已生成並排程**（規劃檔為 [how-to-start-low-pressure-book-club-planning.md](how-to-start-low-pressure-book-club-planning.md)） |
 
 > ⚠️ 線六提醒：qa-report（線六）已於 6/8 上稿——「未來 4-6 週避開線六」的時鐘從 6/8 起算，下一篇線六約等到 7 月中後。
 
