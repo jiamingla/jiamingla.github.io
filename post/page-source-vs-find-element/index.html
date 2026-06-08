@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同 |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-06</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Sat Jun 06 2026 07:00:00 GMT+0800">2026-06-06</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Appium/">Appium</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Selenium/">Selenium</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%95%88%E8%83%BD%E5%84%AA%E5%8C%96/">效能優化</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/UI-scraping/">UI scraping</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/page-source/">page_source</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/find-element/">find_element</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E6%9E%B6%E6%A7%8B/">測試架構</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：47-列資料，掃一次-80-秒"><a href="#前言：47-列資料，掃一次-80-秒" class="headerlink" title="前言：47 列資料，掃一次 80 秒"></a>前言：47 列資料，掃一次 80 秒</h2><p>某個自動化測試在掃一份列表——47 列、每列 4 個欄位。看起來不算大。</p>
+<p>但實際跑下來——<strong>單次掃描 80 秒</strong>。整個測試流程要捲動 5 次列表才能蓋齊全部，於是這個 case 光「讀資料」就花掉 6-7 分鐘。</p>
+<p>第一反應通常是：「裝置慢吧？網路差吧？換台手機試試？」</p>
+<p><strong>但這次跟裝置無關，跟網路也無關</strong>。問題在程式碼結構本身——而且這個結構錯誤在 UI 自動化教學裡幾乎沒人講。</p>
+<p>這篇文章想拆三件事：</p>
+<ol>
+<li>為什麼一個簡單的 list scrape 會慢成這樣？</li>
+<li><code>driver.page_source</code> 跟 <code>find_element</code> 是兩個 cost model（成本結構）完全相反的指令</li>
+<li>什麼時候該用哪一個？</li>
+</ol>
+<p>讀完這篇你會發現，自己過去寫的某些 UI 自動化，<strong>可能可以快 10 倍以上</strong>——而且一行寫死的 xpath 都不用加。</p>
+<hr>
+<h2 id="一、診斷：時間究竟花在哪？"><a href="#一、診斷：時間究竟花在哪？" class="headerlink" title="一、診斷：時間究竟花在哪？"></a>一、診斷：時間究竟花在哪？</h2><p>那段 80 秒的 scrape 程式碼長這樣（簡化過、概念性）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_row_data</span>(<span class="params">self, row_element</span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    name = row_element.find_child_element(NAME_LOCATOR).get_attribute(<span class="string">&#x27;text&#x27;</span>)</span><br><span class="line">    title = row_element.find_child_element(TITLE_LOCATOR).get_attribute(<span class="string">&#x27;text&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 兩種佈局之一，需要 fallback</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        price = row_element.find_child_element(PRICE_LOCATOR, timeout=<span class="number">1</span>).get_attribute(<span class="string">&#x27;text&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        price = row_element.find_child_element(ALT_PRICE_LOCATOR, timeout=<span class="number">1</span>).get_attribute(<span class="string">&#x27;text&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    rate = row_element.find_child_elements(RATE_LOCATOR, timeout=<span class="number">1</span>)[<span class="number">0</span>].get_attribute(<span class="string">&#x27;text&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;name&#x27;</span>: name, <span class="string">&#x27;title&#x27;</span>: title, <span class="string">&#x27;price&#x27;</span>: price, <span class="string">&#x27;rate&#x27;</span>: rate&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">scrape_all</span>(<span class="params">self</span>) -&gt; <span class="built_in">list</span>[<span class="built_in">dict</span>]:</span><br><span class="line">    rows = <span class="variable language_">self</span>.find_all_rows()</span><br><span class="line">    <span class="keyword">return</span> [<span class="variable language_">self</span>.get_row_data(row) <span class="keyword">for</span> row <span class="keyword">in</span> rows]</span><br></pre></td></tr></table></figure>
+
+<p>每一個 row 看起來只是讀 4 個欄位。乾乾淨淨。</p>
+<p><strong>但仔細數一下這段 code 會發出多少次「請求」</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>動作</th>
+<th>次數（每 row）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>find_child_element(NAME)</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>find_child_element(TITLE)</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>find_child_element(PRICE)</code> 或 fallback</td>
+<td>1-2</td>
+</tr>
+<tr>
+<td><code>find_child_elements(RATE)</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>.get_attribute(&#39;text&#39;)</code> × 4</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>小計</strong></td>
+<td><strong>8-9 次</strong></td>
+</tr>
+</tbody></table>
+<p>47 row × 9 次 &#x3D; <strong>大約 400 次請求</strong>。</p>
+<p>加上「捲動之後重新掃整個列表」的迴圈邏輯——每次 scroll 都把整個列表重掃一輪——5 次 scroll × 80 秒 &#x3D; 400 秒。</p>
+<p>每一次「請求」對應一次 <strong>roundtrip（往返通訊）</strong>。理解 roundtrip 是這篇文章的核心。</p>
+<hr>
+<h2 id="二、什麼是-roundtrip？"><a href="#二、什麼是-roundtrip？" class="headerlink" title="二、什麼是 roundtrip？"></a>二、什麼是 roundtrip？</h2><p><code>find_element</code> 看起來像直接「找元件」，但底下發生的事其實是這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">你的 Python script (client)</span><br><span class="line">        │</span><br><span class="line">        │  「請幫我找 resource-id = NAME 的元件」</span><br><span class="line">        ▼</span><br><span class="line">   Appium server / WebDriver</span><br><span class="line">        │</span><br><span class="line">        │  「請幫我找這個元件」</span><br><span class="line">        ▼</span><br><span class="line">   Android device / browser</span><br><span class="line">        │</span><br><span class="line">        │  「找到了，element id = abc123」</span><br><span class="line">        ▼</span><br><span class="line">   Appium server</span><br><span class="line">        │</span><br><span class="line">        │  「找到了」</span><br><span class="line">        ▼</span><br><span class="line">   你的 Python script</span><br></pre></td></tr></table></figure>
+
+<p>從你的 script 發出請求、到結果回來——這一整段旅程叫<strong>一次 roundtrip</strong>。</p>
+<p>對 Android UiAutomator2 而言，<strong>一次 roundtrip 通常是 50-200ms</strong>。看起來不長，但問題是：每一個 <code>find_element</code> 都要一次、每一個 <code>get_attribute</code> 也都要一次。</p>
+<p>這就是為什麼 47 row × 9 次 &#x3D; 80 秒。<strong>這 80 秒裡，99% 的時間在等網路往返，不是在做事</strong>。</p>
+<p>當你看清楚這一層，第一個直覺是——</p>
+<blockquote>
+<p><strong>能不能一次抓完所有東西？</strong></p>
+</blockquote>
+<p>答案是：能。叫 <code>driver.page_source</code>。</p>
+<hr>
+<h2 id="三、find-element：互動友善，批量災難"><a href="#三、find-element：互動友善，批量災難" class="headerlink" title="三、find_element：互動友善，批量災難"></a>三、find_element：互動友善，批量災難</h2><p><code>find_element</code> 的設計是給你做「<strong>互動</strong>」用的：</p>
+<ul>
+<li>點這個按鈕（找到 + click）</li>
+<li>在這個輸入框打字（找到 + send_keys）</li>
+<li>等這個元件出現（隱含等待 + 找到）</li>
+</ul>
+<p>這些動作的特性都是——<strong>你只要找一個元件，做一個動作</strong>。一次 roundtrip 換一個操作，是合理的。</p>
+<p>但當你要做的事是「<strong>讀資料</strong>」——而且要讀很多筆——這個工具瞬間變成災難：</p>
+<ul>
+<li>找一個元件：1 次 roundtrip</li>
+<li>拿那個元件的 text：又 1 次 roundtrip</li>
+<li>拿它的 content-desc &#x2F; class &#x2F; bounds：再 N 次 roundtrip</li>
+</ul>
+<p>讀 N 個元件的 M 個欄位 &#x3D; <strong>N × M 次 roundtrip</strong>。</p>
+<p>很多 QA 寫到這裡會走向另一個極端——<strong>寫死 xpath，一次 bulk find（批量查找）</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prices = driver.find_elements(By.XPATH, <span class="string">&#x27;//*[@resource-id=&quot;Price-Text&quot;]&#x27;</span>)</span><br><span class="line">codes = driver.find_elements(By.XPATH, <span class="string">&#x27;//*[@resource-id=&quot;Code-Text&quot;]&#x27;</span>)</span><br><span class="line"><span class="comment"># 然後用 index 對應 prices[i] 跟 codes[i] 是同一筆資料</span></span><br></pre></td></tr></table></figure>
+
+<p>這個版本確實快——從 400 次 roundtrip 降到 5 次（一個 field 一次 bulk find）。</p>
+<p>但它的代價是：</p>
+<ol>
+<li><strong>順序位移就壞掉</strong> — 某幾筆資料剛好缺其中一個欄位，你的 index 對應就全錯</li>
+<li><strong>沒有 row 邊界</strong> — 表頭、分隔線、空 row 會混進來</li>
+<li><strong>不通用</strong> — 寫死 xpath，每個 APP &#x2F; 頁面要重寫一份</li>
+</ol>
+<p>如果你的 lib 是要跨多個產品共用的（這在實務上很常見），這條路根本不能走。</p>
+<p>那有沒有「<strong>bulk 讀，又不寫死 xpath</strong>」的選項？有。</p>
+<hr>
+<h2 id="四、page-source：批量友善，但有它的代價"><a href="#四、page-source：批量友善，但有它的代價" class="headerlink" title="四、page_source：批量友善，但有它的代價"></a>四、page_source：批量友善，但有它的代價</h2><p><code>driver.page_source</code> 是 Appium &#x2F; WebDriver 提供的指令——<strong>一次 roundtrip 回傳整個畫面當下的 XML 表示</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xml_text = driver.page_source   <span class="comment"># ← 唯一 1 次 roundtrip</span></span><br></pre></td></tr></table></figure>
+
+<p>回傳的是一大段 XML（或 HTML，依框架而定）字串。例如 Appium 回傳的長這樣（簡化）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hierarchy</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">android.widget.LinearLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.view.View</span> <span class="attr">resource-id</span>=<span class="string">&quot;row_box&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">android.widget.TextView</span> <span class="attr">resource-id</span>=<span class="string">&quot;NAME-Text&quot;</span> <span class="attr">text</span>=<span class="string">&quot;...&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">android.widget.TextView</span> <span class="attr">resource-id</span>=<span class="string">&quot;TITLE-Text&quot;</span> <span class="attr">text</span>=<span class="string">&quot;...&quot;</span> /&gt;</span></span><br><span class="line">      ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">android.view.View</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">android.widget.LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hierarchy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>拿到這段 XML 之後，<strong>所有解析都在記憶體裡進行，沒有任何 roundtrip</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xml.etree.ElementTree <span class="keyword">as</span> ET</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_row_data_v2</span>(<span class="params">self</span>) -&gt; <span class="built_in">list</span>[<span class="built_in">dict</span>]:</span><br><span class="line">    xml = <span class="variable language_">self</span>.driver.page_source              <span class="comment"># 1 次 roundtrip</span></span><br><span class="line">    root = ET.fromstring(xml)</span><br><span class="line"></span><br><span class="line">    rows = []</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> root.findall(<span class="string">&#x27;.//*[@resource-id=&quot;row_box&quot;]&#x27;</span>):</span><br><span class="line">        name_elem  = row.find(<span class="string">&#x27;.//*[@resource-id=&quot;NAME-Text&quot;]&#x27;</span>)</span><br><span class="line">        title_elem = row.find(<span class="string">&#x27;.//*[@resource-id=&quot;TITLE-Text&quot;]&#x27;</span>)</span><br><span class="line">        price_elem = row.find(<span class="string">&#x27;.//*[@resource-id=&quot;PRICE-Text&quot;]&#x27;</span>) <span class="keyword">or</span> \</span><br><span class="line">                     row.find(<span class="string">&#x27;.//*[@resource-id=&quot;ALT-PRICE-Text&quot;]&#x27;</span>)</span><br><span class="line">        <span class="comment"># fallback 邏輯一樣可以做，因為 XML 在記憶體裡查很快</span></span><br><span class="line"></span><br><span class="line">        rows.append(&#123;</span><br><span class="line">            <span class="string">&#x27;name&#x27;</span>:  name_elem.get(<span class="string">&#x27;text&#x27;</span>, <span class="string">&#x27;&#x27;</span>) <span class="keyword">if</span> name_elem <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;title&#x27;</span>: title_elem.get(<span class="string">&#x27;text&#x27;</span>, <span class="string">&#x27;&#x27;</span>) <span class="keyword">if</span> title_elem <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;price&#x27;</span>: price_elem.get(<span class="string">&#x27;text&#x27;</span>, <span class="string">&#x27;&#x27;</span>) <span class="keyword">if</span> price_elem <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">return</span> rows</span><br></pre></td></tr></table></figure>
+
+<p><strong>估計效益：</strong></p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>原版（per-element）</th>
+<th>改版（page_source）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>單次 scrape</td>
+<td>~80s</td>
+<td>~1-3s</td>
+</tr>
+<tr>
+<td>Roundtrip 數</td>
+<td>~400</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>這就是 <strong>10-50 倍的速度差距</strong>——<strong>而且不需要寫死 xpath，跨 APP 通用性也保留了</strong>。</p>
+<h3 id="實戰延伸：雙向驗證的實作基礎"><a href="#實戰延伸：雙向驗證的實作基礎" class="headerlink" title="實戰延伸：雙向驗證的實作基礎"></a>實戰延伸：雙向驗證的實作基礎</h3><p>這種批量讀取的效能優勢，不只是讓測試跑得快，它還直接決定了<strong>某些測試設計是否可行</strong>。</p>
+<p>以我們在<a href="/post/empty-result-ambiguity-in-filter-testing/">〈篩選後沒結果，是資料真的沒符合條件，還是篩選功能壞掉了？——自動化測試的五種解法〉</a>中提到的「雙向驗證」為例：在該方案中，為了驗證篩選後的「空集合」是不是 bug，我們需要用 APP 自己的「無篩選狀態全量資料」作為基準（ground truth），跟當前篩選結果進行比對。</p>
+<p>這意味著同一個測試流程中，我們需要抓取兩次完整的列表資料。</p>
+<p>如果使用傳統的 <code>find_element</code> 逐筆讀取，每掃描一次列表都需要幾十秒甚至上百秒，做一次「雙向驗證」的成本會高到令人無法接受。然而，當我們利用 <code>page_source</code> 將每輪抓取降到常數級別的 1-2 秒時，原本昂貴的雙向驗證就變成了一個極其廉價且可靠的日常操作。</p>
+<p><strong>沒有 page_source 帶來的效能釋放，很多高階的測試邏輯（如雙向驗證）在實務上根本不具備操作性。</strong></p>
+<hr>
+<h2 id="五、兩個工具的分工：互補不替代"><a href="#五、兩個工具的分工：互補不替代" class="headerlink" title="五、兩個工具的分工：互補不替代"></a>五、兩個工具的分工：互補不替代</h2><p>說「page_source 比較快」是對的，但<strong>這不代表它能取代 find_element</strong>。它們是兩個 cost model 不同的工具，各有最佳場景：</p>
+<table>
+<thead>
+<tr>
+<th>場景</th>
+<th>find_element</th>
+<th>page_source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>點按鈕、滑動、輸入</td>
+<td>✅ 必用</td>
+<td>❌ 沒辦法（它只讀，不操作）</td>
+</tr>
+<tr>
+<td>等元件出現（wait）</td>
+<td>✅ 必用</td>
+<td>❌ 沒辦法</td>
+</tr>
+<tr>
+<td>讀單一元件的單一屬性</td>
+<td>✅ 直觀</td>
+<td>🟡 也行但小題大作</td>
+</tr>
+<tr>
+<td>讀大量元件的大量屬性</td>
+<td>❌ 災難</td>
+<td>✅ 必用</td>
+</tr>
+<tr>
+<td>結構性檢視（樹狀關係、scope）</td>
+<td>🟡 痛苦</td>
+<td>✅ 直觀</td>
+</tr>
+<tr>
+<td>動態變化中的 UI</td>
+<td>✅ 隱含 wait</td>
+<td>❌ 只是當下 snapshot（快照）</td>
+</tr>
+</tbody></table>
+<p>換句話說——</p>
+<blockquote>
+<p><strong><code>find_element</code> 是給「跟 UI 互動」用的工具。<code>page_source</code> 是給「從 UI 讀資料」用的工具。</strong></p>
+</blockquote>
+<p>它們不是替代品，是互補品。一個健康的自動化測試會<strong>同時用兩者</strong>：用 <code>find_element</code> 操作（點、滑、等），用 <code>page_source</code> 讀（一次抓多筆資料）。</p>
+<hr>
+<h2 id="六、page-source-的真實限制（5-個雷區）"><a href="#六、page-source-的真實限制（5-個雷區）" class="headerlink" title="六、page_source 的真實限制（5 個雷區）"></a>六、page_source 的真實限制（5 個雷區）</h2><p>吹完它的優點，講幾個會踩到的雷：</p>
+<h3 id="1-Lazy-render（延遲渲染）：只看得到當下螢幕內的元件"><a href="#1-Lazy-render（延遲渲染）：只看得到當下螢幕內的元件" class="headerlink" title="1. Lazy render（延遲渲染）：只看得到當下螢幕內的元件"></a>1. Lazy render（延遲渲染）：只看得到當下螢幕內的元件</h3><p>Android 列表通常是 lazy render——<strong>螢幕外的 row 根本不在 view tree（視圖樹）裡</strong>。<code>page_source</code> 抓回來的 XML 就只有當下可視範圍。</p>
+<p>意思是：<strong>你還是要 scroll</strong>。<code>page_source</code> 取代的是「scroll 後的 per-element scrape」，不是取代「scroll」這個動作本身。</p>
+<h3 id="2-大型-view-tree-會讓-page-source-自己變慢"><a href="#2-大型-view-tree-會讓-page-source-自己變慢" class="headerlink" title="2. 大型 view tree 會讓 page_source 自己變慢"></a>2. 大型 view tree 會讓 page_source 自己變慢</h3><p>UiAutomator2 在深層巢狀的 view tree 上，<code>page_source</code> 本身就可能 1-3 秒甚至 timeout。</p>
+<p><strong>這是真實風險</strong>——80 秒掉到 3 秒是常見，但偶爾會遇到「view tree 太肥，光 page_source 就要 5 秒」的情況。<strong>所以實作前要先量一次</strong>，不要假設它一定快。</p>
+<h3 id="3-屬性名稱跟-find-element-不一致"><a href="#3-屬性名稱跟-find-element-不一致" class="headerlink" title="3. 屬性名稱跟 find_element 不一致"></a>3. 屬性名稱跟 find_element 不一致</h3><p><code>page_source</code> 的 XML 用的屬性名是 raw 的——例如 <code>resource-id</code>、<code>text</code>、<code>content-desc</code>。但 <code>WebElement.get_attribute(&#39;text&#39;)</code> 在某些版本可能對應不同名字。</p>
+<p><strong>第一次切換時要 assert 兩邊抓到的內容一致</strong>，再開始信任新版。</p>
+<h3 id="4-Encoding-特殊字元"><a href="#4-Encoding-特殊字元" class="headerlink" title="4. Encoding &#x2F; 特殊字元"></a>4. Encoding &#x2F; 特殊字元</h3><p>如果你抓的文字包含 <code>&amp;</code>、<code>&lt;</code>、<code>&gt;</code>、emoji，XML parse 通常會自動處理 escape——但偶爾會有版本差異。<strong>用真實資料 sample 測試一次</strong>。</p>
+<h3 id="5-動態-UI-的時間點問題"><a href="#5-動態-UI-的時間點問題" class="headerlink" title="5. 動態 UI 的時間點問題"></a>5. 動態 UI 的時間點問題</h3><p><code>page_source</code> 是「當下這一刻」的 snapshot。如果 UI 還在 loading、動畫中、有 spinner——你抓到的可能是中間狀態。</p>
+<p><strong>對策</strong>：page_source 之前要做 explicit wait（顯式等待，等到關鍵元件 visible），再 page_source。<strong>用 find_element 等到穩定，再用 page_source 批量讀</strong>——這就是兩個工具互補的最佳示範。</p>
+<hr>
+<h2 id="七、實務混合策略：一個健康的列表-scrape-流程"><a href="#七、實務混合策略：一個健康的列表-scrape-流程" class="headerlink" title="七、實務混合策略：一個健康的列表 scrape 流程"></a>七、實務混合策略：一個健康的列表 scrape 流程</h2><p>把上面所有原則串起來，一個典型的列表 scrape 應該長這樣：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">scrape_full_list</span>(<span class="params">self</span>) -&gt; <span class="built_in">list</span>[<span class="built_in">dict</span>]:</span><br><span class="line">    all_data = []</span><br><span class="line">    seen_ids = <span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># ① 用 find_element 等列表 ready</span></span><br><span class="line">        <span class="variable language_">self</span>.wait_for_list_visible()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ② 用 page_source 一次讀整個可視範圍</span></span><br><span class="line">        rows = <span class="variable language_">self</span>.parse_visible_rows_from_page_source()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ③ dedup（因為 scroll 之間可能重複）</span></span><br><span class="line">        new_rows = [r <span class="keyword">for</span> r <span class="keyword">in</span> rows <span class="keyword">if</span> r[<span class="string">&#x27;id&#x27;</span>] <span class="keyword">not</span> <span class="keyword">in</span> seen_ids]</span><br><span class="line">        all_data.extend(new_rows)</span><br><span class="line">        seen_ids.update(r[<span class="string">&#x27;id&#x27;</span>] <span class="keyword">for</span> r <span class="keyword">in</span> new_rows)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ④ 用 find_element 操作 scroll</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable language_">self</span>.scroll_down_if_more():</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> all_data</span><br></pre></td></tr></table></figure>
+
+<p>注意三個工具的角色：</p>
+<ul>
+<li><strong><code>wait_for_list_visible</code></strong>：用 <code>find_element</code> 確保 UI ready</li>
+<li><strong><code>parse_visible_rows_from_page_source</code></strong>：用 <code>page_source</code> 批量讀</li>
+<li><strong><code>scroll_down_if_more</code></strong>：用 <code>find_element</code> 操作</li>
+</ul>
+<p>每個工具都用在它最擅長的地方。</p>
+<hr>
+<h2 id="八、給仍在-per-element-scrape-的你"><a href="#八、給仍在-per-element-scrape-的你" class="headerlink" title="八、給仍在 per-element scrape 的你"></a>八、給仍在 per-element scrape 的你</h2><p>如果你正在維護一份「掃資料慢得不合理」的自動化 code，這是診斷三步驟：</p>
+<h3 id="1-加-timing-log，先知道時間花在哪"><a href="#1-加-timing-log，先知道時間花在哪" class="headerlink" title="1. 加 timing log，先知道時間花在哪"></a>1. 加 timing log，先知道時間花在哪</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_row_data</span>(<span class="params">self, row</span>):</span><br><span class="line">    t0 = time.time()</span><br><span class="line">    <span class="comment"># ...原本邏輯</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;single row scrape took <span class="subst">&#123;time.time() - t0:<span class="number">.2</span>f&#125;</span>s&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果單一 row 抓資料要 1-2 秒，那就是 per-element roundtrip 累加。如果單筆 0.1 秒以下、但累積很多，本質上也是同樣問題。</p>
+<h3 id="2-量一次-page-source-本身的速度"><a href="#2-量一次-page-source-本身的速度" class="headerlink" title="2. 量一次 page_source 本身的速度"></a>2. 量一次 page_source 本身的速度</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t = time.time()</span><br><span class="line">xml = <span class="variable language_">self</span>.driver.page_source</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;page_source 耗時 <span class="subst">&#123;time.time() - t:<span class="number">.2</span>f&#125;</span>s, XML 長度 <span class="subst">&#123;<span class="built_in">len</span>(xml)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果 page_source 本身就要 5 秒以上，這條路可能不適合你的 view tree。先想 mitigation（緩解措施，例如 reduce nesting、分段抓），再決定要不要走。</p>
+<h3 id="3-寫一個並存版本，A-B-對比"><a href="#3-寫一個並存版本，A-B-對比" class="headerlink" title="3. 寫一個並存版本，A&#x2F;B 對比"></a>3. 寫一個並存版本，A&#x2F;B 對比</h3><p>不要一次重寫。<strong>寫一個 <code>_v2</code> 方法，跟舊版並存幾天</strong>，跑同樣的流程比對：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">old_data = <span class="variable language_">self</span>.get_rows_v1()  <span class="comment"># 舊版 per-element</span></span><br><span class="line">new_data = <span class="variable language_">self</span>.get_rows_v2()  <span class="comment"># 新版 page_source</span></span><br><span class="line"><span class="keyword">assert</span> old_data == new_data, <span class="string">f&quot;Mismatch: <span class="subst">&#123;old_data&#125;</span> vs <span class="subst">&#123;new_data&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>確認資料一致、新版穩定之後，舊版改成 <code>_legacy</code> 留作 fallback、新版扶正。</p>
+<hr>
+<h2 id="九、結語：知道工具的-cost-model，比知道工具本身重要"><a href="#九、結語：知道工具的-cost-model，比知道工具本身重要" class="headerlink" title="九、結語：知道工具的 cost model，比知道工具本身重要"></a>九、結語：知道工具的 cost model，比知道工具本身重要</h2><p>寫到最後，我想退一步講一件事。</p>
+<p><code>find_element</code> 跟 <code>page_source</code> 在 Appium &#x2F; Selenium 的文件裡都有——它們不是什麼隱藏指令、不是什麼進階技巧。<strong>任何讀過官方文件的人都知道有這兩個東西</strong>。</p>
+<p>但很少人<strong>真的理解這兩個東西的成本是不同階級</strong>。<code>find_element</code> 是 per-call 一次 roundtrip，<code>page_source</code> 是一次 roundtrip 加上本地 parse。當你要掃 N 筆資料的 M 個欄位時——前者是 O(N×M) 次 roundtrip，後者是 O(1)。<strong>這是線性 vs 常數時間，差距會隨資料量無限擴大</strong>。</p>
+<blockquote>
+<p><strong>把 UI 自動化寫得「能跑」很容易。把它寫得「能 scale」需要一件事——你心裡要有 cost model</strong>。</p>
+</blockquote>
+<p>cost model 不是高深的東西。它就是這個問題：</p>
+<blockquote>
+<p><strong>我這行 code 觸發了多少次 client-device 通訊？</strong></p>
+</blockquote>
+<p>問自己這個問題，再對照你的工具該用哪個——這份判斷，就是把自動化從「會跑」推到「會跑得好」的分水嶺。</p>
+<p>下次你打開一個跑得慢的測試，先別急著怪裝置或網路。<strong>先看看自己的 code 是不是在做 N×M 次 roundtrip</strong>——如果是，page_source 在等你。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Appium/">Appium</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Selenium/">Selenium</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%95%88%E8%83%BD%E5%84%AA%E5%8C%96/">效能優化</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/UI-scraping/">UI scraping</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/page-source/">page_source</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/find-element/">find_element</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E6%9E%B6%E6%A7%8B/">測試架構</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/ai-replacement-seminary-calling/"
+                                   title="如果有一天我被 AI 取代了，我大概會去讀神學院"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">如果有一天我被 AI 取代了，我大概會去讀神學院</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/empty-result-ambiguity-in-filter-testing/"
+                                   title="篩選後沒結果，是資料真的沒符合條件，還是篩選功能壞掉了？——自動化測試的五種解法"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">篩選後沒結果，是資料真的沒符合條件，還是篩選功能壞掉了？——自動化測試的五種解法</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A47-%E5%88%97%E8%B3%87%E6%96%99%EF%BC%8C%E6%8E%83%E4%B8%80%E6%AC%A1-80-%E7%A7%92"><span class="nav-text">前言：47 列資料，掃一次 80 秒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%A8%BA%E6%96%B7%EF%BC%9A%E6%99%82%E9%96%93%E7%A9%B6%E7%AB%9F%E8%8A%B1%E5%9C%A8%E5%93%AA%EF%BC%9F"><span class="nav-text">一、診斷：時間究竟花在哪？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%80%E9%BA%BC%E6%98%AF-roundtrip%EF%BC%9F"><span class="nav-text">二、什麼是 roundtrip？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81find-element%EF%BC%9A%E4%BA%92%E5%8B%95%E5%8F%8B%E5%96%84%EF%BC%8C%E6%89%B9%E9%87%8F%E7%81%BD%E9%9B%A3"><span class="nav-text">三、find_element：互動友善，批量災難</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81page-source%EF%BC%9A%E6%89%B9%E9%87%8F%E5%8F%8B%E5%96%84%EF%BC%8C%E4%BD%86%E6%9C%89%E5%AE%83%E7%9A%84%E4%BB%A3%E5%83%B9"><span class="nav-text">四、page_source：批量友善，但有它的代價</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%A6%E6%88%B0%E5%BB%B6%E4%BC%B8%EF%BC%9A%E9%9B%99%E5%90%91%E9%A9%97%E8%AD%89%E7%9A%84%E5%AF%A6%E4%BD%9C%E5%9F%BA%E7%A4%8E"><span class="nav-text">實戰延伸：雙向驗證的實作基礎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%85%A9%E5%80%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%88%86%E5%B7%A5%EF%BC%9A%E4%BA%92%E8%A3%9C%E4%B8%8D%E6%9B%BF%E4%BB%A3"><span class="nav-text">五、兩個工具的分工：互補不替代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81page-source-%E7%9A%84%E7%9C%9F%E5%AF%A6%E9%99%90%E5%88%B6%EF%BC%885-%E5%80%8B%E9%9B%B7%E5%8D%80%EF%BC%89"><span class="nav-text">六、page_source 的真實限制（5 個雷區）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Lazy-render%EF%BC%88%E5%BB%B6%E9%81%B2%E6%B8%B2%E6%9F%93%EF%BC%89%EF%BC%9A%E5%8F%AA%E7%9C%8B%E5%BE%97%E5%88%B0%E7%95%B6%E4%B8%8B%E8%9E%A2%E5%B9%95%E5%85%A7%E7%9A%84%E5%85%83%E4%BB%B6"><span class="nav-text">1. Lazy render（延遲渲染）：只看得到當下螢幕內的元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A4%A7%E5%9E%8B-view-tree-%E6%9C%83%E8%AE%93-page-source-%E8%87%AA%E5%B7%B1%E8%AE%8A%E6%85%A2"><span class="nav-text">2. 大型 view tree 會讓 page_source 自己變慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B1%AC%E6%80%A7%E5%90%8D%E7%A8%B1%E8%B7%9F-find-element-%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="nav-text">3. 屬性名稱跟 find_element 不一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Encoding-%E7%89%B9%E6%AE%8A%E5%AD%97%E5%85%83"><span class="nav-text">4. Encoding &#x2F; 特殊字元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%8B%95%E6%85%8B-UI-%E7%9A%84%E6%99%82%E9%96%93%E9%BB%9E%E5%95%8F%E9%A1%8C"><span class="nav-text">5. 動態 UI 的時間點問題</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%AF%A6%E5%8B%99%E6%B7%B7%E5%90%88%E7%AD%96%E7%95%A5%EF%BC%9A%E4%B8%80%E5%80%8B%E5%81%A5%E5%BA%B7%E7%9A%84%E5%88%97%E8%A1%A8-scrape-%E6%B5%81%E7%A8%8B"><span class="nav-text">七、實務混合策略：一個健康的列表 scrape 流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%B5%A6%E4%BB%8D%E5%9C%A8-per-element-scrape-%E7%9A%84%E4%BD%A0"><span class="nav-text">八、給仍在 per-element scrape 的你</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8A%A0-timing-log%EF%BC%8C%E5%85%88%E7%9F%A5%E9%81%93%E6%99%82%E9%96%93%E8%8A%B1%E5%9C%A8%E5%93%AA"><span class="nav-text">1. 加 timing log，先知道時間花在哪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%87%8F%E4%B8%80%E6%AC%A1-page-source-%E6%9C%AC%E8%BA%AB%E7%9A%84%E9%80%9F%E5%BA%A6"><span class="nav-text">2. 量一次 page_source 本身的速度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AF%AB%E4%B8%80%E5%80%8B%E4%B8%A6%E5%AD%98%E7%89%88%E6%9C%AC%EF%BC%8CA-B-%E5%B0%8D%E6%AF%94"><span class="nav-text">3. 寫一個並存版本，A&#x2F;B 對比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9A%E7%9F%A5%E9%81%93%E5%B7%A5%E5%85%B7%E7%9A%84-cost-model%EF%BC%8C%E6%AF%94%E7%9F%A5%E9%81%93%E5%B7%A5%E5%85%B7%E6%9C%AC%E8%BA%AB%E9%87%8D%E8%A6%81"><span class="nav-text">九、結語：知道工具的 cost model，比知道工具本身重要</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A47-%E5%88%97%E8%B3%87%E6%96%99%EF%BC%8C%E6%8E%83%E4%B8%80%E6%AC%A1-80-%E7%A7%92"><span class="nav-text">前言：47 列資料，掃一次 80 秒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%A8%BA%E6%96%B7%EF%BC%9A%E6%99%82%E9%96%93%E7%A9%B6%E7%AB%9F%E8%8A%B1%E5%9C%A8%E5%93%AA%EF%BC%9F"><span class="nav-text">一、診斷：時間究竟花在哪？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%80%E9%BA%BC%E6%98%AF-roundtrip%EF%BC%9F"><span class="nav-text">二、什麼是 roundtrip？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81find-element%EF%BC%9A%E4%BA%92%E5%8B%95%E5%8F%8B%E5%96%84%EF%BC%8C%E6%89%B9%E9%87%8F%E7%81%BD%E9%9B%A3"><span class="nav-text">三、find_element：互動友善，批量災難</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81page-source%EF%BC%9A%E6%89%B9%E9%87%8F%E5%8F%8B%E5%96%84%EF%BC%8C%E4%BD%86%E6%9C%89%E5%AE%83%E7%9A%84%E4%BB%A3%E5%83%B9"><span class="nav-text">四、page_source：批量友善，但有它的代價</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%A6%E6%88%B0%E5%BB%B6%E4%BC%B8%EF%BC%9A%E9%9B%99%E5%90%91%E9%A9%97%E8%AD%89%E7%9A%84%E5%AF%A6%E4%BD%9C%E5%9F%BA%E7%A4%8E"><span class="nav-text">實戰延伸：雙向驗證的實作基礎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%85%A9%E5%80%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%88%86%E5%B7%A5%EF%BC%9A%E4%BA%92%E8%A3%9C%E4%B8%8D%E6%9B%BF%E4%BB%A3"><span class="nav-text">五、兩個工具的分工：互補不替代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81page-source-%E7%9A%84%E7%9C%9F%E5%AF%A6%E9%99%90%E5%88%B6%EF%BC%885-%E5%80%8B%E9%9B%B7%E5%8D%80%EF%BC%89"><span class="nav-text">六、page_source 的真實限制（5 個雷區）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Lazy-render%EF%BC%88%E5%BB%B6%E9%81%B2%E6%B8%B2%E6%9F%93%EF%BC%89%EF%BC%9A%E5%8F%AA%E7%9C%8B%E5%BE%97%E5%88%B0%E7%95%B6%E4%B8%8B%E8%9E%A2%E5%B9%95%E5%85%A7%E7%9A%84%E5%85%83%E4%BB%B6"><span class="nav-text">1. Lazy render（延遲渲染）：只看得到當下螢幕內的元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A4%A7%E5%9E%8B-view-tree-%E6%9C%83%E8%AE%93-page-source-%E8%87%AA%E5%B7%B1%E8%AE%8A%E6%85%A2"><span class="nav-text">2. 大型 view tree 會讓 page_source 自己變慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B1%AC%E6%80%A7%E5%90%8D%E7%A8%B1%E8%B7%9F-find-element-%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="nav-text">3. 屬性名稱跟 find_element 不一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Encoding-%E7%89%B9%E6%AE%8A%E5%AD%97%E5%85%83"><span class="nav-text">4. Encoding &#x2F; 特殊字元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%8B%95%E6%85%8B-UI-%E7%9A%84%E6%99%82%E9%96%93%E9%BB%9E%E5%95%8F%E9%A1%8C"><span class="nav-text">5. 動態 UI 的時間點問題</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%AF%A6%E5%8B%99%E6%B7%B7%E5%90%88%E7%AD%96%E7%95%A5%EF%BC%9A%E4%B8%80%E5%80%8B%E5%81%A5%E5%BA%B7%E7%9A%84%E5%88%97%E8%A1%A8-scrape-%E6%B5%81%E7%A8%8B"><span class="nav-text">七、實務混合策略：一個健康的列表 scrape 流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%B5%A6%E4%BB%8D%E5%9C%A8-per-element-scrape-%E7%9A%84%E4%BD%A0"><span class="nav-text">八、給仍在 per-element scrape 的你</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8A%A0-timing-log%EF%BC%8C%E5%85%88%E7%9F%A5%E9%81%93%E6%99%82%E9%96%93%E8%8A%B1%E5%9C%A8%E5%93%AA"><span class="nav-text">1. 加 timing log，先知道時間花在哪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%87%8F%E4%B8%80%E6%AC%A1-page-source-%E6%9C%AC%E8%BA%AB%E7%9A%84%E9%80%9F%E5%BA%A6"><span class="nav-text">2. 量一次 page_source 本身的速度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AF%AB%E4%B8%80%E5%80%8B%E4%B8%A6%E5%AD%98%E7%89%88%E6%9C%AC%EF%BC%8CA-B-%E5%B0%8D%E6%AF%94"><span class="nav-text">3. 寫一個並存版本，A&#x2F;B 對比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9A%E7%9F%A5%E9%81%93%E5%B7%A5%E5%85%B7%E7%9A%84-cost-model%EF%BC%8C%E6%AF%94%E7%9F%A5%E9%81%93%E5%B7%A5%E5%85%B7%E6%9C%AC%E8%BA%AB%E9%87%8D%E8%A6%81"><span class="nav-text">九、結語：知道工具的 cost model，比知道工具本身重要</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>

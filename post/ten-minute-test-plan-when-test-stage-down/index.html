@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            測試站登入壞了那天，我才被迫面對：我真的測完了嗎？ |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        測試站登入壞了那天，我才被迫面對：我真的測完了嗎？
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-05-13</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed May 13 2026 20:00:00 GMT+0800">2026-05-13</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/QA%E7%95%B6%E8%B2%AC/">QA當責</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%9F%BA%E7%9D%A3%E5%BE%92%E5%B7%A5%E4%BD%9C%E8%A7%80/">基督徒工作觀</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A8%88%E7%95%AB/">測試計畫</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A6%86%E8%93%8B%E7%8E%87/">測試覆蓋率</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E6%88%91%E5%AF%A9%E8%A6%96/">自我審視</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/One-Page-Test-Plan/">One Page Test Plan</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/James-Whittaker/">James Whittaker</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/ACC/">ACC</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Attribute-Component-Capability/">Attribute Component Capability</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%BF%A0%E5%BF%83/">忠心</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：表面缺截圖，裡面缺的是別的東西"><a href="#前言：表面缺截圖，裡面缺的是別的東西" class="headerlink" title="前言：表面缺截圖，裡面缺的是別的東西"></a>前言：表面缺截圖，裡面缺的是別的東西</h2><p>某天下午，我<strong>快</strong>把新功能測完了——正準備補剩下的幾個 edge case（邊緣案例）、抓截圖、錄影、整理報告——測試站的登入服務掛了。</p>
+<p>時間點剛好。功能驗證做得差不多，但 <strong>artifacts（截圖、錄影等測試產出）</strong> 不齊。PM 在敲我「下週一就要上」，我選了一條中間路：<strong>先把報告交出去，註明「截圖週一補（登入服務當下不可用）」</strong>。主管 OK、PM OK、團隊也算能理解。</p>
+<p>但那天結束之後，我心裡卡了一個問題，<strong>那個問題跟登入無關、跟截圖也無關</strong>——</p>
+<blockquote>
+<p><strong>「我真的測完了嗎？」</strong></p>
+</blockquote>
+<p>寫這篇，是為了好好回答這個問題。</p>
+<hr>
+<h2 id="一、「快測完了」這四個字，藏著什麼"><a href="#一、「快測完了」這四個字，藏著什麼" class="headerlink" title="一、「快測完了」這四個字，藏著什麼"></a>一、「快測完了」這四個字，藏著什麼</h2><p>我可以說「我快測完了」、「主要 case 都跑過了」、「我感覺沒問題」——這些話我講得很順，但<strong>我講不出「我覆蓋了哪些、沒覆蓋哪些」</strong>。</p>
+<p>平常這個問題不會浮上來。<strong>因為我可以一直回去點點看</strong>：心裡卡卡的 case 再跑一次，懷疑某個流程沒測再跑一次，發現某條 path 漏了再補一次。<strong>我的「測完了」感，是『隨時可以回去確認』撐起來的</strong>。</p>
+<p>登入一掛，這個撐住「測完了感」的東西就沒了。</p>
+<p>我才意識到——<strong>我的「測完了」一直是後驗的、靠摸出來的、靠多跑幾次補回來的</strong>。它不是一開始就有計畫、有清單、有覆蓋率定義的東西。</p>
+<p>那一刻很尷尬：<strong>如果有人問我「你哪些測過了哪些沒測？」我答不出來</strong>。</p>
+<hr>
+<h2 id="二、Jersey-Su-引用的那道題：「10-分鐘，寫一份測試計畫」"><a href="#二、Jersey-Su-引用的那道題：「10-分鐘，寫一份測試計畫」" class="headerlink" title="二、Jersey Su 引用的那道題：「10 分鐘，寫一份測試計畫」"></a>二、Jersey Su 引用的那道題：「10 分鐘，寫一份測試計畫」</h2><p>讀過 Jersey Su 的〈<a class="link"   target="_blank" rel="noopener" href="https://medium.com/@loverjersey/%E8%A8%88%E7%95%AB%E8%B6%95%E5%BE%97%E4%B8%8A%E8%AE%8A%E5%8C%96-4d960a76f429" >計畫趕得上變化<i class="fas fa-external-link-alt"></i></a>〉，他引用 Google 測試前輩 James Whittaker 給團隊出的一道題：</p>
+<blockquote>
+<p><strong>「給你 10 分鐘，寫出一份測試計畫。」</strong></p>
+</blockquote>
+<p>Whittaker 在《How Google Tests Software》裡寫過這段故事——他剛接手 Google 部分產品的測試工程時，發現團隊習慣花上幾週寫一份巨大的、沒人會回頭翻的測試計畫文件。<strong>所以他出了這道挑戰題：把計畫壓到 10 分鐘</strong>。如果一份計畫有價值，那它的價值應該在 10 分鐘內就能浮現。</p>
+<p>Jersey 自己把這個練習調整成「30 分鐘寫一頁式測試計畫（One Page Test Plan）」，當作肌肉記憶在練。</p>
+<p>但這道題如果只看「快」這個字，是會誤讀的。Whittaker 同時提了一個配套的方法，叫做 <strong>ACC</strong>——這才是這道練習真正在回答的問題。</p>
+<hr>
+<h2 id="三、ACC-是什麼：把-QA-思考拆成三個欄位"><a href="#三、ACC-是什麼：把-QA-思考拆成三個欄位" class="headerlink" title="三、ACC 是什麼：把 QA 思考拆成三個欄位"></a>三、ACC 是什麼：把 QA 思考拆成三個欄位</h2><p>ACC 是 Whittaker 在 Google 推的測試計畫框架，三個字母代表：</p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>全名</th>
+<th>詞性</th>
+<th>你在問什麼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>A</strong></td>
+<td><strong>Attribute</strong>（屬性）</td>
+<td>形容詞</td>
+<td>使用者在乎這個產品什麼？快？穩？安全？容易上手？</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td><strong>Component</strong>（元件）</td>
+<td>名詞</td>
+<td>這個系統由哪些可分離的部件組成？</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td><strong>Capability</strong>（能力）</td>
+<td>動詞</td>
+<td>系統能為使用者做什麼？每個能力的優先級多高？</td>
+</tr>
+</tbody></table>
+<p>ACC 的順序很重要：<strong>先從使用者在乎什麼開始（A），再拆系統有什麼（C），最後談這些部件提供什麼能力（C）</strong>。Capability 被打上優先級與風險評分之後，就直接變成了「測試該往哪裡放力氣」的依據。</p>
+<hr>
+<h2 id="四、ACC-真正在回答的，是那個我答不出來的問題"><a href="#四、ACC-真正在回答的，是那個我答不出來的問題" class="headerlink" title="四、ACC 真正在回答的，是那個我答不出來的問題"></a>四、ACC 真正在回答的，是那個我答不出來的問題</h2><p>我以前以為 ACC 是給「測試前」用的工具——產品剛立項、需求剛來，QA 拿來寫計畫。</p>
+<p><strong>但登入壞掉那天我才看見它另一個樣子：ACC 是測試完之後，QA 用來自我審問的工具</strong>。</p>
+<p>ACC 把測試的覆蓋變成可以被檢查的東西：</p>
+<ul>
+<li><strong>使用者在乎的 Attribute，我有沒有都覆蓋到？</strong>（不只是功能對不對，還有「快不快」「順不順」「會不會嚇到人」）</li>
+<li><strong>系統的 Component，我有沒有都跑過？</strong>（包含邊界元件、依賴的元件、容易被忽略的元件）</li>
+<li><strong>高優先級的 Capability，我有沒有都驗證？</strong>（不是 case 數量多寡，是高優先級項目的覆蓋率）</li>
+</ul>
+<p>寫完這三欄，「我測完了嗎？」這個問題<strong>從『感覺』變成『可以指著清單回答』</strong>。每一格都有答案，就是測完了；某一格空著，就還沒測完——而且你能講得出「<strong>還缺哪一格</strong>」。</p>
+<p>這就是為什麼 Whittaker 敢說「10 分鐘」。<strong>不是逼你打字快，是逼你練到熟，熟到你可以隨時拿這份結構出來檢查自己</strong>。10 分鐘只是熟練度的證明。</p>
+<p>而我在登入壞掉的那個下午——我發現我沒辦法拿這份結構出來檢查自己，<strong>因為我從一開始就沒寫過</strong>。</p>
+<hr>
+<h2 id="五、所以那天我做的，其實是「事後補一份-ACC」"><a href="#五、所以那天我做的，其實是「事後補一份-ACC」" class="headerlink" title="五、所以那天我做的，其實是「事後補一份 ACC」"></a>五、所以那天我做的，其實是「事後補一份 ACC」</h2><p>當時我並沒有覺得自己在補測試計畫。但事後看，我那兩個小時做的三件事，每一件都對到 ACC 的一個欄位：</p>
+<ol>
+<li><strong>梳理舊 bug 的脈絡</strong> — 我在事後問「過去使用者在哪個 <strong>Attribute</strong> 上最容易受傷？（穩定性？資料正確性？權限？）」</li>
+<li><strong>盤點哪些測試需要登入</strong> — 我在事後問「<strong>Component</strong> 之間的依賴怎麼畫？哪些其實不依賴登入也能驗？」</li>
+<li><strong>重排 case 的優先順序</strong> — 我在事後問「<strong>Capability</strong> 的優先級到底長什麼樣？哪些必須測、哪些可以晚？」</li>
+</ol>
+<p>三件事拼起來，就是一份<strong>遲到的 ACC</strong>。</p>
+<p>而做完之後我發現一件殘忍的事：<strong>有兩三個 case 我以為測過，其實是漏的</strong>——只是平常我可以隨時補測，所以沒意識到「漏」這件事的存在。是 ACC 把它逼出來的。</p>
+<p>如果登入沒掛，我大概不會做這個練習，這份報告就會帶著兩三個我自己都不知道的洞被交出去。</p>
+<p><strong>登入服務掛掉那天，幫我做的不是「製造一個藉口」，是「製造一個必須誠實面對覆蓋率的時刻」</strong>。</p>
+<hr>
+<h2 id="六、然後下班後，我心裡冒出一個小聲音"><a href="#六、然後下班後，我心裡冒出一個小聲音" class="headerlink" title="六、然後下班後，我心裡冒出一個小聲音"></a>六、然後下班後，我心裡冒出一個小聲音</h2><p>ACC 的部分我事後補上了。但下班後我重看了一次交出去的報告，心裡的小聲音問我：</p>
+<blockquote>
+<p><strong>「截圖週一補（登入掛了）」這句話，到底是『事實說明』，還是『一個方便的擋箭牌』？</strong></p>
+</blockquote>
+<p>我才發現這句話其實有兩層問題。</p>
+<h3 id="第一層：表面像甩鍋"><a href="#第一層：表面像甩鍋" class="headerlink" title="第一層：表面像甩鍋"></a>第一層：表面像甩鍋</h3><p>報告<strong>因為帶了那一句註記，自動變成了一份「指出 cause 的報告」</strong>——而 cause 是另一個團隊。如果這次上線順利，沒人會回頭看；但<strong>如果上線後出事</strong>，這份報告會被翻出來——上面寫著「截圖未補，因為登入服務掛了」。</p>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>解釋原因（OK）</th>
+<th>甩鍋（NOT OK）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>焦點</td>
+<td>我做了什麼、還缺什麼、什麼時候補</td>
+<td>誰造成的、不是我的錯</td>
+</tr>
+<tr>
+<td>主詞</td>
+<td>我（我會補上）</td>
+<td>他們（因為他們壞了）</td>
+</tr>
+<tr>
+<td>時態</td>
+<td>未來（接下來）</td>
+<td>過去（誰要負責）</td>
+</tr>
+</tbody></table>
+<h3 id="第二層：暗中替「我自己沒把握」找掩護"><a href="#第二層：暗中替「我自己沒把握」找掩護" class="headerlink" title="第二層：暗中替「我自己沒把握」找掩護"></a>第二層：暗中替「我自己沒把握」找掩護</h3><p>但這還不是最不安的部分。<strong>最不安的是更裡面那一層</strong>：</p>
+<p>我寫「截圖週一補（登入掛了）」的時候——我描述的「不齊」是 <em>artifact</em> 的不齊（缺截圖）。可是那個下午我心裡真正卡的，是 <em>coverage</em> 的不齊（我不確定有沒有測完）。</p>
+<p><strong>這兩種不齊，我都用同一句話打發掉了</strong>。</p>
+<p>第一種不齊（截圖）有明確的歸屬：登入壞了所以補不了，是客觀事實。第二種不齊（覆蓋率）的歸屬是<strong>我自己</strong>——但是因為我把兩種不齊綁在同一句註記裡，第二種不齊<strong>也跟著沾上了「因為登入壞了」的味道</strong>。</p>
+<p>這個就是我事後想到最不舒服的地方。<strong>它不是甩鍋給開發團隊，是甩鍋給「狀況」——讓「狀況」幫我吸收掉一份我對自己的不確定</strong>。</p>
+<p>外人看不出來，但<strong>我自己看得出來</strong>。</p>
+<hr>
+<h2 id="七、寫法的紅線：缺的東西，主詞永遠是我"><a href="#七、寫法的紅線：缺的東西，主詞永遠是我" class="headerlink" title="七、寫法的紅線：缺的東西，主詞永遠是我"></a>七、寫法的紅線：缺的東西，主詞永遠是我</h2><p>事後我給自己訂了一條紅線——</p>
+<blockquote>
+<p><strong>缺的東西，主詞永遠是我；而且「缺什麼」要分清楚</strong>。</p>
+</blockquote>
+<p>下次遇到一樣情況，我會這樣寫：</p>
+<ul>
+<li>❌ 「截圖週一補（登入掛了）」</li>
+<li>✅ 「<strong>測試覆蓋（依 ACC 清單）已完成主要 Capability 驗證，剩 [X 功能的權限切換邊界] 待補測</strong>。週一補上截圖。（補充：當下登入服務不可用）」</li>
+</ul>
+<p>差別不只是禮貌——<strong>是我強迫自己把兩種不齊拆開來、各自負責</strong>：</p>
+<ul>
+<li>覆蓋率的部分：是我的責任，主詞是我，我講清楚剩什麼</li>
+<li>artifact 的部分：客觀情況的影響，可以提，但放在後面、放在小字</li>
+</ul>
+<p>ACC 在這裡的功能是——<strong>它逼我把「缺什麼」講清楚</strong>，沒辦法用「截圖週一補」這種模糊措辭把覆蓋率不確定一起帶過去。</p>
+<hr>
+<h2 id="結語：忠心是「敢用-ACC-問自己有沒有測完」-「誠實署名」"><a href="#結語：忠心是「敢用-ACC-問自己有沒有測完」-「誠實署名」" class="headerlink" title="結語：忠心是「敢用 ACC 問自己有沒有測完」+「誠實署名」"></a>結語：忠心是「敢用 ACC 問自己有沒有測完」+「誠實署名」</h2><p>寫到最後，我想講那天最真實的感受。</p>
+<p>聖經裡有一句話我以前讀過：「<strong>所求於管家的，是要他有忠心</strong>」（哥林多前書 4:2）。我以前一直把它讀成「管家要把工作做好」。</p>
+<p>但那天我重新想了一次——這句話真正的重點是「忠心」這個詞，<strong>它跟「把工作做完」其實是兩件事</strong>。把工作做完要有工具、有時程、有資源；忠心不需要這些，<strong>它是「這個位置交給我的時候，我願不願意誠實面對自己做到了什麼、沒做到什麼」</strong>。</p>
+<p>那天我學到的是——<strong>忠心是兩件事的合一：敢用 ACC 反過來問自己「我真的測完了嗎」，也願意把答案誠實寫進報告裡</strong>。</p>
+<p>「敢用 ACC 問自己」是 Whittaker 那道題練出來的肌肉——<strong>10 分鐘寫測試計畫的能力，不是給你 demo 用的，是給你在交報告前 10 分鐘救自己用的</strong>。它把「測完了」從感覺變成可以被檢查的東西，<strong>讓你不敢隨便講「測完了」這三個字</strong>。</p>
+<p>「誠實署名」是報告的工藝——我交出去的東西，主詞是不是我？我有沒有把『缺截圖』跟『缺覆蓋』混在一起、讓狀況幫我吸收掉一份我對自己的不確定？</p>
+<p>我不掌管測試站什麼時候會修好。我只負責<strong>那一段時間裡認真活著</strong>——用 ACC 問自己有沒有測完，用主詞權承擔那份回答。</p>
+<p>那天結束的時候，我一個新 case 都沒跑——<strong>但我第一次清楚知道自己漏了哪幾格，也第一次寫得出「缺什麼是我該補的、缺什麼是狀況造成的」</strong>。</p>
+<p>工具是 QA 的延伸，不是 QA 本身。<br>延伸壞了，本體還在——但本體要先願意被自己看清楚。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/QA%E7%95%B6%E8%B2%AC/">QA當責</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%9F%BA%E7%9D%A3%E5%BE%92%E5%B7%A5%E4%BD%9C%E8%A7%80/">基督徒工作觀</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A8%88%E7%95%AB/">測試計畫</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A6%86%E8%93%8B%E7%8E%87/">測試覆蓋率</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E6%88%91%E5%AF%A9%E8%A6%96/">自我審視</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/One-Page-Test-Plan/">One Page Test Plan</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/James-Whittaker/">James Whittaker</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/ACC/">ACC</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Attribute-Component-Capability/">Attribute Component Capability</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%BF%A0%E5%BF%83/">忠心</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/ai-as-yes-man-rd-pm-trust-calibration/"
+                                   title="你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man——給 RD/PM 的三個提問清單"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man——給 RD/PM 的三個提問清單</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/boredom-is-a-signal/"
+                                   title="「無聊」是 QA 的診斷工具：判斷一個手動測試該不該被自動化的五個訊號"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">「無聊」是 QA 的診斷工具：判斷一個手動測試該不該被自動化的五個訊號</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E8%A1%A8%E9%9D%A2%E7%BC%BA%E6%88%AA%E5%9C%96%EF%BC%8C%E8%A3%A1%E9%9D%A2%E7%BC%BA%E7%9A%84%E6%98%AF%E5%88%A5%E7%9A%84%E6%9D%B1%E8%A5%BF"><span class="nav-text">前言：表面缺截圖，裡面缺的是別的東西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E3%80%8C%E5%BF%AB%E6%B8%AC%E5%AE%8C%E4%BA%86%E3%80%8D%E9%80%99%E5%9B%9B%E5%80%8B%E5%AD%97%EF%BC%8C%E8%97%8F%E8%91%97%E4%BB%80%E9%BA%BC"><span class="nav-text">一、「快測完了」這四個字，藏著什麼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Jersey-Su-%E5%BC%95%E7%94%A8%E7%9A%84%E9%82%A3%E9%81%93%E9%A1%8C%EF%BC%9A%E3%80%8C10-%E5%88%86%E9%90%98%EF%BC%8C%E5%AF%AB%E4%B8%80%E4%BB%BD%E6%B8%AC%E8%A9%A6%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-text">二、Jersey Su 引用的那道題：「10 分鐘，寫一份測試計畫」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81ACC-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9A%E6%8A%8A-QA-%E6%80%9D%E8%80%83%E6%8B%86%E6%88%90%E4%B8%89%E5%80%8B%E6%AC%84%E4%BD%8D"><span class="nav-text">三、ACC 是什麼：把 QA 思考拆成三個欄位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81ACC-%E7%9C%9F%E6%AD%A3%E5%9C%A8%E5%9B%9E%E7%AD%94%E7%9A%84%EF%BC%8C%E6%98%AF%E9%82%A3%E5%80%8B%E6%88%91%E7%AD%94%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">四、ACC 真正在回答的，是那個我答不出來的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%89%80%E4%BB%A5%E9%82%A3%E5%A4%A9%E6%88%91%E5%81%9A%E7%9A%84%EF%BC%8C%E5%85%B6%E5%AF%A6%E6%98%AF%E3%80%8C%E4%BA%8B%E5%BE%8C%E8%A3%9C%E4%B8%80%E4%BB%BD-ACC%E3%80%8D"><span class="nav-text">五、所以那天我做的，其實是「事後補一份 ACC」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%84%B6%E5%BE%8C%E4%B8%8B%E7%8F%AD%E5%BE%8C%EF%BC%8C%E6%88%91%E5%BF%83%E8%A3%A1%E5%86%92%E5%87%BA%E4%B8%80%E5%80%8B%E5%B0%8F%E8%81%B2%E9%9F%B3"><span class="nav-text">六、然後下班後，我心裡冒出一個小聲音</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%A4%EF%BC%9A%E8%A1%A8%E9%9D%A2%E5%83%8F%E7%94%A9%E9%8D%8B"><span class="nav-text">第一層：表面像甩鍋</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%A4%EF%BC%9A%E6%9A%97%E4%B8%AD%E6%9B%BF%E3%80%8C%E6%88%91%E8%87%AA%E5%B7%B1%E6%B2%92%E6%8A%8A%E6%8F%A1%E3%80%8D%E6%89%BE%E6%8E%A9%E8%AD%B7"><span class="nav-text">第二層：暗中替「我自己沒把握」找掩護</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%AF%AB%E6%B3%95%E7%9A%84%E7%B4%85%E7%B7%9A%EF%BC%9A%E7%BC%BA%E7%9A%84%E6%9D%B1%E8%A5%BF%EF%BC%8C%E4%B8%BB%E8%A9%9E%E6%B0%B8%E9%81%A0%E6%98%AF%E6%88%91"><span class="nav-text">七、寫法的紅線：缺的東西，主詞永遠是我</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E5%BF%A0%E5%BF%83%E6%98%AF%E3%80%8C%E6%95%A2%E7%94%A8-ACC-%E5%95%8F%E8%87%AA%E5%B7%B1%E6%9C%89%E6%B2%92%E6%9C%89%E6%B8%AC%E5%AE%8C%E3%80%8D-%E3%80%8C%E8%AA%A0%E5%AF%A6%E7%BD%B2%E5%90%8D%E3%80%8D"><span class="nav-text">結語：忠心是「敢用 ACC 問自己有沒有測完」+「誠實署名」</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E8%A1%A8%E9%9D%A2%E7%BC%BA%E6%88%AA%E5%9C%96%EF%BC%8C%E8%A3%A1%E9%9D%A2%E7%BC%BA%E7%9A%84%E6%98%AF%E5%88%A5%E7%9A%84%E6%9D%B1%E8%A5%BF"><span class="nav-text">前言：表面缺截圖，裡面缺的是別的東西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E3%80%8C%E5%BF%AB%E6%B8%AC%E5%AE%8C%E4%BA%86%E3%80%8D%E9%80%99%E5%9B%9B%E5%80%8B%E5%AD%97%EF%BC%8C%E8%97%8F%E8%91%97%E4%BB%80%E9%BA%BC"><span class="nav-text">一、「快測完了」這四個字，藏著什麼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Jersey-Su-%E5%BC%95%E7%94%A8%E7%9A%84%E9%82%A3%E9%81%93%E9%A1%8C%EF%BC%9A%E3%80%8C10-%E5%88%86%E9%90%98%EF%BC%8C%E5%AF%AB%E4%B8%80%E4%BB%BD%E6%B8%AC%E8%A9%A6%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-text">二、Jersey Su 引用的那道題：「10 分鐘，寫一份測試計畫」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81ACC-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9A%E6%8A%8A-QA-%E6%80%9D%E8%80%83%E6%8B%86%E6%88%90%E4%B8%89%E5%80%8B%E6%AC%84%E4%BD%8D"><span class="nav-text">三、ACC 是什麼：把 QA 思考拆成三個欄位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81ACC-%E7%9C%9F%E6%AD%A3%E5%9C%A8%E5%9B%9E%E7%AD%94%E7%9A%84%EF%BC%8C%E6%98%AF%E9%82%A3%E5%80%8B%E6%88%91%E7%AD%94%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">四、ACC 真正在回答的，是那個我答不出來的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%89%80%E4%BB%A5%E9%82%A3%E5%A4%A9%E6%88%91%E5%81%9A%E7%9A%84%EF%BC%8C%E5%85%B6%E5%AF%A6%E6%98%AF%E3%80%8C%E4%BA%8B%E5%BE%8C%E8%A3%9C%E4%B8%80%E4%BB%BD-ACC%E3%80%8D"><span class="nav-text">五、所以那天我做的，其實是「事後補一份 ACC」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%84%B6%E5%BE%8C%E4%B8%8B%E7%8F%AD%E5%BE%8C%EF%BC%8C%E6%88%91%E5%BF%83%E8%A3%A1%E5%86%92%E5%87%BA%E4%B8%80%E5%80%8B%E5%B0%8F%E8%81%B2%E9%9F%B3"><span class="nav-text">六、然後下班後，我心裡冒出一個小聲音</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%A4%EF%BC%9A%E8%A1%A8%E9%9D%A2%E5%83%8F%E7%94%A9%E9%8D%8B"><span class="nav-text">第一層：表面像甩鍋</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%A4%EF%BC%9A%E6%9A%97%E4%B8%AD%E6%9B%BF%E3%80%8C%E6%88%91%E8%87%AA%E5%B7%B1%E6%B2%92%E6%8A%8A%E6%8F%A1%E3%80%8D%E6%89%BE%E6%8E%A9%E8%AD%B7"><span class="nav-text">第二層：暗中替「我自己沒把握」找掩護</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%AF%AB%E6%B3%95%E7%9A%84%E7%B4%85%E7%B7%9A%EF%BC%9A%E7%BC%BA%E7%9A%84%E6%9D%B1%E8%A5%BF%EF%BC%8C%E4%B8%BB%E8%A9%9E%E6%B0%B8%E9%81%A0%E6%98%AF%E6%88%91"><span class="nav-text">七、寫法的紅線：缺的東西，主詞永遠是我</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E5%BF%A0%E5%BF%83%E6%98%AF%E3%80%8C%E6%95%A2%E7%94%A8-ACC-%E5%95%8F%E8%87%AA%E5%B7%B1%E6%9C%89%E6%B2%92%E6%9C%89%E6%B8%AC%E5%AE%8C%E3%80%8D-%E3%80%8C%E8%AA%A0%E5%AF%A6%E7%BD%B2%E5%90%8D%E3%80%8D"><span class="nav-text">結語：忠心是「敢用 ACC 問自己有沒有測完」+「誠實署名」</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>

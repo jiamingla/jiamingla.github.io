@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            如果有一天我被 AI 取代了，我大概會去讀神學院 |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        如果有一天我被 AI 取代了，我大概會去讀神學院
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-07</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Sun Jun 07 2026 12:00:00 GMT+0800">2026-06-07</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI/">AI</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI%E5%8F%96%E4%BB%A3/">AI取代</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%91%BC%E5%8F%AC/">呼召</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E4%BF%A1%E4%BB%B0/">信仰</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E6%B6%AF/">職涯</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：一個半認真的玩笑"><a href="#前言：一個半認真的玩笑" class="headerlink" title="前言：一個半認真的玩笑"></a>前言：一個半認真的玩笑</h2><p>我跟朋友開玩笑說，如果哪天被 AI 取代了，我就去讀神學院。</p>
+<p>朋友聽完通常會笑——他們以為這是自嘲。其實我半認真。</p>
+<p>因為這個玩笑話的背後，藏著一個我這幾年才慢慢想清楚的問題：</p>
+<blockquote>
+<p><strong>我到底是因為「AI 還做不到我做的事」才有價值，還是因為「我是我」才有價值？</strong></p>
+</blockquote>
+<p>這兩個答案聽起來很像，但其實差很遠。差到——一個會讓你活在恐懼裡，另一個會讓你活在自由裡。</p>
+<p>這篇文章想認真聊聊這件事。一半是寫給同樣在焦慮的同行，一半是寫給未來那個真的有可能被取代的我自己。</p>
+<hr>
+<h2 id="一、兩種版本的「我為什麼值得這份薪水」"><a href="#一、兩種版本的「我為什麼值得這份薪水」" class="headerlink" title="一、兩種版本的「我為什麼值得這份薪水」"></a>一、兩種版本的「我為什麼值得這份薪水」</h2><p>最近 AI 取代論吵得很兇。大部分文章——包括我自己之前寫的另一篇——都在回答<strong>第一種版本</strong>的問題：</p>
+<blockquote>
+<p><strong>「為什麼 AI 取代不了我？」</strong></p>
+</blockquote>
+<p>這個問題的回答模式很固定：列舉幾項 AI 還做不到的事，論證自己在這些事上有獨特優勢，然後鬆一口氣，覺得自己暫時安全。</p>
+<p>我寫過這種文章。寫的時候我也覺得很有道理。但寫完之後我躺在床上，心裡有一個聲音很小聲地問我：</p>
+<blockquote>
+<p><strong>「那如果有一天 AI 都學會了呢？」</strong></p>
+</blockquote>
+<p>這個問題我答不出來。</p>
+<p>因為我發現，<strong>只要我把自己的價值定錨在「不可被取代」上，我就永遠在賭一件事</strong>——賭 AI 學不會我會的東西。</p>
+<p>但只要做過幾年技術工作的人都知道一件事：<strong>沒有什麼能力是永遠學不會的</strong>。我今天能做的測試直覺、風險判斷、跨部門協調——五年後 AI 大概都會做。也許做得比我還好。也許還比我便宜。</p>
+<p>所以「我比 AI 強」這個答案，本質上是一個<strong>期限有限的安全感</strong>。它不是答案，它是一個延後焦慮的方法。</p>
+<hr>
+<h2 id="二、第二種版本的問題"><a href="#二、第二種版本的問題" class="headerlink" title="二、第二種版本的問題"></a>二、第二種版本的問題</h2><p>那麼，<strong>第二種版本</strong>的問題是什麼？</p>
+<blockquote>
+<p><strong>「如果 AI 真的能取代我，我這個人還有什麼意義？」</strong></p>
+</blockquote>
+<p>這個問題乍看殘酷，但它其實是一個更根本、也更值得問的問題。</p>
+<p>因為它把「<strong>價值</strong>」這件事從「<strong>功能</strong>」上鬆綁了。</p>
+<p>想像一個畫面：一個母親照顧她的孩子。這件事 AI 可以做嗎？某種程度上可以——餵食、換尿布、播搖籃曲、監測體溫。如果你只看「功能」，AI 媽媽某些方面可能比真人媽媽還準時、還耐心、還均衡。</p>
+<p>但沒有人會說「AI 取代得了媽媽」。</p>
+<p><strong>為什麼？因為「媽媽」這個身分的價值，從來不是建立在「她能執行哪些功能」上的</strong>。她的價值建立在「<strong>她是誰</strong>」上——她是這個孩子被生下來時對之說「歡迎來到世界」的那個人，她是孩子第一次哭的時候那個記得這個哭聲的人，她是這個孩子人生故事的一部分。</p>
+<p>這份價值不是「不可被取代」的。它是「<strong>不需要證明</strong>」的。</p>
+<hr>
+<h2 id="三、職業-Job-與呼召-Calling-的差別"><a href="#三、職業-Job-與呼召-Calling-的差別" class="headerlink" title="三、職業 (Job) 與呼召 (Calling) 的差別"></a>三、職業 (Job) 與呼召 (Calling) 的差別</h2><p>我是基督徒，所以接下來我要用一點神學詞彙。如果你不是基督徒也沒關係，這個區分本身有它跨信仰的意義。</p>
+<p>新教改革的時候，馬丁路德做了一件當時很激進的事：他主張**「呼召 (vocatio &#x2F; calling)」這個原本只屬於修道士、神職人員的概念，應該擴大到所有人的工作上**。</p>
+<p>換句話說，一個鐵匠認真打鐵，是呼召。一個母親認真養育孩子，是呼召。一個 QA 認真測軟體，<strong>也是呼召</strong>。</p>
+<p>呼召跟職業的差別在哪裡？</p>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>職業 (Job)</th>
+<th>呼召 (Calling)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>核心問題</strong></td>
+<td>我能做什麼？</td>
+<td>我為什麼做？</td>
+</tr>
+<tr>
+<td><strong>價值來源</strong></td>
+<td>市場需求、薪水、功能</td>
+<td>此刻被擺在這裡的意義</td>
+</tr>
+<tr>
+<td><strong>被取代的後果</strong></td>
+<td>失業</td>
+<td>換一個位置繼續呼召</td>
+</tr>
+<tr>
+<td><strong>退休的意義</strong></td>
+<td>不再有貢獻</td>
+<td>進入下一階段的呼召</td>
+</tr>
+<tr>
+<td><strong>核心動詞</strong></td>
+<td>執行</td>
+<td>回應</td>
+</tr>
+</tbody></table>
+<p><strong>最關鍵的一行是「被取代的後果」</strong>。</p>
+<p>如果你的工作對你來說是「職業」，那 AI 取代論對你是一場存在危機——你的價值正在消失。但如果你的工作對你來說是「呼召」，那 AI 取代論對你只是一場<strong>位置調動</strong>——你被擺到下一個地方繼續做你被呼召要做的事。</p>
+<p>這不是阿 Q 精神。這是<strong>價值論的根本差異</strong>。</p>
+<hr>
+<h2 id="四、所以為什麼「神學院」是一個半認真的答案"><a href="#四、所以為什麼「神學院」是一個半認真的答案" class="headerlink" title="四、所以為什麼「神學院」是一個半認真的答案"></a>四、所以為什麼「神學院」是一個半認真的答案</h2><p>回到那個玩笑。</p>
+<p>「如果被取代了就去讀神學院」這句話，表面上是自嘲，但我講久了發現它其實是一個<strong>價值論宣告</strong>：</p>
+<blockquote>
+<p><strong>我做 QA 不是因為我比 AI 強，我做 QA 是因為我此刻被擺在這個位置上，而這個位置有它的意義。如果有一天這個位置不需要我了，我也不會無處可去——因為我的價值不是建立在這個位置上的。</strong></p>
+</blockquote>
+<p>換句話說，神學院只是一個象徵。它代表的是「<strong>那個沒有 AI 取代論的地方</strong>」——那個我願意去的、價值不是用「功能」計算的地方。</p>
+<p>但有趣的是——<strong>真正的神學院，跟 QA 工作其實沒那麼不一樣</strong>。</p>
+<p>兩者都在問：<strong>這個世界哪裡壞掉了？</strong><br>兩者都在問：<strong>我們相信什麼是好的？</strong><br>兩者都在問：<strong>我能不能說真話，即使說真話會讓我難堪？</strong></p>
+<p>QA 在問的是技術系統的真相。神學院在問的是更大的真相。<strong>但問問題的姿態是一樣的</strong>——都是相信「真相值得被找出來，即使它不討好」。</p>
+<p>如果有一天我真的去了神學院，我大概會把我這幾年寫的 <a href="/post/problem-driven-testing-intro/">〈問題驅動測試〉</a> 帶過去。因為那篇文章的核心命題——「<strong>測試的靈魂不在於執行腳本，而在於提問</strong>」——換個場景一樣成立。把「測試」換成「信仰」，把「腳本」換成「教條」，整段話照樣成立。</p>
+<p>提問是一種職業姿態，也是一種屬靈姿態。</p>
+<hr>
+<h2 id="五、那在被取代之前，我要怎麼活？"><a href="#五、那在被取代之前，我要怎麼活？" class="headerlink" title="五、那在被取代之前，我要怎麼活？"></a>五、那在被取代之前，我要怎麼活？</h2><p>這是這篇文章我自己最想回答的部分。</p>
+<p>如果我相信：</p>
+<ul>
+<li>AI 終有一天會在功能上追上我</li>
+<li>我的價值不是建立在「不可被取代」上</li>
+<li>我之所以在這個位置上，是因為<strong>此刻被擺在這裡有意義</strong></li>
+</ul>
+<p>那我每天打開電腦坐下來測軟體，<strong>心情應該是什麼</strong>？</p>
+<p>我想了很久，給自己的答案是三句話：</p>
+<h3 id="1-不為了證明「我比機器強」而工作"><a href="#1-不為了證明「我比機器強」而工作" class="headerlink" title="1. 不為了證明「我比機器強」而工作"></a>1. 不為了證明「我比機器強」而工作</h3><p>那是徒勞的。也是對自己的羞辱。</p>
+<p>如果我每天上班的內心戲是「我要做一些 AI 做不到的事來證明我有用」，那我等於每天都在跟一個追著我跑的影子賽跑——而那個影子跑得會越來越快。</p>
+<h3 id="2-為了「此刻在這裡值得做好」而工作"><a href="#2-為了「此刻在這裡值得做好」而工作" class="headerlink" title="2. 為了「此刻在這裡值得做好」而工作"></a>2. 為了「此刻在這裡值得做好」而工作</h3><p>這個專案此刻需要一個認真測試的人。這個團隊此刻需要一個願意問尖銳問題的人。這個產品此刻需要一個對品質有執著的人。<strong>我此刻是那個人</strong>。這就足夠了。</p>
+<p>足夠不足夠，不取決於 AI 學到哪了，取決於<strong>這份工作此刻在我手上有沒有被認真對待</strong>。</p>
+<h3 id="3-同時誠實面對「有一天我可能不在這個位置上」"><a href="#3-同時誠實面對「有一天我可能不在這個位置上」" class="headerlink" title="3. 同時誠實面對「有一天我可能不在這個位置上」"></a>3. 同時誠實面對「有一天我可能不在這個位置上」</h3><p>這不是悲觀。這是基督徒的一種日常姿態——<strong>承認我不掌管我的職涯，我只負責此刻的忠心</strong>。</p>
+<p>聖經有一句話我很喜歡：「<strong>所求於管家的，是要他有忠心</strong>」（哥林多前書 4:2）。注意它不說「所求於管家的，是要他不可被取代」——它說的是「<strong>忠心</strong>」。</p>
+<p>忠心是一個跟「不可被取代」完全脫鉤的概念。一個被取代的管家也可以是忠心的，前提是<strong>他在還在位置上的時候，盡力了</strong>。</p>
+<hr>
+<h2 id="六、結語：自由地工作"><a href="#六、結語：自由地工作" class="headerlink" title="六、結語：自由地工作"></a>六、結語：自由地工作</h2><p>寫這篇文章的時候，我想起一件事。</p>
+<p>幾年前我剛入行的時候，QA 圈也流傳過另一波焦慮——「自動化測試會取代手動測試員」。當時我也焦慮過，也讀了一堆「為什麼自動化取代不了手動 QA」的文章來安慰自己。</p>
+<p>後來呢？自動化的確大量取代了重複性的測試工作。我認識的一些朋友的確被優化了。</p>
+<p>但留下來的人，<strong>不是那些「證明自己比自動化強」的人</strong>——是那些<strong>重新定義自己這份工作意義</strong>的人。他們從「按照腳本執行測試的人」變成了「決定要測什麼、為什麼測、測完代表什麼意思的人」。</p>
+<p>這次的 AI 浪潮，我相信會是一樣的故事。</p>
+<p>留下來的不會是「比 AI 強」的人。留下來的會是<strong>那些清楚知道自己為什麼在這裡的人</strong>。</p>
+<p>而清楚知道自己為什麼在這裡的人，<strong>有一個共同特徵</strong>：他們不害怕被取代。因為他們的安全感不來自於位置，他們的安全感來自於<strong>呼召</strong>。</p>
+<p>所以——</p>
+<p>如果有一天我真的被 AI 取代了，我大概會去讀神學院。</p>
+<p>但在那一天到來之前，<strong>我會在這個位置上，認真做好每一次測試</strong>。不是因為我證明得了我比 AI 強，是因為<strong>此刻這個位置交在我手上，我願意忠心</strong>。</p>
+<p>這就是我給自己的回答。</p>
+<p>也是這個玩笑話，半認真的那一半。</p>
+<hr>
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><ul>
+<li><a href="/post/problem-driven-testing-intro/">問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡</a></li>
+<li>馬丁路德 (Martin Luther) 論呼召（Doctrine of Vocation）相關著作</li>
+<li>提摩太．凱勒 &amp; 凱薩琳．李芮．阿斯多夫合著 (Timothy Keller&amp;Katherine Leary Alsdorf), 工作魅力 – 連結你的工作與上帝的工作 (精裝)／Every Good Endeavor: Connecting Your Work to God’s Work<br><a class="link"   target="_blank" rel="noopener" href="https://shop.campus.org.tw/ProductDetails.aspx?productID=000504751" >https://shop.campus.org.tw/ProductDetails.aspx?productID=000504751<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI/">AI</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI%E5%8F%96%E4%BB%A3/">AI取代</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%91%BC%E5%8F%AC/">呼召</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E4%BF%A1%E4%BB%B0/">信仰</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%81%B7%E6%B6%AF/">職涯</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/page-source-vs-find-element/"
+                                   title="UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%B8%80%E5%80%8B%E5%8D%8A%E8%AA%8D%E7%9C%9F%E7%9A%84%E7%8E%A9%E7%AC%91"><span class="nav-text">前言：一個半認真的玩笑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%85%A9%E7%A8%AE%E7%89%88%E6%9C%AC%E7%9A%84%E3%80%8C%E6%88%91%E7%82%BA%E4%BB%80%E9%BA%BC%E5%80%BC%E5%BE%97%E9%80%99%E4%BB%BD%E8%96%AA%E6%B0%B4%E3%80%8D"><span class="nav-text">一、兩種版本的「我為什麼值得這份薪水」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%AC%AC%E4%BA%8C%E7%A8%AE%E7%89%88%E6%9C%AC%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">二、第二種版本的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%81%B7%E6%A5%AD-Job-%E8%88%87%E5%91%BC%E5%8F%AC-Calling-%E7%9A%84%E5%B7%AE%E5%88%A5"><span class="nav-text">三、職業 (Job) 與呼召 (Calling) 的差別</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%89%80%E4%BB%A5%E7%82%BA%E4%BB%80%E9%BA%BC%E3%80%8C%E7%A5%9E%E5%AD%B8%E9%99%A2%E3%80%8D%E6%98%AF%E4%B8%80%E5%80%8B%E5%8D%8A%E8%AA%8D%E7%9C%9F%E7%9A%84%E7%AD%94%E6%A1%88"><span class="nav-text">四、所以為什麼「神學院」是一個半認真的答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E9%82%A3%E5%9C%A8%E8%A2%AB%E5%8F%96%E4%BB%A3%E4%B9%8B%E5%89%8D%EF%BC%8C%E6%88%91%E8%A6%81%E6%80%8E%E9%BA%BC%E6%B4%BB%EF%BC%9F"><span class="nav-text">五、那在被取代之前，我要怎麼活？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%8D%E7%82%BA%E4%BA%86%E8%AD%89%E6%98%8E%E3%80%8C%E6%88%91%E6%AF%94%E6%A9%9F%E5%99%A8%E5%BC%B7%E3%80%8D%E8%80%8C%E5%B7%A5%E4%BD%9C"><span class="nav-text">1. 不為了證明「我比機器強」而工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%82%BA%E4%BA%86%E3%80%8C%E6%AD%A4%E5%88%BB%E5%9C%A8%E9%80%99%E8%A3%A1%E5%80%BC%E5%BE%97%E5%81%9A%E5%A5%BD%E3%80%8D%E8%80%8C%E5%B7%A5%E4%BD%9C"><span class="nav-text">2. 為了「此刻在這裡值得做好」而工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%90%8C%E6%99%82%E8%AA%A0%E5%AF%A6%E9%9D%A2%E5%B0%8D%E3%80%8C%E6%9C%89%E4%B8%80%E5%A4%A9%E6%88%91%E5%8F%AF%E8%83%BD%E4%B8%8D%E5%9C%A8%E9%80%99%E5%80%8B%E4%BD%8D%E7%BD%AE%E4%B8%8A%E3%80%8D"><span class="nav-text">3. 同時誠實面對「有一天我可能不在這個位置上」</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9A%E8%87%AA%E7%94%B1%E5%9C%B0%E5%B7%A5%E4%BD%9C"><span class="nav-text">六、結語：自由地工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%B8%80%E5%80%8B%E5%8D%8A%E8%AA%8D%E7%9C%9F%E7%9A%84%E7%8E%A9%E7%AC%91"><span class="nav-text">前言：一個半認真的玩笑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%85%A9%E7%A8%AE%E7%89%88%E6%9C%AC%E7%9A%84%E3%80%8C%E6%88%91%E7%82%BA%E4%BB%80%E9%BA%BC%E5%80%BC%E5%BE%97%E9%80%99%E4%BB%BD%E8%96%AA%E6%B0%B4%E3%80%8D"><span class="nav-text">一、兩種版本的「我為什麼值得這份薪水」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%AC%AC%E4%BA%8C%E7%A8%AE%E7%89%88%E6%9C%AC%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">二、第二種版本的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%81%B7%E6%A5%AD-Job-%E8%88%87%E5%91%BC%E5%8F%AC-Calling-%E7%9A%84%E5%B7%AE%E5%88%A5"><span class="nav-text">三、職業 (Job) 與呼召 (Calling) 的差別</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%89%80%E4%BB%A5%E7%82%BA%E4%BB%80%E9%BA%BC%E3%80%8C%E7%A5%9E%E5%AD%B8%E9%99%A2%E3%80%8D%E6%98%AF%E4%B8%80%E5%80%8B%E5%8D%8A%E8%AA%8D%E7%9C%9F%E7%9A%84%E7%AD%94%E6%A1%88"><span class="nav-text">四、所以為什麼「神學院」是一個半認真的答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E9%82%A3%E5%9C%A8%E8%A2%AB%E5%8F%96%E4%BB%A3%E4%B9%8B%E5%89%8D%EF%BC%8C%E6%88%91%E8%A6%81%E6%80%8E%E9%BA%BC%E6%B4%BB%EF%BC%9F"><span class="nav-text">五、那在被取代之前，我要怎麼活？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%8D%E7%82%BA%E4%BA%86%E8%AD%89%E6%98%8E%E3%80%8C%E6%88%91%E6%AF%94%E6%A9%9F%E5%99%A8%E5%BC%B7%E3%80%8D%E8%80%8C%E5%B7%A5%E4%BD%9C"><span class="nav-text">1. 不為了證明「我比機器強」而工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%82%BA%E4%BA%86%E3%80%8C%E6%AD%A4%E5%88%BB%E5%9C%A8%E9%80%99%E8%A3%A1%E5%80%BC%E5%BE%97%E5%81%9A%E5%A5%BD%E3%80%8D%E8%80%8C%E5%B7%A5%E4%BD%9C"><span class="nav-text">2. 為了「此刻在這裡值得做好」而工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%90%8C%E6%99%82%E8%AA%A0%E5%AF%A6%E9%9D%A2%E5%B0%8D%E3%80%8C%E6%9C%89%E4%B8%80%E5%A4%A9%E6%88%91%E5%8F%AF%E8%83%BD%E4%B8%8D%E5%9C%A8%E9%80%99%E5%80%8B%E4%BD%8D%E7%BD%AE%E4%B8%8A%E3%80%8D"><span class="nav-text">3. 同時誠實面對「有一天我可能不在這個位置上」</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9A%E8%87%AA%E7%94%B1%E5%9C%B0%E5%B7%A5%E4%BD%9C"><span class="nav-text">六、結語：自由地工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>

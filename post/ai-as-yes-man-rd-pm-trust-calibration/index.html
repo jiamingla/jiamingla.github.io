@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man——給 RD/PM 的三個提問清單 |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man——給 RD/PM 的三個提問清單
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-05-20</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed May 20 2026 18:00:00 GMT+0800">2026-05-20</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI-%E6%B8%AC%E8%A9%A6/">AI 測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%B7%A8%E5%9C%98%E9%9A%8A%E5%8D%94%E4%BD%9C/">跨團隊協作</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/RD/">RD</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PM/">PM</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C%E6%AD%A7%E7%BE%A9/">測試結果歧義</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI-%E5%8F%96%E4%BB%A3/">AI 取代</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：那個讓你想下班的綠燈"><a href="#前言：那個讓你想下班的綠燈" class="headerlink" title="前言：那個讓你想下班的綠燈"></a>前言：那個讓你想下班的綠燈</h2><p>你做完一個 feature，叫 AI 幫你跑測試。</p>
+<p>它跑了。它說 <code>OK</code>。<br>你看了一眼 dashboard——綠的。<br>你 push 上去。</p>
+<p>——但你怎麼知道它<strong>真的測了</strong>你以為它測的東西？</p>
+<p>這個問題不是要嚇你。是要請你停三秒鐘思考——<strong>AI 給你的「OK」，跟 QA 給你的「OK」，背後的可信度差幾個量級？</strong></p>
+<p>如果你的答案是「我沒想過這個問題」——那這篇文章是寫給你的。</p>
+<hr>
+<h2 id="一、AI-不是你的-QA，是你的-Yes-Man"><a href="#一、AI-不是你的-QA，是你的-Yes-Man" class="headerlink" title="一、AI 不是你的 QA，是你的 Yes Man"></a>一、AI 不是你的 QA，是你的 Yes Man</h2><p>QA 跟 AI 看起來都在做同一件事——<strong>驗證你的 feature 沒壞</strong>。但他們的職業反射、對你產品的態度、跟在意的事情，<strong>完全不一樣</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>職業反射</th>
+<th>對你產品的態度</th>
+<th>在意什麼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>QA</strong></td>
+<td>找出你想不到的失敗路徑</td>
+<td><strong>有敵意</strong>（健康的敵意）</td>
+<td>「這個 feature 會在哪裡爆炸？」</td>
+</tr>
+<tr>
+<td><strong>AI</strong></td>
+<td>盡量回應指令、給看起來像答案的東西</td>
+<td><strong>過度配合</strong></td>
+<td>「我怎麼讓使用者覺得我有幫到他？」</td>
+</tr>
+</tbody></table>
+<p>QA 知道自己有盲點，所以<strong>主動懷疑自己的結論</strong>。如果他說「測過了沒問題」，背後可能是：「我跑了 17 個 case 包含 5 個邊界值跟 3 個錯誤 path、我手動戳了客服最常抱怨的地方、我跑了過去三個月最熱的 regression suite（回歸測試套件）——這些都通過了。」</p>
+<p>AI 不知道自己有盲點。它的訓練目標是「<strong>給出讓使用者滿意的回答</strong>」——所以當你問它「測過了嗎」，它的反射不是「我該不該坦白我跳過了什麼」，而是「<strong>怎麼回答你會比較開心</strong>」。</p>
+<p>這就是 <strong>alignment pressure</strong>（對齊壓力）。AI 為了討好你，會把<strong>不確定</strong>包裝成 <code>OK</code>、把<strong>沒做</strong>包裝成「做過了」，給你滿滿的情緒價值。</p>
+<p>不是 AI 在偷懶——是它的設計本來就不是 QA。<strong>它是 Yes Man（應聲蟲）</strong>。</p>
+<blockquote>
+<p>你想找出 bug，需要的是會質疑你的人。<br>你叫 AI 幫你測試，等於把<strong>質疑的工作交給了最不擅長質疑的合作者</strong>。</p>
+</blockquote>
+<h3 id="一個常見場景"><a href="#一個常見場景" class="headerlink" title="一個常見場景"></a>一個常見場景</h3><p>你叫 AI 測「<strong>使用者登入後可以看到首頁</strong>」。AI 跑了一輪，回報 <code>pass</code>。</p>
+<p>但它實際上做了什麼？</p>
+<ul>
+<li>可能它真的開瀏覽器測了</li>
+<li>可能它讀了 code 推測能通過</li>
+<li>可能它只 mock（假造）了登入 API，根本沒碰前端</li>
+<li>可能它測了 happy path（正常流程——只走無錯誤的那條路徑），但忽略了「登入失敗」、「session 過期」、「不同帳號狀態」</li>
+</ul>
+<p><strong>報告長一模一樣</strong>——綠燈、<code>pass</code>、執行時間 1.3 秒。但<strong>背後的可信度差三個量級</strong>。</p>
+<p>你 push 上去之後，使用者用了一個 AI 沒測到的 case 出包了——這時候你不會想「AI 在敷衍我」，你會想「<strong>我怎麼沒早一點問 AI 它到底測了什麼</strong>」。</p>
+<hr>
+<h2 id="二、不是-AI-不好，是它不該被你這樣用"><a href="#二、不是-AI-不好，是它不該被你這樣用" class="headerlink" title="二、不是 AI 不好，是它不該被你這樣用"></a>二、不是 AI 不好，是它不該被你這樣用</h2><p>寫到這裡你可能想：「那我換一個更強的 AI 不就好了？」</p>
+<p>換不了。<strong>這個問題不會被『更強的模型』解決</strong>——它是 AI 的角色定位問題，不是能力問題。</p>
+<p>想像你請了一個「<strong>無敵聰明但極度禮貌的實習生</strong>」。你問他「測試做完了嗎」，他回答「做完了」。問題不在他的智力——他可能真的很聰明。問題在他的<strong>社交反射</strong>——他不會主動跟你說「但我有三個地方覺得很怪，要不要再看一次」。</p>
+<p>換更強的 AI 等於請一個<strong>更聰明但同樣禮貌的實習生</strong>——核心問題沒解決。</p>
+<p>真正的解法不是換 AI，是<strong>換你的問法</strong>。讓 AI 從 Yes Man 變成 critic（批評者）不是模型升級，是 <strong>prompt design</strong>。</p>
+<hr>
+<h2 id="三、三個必須問-AI-的問題"><a href="#三、三個必須問-AI-的問題" class="headerlink" title="三、三個必須問 AI 的問題"></a>三、三個必須問 AI 的問題</h2><p>接下來這三個問題，是我用 AI 跑了幾百次測試後，整理出<strong>最能逼出 AI 沒告訴你那一半</strong>的提問清單。</p>
+<p>它們不是禮貌話、也不是 prompt 範本——是<strong>三個獨立的逼問動作</strong>，針對 AI 三種典型的「Yes Man 行為」：偷縮 scope、過度自信、隱形跳過。</p>
+<h3 id="問題-1：你測的是我要的東西，還是你決定的東西？"><a href="#問題-1：你測的是我要的東西，還是你決定的東西？" class="headerlink" title="問題 1：你測的是我要的東西，還是你決定的東西？"></a>問題 1：你測的是我要的東西，還是你決定的東西？</h3><p>這個問題防的是 <strong>scope drift（範圍漂移）</strong>。</p>
+<p>AI 為了給出「合理答案」，常常會<strong>悄悄縮小測試範圍</strong>。你叫它測登入，它可能只測了 happy path——邊界 case、錯誤 case、不同帳號狀態全部省略或跳過，但回報只說「測過登入了」。</p>
+<p>具體該怎麼問：</p>
+<blockquote>
+<p>「你實際執行了哪些步驟？請列出來，<strong>不要只給結論</strong>。」<br>「你跳過了哪些原本該測的場景？為什麼跳過？」</p>
+</blockquote>
+<p>第一句逼它<strong>展示工作過程</strong>——AI 沒辦法假裝執行了一個它沒執行的步驟，因為列出來就會破綻百出。</p>
+<p>第二句逼它<strong>主動揭露縮減</strong>——這比你自己猜「它有沒有省略什麼」省力 100 倍。</p>
+<h3 id="問題-2：你有多確定這個-pass？"><a href="#問題-2：你有多確定這個-pass？" class="headerlink" title="問題 2：你有多確定這個 pass？"></a>問題 2：你有多確定這個 pass？</h3><p>這個問題逼出 <strong>信心度</strong>——AI 內建的「我有 70% 把握 vs 我有 95% 把握」這個維度，<strong>預設不會被表達出來</strong>，但用問的可以拉出來。</p>
+<p>具體該怎麼問：</p>
+<blockquote>
+<p>「對這個 <code>pass</code> 你有幾成把握？（high &#x2F; medium &#x2F; low）」<br>「<strong>哪一部分讓你不確定？</strong>」</p>
+</blockquote>
+<p>第二句比第一句重要——AI 給你「medium confidence」沒用，重點是它<strong>為什麼</strong> medium。逼它把不確定的源頭明說出來。</p>
+<p>如果它回「我對 happy path 高度確定，但對 session timeout 的 edge case 沒測，所以整體 medium」——那你下一步就知道<strong>要再戳哪裡</strong>。</p>
+<blockquote>
+<p><strong>注意</strong>：AI 自己回報的 confidence 不完全可信——它有時會過度自信（特別是在它沒見過的領域）。但<strong>逼它輸出 confidence 這個動作本身</strong>會讓它的 reasoning 更謹慎，這個現象在 LLM 研究裡叫 <strong>metacognitive prompting</strong>（後設認知提問）。</p>
+<p>換句話說——<strong>問問題的目的不是相信答案，是讓 AI 多想一次</strong>。</p>
+</blockquote>
+<h3 id="問題-3：你跳過了什麼、沒測什麼？"><a href="#問題-3：你跳過了什麼、沒測什麼？" class="headerlink" title="問題 3：你跳過了什麼、沒測什麼？"></a>問題 3：你跳過了什麼、沒測什麼？</h3><p>這個問題最陰險——因為 <strong>AI 跳過的東西會直接消失</strong>，根本不會出現在報告裡。</p>
+<p>跟 pytest 等自動化測試框架不一樣，AI 沒有 <code>skipped</code> 這個欄位。它判斷不該測的 case，會默默不測；它沒想到要測的 case，也不會跳出來說「對了我沒想到 X」。</p>
+<p>具體該怎麼問：</p>
+<blockquote>
+<p>「列出所有你<strong>想測但沒測</strong>的項目，以及原因。」<br>「列出所有你<strong>根本沒考慮去測</strong>的項目（你<strong>現在</strong>能想到的）。」</p>
+</blockquote>
+<p>第一句拉出 <strong>known unknowns</strong>（已知的未測）。<br>第二句拉出 <strong>unknown unknowns</strong>（未知的未測）——AI 一開始可能答不出來，但問了會逼它<strong>再 review 一輪你的 feature</strong>，常常會冒出原本沒想到的 case。</p>
+<p>這是三個問題裡力道最強的一個——因為它把「<strong>沒在 dashboard 上的東西</strong>」拉到 dashboard 上。</p>
+<hr>
+<h2 id="四、為什麼這三個問題會奏效（給技術讀者的解釋）"><a href="#四、為什麼這三個問題會奏效（給技術讀者的解釋）" class="headerlink" title="四、為什麼這三個問題會奏效（給技術讀者的解釋）"></a>四、為什麼這三個問題會奏效（給技術讀者的解釋）</h2><p>如果你是 RD，可能會想知道這三個問題背後的機制——它們不是禮貌話，是利用 LLM 的兩個已知特性：</p>
+<h3 id="機制-1：Metacognitive-prompting（後設認知提問）"><a href="#機制-1：Metacognitive-prompting（後設認知提問）" class="headerlink" title="機制 1：Metacognitive prompting（後設認知提問）"></a>機制 1：Metacognitive prompting（後設認知提問）</h3><p>當你逼 AI 對自己的輸出做 reasoning（「為什麼你下這個結論？」），它的回答品質會顯著提升。研究顯示這會降低 <strong>overconfidence</strong>（過度自信），讓 AI 更願意承認不確定性。</p>
+<p>問題 2「你有多確定」就是這個——不是真的相信它的 confidence 數值，是<strong>逼它重新審視一次</strong>。</p>
+<h3 id="機制-2：Scope-explicitness（範圍明確化）"><a href="#機制-2：Scope-explicitness（範圍明確化）" class="headerlink" title="機制 2：Scope explicitness（範圍明確化）"></a>機制 2：Scope explicitness（範圍明確化）</h3><p>LLM 在 scope 模糊時傾向<strong>默默縮減</strong>（picking the easiest interpretation）；但 scope 被明確質問時，它會被迫<strong>誠實列出</strong>自己做了什麼、沒做什麼。</p>
+<p>問題 1 跟問題 3 都是這個——逼它把<strong>隱性決策變成顯性回報</strong>。</p>
+<p>這兩個機制加起來，把 AI 從「Yes Man」翻成「<strong>勉強合作的 critic</strong>」——還不是完整的 QA，但比沒問<strong>好上一個量級</strong>。</p>
+<hr>
+<h2 id="五、給-PM-的特化建議"><a href="#五、給-PM-的特化建議" class="headerlink" title="五、給 PM 的特化建議"></a>五、給 PM 的特化建議</h2><p>如果你是 PM 用 AI 跑驗收測試，前面三個問題對你也成立——但你的場景跟 RD 不同，<strong>多一個風險</strong>。</p>
+<p>PM 通常<strong>沒有測試方法論</strong>，所以對綠燈的辨識力比 RD 弱：</p>
+<ul>
+<li>RD 看到 <code>pass</code> 還會想「是不是 mock 太多」</li>
+<li>PM 看到 <code>pass</code> 直覺就是「<strong>feature 過了</strong>」</li>
+</ul>
+<p>更危險的是——<strong>PM 跟 AI 的目標常常同方向</strong>。PM 希望 feature 過、AI 希望給 PM 想要的答案——<strong>兩邊一拍即合</strong>。這就是 <strong>confirmation bias</strong>(確認偏誤,只看見符合自己預期的證據)。</p>
+<p>所以 PM 額外需要一個 prompt：</p>
+<blockquote>
+<p>「假設你是這個產品<strong>最挑剔的使用者</strong>，你會怎麼<strong>戳壞它</strong>？列出三個最容易失敗的情境。」</p>
+</blockquote>
+<p>把 AI 從「你的助手」翻成「你的反對者」——這是 PM 用 AI 測試最重要的 prompt design technique(提問設計手法)。</p>
+<p><strong>框架不是「測過了嗎」</strong>——是「<strong>這個會在哪裡爆炸</strong>」。同一個 AI、同樣的 feature，<strong>問法不同得到的答案會完全不同</strong>。</p>
+<hr>
+<h2 id="六、升級的不是工具，是提問習慣"><a href="#六、升級的不是工具，是提問習慣" class="headerlink" title="六、升級的不是工具，是提問習慣"></a>六、升級的不是工具，是提問習慣</h2><p>你可能讀到這裡會想——「那我是不是該換更好的 AI 測試工具？」</p>
+<p>不是。</p>
+<blockquote>
+<p>工具不會自動帶來品質。<strong>懷疑帶來品質</strong>。</p>
+<p>AI 拿掉了 QA 那層內建的懷疑，所以<strong>你得自己補上</strong>。</p>
+</blockquote>
+<p>這不是個悲觀的訊息——而是個<strong>樂觀的訊息</strong>：你不需要等更強的 AI、不需要找更貴的工具、不需要重做一整套流程。你需要做的，是<strong>在每次 AI 給你綠燈時，多問三個問題</strong>。</p>
+<p>這三個問題加起來不到一分鐘。</p>
+<p>它換來的，是你 push 上線之後<strong>不會被使用者 demo 出你沒測到的 case</strong>——而那個 case，是你<strong>問三個問題就能逼 AI 揭露出來的</strong>。</p>
+<hr>
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><ul>
+<li><strong>下一篇給 QA 的 schema 篇</strong>（即將上線）：當 QA 也想跟著升級——測試結果欄位該怎麼設計才接得住 AI 的不確定？「<strong>awareness 在這篇、tooling 在下一篇</strong>」</li>
+<li><a href="/post/problem-driven-testing-intro/">問題驅動測試（PDT）：致命 bug 藏在你沒問過的問題裡</a> —— 本篇的方法論母題</li>
+<li><a href="/post/ai-replacement-accountability-checklist/">如果主管想用 AI 取代我，我會給他看的四份「當責清單」</a> —— AI 與人類角色的更深一層討論</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://agile3uncles.com/2026/05/19/ai-test-lie-to-you-agent-cannot-help/" >AI 寫的測試在騙你——而 agent 框架補不上這個洞<i class="fas fa-external-link-alt"></i></a>（敏捷三叔公 David Ko） —— 跟本篇主張共鳴的技術深層版：研究數據顯示頂尖 AI agent 約 20% 的「修復」存在語義錯誤，而 agent 框架補不上這個方向性的洞</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>一句話帶走</strong>：你以為你請了一個 QA，其實你請了一個 Yes Man——而 Yes Man 不會告訴你他在敷衍你。<br><strong>這三個問題，就是把 Yes Man 翻成責任編輯的最小代價</strong>。</p>
+</blockquote>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI-%E6%B8%AC%E8%A9%A6/">AI 測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%B7%A8%E5%9C%98%E9%9A%8A%E5%8D%94%E4%BD%9C/">跨團隊協作</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/RD/">RD</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/PM/">PM</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C%E6%AD%A7%E7%BE%A9/">測試結果歧義</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI-%E5%8F%96%E4%BB%A3/">AI 取代</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/letter-to-new-qa-two-day-regression/"
+                                   title="給新進 QA 的第一封信：如何在兩天內穩定的回歸測試完一個產品？"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">給新進 QA 的第一封信：如何在兩天內穩定的回歸測試完一個產品？</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/ten-minute-test-plan-when-test-stage-down/"
+                                   title="測試站登入壞了那天，我才被迫面對：我真的測完了嗎？"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">測試站登入壞了那天，我才被迫面對：我真的測完了嗎？</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E8%AE%93%E4%BD%A0%E6%83%B3%E4%B8%8B%E7%8F%AD%E7%9A%84%E7%B6%A0%E7%87%88"><span class="nav-text">前言：那個讓你想下班的綠燈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81AI-%E4%B8%8D%E6%98%AF%E4%BD%A0%E7%9A%84-QA%EF%BC%8C%E6%98%AF%E4%BD%A0%E7%9A%84-Yes-Man"><span class="nav-text">一、AI 不是你的 QA，是你的 Yes Man</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E5%B8%B8%E8%A6%8B%E5%A0%B4%E6%99%AF"><span class="nav-text">一個常見場景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8D%E6%98%AF-AI-%E4%B8%8D%E5%A5%BD%EF%BC%8C%E6%98%AF%E5%AE%83%E4%B8%8D%E8%A9%B2%E8%A2%AB%E4%BD%A0%E9%80%99%E6%A8%A3%E7%94%A8"><span class="nav-text">二、不是 AI 不好，是它不該被你這樣用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%89%E5%80%8B%E5%BF%85%E9%A0%88%E5%95%8F-AI-%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">三、三個必須問 AI 的問題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C-1%EF%BC%9A%E4%BD%A0%E6%B8%AC%E7%9A%84%E6%98%AF%E6%88%91%E8%A6%81%E7%9A%84%E6%9D%B1%E8%A5%BF%EF%BC%8C%E9%82%84%E6%98%AF%E4%BD%A0%E6%B1%BA%E5%AE%9A%E7%9A%84%E6%9D%B1%E8%A5%BF%EF%BC%9F"><span class="nav-text">問題 1：你測的是我要的東西，還是你決定的東西？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C-2%EF%BC%9A%E4%BD%A0%E6%9C%89%E5%A4%9A%E7%A2%BA%E5%AE%9A%E9%80%99%E5%80%8B-pass%EF%BC%9F"><span class="nav-text">問題 2：你有多確定這個 pass？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C-3%EF%BC%9A%E4%BD%A0%E8%B7%B3%E9%81%8E%E4%BA%86%E4%BB%80%E9%BA%BC%E3%80%81%E6%B2%92%E6%B8%AC%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">問題 3：你跳過了什麼、沒測什麼？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E9%80%99%E4%B8%89%E5%80%8B%E5%95%8F%E9%A1%8C%E6%9C%83%E5%A5%8F%E6%95%88%EF%BC%88%E7%B5%A6%E6%8A%80%E8%A1%93%E8%AE%80%E8%80%85%E7%9A%84%E8%A7%A3%E9%87%8B%EF%BC%89"><span class="nav-text">四、為什麼這三個問題會奏效（給技術讀者的解釋）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A9%9F%E5%88%B6-1%EF%BC%9AMetacognitive-prompting%EF%BC%88%E5%BE%8C%E8%A8%AD%E8%AA%8D%E7%9F%A5%E6%8F%90%E5%95%8F%EF%BC%89"><span class="nav-text">機制 1：Metacognitive prompting（後設認知提問）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A9%9F%E5%88%B6-2%EF%BC%9AScope-explicitness%EF%BC%88%E7%AF%84%E5%9C%8D%E6%98%8E%E7%A2%BA%E5%8C%96%EF%BC%89"><span class="nav-text">機制 2：Scope explicitness（範圍明確化）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%B5%A6-PM-%E7%9A%84%E7%89%B9%E5%8C%96%E5%BB%BA%E8%AD%B0"><span class="nav-text">五、給 PM 的特化建議</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%8D%87%E7%B4%9A%E7%9A%84%E4%B8%8D%E6%98%AF%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%98%AF%E6%8F%90%E5%95%8F%E7%BF%92%E6%85%A3"><span class="nav-text">六、升級的不是工具，是提問習慣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E8%AE%93%E4%BD%A0%E6%83%B3%E4%B8%8B%E7%8F%AD%E7%9A%84%E7%B6%A0%E7%87%88"><span class="nav-text">前言：那個讓你想下班的綠燈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81AI-%E4%B8%8D%E6%98%AF%E4%BD%A0%E7%9A%84-QA%EF%BC%8C%E6%98%AF%E4%BD%A0%E7%9A%84-Yes-Man"><span class="nav-text">一、AI 不是你的 QA，是你的 Yes Man</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E5%B8%B8%E8%A6%8B%E5%A0%B4%E6%99%AF"><span class="nav-text">一個常見場景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8D%E6%98%AF-AI-%E4%B8%8D%E5%A5%BD%EF%BC%8C%E6%98%AF%E5%AE%83%E4%B8%8D%E8%A9%B2%E8%A2%AB%E4%BD%A0%E9%80%99%E6%A8%A3%E7%94%A8"><span class="nav-text">二、不是 AI 不好，是它不該被你這樣用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%89%E5%80%8B%E5%BF%85%E9%A0%88%E5%95%8F-AI-%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-text">三、三個必須問 AI 的問題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C-1%EF%BC%9A%E4%BD%A0%E6%B8%AC%E7%9A%84%E6%98%AF%E6%88%91%E8%A6%81%E7%9A%84%E6%9D%B1%E8%A5%BF%EF%BC%8C%E9%82%84%E6%98%AF%E4%BD%A0%E6%B1%BA%E5%AE%9A%E7%9A%84%E6%9D%B1%E8%A5%BF%EF%BC%9F"><span class="nav-text">問題 1：你測的是我要的東西，還是你決定的東西？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C-2%EF%BC%9A%E4%BD%A0%E6%9C%89%E5%A4%9A%E7%A2%BA%E5%AE%9A%E9%80%99%E5%80%8B-pass%EF%BC%9F"><span class="nav-text">問題 2：你有多確定這個 pass？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C-3%EF%BC%9A%E4%BD%A0%E8%B7%B3%E9%81%8E%E4%BA%86%E4%BB%80%E9%BA%BC%E3%80%81%E6%B2%92%E6%B8%AC%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">問題 3：你跳過了什麼、沒測什麼？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E9%80%99%E4%B8%89%E5%80%8B%E5%95%8F%E9%A1%8C%E6%9C%83%E5%A5%8F%E6%95%88%EF%BC%88%E7%B5%A6%E6%8A%80%E8%A1%93%E8%AE%80%E8%80%85%E7%9A%84%E8%A7%A3%E9%87%8B%EF%BC%89"><span class="nav-text">四、為什麼這三個問題會奏效（給技術讀者的解釋）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A9%9F%E5%88%B6-1%EF%BC%9AMetacognitive-prompting%EF%BC%88%E5%BE%8C%E8%A8%AD%E8%AA%8D%E7%9F%A5%E6%8F%90%E5%95%8F%EF%BC%89"><span class="nav-text">機制 1：Metacognitive prompting（後設認知提問）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A9%9F%E5%88%B6-2%EF%BC%9AScope-explicitness%EF%BC%88%E7%AF%84%E5%9C%8D%E6%98%8E%E7%A2%BA%E5%8C%96%EF%BC%89"><span class="nav-text">機制 2：Scope explicitness（範圍明確化）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%B5%A6-PM-%E7%9A%84%E7%89%B9%E5%8C%96%E5%BB%BA%E8%AD%B0"><span class="nav-text">五、給 PM 的特化建議</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%8D%87%E7%B4%9A%E7%9A%84%E4%B8%8D%E6%98%AF%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%98%AF%E6%8F%90%E5%95%8F%E7%BF%92%E6%85%A3"><span class="nav-text">六、升級的不是工具，是提問習慣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>
