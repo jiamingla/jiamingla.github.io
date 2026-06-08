@@ -71,7 +71,7 @@
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
 | [notest-ambiguity-skip-vs-low-confidence-planning](../source/_drafts/notest-ambiguity-skip-vs-low-confidence-planning.md) | 線二（AI 測試判讀） | ⭐⭐⭐ 長尾。已積 ~21k 字（比「骨架」成熟，但未確認完稿）。6 月中後 |
-| [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已積 ~17k 字。草稿，等思考完才動 |
+| [pom-refactor-from-runnable-to-maintainable-planning](../source/_drafts/pom-refactor-from-runnable-to-maintainable-planning.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已積 ~17k 字。已增規劃檔，等思考完才動 |
 | [not-just-make-manual-script-automate-planning](../source/_drafts/not-just-make-manual-script-automate-planning.md) | 線三 + 線五（UI 自動化 / 自動化決策） | **2026-05-15 骨架完成、4 個反思問題待答**，等想清楚 Q1-Q4 再填內容 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
@@ -79,6 +79,7 @@
 ### 規劃文件（notes/，不會直接成為文章）
 
 - [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) — **2026-06-08 新**：bug-triage 六種模式對照的素材 + 待思考問題。**gating decision = 揭露邊界**（改用兩間前公司第一手案例，去識別化 / 法務距離 / 情緒中立想清楚才生成文章）。⭐⭐⭐⭐ 長尾，線八主場 + 線十前傳
+- [pom-refactor-from-runnable-to-maintainable-planning.md](pom-refactor-from-runnable-to-maintainable-planning.md) — **2026-06-09 新**：大四實習時的 POM 啟蒙與現今實踐對照，並思考封裝良好的 Page Object 在 AI 時代作為 Agent Tool API 的全新戰略價值。
 - [analogy-series-proposals.md](analogy-series-proposals.md) — PDT 類比系列（醫生 / 記者 / 偵探 / 讀者）
 - [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md) — 讀書延伸題目（《QA 職涯手冊》七個切角）
 - [tools-roadmap.md](tools-roadmap.md) — PDT/Self-Review Agent 工具路線
