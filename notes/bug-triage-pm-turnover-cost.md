@@ -42,6 +42,54 @@
 
 這是線十「無主之地」框架的 **organizational root cause**——之前的 framing 停在「沒人天然該收這個 inbox」，但更上一層是「**沒人的 KPI 包含這件事**」。
 
+### 🛫 Aviation 安全文化類比（**sequel 的主 thesis 升級**）
+
+> **起源**：user 看完 YouTube〈[四個小錯誤，炸掉半個互聯網【讓編程再次偉大#40】](https://youtu.be/eF0SFyCGWlg)〉後 surface 的更深層 framing。
+>
+> User 原話：「**那幾百個 bug 其實屬於重大事故、真正值得記錄下來的其實很少**……後端 / 運維 bug（像影片提到的 AWS 事故）不在我目前 QA 部門範圍、有點可惜。」
+
+#### 為什麼 aviation framing 比 PM turnover 升一級
+
+| 維度 | PM turnover sequel（原 skeleton） | **Aviation framing**（升級版） |
+|---|---|---|
+| Thesis 層級 | organizational fix | **culture critique**（行業層級） |
+| 公司指紋 risk | 中（易讀「我們公司」） | **無**（純行業論述） |
+| SEO cluster | bug triage 長尾 | **「軟體 QA 安全文化」「post-mortem」「incident review」**新 cluster |
+| 跟 6/4 reflection 連動 | 弱 | 強——「**接近組織不是工程**」+「**資產 vs 負債**」的具體 manifestation |
+| 跟 first-principle 連動 | 中 | **強**——「三方 partial」直接對應「incident 是 archival evidence、bulk close = discarding partial」 |
+
+#### 行業文化對比
+
+| 維度 | 航空業 | 軟體 QA（目前） |
+|---|---|---|
+| 重大事故 review | 強制（regulatory、IATA / FAA） | 通常只 PIR、且只看 outage |
+| 事故分類 framework | 完整（incident / accident / serious incident / precursor） | **無**——所有 bug 同類 |
+| Archive 文化 | 公開、行業共享、進入規範 | bulk close + bankruptcy |
+| Investigation 標準 | 跨組織、強制 root-cause | 視團隊文化、無強制 |
+| 學習機制 | AAR（After Action Review）系統化 | 視團隊、無系統化 |
+
+→ **Sequel 新 thesis**：「**軟體 QA 需要一個 incident classification framework、區分『真事故』vs『noise』、才能有 archival 文化。沒有分類就沒有 archive、沒有 archive 就無從學習——這正是 Bug bankruptcy 被視為「正常做法」的真實 root cause。**」
+
+#### 對 PM turnover 維度的影響
+
+PM turnover 不必當主軸、但可以保留為 **supporting case**：
+- 「PM 一次清掉 backlog」是因為**沒有 incident classification**——清掉跟 archive 沒區別
+- 航空業若 PM-equivalent role 換手不會 bulk close incident report、因為**那些是行業資產**
+- → 揭露 PM turnover 在 aviation framing 裡 **變成「症狀」、不是「病因」**——更安全 + 更深
+
+### 候選文章標題（user surface 後給未來自己挑、不急）
+
+| # | 標題 | 風格 / 強項 |
+|---|---|---|
+| 1 | 〈軟體 QA 沒有航空業的事故 review 文化：為什麼 Bug bankruptcy 變成「正常」做法？〉 | 對照型 + 問題開門、SEO 中等 |
+| 2 | 〈四個小錯誤、半個互聯網——軟體業缺的不是技術、是事故分類的文化〉 | 呼應影片標題、數字 hook、最抓眼球 |
+| 3 | 〈Bug list 是資產還是負債？從航空業看軟體 QA 的盲點〉 | 短、SEO 友善、thesis 直接放標題 |
+| 4 | 〈「真正值得記下來的其實很少」：為什麼軟體 QA 沒有 archival 文化？〉 | 用 user 自己的反思當 hook、最 authentic |
+| 5 | 〈我們把 backlog 當垃圾、航空業把 incident 當教材——軟體業缺的事故分類學〉 | 對偶句、有 punch、narrative drive |
+| 6 | 〈Bug bankruptcy 是行業常態、但這是好做法嗎？航空業給 QA 的一堂課〉 | 質疑既有實踐、反思 tone |
+
+→ 標題決定 thesis 強度：1/3 較收斂、2/5 較大膽、4 最 authentic、6 反思型。
+
 ### 6/10 文章寫了什麼 / 沒寫什麼（updated）：
 
 | 維度 | 6/10 文章 |
@@ -199,3 +247,18 @@
 - 6/10 規劃檔：[bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md)
 - 5/12 四角色 insight：[2026-05-12-insights.md](coach-sessions/2026-05-12-insights.md)
 - 線十 framework：見 [writing-themes.md](writing-themes.md) 線十段
+- **Aviation framing 起源影片**：YouTube〈[四個小錯誤，炸掉半個互聯網【讓編程再次偉大#40】](https://youtu.be/eF0SFyCGWlg)〉（user 看完後 surface 升級 framing）—— 影片內容可能提到 AWS / Cloudflare / CrowdStrike 等具體 outage case，**寫作前要重看一遍取具體 case + 引用 timing**
+
+## 待補的業界 incident case 素材（aviation framing 動筆前要 research）
+
+寫 aviation framing 需要 1-2 個業界 incident case 當對照證據（不是 PM turnover）。建議候選：
+
+| 案例 | 為什麼適合 |
+|---|---|
+| **AWS S3 outage 2017**（typo in command） | 經典「小錯誤大影響」、AWS 公開 post-mortem 是 best practice 範本 |
+| **Cloudflare 2024 outages** | 「四個小錯誤」框架可能呼應、近期讀者熟 |
+| **CrowdStrike 2024-07** | 全球 IT outage、影響範圍空前 |
+| **Boeing 737 MAX**（aviation 反例） | 航空業也會失敗——當「culture is hard」對照 |
+| **NASA Challenger / Columbia AAR** | 航空業 archival 文化的經典 demonstration |
+
+→ 不必全寫，挑 1-2 個對比即可。先看 YouTube 影片找他用的 case 當主錨。
