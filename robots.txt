@@ -1,3 +1,4 @@
+# 基礎爬蟲設定
 User-agent: *
 Allow: /
 Allow: /post/
@@ -5,4 +6,40 @@ Disallow: /archives/
 Disallow: /categories/
 Disallow: /tags/
 
+# 搜尋型 AI 爬蟲：放行（會引流、提供來源連結）
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# 訓練型 AI 爬蟲：擋下（吃資料，不引流）
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# 內容信號：可被搜尋索引、不可訓練、不直接餵 AI 當輸入
+Content-Signal: ai-train=no, search=yes, ai-input=no
+
+# 網站地圖
 Sitemap: https://jiamingla.github.io/sitemap.xml
