@@ -73,7 +73,7 @@
 |---|---|---|
 | [notest-ambiguity-skip-vs-low-confidence-planning](../source/_drafts/notest-ambiguity-skip-vs-low-confidence-planning.md) | 線二（AI 測試判讀） | ⭐⭐⭐ 長尾。已積 ~21k 字（比「骨架」成熟，但未確認完稿）。6 月中後 |
 | [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已融入 AI 價值，暫不發布，保留作為個人技術與工程備忘 |
-| [not-just-make-manual-script-automate-planning](../source/_drafts/not-just-make-manual-script-automate-planning.md) | 線三 + 線五（UI 自動化 / 自動化決策） | **2026-05-15 骨架完成、4 個反思問題待答**，等想清楚 Q1-Q4 再填內容 |
+| [not-just-make-manual-script-automate](../source/_drafts/not-just-make-manual-script-automate.md) | 線三 + 線五（UI 自動化 / 自動化決策） | ⭐⭐⭐ 長尾。系列第一篇總綱已完成草稿，隨時可發布 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
@@ -228,10 +228,10 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 | 草稿 | 長尾關鍵字方向 | 長尾力 | 建議發稿時機 |
 |---|---|---|---|
-| **bug-triage-six-patterns** | Bug Triage 業界六種模式、Bug 分派、QA bug 指派 | ⭐⭐⭐⭐ | ✅ **已生成並排程 2026-06-10**（前公司 F+E 第一手 + 業界 survey），見 [planning](bug-triage-six-patterns-planning.md) |
+| **bug-triage-six-patterns** | Bug Triage 業界六種模式、Bug 分派、QA bug 指派 | ⭐⭐⭐⭐ | ✅ **已生成並排程 2026-06-11**（前公司 F+E 第一手 + 業界 survey），見 [planning](bug-triage-six-patterns-planning.md) |
 | **page-source-vs-find-element** | page_source vs find_element、UI 自動化效能 | ⭐⭐⭐⭐ | 已排 6/20，極具長尾 |
 | **empty-result-ambiguity-in-filter-testing** | 篩選沒結果、自動化測試 empty | ⭐⭐⭐ | 已排 6/6 |
-| **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | 等 4 題反思答完 |
+| **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | 6 月中後（已完成草稿） |
 | **notest-ambiguity-skip-vs-low-confidence** | AI 測試 pass fail 不夠、notest 歧義 | ⭐⭐⭐ | 6 月中後 |
 | **pom-refactor-from-runnable-to-maintainable** | POM 重構、Page Object Pattern | ⭐⭐⭐ | 暫不發布（作為個人技術與工程備忘） |
 | **letter-to-new-qa-two-day-regression** | 新進 QA、兩天回歸測試 | ⭐⭐ | 5/24-25（已建議） |
