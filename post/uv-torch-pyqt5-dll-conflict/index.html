@@ -9,7 +9,7 @@
     
     <title>
         
-            【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？ |
+            【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案 |
         
         Elijah’s Quality Lab
     </title>
@@ -239,7 +239,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？
+                        【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案
                     </div>
                 
 
@@ -267,13 +267,13 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2026-06-08</span>
+                <span class="datetime">2026-06-10</span>
             </span>
 
             
                 <span class="meta-info-item post-update-date">
                     <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                    <span class="datetime" data-updated="Mon Jun 08 2026 12:00:00 GMT+0000">2026-06-08</span>
+                    <span class="datetime" data-updated="Tue Jun 09 2026 16:40:00 GMT+0000">2026-06-10</span>
                 </span>
             
         
@@ -284,19 +284,25 @@
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Python/">Python</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E5%A0%B4%E5%A4%A7%E4%BA%BA%E5%AD%B8/">職場大人學</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/uv/">uv</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PyTorch/">PyTorch</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%BA%9D%E9%80%9A%E6%8A%80%E5%B7%A7/">溝通技巧</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PyQt5/">PyQt5</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/DLL/">DLL</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%96%91%E9%9B%A3%E6%8E%92%E8%A7%A3/">疑難排解</a></li>
                         
                     
                 </ul>
@@ -325,75 +331,68 @@
                     
 
                     
-                         <h2 id="前言：那個被無視的「完美報告」"><a href="#前言：那個被無視的「完美報告」" class="headerlink" title="前言：那個被無視的「完美報告」"></a>前言：那個被無視的「完美報告」</h2><p>想像一個你可能非常熟悉的場景：</p>
-<p>迭代進入尾聲，你連續加班兩天，終於跑完了一千多條測試案例。你滿懷成就感地整理出一份精美的 Excel 報表，裡面有詳盡的圓餅圖、長條圖，標註著 98% 的通過率，以及剩下 2% 的已知問題。</p>
-<p>你把這份「戰果」寄給老闆，甚至在會議上投影出來。你期待老闆會稱讚你的嚴謹，或是針對那 2% 的 Bug 展開深度討論。結果老闆只掃了一眼，眉頭一皺，打斷你的簡報問了一句：</p>
-<blockquote>
-<p>「所以，今天下班前這版到底能不能準時上線？會不會出事？」</p>
-</blockquote>
-<p>那一刻，你心裡可能充滿了委屈：「我不是都寫在報告裡了嗎？通過率 98% 欸！剩下的問題我也都列出來了啊！」</p>
-<p>如果你有過這種「對牛彈琴」的無力感，那很可能不是你的專業出了問題，而是你還沒<strong>看懂職場的「局」</strong>。</p>
+                         <h2 id="前言：一個讓人措手不及的-WinError-1114"><a href="#前言：一個讓人措手不及的-WinError-1114" class="headerlink" title="前言：一個讓人措手不及的 WinError 1114"></a>前言：一個讓人措手不及的 WinError 1114</h2><p>想像一個場景：你高高興興地把專案遷移到最近很紅、速度極快的 Python 套件管理工具 <strong>uv</strong>，本地端安裝一切順利。結果一執行專案，畫面沒出來，終端機直接噴出這一串冷酷的報錯：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OSError: [WinError 1114] 動態連結程式庫 (DLL) 初始化例行程序失敗。</span><br><span class="line">Error loading &quot;...torch\lib\c10.dll&quot; or one of its dependencies.</span><br></pre></td></tr></table></figure>
+
+<p>更讓人納悶的是，旁邊用 Mac 的同事一臉無辜地說：「我跑起來完全沒問題啊？是不是你 Windows 系統壞了？」</p>
+<p>這不是你的系統壞了，也不是你運氣不好。這是一個融合了 <strong>套件版本命名潛規則</strong>、<strong>Windows 作業系統 DLL 載入順序</strong>，以及 <strong>uv 運行容器差異</strong> 的綜合性大坑。這篇文章用白話文幫你拆解，這場「Windows 限定」的 DLL 衝突到底是怎麼發生的。</p>
 <hr>
-<h2 id="一、-看懂老闆的「局」：他在焦慮什麼？"><a href="#一、-看懂老闆的「局」：他在焦慮什麼？" class="headerlink" title="一、 看懂老闆的「局」：他在焦慮什麼？"></a>一、 看懂老闆的「局」：他在焦慮什麼？</h2><p>在「職場大人學」A101 課程中，Bryan 老師一再強調一個核心觀念：<strong>看懂局，是所有策略的起點。</strong></p>
-<p>身為 QA，我們習慣的局是「技術與邏輯」。但在老闆的局裡，他看到的風景完全不同：</p>
-<h3 id="1-資訊不對稱的焦慮"><a href="#1-資訊不對稱的焦慮" class="headerlink" title="1. 資訊不對稱的焦慮"></a>1. 資訊不對稱的焦慮</h3><p>老闆（或是高階主管、PM）通常不直接參與開發細節。他看不懂 Code，也分不清楚什麼是「邊界條件」或「異步處理」。對他來說，測試報告就像是一疊外星語言。當他看不懂時，他唯一能感受到的就是「不確定性」，而<strong>不確定性會轉化為強烈的焦慮</strong>。</p>
-<h3 id="2-目標層級的不同"><a href="#2-目標層級的不同" class="headerlink" title="2. 目標層級的不同"></a>2. 目標層級的不同</h3><ul>
-<li><strong>QA 的局（技術層）：</strong> 關注的是「正確性」。Bug 找出來了沒？邊界測了沒？（解決的是技術問題）</li>
-<li><strong>老闆的局（商業層）：</strong> 關注的是「生存與損益」。產品能不能如期上線？會不會被客戶投訴？會不會導致營收損失？（解決的是生存問題）</li>
+<h2 id="謎團一：為什麼-uv-裝-torchvision-會失敗？"><a href="#謎團一：為什麼-uv-裝-torchvision-會失敗？" class="headerlink" title="謎團一：為什麼 uv 裝 torchvision 會失敗？"></a>謎團一：為什麼 uv 裝 torchvision 會失敗？</h2><p>當你剛把專案轉到 <code>uv</code> 時，通常在設定 <code>pyproject.toml</code> 階段就會遇到第一個下馬威。<code>uv</code> 在下載 <code>torchvision</code> 時會卡住並報錯：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error: Distribution `torchvision==0.24.0+e437e35 @ ...whl/cpu` can&#x27;t be installed</span><br><span class="line">hint: ... but `torchvision` (v0.24.0+e437e35) only has wheels for: `win_arm64`</span><br></pre></td></tr></table></figure>
+
+<h3 id="根因：套件庫的版本號排序「比大小」Bug"><a href="#根因：套件庫的版本號排序「比大小」Bug" class="headerlink" title="根因：套件庫的版本號排序「比大小」Bug"></a>根因：套件庫的版本號排序「比大小」Bug</h3><p>PyTorch 官方的 CPU 版本套件庫裡，同一個版本（例如 <code>0.24.0</code>）同時放了兩種檔案：</p>
+<ol>
+<li><code>+cpu</code>（給一般 Intel&#x2F;AMD 電腦用的）</li>
+<li><code>+e437e35</code>（專門給 ARM 晶片 Windows 電腦用的）</li>
+</ol>
+<p>依照套件版本的英文字母排序規則，<code>e437e35</code> 排在 <code>cpu</code> 的後面，也就是被系統認為是「最新版本」。所以，求知慾很強且動作極快的 <code>uv</code> 在解析依賴時，會自動去抓它認為最新、但實際上是給 ARM 電腦用的 <code>+e437e35</code>，結果在你的一般 Windows 電腦上當然裝不起來。</p>
+<h3 id="怎麼解決？"><a href="#怎麼解決？" class="headerlink" title="怎麼解決？"></a>怎麼解決？</h3><p>在 <code>pyproject.toml</code> 裡，我們不能只寫 <code>torchvision</code> 讓它自己猜，必須把後綴的 <code>+cpu</code> 寫死，強迫 <code>uv</code> 抓正確的版本：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies</span> = [</span><br><span class="line">    <span class="string">&quot;torch==2.9.0+cpu&quot;</span>,</span><br><span class="line">    <span class="string">&quot;torchvision==0.24.0+cpu&quot;</span>,</span><br><span class="line">    <span class="string">&quot;torchaudio==2.9.0+cpu&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="section">[[tool.uv.index]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;pytorch-cpu&quot;</span></span><br><span class="line"><span class="attr">url</span> = <span class="string">&quot;https://download.pytorch.org/whl/cpu&quot;</span></span><br><span class="line"><span class="attr">explicit</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="謎團二：torchaudio-與-torch-的-ABI-不匹配"><a href="#謎團二：torchaudio-與-torch-的-ABI-不匹配" class="headerlink" title="謎團二：torchaudio 與 torch 的 ABI 不匹配"></a>謎團二：torchaudio 與 torch 的 ABI 不匹配</h2><p>裝好套件後，一執行又噴出另一個錯誤：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OSError: Could not load this library: ...torchaudio\lib\_torchaudio.pyd</span><br></pre></td></tr></table></figure>
+
+<h3 id="根因：核心零件的「嚴格對齊」"><a href="#根因：核心零件的「嚴格對齊」" class="headerlink" title="根因：核心零件的「嚴格對齊」"></a>根因：核心零件的「嚴格對齊」</h3><p>這很像買腳踏車，你只指定了車架（<code>torch</code>）要 2.9.0 版，卻讓鏈條（<code>torchaudio</code>）抓了最新版。因為這些深度學習套件底層都是 C++ 寫的，鏈條和齒輪的規格（C++ ABI）必須完全嚴格對齊。只要版本稍微對不上，動態檔案就卡不進去，直接當場罷工。</p>
+<h3 id="怎麼解決？-1"><a href="#怎麼解決？-1" class="headerlink" title="怎麼解決？"></a>怎麼解決？</h3><p>很簡單，在 <code>pyproject.toml</code> 裡，把 <code>torch</code>、<code>torchvision</code>、<code>torchaudio</code> 三個套件的版本後綴對齊成同一個系列（例如全部對齊 2.9.0 &#x2F; 0.24.0 系列）。</p>
+<hr>
+<h2 id="謎團三：PyQt5-與-PyTorch-的-DLL-衝突"><a href="#謎團三：PyQt5-與-PyTorch-的-DLL-衝突" class="headerlink" title="謎團三：PyQt5 與 PyTorch 的 DLL 衝突"></a>謎團三：PyQt5 與 PyTorch 的 DLL 衝突</h2><p>這是整個故事中最精采的部分。為什麼你的專案一 import PyQt5，接著載入 PyTorch（比如用 easyocr 做圖片辨識）時，<code>c10.dll</code> 就會初始化失敗？</p>
+<h3 id="用「餐廳的餐刀」來比喻這個衝突"><a href="#用「餐廳的餐刀」來比喻這個衝突" class="headerlink" title="用「餐廳的餐刀」來比喻這個衝突"></a>用「餐廳的餐刀」來比喻這個衝突</h3><p>想像你去一家餐廳（Python 進程）吃飯，你想用一把好切的專業牛排刀（現代 VC++ Runtime）來切牛排（載入 PyTorch 的 <code>c10.dll</code>）。</p>
+<ol>
+<li>你的程式一啟動，因為要連接 Google Sheets 或是畫面上某些元件，先載入了 <strong>PyQt5</strong>。</li>
+<li>PyQt5 很高調，一進餐廳就把自己隨身攜帶的一把<strong>舊款折疊塑膠刀</strong>（PyQt5 5.15 內建的老舊 runtime DLL）直接拍在餐桌上（將自己的目錄加進 Windows 的系統 DLL 搜尋路徑）。</li>
+<li>隨後，程式準備載入 PyTorch（easyocr）。PyTorch 進場後想找牛排刀，但因為 PyQt5 已經把那把舊塑膠刀放在桌上最顯眼的位置了（Windows 搜尋 DLL 的高優先級路徑），PyTorch 沒多想，拿起來就切。</li>
+<li>結果塑膠刀當場折斷，牛排切不下去——這就是 <code>c10.dll</code> 載入失敗（WinError 1114）。</li>
+</ol>
+<h3 id="怎麼解決？-2"><a href="#怎麼解決？-2" class="headerlink" title="怎麼解決？"></a>怎麼解決？</h3><ul>
+<li><strong>方法一：惰性載入（Lazy Import）</strong><br>如果你的自動化測試流程中，只有特定步驟才需要用 OCR 影像辨識，就把 <code>import easyocr</code> 或 <code>import torch</code> 移到函式內部。這樣平常不需要影像辨識時，程式就永遠不會去拿那把牛排刀，自然相安無事。</li>
+<li><strong>方法二：搶先佔位（Workaround）</strong><br>在程式最頂端、PyQt5 還沒有進餐廳之前，<strong>搶先 <code>import torch</code></strong>。這等於是在 PyQt5 把塑膠刀拍在桌上之前，我們先把專業牛排刀拿在手上鎖定。等 PyQt5 進場後，我們已經拿好正確的工具了，就不會被它的舊 DLL 干擾。</li>
 </ul>
-<p>當你一直報告「技術正確性」時，你其實是在增加他的 CPU 負荷，因為他還得在大腦裡幫你把這些數據翻譯成「商業風險」。</p>
 <hr>
-<h2 id="二、-為什麼「純技術數據」是低效溝通？"><a href="#二、-為什麼「純技術數據」是低效溝通？" class="headerlink" title="二、 為什麼「純技術數據」是低效溝通？"></a>二、 為什麼「純技術數據」是低效溝通？</h2><p>我們常以為「專業」就是給出精準的數據。但在向上管理的情境中，<strong>數據不等於資訊</strong>。</p>
+<h2 id="核心解析：為什麼這個-Bug-只有在-uv-環境下會發生？"><a href="#核心解析：為什麼這個-Bug-只有在-uv-環境下會發生？" class="headerlink" title="核心解析：為什麼這個 Bug 只有在 uv 環境下會發生？"></a>核心解析：為什麼這個 Bug 只有在 <code>uv</code> 環境下會發生？</h2><p>這時你可能會問：「不對啊，我之前沒有用 <code>uv</code>，是用微軟商店（Windows Store）裝的 Python，為什麼就不會遇到這把『塑膠刀』的干擾？」</p>
+<p>這涉及到 <strong><code>uv</code> 運作環境</strong> 與 <strong>Windows OS 安全防護</strong> 的底層差異：</p>
 <ul>
-<li><strong>數據（Data）：</strong> 「通過率 98%」、「發現 50 個 Bug」。</li>
-<li><strong>資訊（Information）：</strong> 「剩下的 2% 雖然不多，但會導致購物車在 iOS 14 以下版本無法結帳，預估影響 5% 的營收。」</li>
+<li><strong>Windows Store 版 Python</strong>：運行在微軟的 <strong>AppContainer（應用程式沙盒）</strong> 裡面。在這個沙盒裡，每個套件都被隔離在自己的包廂，PyQt5 的塑膠刀根本拿不出包廂，污染不到 PyTorch。</li>
+<li><strong><code>uv</code> 的 Python</strong>：<code>uv</code> 為了追求極致速度與乾淨的獨立虛擬環境，拉下來的是「綠色免安裝（Standalone）」的 Python。它在 Windows 上就是個毫無防護的普通 Win32 進程，沒有沙盒包廂。因此，PyQt5 的 DLL 一旦註冊，就會毫無阻礙地直接污染整個大廳。</li>
 </ul>
-<p>大人學教我們：<strong>專業是基礎，但溝通是槓桿。</strong></p>
-<p>如果你只給數據，你就是一個「執行者」，老闆必須自己做判斷。如果你能給出資訊，你就是一個「顧問」，你在幫老闆降低判斷的難度。<strong>當老闆覺得看你的報告能「省腦力」時，你的專業價值才真正體現。</strong></p>
 <hr>
-<h2 id="三、-實踐篇：如何寫一份「大人感」的測試報告？"><a href="#三、-實踐篇：如何寫一份「大人感」的測試報告？" class="headerlink" title="三、 實踐篇：如何寫一份「大人感」的測試報告？"></a>三、 實踐篇：如何寫一份「大人感」的測試報告？</h2><p>結合 <strong>問題驅動測試 (PDT)</strong> 的思維與大人學的職場策略，我們可以從以下三個方向優化測試報告：</p>
-<h3 id="1-從「Bug-清單」轉向「風險地圖」"><a href="#1-從「Bug-清單」轉向「風險地圖」" class="headerlink" title="1. 從「Bug 清單」轉向「風險地圖」"></a>1. 從「Bug 清單」轉向「風險地圖」</h3><p>不要只列出有幾個 Bug，要主動揭露「未知的風險」。</p>
-<ul>
-<li><strong>低效寫法：</strong> 「目前還有 3 個 Priority 2 的 Bug 未修復。」</li>
-<li><strong>大人感寫法：</strong> 「目前支付模組已驗證完畢，風險低；但因為開發時程延遲，『舊會員升級』流程我們僅做了主流程驗證。<strong>目前的風險在於：若舊會員資料異常，可能會導致升級失敗。</strong>」</li>
-</ul>
-<p>這就是我常說的：<strong>測試的靈魂在於提問。</strong> 好的報告會告訴老闆：我們還沒問出答案的地方在哪裡？</p>
-<h3 id="2-給予「選擇題」而非「是非題」"><a href="#2-給予「選擇題」而非「是非題」" class="headerlink" title="2. 給予「選擇題」而非「是非題」"></a>2. 給予「選擇題」而非「是非題」</h3><p>當老闆問「能不能上線」時，不要只給「Yes&#x2F;No」。因為決定上不上線是「選策略」，而策略通常是權衡（Trade-off）後的結果。</p>
-<ul>
-<li><strong>大人感方案：</strong><ul>
-<li><strong>方案 A（如期上線）：</strong> 關閉風險功能，下週一再補上。風險最低。</li>
-<li><strong>方案 B（延後一天）：</strong> 修好關鍵 Bug 並驗證，確保功能完整。風險中等，但會延誤市場活動。</li>
-<li><strong>方案 C（如期上線並監控）：</strong> 派專人即時監控數據，若有異常立即回退。這需要運維與開發的支援。</li>
-</ul>
-</li>
-</ul>
-<p>當你給出選項與對應的代價，老闆會覺得你<strong>懂他的局</strong>，而且是在幫他分擔責任。</p>
-<h3 id="3-建立「人際帳戶」：肯定團隊的努力"><a href="#3-建立「人際帳戶」：肯定團隊的努力" class="headerlink" title="3. 建立「人際帳戶」：肯定團隊的努力"></a>3. 建立「人際帳戶」：肯定團隊的努力</h3><p>大人學提到，職場是「互惠合作」。QA 的工作天生在找錯，容易耗損人際帳戶。在報告中加入一句：</p>
-<blockquote>
-<p>「感謝開發團隊在最後 24 小時高效修復了 10 個阻斷性 Bug，讓核心流程得以穩定。」</p>
-</blockquote>
-<p>這不只是客套，而是透過這份報告，讓老闆看到「整個團隊」的進度，而不是只有 QA 在「抓戰犯」。這會讓開發者更願意配合你未來的測試工作。</p>
-<h3 id="4-預判產能危機：建立「提測分流」的談判籌碼"><a href="#4-預判產能危機：建立「提測分流」的談判籌碼" class="headerlink" title="4. 預判產能危機：建立「提測分流」的談判籌碼"></a>4. 預判產能危機：建立「提測分流」的談判籌碼</h3><p>當你預判到未來工作量即將翻倍——可能是新產品線併入、平台擴展、或測試範圍被重新切分——而主管正為「資源瓶頸」感到焦慮時，這是展現你「向上管理」價值的絕佳時機。</p>
-<p>不要只是在會議上抱怨「這不可能做到」，而是主動提議<strong>如何對測試項目進行分流與妥協 (Risk-based Testing)</strong>。你甚至可以幫主管草擬出跟 PM 談判的規則：</p>
-<blockquote>
-<p>「為了因應未來可能增加的測試量，我建議我們跟 PM 團隊建立新的『提測分流機制』。未來應以**『功能測試 (Feature Testing)』<strong>為預設常態，</strong>『回歸測試 (Regression Testing)』**為例外。」</p>
-</blockquote>
-<ul>
-<li><strong>情境 A (功能測試)：</strong> 當次迭代僅新增單一功能或小範圍調整。QA 只針對變更與關聯範圍驗證。（<strong>對 PM 的誘因：測試週期短，App 可更快速上線</strong>）</li>
-<li><strong>情境 B (回歸測試)：</strong> 只有在底層架構大改、核心模組重構時才發起全量測試，且需提前預約 QA 量能。</li>
-</ul>
-<p>提出這個方案，不僅解決了主管「產能不足」的焦慮，更展現了你具備不當濫好人、主動管理上游需求的「顧問級」思維。</p>
+<h2 id="Mac-同事為什麼在一旁笑而不語？"><a href="#Mac-同事為什麼在一旁笑而不語？" class="headerlink" title="Mac 同事為什麼在一旁笑而不語？"></a>Mac 同事為什麼在一旁笑而不語？</h2><p>回到文章開頭那個無辜的 Mac 同事。為什麼他們用 <code>uv</code> 卻完全不會踩到這個大坑？</p>
+<p>答案很簡單：<strong>這是一個作業系統底層動態庫機制的 Windows 限定 Bug</strong>。</p>
+<ol>
+<li><strong>Mac 根本沒有 DLL</strong>：macOS 使用的是 <code>.dylib</code>，其動態連結機制與鏈結器規則和 Windows 截然不同。</li>
+<li><strong>沒有微軟 runtime 的包袱</strong>：Windows 上的衝突起因於 PyQt5 包裹了舊版微軟 runtime DLL。而 Mac 上的 PyQt5 與 PyTorch 都是鏈結 macOS 原生的 <code>libc++</code>，大家用的是同一套系統底層鋼骨，沒有新舊規格不合的問題。</li>
+<li><strong>結論</strong>：所以 Mac 同事不論用什麼工具管理 Python，都天然免疫這個問題。</li>
+</ol>
 <hr>
-<h2 id="結語：從「執行者」轉向「品質顧問」"><a href="#結語：從「執行者」轉向「品質顧問」" class="headerlink" title="結語：從「執行者」轉向「品質顧問」"></a>結語：從「執行者」轉向「品質顧問」</h2><p>看完「職場大人學」後，我對 QA 這個角色有了全新的定義：<strong>我們不是「守門員」，我們是「領航員」。</strong></p>
-<p>老闆就像是在迷霧中航行的船長，他需要的不是一張印滿數字的航海圖，而是一個能指著前方告訴他「那邊有碎石，我們換個方向走比較穩」的嚮導。</p>
-<p><strong>看懂局，才能積籌碼、選策略。</strong> 當你的測試報告能解決老闆的焦慮、幫助團隊做決策時，你就不再是一個只能「點點點」的工具人，而是一個不可或缺的專業顧問。</p>
-<hr>
-<p><strong>思考題：</strong> 下次寫報告前，試著問自己：這份報告能幫老闆省下多少大腦 CPU？</p>
-<hr>
-<h3 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h3><ul>
-<li><strong>《A101 職場大人學》</strong> — 推薦給所有覺得自己工作努力卻抓不到要領的朋友。</li>
-<li><strong><a href="/posts/problem-driven-testing-intro">問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡</a></strong> — 了解如何從技術層面提升提問的品質。</li>
-</ul>
+<h2 id="未來改進：徹底替換-OCR-核心（去-PyTorch-化）"><a href="#未來改進：徹底替換-OCR-核心（去-PyTorch-化）" class="headerlink" title="未來改進：徹底替換 OCR 核心（去 PyTorch 化）"></a>未來改進：徹底替換 OCR 核心（去 PyTorch 化）</h2><p>如果想一勞永逸地解決這個 Windows 上的 DLL 惡夢，最治本的方法是「去 PyTorch 化」。</p>
+<p>在自動化測試專案中，我們往往只是需要辨識截圖上的「日期」或「數字」等簡單文字，並不需要用到 PyTorch 這樣動輒幾百 MB、依賴重度的龐大深度學習框架。我們可以考慮：</p>
+<ol>
+<li><strong>Pytesseract (Tesseract OCR)</strong>：輕量、初始化快，不依賴 C++ ABI 與 PyTorch，能徹底避開 DLL 衝突。</li>
+<li><strong>OpenCV 模板匹配 (Template Matching)</strong>：如果辨識的字體（例如網頁時間、固定按鈕數字）大小與字型固定，直接用 OpenCV 做影像特徵比對，速度極快（&lt;10ms）且精準度 100%，完全不需要載入機器學習模型。</li>
+<li><strong>改進測試策略 (API 驗證)</strong>：最穩健的自動化測試是直接向後端 API 驗證資料是否正確，而非透過 UI 截圖用 OCR 去猜。</li>
+</ol>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p><code>uv</code> 帶來了極速的套件建置體驗，但當我們把專案部署到不同的作業系統與環境時，底層的機制差異就會悄悄浮現。</p>
+<p>下一次在 Windows 上遇到神祕的加載錯誤時，不妨想想那把「被搶佔的餐廳餐刀」，或許解答就藏在那些隱形的載入路徑之中。</p>
 
                     
                 </div>
@@ -406,23 +405,31 @@
                             <ul class="post-tags-box border-box">
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Python/">Python</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%81%B7%E5%A0%B4%E5%A4%A7%E4%BA%BA%E5%AD%B8/">職場大人學</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/uv/">uv</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/PyTorch/">PyTorch</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%BA%9D%E9%80%9A%E6%8A%80%E5%B7%A7/">溝通技巧</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/PyQt5/">PyQt5</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/DLL/">DLL</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%96%91%E9%9B%A3%E6%8E%92%E8%A7%A3/">疑難排解</a>
                                     </li>
                                 
                             </ul>
@@ -438,31 +445,15 @@
                 
                     <div class="post-nav border-box">
                         
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/post/uv-torch-pyqt5-dll-conflict/"
-                                   title="【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案"
-                                >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案</span>
-                                        <span class="post-nav-item">上一篇</span>
-                                    </span>
-                                </a>
-                            </div>
-                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/post/ai-replacement-seminary-calling/"
-                                   title="如果有一天我被 AI 取代了，我大概會去讀神學院"
+                                   href="/post/qa-report-workplace-wisdom/"
+                                   title="【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">如果有一天我被 AI 取代了，我大概會去讀神學院</span>
+                                        <span class="post-nav-title-item text-ellipsis">【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？</span>
                                         <span class="post-nav-item">下一篇</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -591,7 +582,7 @@
             <div class="pc-post-toc left-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E8%A2%AB%E7%84%A1%E8%A6%96%E7%9A%84%E3%80%8C%E5%AE%8C%E7%BE%8E%E5%A0%B1%E5%91%8A%E3%80%8D"><span class="nav-text">前言：那個被無視的「完美報告」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E7%9C%8B%E6%87%82%E8%80%81%E9%97%86%E7%9A%84%E3%80%8C%E5%B1%80%E3%80%8D%EF%BC%9A%E4%BB%96%E5%9C%A8%E7%84%A6%E6%85%AE%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">一、 看懂老闆的「局」：他在焦慮什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%B3%87%E8%A8%8A%E4%B8%8D%E5%B0%8D%E7%A8%B1%E7%9A%84%E7%84%A6%E6%85%AE"><span class="nav-text">1. 資訊不對稱的焦慮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%9B%AE%E6%A8%99%E5%B1%A4%E7%B4%9A%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="nav-text">2. 目標層級的不同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%82%BA%E4%BB%80%E9%BA%BC%E3%80%8C%E7%B4%94%E6%8A%80%E8%A1%93%E6%95%B8%E6%93%9A%E3%80%8D%E6%98%AF%E4%BD%8E%E6%95%88%E6%BA%9D%E9%80%9A%EF%BC%9F"><span class="nav-text">二、 為什麼「純技術數據」是低效溝通？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E8%B8%90%E7%AF%87%EF%BC%9A%E5%A6%82%E4%BD%95%E5%AF%AB%E4%B8%80%E4%BB%BD%E3%80%8C%E5%A4%A7%E4%BA%BA%E6%84%9F%E3%80%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E5%A0%B1%E5%91%8A%EF%BC%9F"><span class="nav-text">三、 實踐篇：如何寫一份「大人感」的測試報告？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BE%9E%E3%80%8CBug-%E6%B8%85%E5%96%AE%E3%80%8D%E8%BD%89%E5%90%91%E3%80%8C%E9%A2%A8%E9%9A%AA%E5%9C%B0%E5%9C%96%E3%80%8D"><span class="nav-text">1. 從「Bug 清單」轉向「風險地圖」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%B5%A6%E4%BA%88%E3%80%8C%E9%81%B8%E6%93%87%E9%A1%8C%E3%80%8D%E8%80%8C%E9%9D%9E%E3%80%8C%E6%98%AF%E9%9D%9E%E9%A1%8C%E3%80%8D"><span class="nav-text">2. 給予「選擇題」而非「是非題」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%BB%BA%E7%AB%8B%E3%80%8C%E4%BA%BA%E9%9A%9B%E5%B8%B3%E6%88%B6%E3%80%8D%EF%BC%9A%E8%82%AF%E5%AE%9A%E5%9C%98%E9%9A%8A%E7%9A%84%E5%8A%AA%E5%8A%9B"><span class="nav-text">3. 建立「人際帳戶」：肯定團隊的努力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%A0%90%E5%88%A4%E7%94%A2%E8%83%BD%E5%8D%B1%E6%A9%9F%EF%BC%9A%E5%BB%BA%E7%AB%8B%E3%80%8C%E6%8F%90%E6%B8%AC%E5%88%86%E6%B5%81%E3%80%8D%E7%9A%84%E8%AB%87%E5%88%A4%E7%B1%8C%E7%A2%BC"><span class="nav-text">4. 預判產能危機：建立「提測分流」的談判籌碼</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E5%BE%9E%E3%80%8C%E5%9F%B7%E8%A1%8C%E8%80%85%E3%80%8D%E8%BD%89%E5%90%91%E3%80%8C%E5%93%81%E8%B3%AA%E9%A1%A7%E5%95%8F%E3%80%8D"><span class="nav-text">結語：從「執行者」轉向「品質顧問」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%B8%80%E5%80%8B%E8%AE%93%E4%BA%BA%E6%8E%AA%E6%89%8B%E4%B8%8D%E5%8F%8A%E7%9A%84-WinError-1114"><span class="nav-text">前言：一個讓人措手不及的 WinError 1114</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AC%8E%E5%9C%98%E4%B8%80%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC-uv-%E8%A3%9D-torchvision-%E6%9C%83%E5%A4%B1%E6%95%97%EF%BC%9F"><span class="nav-text">謎團一：為什麼 uv 裝 torchvision 會失敗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E5%9B%A0%EF%BC%9A%E5%A5%97%E4%BB%B6%E5%BA%AB%E7%9A%84%E7%89%88%E6%9C%AC%E8%99%9F%E6%8E%92%E5%BA%8F%E3%80%8C%E6%AF%94%E5%A4%A7%E5%B0%8F%E3%80%8DBug"><span class="nav-text">根因：套件庫的版本號排序「比大小」Bug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E9%BA%BC%E8%A7%A3%E6%B1%BA%EF%BC%9F"><span class="nav-text">怎麼解決？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AC%8E%E5%9C%98%E4%BA%8C%EF%BC%9Atorchaudio-%E8%88%87-torch-%E7%9A%84-ABI-%E4%B8%8D%E5%8C%B9%E9%85%8D"><span class="nav-text">謎團二：torchaudio 與 torch 的 ABI 不匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E5%9B%A0%EF%BC%9A%E6%A0%B8%E5%BF%83%E9%9B%B6%E4%BB%B6%E7%9A%84%E3%80%8C%E5%9A%B4%E6%A0%BC%E5%B0%8D%E9%BD%8A%E3%80%8D"><span class="nav-text">根因：核心零件的「嚴格對齊」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E9%BA%BC%E8%A7%A3%E6%B1%BA%EF%BC%9F-1"><span class="nav-text">怎麼解決？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AC%8E%E5%9C%98%E4%B8%89%EF%BC%9APyQt5-%E8%88%87-PyTorch-%E7%9A%84-DLL-%E8%A1%9D%E7%AA%81"><span class="nav-text">謎團三：PyQt5 與 PyTorch 的 DLL 衝突</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E3%80%8C%E9%A4%90%E5%BB%B3%E7%9A%84%E9%A4%90%E5%88%80%E3%80%8D%E4%BE%86%E6%AF%94%E5%96%BB%E9%80%99%E5%80%8B%E8%A1%9D%E7%AA%81"><span class="nav-text">用「餐廳的餐刀」來比喻這個衝突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E9%BA%BC%E8%A7%A3%E6%B1%BA%EF%BC%9F-2"><span class="nav-text">怎麼解決？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%A7%A3%E6%9E%90%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E9%80%99%E5%80%8B-Bug-%E5%8F%AA%E6%9C%89%E5%9C%A8-uv-%E7%92%B0%E5%A2%83%E4%B8%8B%E6%9C%83%E7%99%BC%E7%94%9F%EF%BC%9F"><span class="nav-text">核心解析：為什麼這個 Bug 只有在 uv 環境下會發生？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-%E5%90%8C%E4%BA%8B%E7%82%BA%E4%BB%80%E9%BA%BC%E5%9C%A8%E4%B8%80%E6%97%81%E7%AC%91%E8%80%8C%E4%B8%8D%E8%AA%9E%EF%BC%9F"><span class="nav-text">Mac 同事為什麼在一旁笑而不語？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E4%BE%86%E6%94%B9%E9%80%B2%EF%BC%9A%E5%BE%B9%E5%BA%95%E6%9B%BF%E6%8F%9B-OCR-%E6%A0%B8%E5%BF%83%EF%BC%88%E5%8E%BB-PyTorch-%E5%8C%96%EF%BC%89"><span class="nav-text">未來改進：徹底替換 OCR 核心（去 PyTorch 化）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-text">結語</span></a></li></ol>
     </div>
 </div>
 
@@ -773,7 +764,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E8%A2%AB%E7%84%A1%E8%A6%96%E7%9A%84%E3%80%8C%E5%AE%8C%E7%BE%8E%E5%A0%B1%E5%91%8A%E3%80%8D"><span class="nav-text">前言：那個被無視的「完美報告」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E7%9C%8B%E6%87%82%E8%80%81%E9%97%86%E7%9A%84%E3%80%8C%E5%B1%80%E3%80%8D%EF%BC%9A%E4%BB%96%E5%9C%A8%E7%84%A6%E6%85%AE%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-text">一、 看懂老闆的「局」：他在焦慮什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%B3%87%E8%A8%8A%E4%B8%8D%E5%B0%8D%E7%A8%B1%E7%9A%84%E7%84%A6%E6%85%AE"><span class="nav-text">1. 資訊不對稱的焦慮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%9B%AE%E6%A8%99%E5%B1%A4%E7%B4%9A%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="nav-text">2. 目標層級的不同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%82%BA%E4%BB%80%E9%BA%BC%E3%80%8C%E7%B4%94%E6%8A%80%E8%A1%93%E6%95%B8%E6%93%9A%E3%80%8D%E6%98%AF%E4%BD%8E%E6%95%88%E6%BA%9D%E9%80%9A%EF%BC%9F"><span class="nav-text">二、 為什麼「純技術數據」是低效溝通？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E8%B8%90%E7%AF%87%EF%BC%9A%E5%A6%82%E4%BD%95%E5%AF%AB%E4%B8%80%E4%BB%BD%E3%80%8C%E5%A4%A7%E4%BA%BA%E6%84%9F%E3%80%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E5%A0%B1%E5%91%8A%EF%BC%9F"><span class="nav-text">三、 實踐篇：如何寫一份「大人感」的測試報告？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BE%9E%E3%80%8CBug-%E6%B8%85%E5%96%AE%E3%80%8D%E8%BD%89%E5%90%91%E3%80%8C%E9%A2%A8%E9%9A%AA%E5%9C%B0%E5%9C%96%E3%80%8D"><span class="nav-text">1. 從「Bug 清單」轉向「風險地圖」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%B5%A6%E4%BA%88%E3%80%8C%E9%81%B8%E6%93%87%E9%A1%8C%E3%80%8D%E8%80%8C%E9%9D%9E%E3%80%8C%E6%98%AF%E9%9D%9E%E9%A1%8C%E3%80%8D"><span class="nav-text">2. 給予「選擇題」而非「是非題」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%BB%BA%E7%AB%8B%E3%80%8C%E4%BA%BA%E9%9A%9B%E5%B8%B3%E6%88%B6%E3%80%8D%EF%BC%9A%E8%82%AF%E5%AE%9A%E5%9C%98%E9%9A%8A%E7%9A%84%E5%8A%AA%E5%8A%9B"><span class="nav-text">3. 建立「人際帳戶」：肯定團隊的努力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%A0%90%E5%88%A4%E7%94%A2%E8%83%BD%E5%8D%B1%E6%A9%9F%EF%BC%9A%E5%BB%BA%E7%AB%8B%E3%80%8C%E6%8F%90%E6%B8%AC%E5%88%86%E6%B5%81%E3%80%8D%E7%9A%84%E8%AB%87%E5%88%A4%E7%B1%8C%E7%A2%BC"><span class="nav-text">4. 預判產能危機：建立「提測分流」的談判籌碼</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E5%BE%9E%E3%80%8C%E5%9F%B7%E8%A1%8C%E8%80%85%E3%80%8D%E8%BD%89%E5%90%91%E3%80%8C%E5%93%81%E8%B3%AA%E9%A1%A7%E5%95%8F%E3%80%8D"><span class="nav-text">結語：從「執行者」轉向「品質顧問」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%B8%80%E5%80%8B%E8%AE%93%E4%BA%BA%E6%8E%AA%E6%89%8B%E4%B8%8D%E5%8F%8A%E7%9A%84-WinError-1114"><span class="nav-text">前言：一個讓人措手不及的 WinError 1114</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AC%8E%E5%9C%98%E4%B8%80%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC-uv-%E8%A3%9D-torchvision-%E6%9C%83%E5%A4%B1%E6%95%97%EF%BC%9F"><span class="nav-text">謎團一：為什麼 uv 裝 torchvision 會失敗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E5%9B%A0%EF%BC%9A%E5%A5%97%E4%BB%B6%E5%BA%AB%E7%9A%84%E7%89%88%E6%9C%AC%E8%99%9F%E6%8E%92%E5%BA%8F%E3%80%8C%E6%AF%94%E5%A4%A7%E5%B0%8F%E3%80%8DBug"><span class="nav-text">根因：套件庫的版本號排序「比大小」Bug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E9%BA%BC%E8%A7%A3%E6%B1%BA%EF%BC%9F"><span class="nav-text">怎麼解決？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AC%8E%E5%9C%98%E4%BA%8C%EF%BC%9Atorchaudio-%E8%88%87-torch-%E7%9A%84-ABI-%E4%B8%8D%E5%8C%B9%E9%85%8D"><span class="nav-text">謎團二：torchaudio 與 torch 的 ABI 不匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E5%9B%A0%EF%BC%9A%E6%A0%B8%E5%BF%83%E9%9B%B6%E4%BB%B6%E7%9A%84%E3%80%8C%E5%9A%B4%E6%A0%BC%E5%B0%8D%E9%BD%8A%E3%80%8D"><span class="nav-text">根因：核心零件的「嚴格對齊」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E9%BA%BC%E8%A7%A3%E6%B1%BA%EF%BC%9F-1"><span class="nav-text">怎麼解決？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AC%8E%E5%9C%98%E4%B8%89%EF%BC%9APyQt5-%E8%88%87-PyTorch-%E7%9A%84-DLL-%E8%A1%9D%E7%AA%81"><span class="nav-text">謎團三：PyQt5 與 PyTorch 的 DLL 衝突</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E3%80%8C%E9%A4%90%E5%BB%B3%E7%9A%84%E9%A4%90%E5%88%80%E3%80%8D%E4%BE%86%E6%AF%94%E5%96%BB%E9%80%99%E5%80%8B%E8%A1%9D%E7%AA%81"><span class="nav-text">用「餐廳的餐刀」來比喻這個衝突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E9%BA%BC%E8%A7%A3%E6%B1%BA%EF%BC%9F-2"><span class="nav-text">怎麼解決？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%A7%A3%E6%9E%90%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E9%80%99%E5%80%8B-Bug-%E5%8F%AA%E6%9C%89%E5%9C%A8-uv-%E7%92%B0%E5%A2%83%E4%B8%8B%E6%9C%83%E7%99%BC%E7%94%9F%EF%BC%9F"><span class="nav-text">核心解析：為什麼這個 Bug 只有在 uv 環境下會發生？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-%E5%90%8C%E4%BA%8B%E7%82%BA%E4%BB%80%E9%BA%BC%E5%9C%A8%E4%B8%80%E6%97%81%E7%AC%91%E8%80%8C%E4%B8%8D%E8%AA%9E%EF%BC%9F"><span class="nav-text">Mac 同事為什麼在一旁笑而不語？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E4%BE%86%E6%94%B9%E9%80%B2%EF%BC%9A%E5%BE%B9%E5%BA%95%E6%9B%BF%E6%8F%9B-OCR-%E6%A0%B8%E5%BF%83%EF%BC%88%E5%8E%BB-PyTorch-%E5%8C%96%EF%BC%89"><span class="nav-text">未來改進：徹底替換 OCR 核心（去 PyTorch 化）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-text">結語</span></a></li></ol>
     </div>
 </div>
 
