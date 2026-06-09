@@ -36,8 +36,8 @@
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-11（排程） | 你的團隊 Bug 預設給誰？業界六種主流 Bug 分派（Triage）模式對照 | bug-triage-six-patterns-industry-survey | 線十 / 線八 |
 | 2026-06-10 | 【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案 | uv-torch-pyqt5-dll-conflict | 線三 |
-| 2026-06-10（排程） | 你的團隊 Bug 預設給誰？業界六種主流 Bug 分派（Triage）模式對照 | bug-triage-six-patterns-industry-survey | 線十 / 線八 |
 | 2026-06-08 | 【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？ | qa-report-workplace-wisdom | 線六 |
 | 2026-06-07 | 如果有一天我被 AI 取代了，我大概會去讀神學院 | ai-replacement-seminary-calling | 線七 |
 | 2026-06-06 | UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同 | page-source-vs-find-element | 線三 |
@@ -260,7 +260,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 4 | 6/6 | **empty-result-ambiguity-in-filter-testing** | ⭐⭐⭐ | 線五 | ✅ **已上稿** |
 | 5 | 6/7 | **ai-replacement-seminary-calling** | ⭐⭐ | 線七 | ✅ **已上稿** |
 | 6 | 6/8 | **qa-report-workplace-wisdom** | ⭐⭐ | 線六 | ✅ **已上稿** |
-| 7 | 6/10（排程） | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十 / 線八 | ✅ **已生成並排程**（前公司 F+E 第一手 + 業界 survey） |
+| 7 | 6/11（排程） | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十 / 線八 | ✅ **已生成並排程**（前公司 F+E 第一手 + 業界 survey） |
 | 8 | 6/14（排程） | **ai-test-output-default-reader** | ⭐⭐ | 線二 | ✅ **已生成並排程**（配對 yes-man，規劃檔為 [ai-test-output-default-reader-is-ai-planning.md](ai-test-output-default-reader-is-ai-planning.md)） |
 | 9 | 6/11（排程） | **how-to-start-low-pressure-book-club** | — | 線十一 | ✅ **已生成並排程**（規劃檔為 [how-to-start-low-pressure-book-club-planning.md](how-to-start-low-pressure-book-club-planning.md)） |
 
