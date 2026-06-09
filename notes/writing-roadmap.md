@@ -32,10 +32,11 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（20 篇，依日期倒序）
+### 已上稿（21 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-10 | 【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案 | uv-torch-pyqt5-dll-conflict | 線三 |
 | 2026-06-10（排程） | 你的團隊 Bug 預設給誰？業界六種主流 Bug 分派（Triage）模式對照 | bug-triage-six-patterns-industry-survey | 線十 / 線八 |
 | 2026-06-08 | 【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？ | qa-report-workplace-wisdom | 線六 |
 | 2026-06-07 | 如果有一天我被 AI 取代了，我大概會去讀神學院 | ai-replacement-seminary-calling | 線七 |
@@ -71,13 +72,14 @@
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
 | [notest-ambiguity-skip-vs-low-confidence-planning](../source/_drafts/notest-ambiguity-skip-vs-low-confidence-planning.md) | 線二（AI 測試判讀） | ⭐⭐⭐ 長尾。已積 ~21k 字（比「骨架」成熟，但未確認完稿）。6 月中後 |
-| [pom-refactor-from-runnable-to-maintainable-planning](../source/_drafts/pom-refactor-from-runnable-to-maintainable-planning.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已積 ~17k 字。已增規劃檔，等思考完才動 |
+| [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已融入 AI 價值，暫不發布，保留作為個人技術與工程備忘 |
 | [not-just-make-manual-script-automate-planning](../source/_drafts/not-just-make-manual-script-automate-planning.md) | 線三 + 線五（UI 自動化 / 自動化決策） | **2026-05-15 骨架完成、4 個反思問題待答**，等想清楚 Q1-Q4 再填內容 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
 ### 規劃文件（notes/，不會直接成為文章）
 
+- [white-label-app-testing-strategy.md](white-label-app-testing-strategy.md) — **2026-06-10 新**：白牌/多 App 自動化測試的痛點分析與漸進式定位抽象策略。
 - [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) — **2026-06-08 新**：bug-triage 六種模式對照的素材 + 待思考問題。**gating decision = 揭露邊界**（改用兩間前公司第一手案例，去識別化 / 法務距離 / 情緒中立想清楚才生成文章）。⭐⭐⭐⭐ 長尾，線八主場 + 線十前傳
 - [pom-refactor-from-runnable-to-maintainable-planning.md](pom-refactor-from-runnable-to-maintainable-planning.md) — **2026-06-09 新**：大四實習時的 POM 啟蒙與現今實踐對照，並思考封裝良好的 Page Object 在 AI 時代作為 Agent Tool API 的全新戰略價值。
 - [analogy-series-proposals.md](analogy-series-proposals.md) — PDT 類比系列（醫生 / 記者 / 偵探 / 讀者）
@@ -208,6 +210,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 | 文章 | 長尾關鍵字方向 | 長尾力 |
 |---|---|---|
+| [uv + PyTorch + PyQt5 衝突](/post/uv-torch-pyqt5-dll-conflict/) | uv PyTorch PyQt5 DLL 衝突、WinError 1114 | ⭐⭐⭐⭐ |
 | [Selenium 踩坑筆記](/post/selenium-troubleshooting/) | By.ID 重複 ID 定位、Selenium 踩坑 | ⭐⭐⭐ |
 | [Appium 3.0 遷移](/post/appium-v2-to-v3-migration/) | Appium 3.0 遷移、v2 v3 升級指南 | ⭐⭐⭐ |
 | [語音測試 × FFmpeg](/post/audio-testing-ffmpeg/) | FFmpeg 語音聊天室錄音測試 | ⭐⭐⭐ |
@@ -230,7 +233,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | **empty-result-ambiguity-in-filter-testing** | 篩選沒結果、自動化測試 empty | ⭐⭐⭐ | 已排 6/6 |
 | **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | 等 4 題反思答完 |
 | **notest-ambiguity-skip-vs-low-confidence** | AI 測試 pass fail 不夠、notest 歧義 | ⭐⭐⭐ | 6 月中後 |
-| **pom-refactor-from-runnable-to-maintainable** | POM 重構、Page Object Pattern | ⭐⭐⭐ | 6-7 月 |
+| **pom-refactor-from-runnable-to-maintainable** | POM 重構、Page Object Pattern | ⭐⭐⭐ | 暫不發布（作為個人技術與工程備忘） |
 | **letter-to-new-qa-two-day-regression** | 新進 QA、兩天回歸測試 | ⭐⭐ | 5/24-25（已建議） |
 | **ai-test-output-default-reader-is-ai** | AI 測試案例讀不懂、AI 預設讀者 | ⭐⭐ | 5/28-30（已建議） |
 | **qa-report-workplace-wisdom** | 測試報告對牛彈琴、向上管理 | ⭐⭐ | 6 月 |
