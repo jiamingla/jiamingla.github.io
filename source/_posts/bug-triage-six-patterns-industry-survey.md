@@ -1,7 +1,7 @@
 ---
 urlname: bug-triage-six-patterns-industry-survey
 title: 你的團隊 Bug 預設給誰？業界六種主流 Bug 分派（Triage）模式對照
-date: 2026-06-11 18:00:00
+date: 2026-06-10 22:00:00
 tags: [軟體測試, Bug 治理, 跨團隊協作, 組織設計, 入門, QA, PM, 品質工程]
 ---
 
