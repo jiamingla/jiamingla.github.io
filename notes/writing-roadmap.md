@@ -1,6 +1,6 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-06-08
+**最後更新**：2026-06-11
 **對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外大肆推廣。**6 月不推廣**——用「沒人在看」的空窗刻意練 publish-then-revise（發了再反覆讀、反覆改）來克服完美主義；國際社群（Ministry of Testing）試水延到**報名 iThome 鐵人賽的當週**才啟動（報名動作 = 「準備好對外」的觸發點，試水搭著那股氣勢一起做）。
 **並進文件**：
 - [writing-themes.md](writing-themes.md) — 13 條主題線的長期版圖（策略型，較少更新）
@@ -95,6 +95,7 @@
 - [2026-05-31-brand-value-and-smoke-test-proposal.md](coach-sessions/brand-value-and-smoke-test-proposal.md) — **品牌價值與冒煙測試提案**（異常處理價值 / 向上管理劇本 / 技術與業務共生策略）
 - [pdt-coach-session-2026-05-28-insights.md](coach-sessions/2026-05-28-insights.md) — **Org-Signal Coach 三天**（5/28-30）：**本年地圖大校正**（Head 是支撐桿、接班 = 接 Head 不是 Manager）+ 跟接班對象第一次微妙分歧 + 混合動機承認 + 個人化歸因警覺 + Coach 5/30 主動踩煞車。新孕育 5 個文章角度（A 文「QBT 責任編輯」⭐⭐⭐⭐ + E 文「Coach 該何時叫使用者離開」⭐⭐⭐⭐ 最強）
 - [pdt-coach-session-2026-06-01-insights.md](coach-sessions/2026-06-01-insights.md) — **Org-Signal Coach 三天**（6/1-3）：**「被看見會自然發生」實證**（IB 事件鏈印證 5/28 權力地圖）+ 「工作不是全部的出口」personal 覺察 + 「你跟 QA-A 的分野」定位浮現（組織派 vs 技術派）+ 綠燈做決策 / 紅燈做執行內化。新孕育 8 個文章角度（C「組織派 vs 技術派」⭐⭐⭐⭐ + G「報告一眼看懂」⭐⭐⭐⭐ 最強、跟 [first-principle](software-testing-first-principle.md) 強連動）
+- [pdt-coach-session-2026-06-04-insights.md](coach-sessions/2026-06-04-insights.md) — **Org-Signal Coach 六天**（6/4-9）：**自己踩煞車能力成形**（自己診斷紅燈 + 切回 + 比 Coach 更務實判斷）+ 對外溝通內外有別（RD-Al 事件）+ 樞紐 ≠ 客服 reframe + 「想職涯是想工作的高級偽裝」（請假日鏡子）+ **核心測試發現「測不了的已知風險」**（[first-principle](software-testing-first-principle.md) 活案例）+ 讀懂 Head 不給 PM 太多文件原則（DTNO 例子、補 5/29 分歧）+ 跟同類型 PM-Ve 溝通的盲點。**新孕育 8 個文章角度**（A「測不了的已知風險」⭐⭐⭐⭐ + D「不會忙到沒成長」⭐⭐⭐⭐ + F「同類型人溝通盲點」⭐⭐⭐⭐ 最強）
 - [pdt-vs-qbt-positioning.md](pdt-vs-qbt-positioning.md) — **2026-06-01 戰略檔**：QBT 不是業界 established term（WebSearch + Preely 驗證後）；Preely 的 QBT 在 UX 領域、不撞義；PDT 對內 / QBT 對外的雙層架構討論。**rebrand 成本評估：PDT 投資 47 檔案不划算**
 - [rethinking-regression-sequel-idea.md](rethinking-regression-sequel-idea.md) — 〈4 個刪測試問題加第 5 個〉的續篇 idea（5/15）
 - [yes-man-sequel-what-qa-still-owns.md](yes-man-sequel-what-qa-still-owns.md) — yes-man 發後讀者會問的續篇 idea（5/20）
