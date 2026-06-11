@@ -32,10 +32,11 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（21 篇，依日期倒序）
+### 已上稿（22 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-12 | 不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？ | not-just-make-manual-script-automate | 線三 / 線五 |
 | 2026-06-11（排程） | 你的團隊 Bug 預設給誰？業界六種主流 Bug 分派（Triage）模式對照 | bug-triage-six-patterns-industry-survey | 線十 / 線八 |
 | 2026-06-10 | 【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案 | uv-torch-pyqt5-dll-conflict | 線三 |
 | 2026-06-08 | 【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？ | qa-report-workplace-wisdom | 線六 |
@@ -73,7 +74,6 @@
 |---|---|---|
 | [notest-ambiguity-skip-vs-low-confidence-planning](../source/_drafts/notest-ambiguity-skip-vs-low-confidence-planning.md) | 線二（AI 測試判讀） | ⭐⭐⭐ 長尾。已積 ~21k 字（比「骨架」成熟，但未確認完稿）。6 月中後 |
 | [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已融入 AI 價值，暫不發布，保留作為個人技術與工程備忘 |
-| [not-just-make-manual-script-automate](../source/_drafts/not-just-make-manual-script-automate.md) | 線三 + 線五（UI 自動化 / 自動化決策） | ⭐⭐⭐ 長尾。系列第一篇總綱已完成草稿，隨時可發布 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
@@ -262,7 +262,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | **bug-triage-six-patterns** | Bug Triage 業界六種模式、Bug 分派、QA bug 指派 | ⭐⭐⭐⭐ | ✅ **已生成並排程 2026-06-11**（前公司 F+E 第一手 + 業界 survey），見 [planning](bug-triage-six-patterns-planning.md) |
 | **page-source-vs-find-element** | page_source vs find_element、UI 自動化效能 | ⭐⭐⭐⭐ | 已排 6/20，極具長尾 |
 | **empty-result-ambiguity-in-filter-testing** | 篩選沒結果、自動化測試 empty | ⭐⭐⭐ | 已排 6/6 |
-| **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | 6 月中後（已完成草稿） |
+| **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | ✅ **已上稿 2026-06-12** |
 | **notest-ambiguity-skip-vs-low-confidence** | AI 測試 pass fail 不夠、notest 歧義 | ⭐⭐⭐ | 6 月中後 |
 | **pom-refactor-from-runnable-to-maintainable** | POM 重構、Page Object Pattern | ⭐⭐⭐ | 暫不發布（作為個人技術與工程備忘） |
 | **letter-to-new-qa-two-day-regression** | 新進 QA、兩天回歸測試 | ⭐⭐ | 5/24-25（已建議） |
