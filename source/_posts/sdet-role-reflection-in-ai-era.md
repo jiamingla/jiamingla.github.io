@@ -1,7 +1,7 @@
 ---
 urlname: sdet-role-reflection-in-ai-era
 title: 「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師
-date: 2026-06-12 22:20:00
+date: 2026-06-13 12:00:00
 tags: [職涯發展, SDET, QA, SRE, AI時代, 軟體工程, 組織管理]
 ---
 
