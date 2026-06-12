@@ -32,10 +32,11 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（22 篇，依日期倒序）
+### 已上稿（23 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-12 | 「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師 | sdet-role-reflection-in-ai-era | 線九 / 線六 |
 | 2026-06-12 | 不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？ | not-just-make-manual-script-automate | 線三 / 線五 |
 | 2026-06-11（排程） | 你的團隊 Bug 預設給誰？業界六種主流 Bug 分派（Triage）模式對照 | bug-triage-six-patterns-industry-survey | 線十 / 線八 |
 | 2026-06-10 | 【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案 | uv-torch-pyqt5-dll-conflict | 線三 |
@@ -80,7 +81,7 @@
 ### 規劃文件（notes/，不會直接成為文章）
 
 - [successor-communication-and-ai-impatience.md](successor-communication-and-ai-impatience.md) — **2026-06-10 新**：大人學接班人（溝通樞紐）的實踐、尋求平行肯定，以及 AI 即時回饋帶來的「組織耐性赤字」反思。
-- [sdet-role-reflection-in-ai-era.md](sdet-role-reflection-in-ai-era.md) — **2026-06-12 新**：專職 SDET 的定位迷思、SRE 的建置基礎設施類比，以及 AI 時代職稱去標籤化與職能流動的思考。
+- [sdet-role-reflection-in-ai-era.md](sdet-role-reflection-in-ai-era.md) — **2026-06-12 新**：專職 SDET 的定位迷思、SRE 的建置基礎設施類比，以及 AI 時代職稱去標籤化與職能流動的思考。（已於 6/12 發布為文章）
 - [white-label-app-testing-strategy.md](white-label-app-testing-strategy.md) — **2026-06-10 新**：白牌/多 App 自動化測試的痛點分析與漸進式定位抽象策略。
 - [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) — **2026-06-08 新**：bug-triage 六種模式對照的素材 + 待思考問題。**gating decision = 揭露邊界**（改用兩間前公司第一手案例，去識別化 / 法務距離 / 情緒中立想清楚才生成文章）。⭐⭐⭐⭐ 長尾，線八主場 + 線十前傳
 - [pom-refactor-from-runnable-to-maintainable-planning.md](pom-refactor-from-runnable-to-maintainable-planning.md) — **2026-06-09 新**：大四實習時的 POM 啟蒙與現今實踐對照，並思考封裝良好的 Page Object 在 AI 時代作為 Agent Tool API 的全新戰略價值。
