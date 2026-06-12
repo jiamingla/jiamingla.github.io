@@ -81,6 +81,7 @@
 ### 規劃文件（notes/，不會直接成為文章）
 
 - [successor-communication-and-ai-impatience.md](successor-communication-and-ai-impatience.md) — **2026-06-10 新**：大人學接班人（溝通樞紐）的實踐、尋求平行肯定，以及 AI 即時回饋帶來的「組織耐性赤字」反思。
+- [cross-departmental-relation-and-social-roi.md](cross-departmental-relation-and-social-roi.md) — **2026-06-12 新**：跨部門聚餐引發的社交反思，包含接班人溝通樞紐實踐、人際關係的邊際效益遞減，以及個人生活圈擴大的探索。
 - [sdet-role-reflection-in-ai-era.md](sdet-role-reflection-in-ai-era.md) — **2026-06-12 新**：專職 SDET 的定位迷思、SRE 的建置基礎設施類比，以及 AI 時代職稱去標籤化與職能流動的思考。（已於 6/12 發布為文章）
 - [white-label-app-testing-strategy.md](white-label-app-testing-strategy.md) — **2026-06-10 新**：白牌/多 App 自動化測試的痛點分析與漸進式定位抽象策略。
 - [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) — **2026-06-08 新**：bug-triage 六種模式對照的素材 + 待思考問題。**gating decision = 揭露邊界**（改用兩間前公司第一手案例，去識別化 / 法務距離 / 情緒中立想清楚才生成文章）。⭐⭐⭐⭐ 長尾，線八主場 + 線十前傳
