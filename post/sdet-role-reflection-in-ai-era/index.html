@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師 |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-12</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Fri Jun 12 2026 14:20:00 GMT+0000">2026-06-12</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/QA/">QA</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/SDET/">SDET</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/SRE/">SRE</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI%E6%99%82%E4%BB%A3/">AI時代</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%B5%84%E7%B9%94%E7%AE%A1%E7%90%86/">組織管理</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <blockquote>
+<p><em>“We’ve got holes, we’ve got holes</em><br><em>In our hearts, in our lives</em><br><em>But we carry on.”</em><br>—— Passenger, 〈Holes〉(2012)</p>
+</blockquote>
+<p>身為一個專注於軟體品質的工程師，我的日常工作就是為別人的系統找出各種「漏洞（Holes）」。但有時候，看著社群論壇與職場上的各種爭論，我會隱隱覺得：我們這些以「尋找漏洞」為生的人，自己的職涯與定位，是不是也正被時代與環境悄悄砸出一個洞？</p>
+<p>最近在網路上看到一段相當有意思的討論，一位資深的 Java 開發者提到：</p>
+<blockquote>
+<p>「測試跟 Code Review 應該是工程師之間交換做，不應該有 SDET（Software Development Engineer in Test）這種專門職位。因為你能看懂別人程式碼，還知道他哪裡寫錯，代表你的功力比原作者高深。既然你功力更高，為什麼不直接去做 RD，而要做一個專職的測試？」</p>
+</blockquote>
+<p>這句話在社群上引發了熱烈討論。對於很多待過中小型團隊、或是沒有與現代化軟體測試工程協作過的開發者來說，這段邏輯聽起來合情合理。但對於在現代軟體工程體系中打滾過的工程師而言，這段話其實精準地暴露出兩個極大的認知盲區。</p>
+<p>今天，我想聊聊關於 SDET 職能定位的迷思，並透過我們熟知的 SRE 角色進行類比。同時，身為一個無法直接改變公司組織架構的基層工程師，我們在 AI 變革下該如何看待自己的「職稱」，以及如何默默打造自己的職涯防禦率。</p>
+<hr>
+<h2 id="一、-大佬口中的「SDET-不需要論」：背後的雙重認知偏誤"><a href="#一、-大佬口中的「SDET-不需要論」：背後的雙重認知偏誤" class="headerlink" title="一、 大佬口中的「SDET 不需要論」：背後的雙重認知偏誤"></a>一、 大佬口中的「SDET 不需要論」：背後的雙重認知偏誤</h2><p>這段認為「能找出 bug 代表功力更深，所以不需要專職 SDET」的論點，本質上犯了兩個盲區：</p>
+<h3 id="1-將-SDET-的職能過度簡化"><a href="#1-將-SDET-的職能過度簡化" class="headerlink" title="1. 將 SDET 的職能過度簡化"></a>1. 將 SDET 的職能過度簡化</h3><p>這句話把 SDET 的工作想像成「幫 RD 看代碼找錯」或「當專職的 Code Reviewer」。</p>
+<p>如果一個團隊中的 SDET &#x2F; QA 每天的工作只是坐在電腦前，等 RD 把代碼寫完，然後一行行去抓語法錯誤、或者做純人工的手動點擊測試，那確實由 RD 彼此交換做 Code Review 的效率會高得多。因為程式碼是 RD 自己寫的，脈絡最清楚。</p>
+<p>但這就像認為「SRE（Site Reliability Engineer）的工作只是幫 RD 部署程式、或是寫幾行開機腳本」一樣，是極度狹隘的認知。</p>
+<h3 id="2-混淆了「開發思維」與「品質思維」"><a href="#2-混淆了「開發思維」與「品質思維」" class="headerlink" title="2. 混淆了「開發思維」與「品質思維」"></a>2. 混淆了「開發思維」與「品質思維」</h3><p>「看得懂別人的程式碼，知道哪裡寫錯」跟「有能力設計出高覆蓋率、低維護成本的測試架構」，完全是兩碼子事。</p>
+<ul>
+<li><strong>RD 開發思維</strong>：關注的是**「如何實現功能」**。大腦處於建立邏輯、串接 API、讓 Happy Path 順利跑通的狀態。開發者很容易陷入路徑依賴（Path Dependency）的盲區——因為腦中預設了使用者會照著特定的流程操作，往往會忽略邊界外的異常。</li>
+<li><strong>QA&#x2F;SDET 品質思維</strong>：關注的是**「系統在什麼邊界、極端輸入、惡意負載或非同步環境下會崩潰」**。</li>
+</ul>
+<p>舉個生活中的例子：**大廚（RD）<strong>會煮出一桌精緻的法式料理，與</strong>食品衛生稽核員（QA）**知道如何建立一套系統化的流程來防範廚房食物中毒，是兩種完全不同的專業技術。稽核員不一定要比大廚更會煎牛排，但他必須知道在哪些溫度區間、哪些儲存條件下容易滋生細菌。</p>
+<p>能看出大廚今天沒洗手（程式低級 Bug），不代表你能規劃出全系統的食安防線（測試策略）。</p>
+<hr>
+<h2 id="二、-SRE-的類比：從「打雜幫忙」到「建構測試基礎設施」"><a href="#二、-SRE-的類比：從「打雜幫忙」到「建構測試基礎設施」" class="headerlink" title="二、 SRE 的類比：從「打雜幫忙」到「建構測試基礎設施」"></a>二、 SRE 的類比：從「打雜幫忙」到「建構測試基礎設施」</h2><p>要理解 SDET 在團隊中的真實價值，我們可以用 <strong>SRE</strong> 來做個非常貼切的類比。</p>
+<p>在十多年前 DevOps 概念還沒普及時，很多傳統開發者也會質疑：「為什麼要專職的 SRE 或運維工程師？部署跟架設伺服器我們 RD 自己寫腳本不就好了？」</p>
+<p>但當系統規模擴大、流量成長、微服務架構興起時，RD 開始發現力不從心：每個人寫的部署腳本標準不一、監控指標亂七八糟、伺服器掛掉時沒人知道是誰的問題。</p>
+<p>這時，SRE 的核心價值浮現了：<strong>SRE 從來不是「幫 RD 去部署程式的打雜工」，而是「建構一套安全、快速、自動化的部署平台與監控基礎設施，讓 RD 可以無痛地自我服務（Self-Service）」</strong>。</p>
+<p>同理，<strong>SDET 的核心價值，是建構「測試基礎設施（Test Infrastructure）」與推動「工程效能（Developer Productivity Engineering, DPE）」</strong>。</p>
+<table>
+<thead>
+<tr>
+<th align="left">維度</th>
+<th align="left">SRE (Site Reliability Engineer)</th>
+<th align="left">SDET (Software Development Engineer in Test)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>外界的誤解</strong></td>
+<td align="left">幫 RD 手動部署、寫開機腳本</td>
+<td align="left">幫 RD 做 Code Review、手動點點測試</td>
+</tr>
+<tr>
+<td align="left"><strong>真實核心價值</strong></td>
+<td align="left"><strong>建構運維與部署基礎設施</strong></td>
+<td align="left"><strong>建構自動化測試與品質基礎設施</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>具體交付物</strong></td>
+<td align="left">CI&#x2F;CD 流水線、Kubernetes 集群、監控看板、容災架構</td>
+<td align="left">自動化測試框架封裝、測試資料生成平台、環境自動還原工具、測試成效看板</td>
+</tr>
+<tr>
+<td align="left"><strong>終極目標</strong></td>
+<td align="left">讓 RD 能夠快速、安全且無痛地把程式發布上線</td>
+<td align="left">讓 RD 能夠快速、安全地獲取測試反饋，自己為品質把關</td>
+</tr>
+</tbody></table>
+<p>SDET 不是代替 RD 寫測試，而是<strong>為 RD 鋪路</strong>。他們開發工具、封裝框架，讓 RD 在寫完程式時，能在一分鐘內拿到可信賴的測試反饋，而不是每天花時間去調整不穩定的 UI Locator 或應付 Flaky Test。</p>
+<p>這是一門專門的「軟體工程」，它服務的對象是開發者，解決的是整個研發管線的摩擦力。</p>
+<hr>
+<h2 id="三、-基層的現實無奈：當初分工的意義，與-AI-帶來的變革"><a href="#三、-基層的現實無奈：當初分工的意義，與-AI-帶來的變革" class="headerlink" title="三、 基層的現實無奈：當初分工的意義，與 AI 帶來的變革"></a>三、 基層的現實無奈：當初分工的意義，與 AI 帶來的變革</h2><p>看到這裡，你可能會嘆口氣：「你說的都對，但那是在大廠或現代化團隊。我們只是一般的基層工程師，公司根本沒有 SDET 這種職缺，HR 招人也是 RD 歸 RD、QA 歸 QA，我根本改不了公司的組織與職稱。」</p>
+<p>這確實是實務上最無奈、也最真實的狀況。</p>
+<p>我們不是管理層，很難單憑一己之力去推翻當前的分工體制。其實，組織當初會劃分「RD 寫功能、QA 點測試」的界線，有其歷史背景與效率考量——透過<strong>專門化的分工</strong>來降低個人的認知負荷，讓每個人專注在自己的防區。</p>
+<p>然而，隨著 AI 時代的變革，這種極度僵化的分工防區正在面臨前所未有的挑戰：</p>
+<ul>
+<li><strong>AI 讓編碼成本暴跌</strong>：現在 RD 可以用 AI 在幾秒鐘內產出大量的程式碼與單元測試。</li>
+<li><strong>溝通與等待成為瓶頸</strong>：如果 RD 寫出代碼後，依然需要「丟給 QA 手動測試 -&gt; QA 提 bug -&gt; RD 再修復」的傳統循環，這中間的跨職能溝通與等待成本，會遠大於 AI 幫你省下的時間。</li>
+</ul>
+<p>身為非管理層的我們，如果只因為職稱是 QA 或 RD，就畫地自限，拒絕利用 AI 去理解底層代碼或建構測試工具，我們很快就會在這場高頻寬的開發革命中被邊緣化。</p>
+<hr>
+<h2 id="四、-影子工程師的逆襲：不破壞職稱的生存策略"><a href="#四、-影子工程師的逆襲：不破壞職稱的生存策略" class="headerlink" title="四、 影子工程師的逆襲：不破壞職稱的生存策略"></a>四、 影子工程師的逆襲：不破壞職稱的生存策略</h2><p>既然我們無法改變名牌上的「職稱」，我們能改變的是<strong>自己為團隊解決問題的實質守備範圍</strong>。</p>
+<p>在 AI 時代下，一個聰明的基層工程師，應該採取**「影子工程師（Shadow Engineer）」**的生存策略：</p>
+<ol>
+<li><strong>以 QA 之名，行 SDET&#x2F;SRE 之實</strong>：<br>不用等到公司設立 SDET 的職位。如果你發現每次回歸測試都很耗時、或者部署環境總是不穩定，你可以利用 AI 的輔助，悄悄跨出一步去寫自動化腳本、優化 CI 流水線、或是封裝共用的定位器邏輯。你不需要推翻體制，你只需要默默地用程式碼幫團隊降低摩擦力。</li>
+<li><strong>用「實質影響力」建立護城河</strong>：<br>當你扮演了團隊中跨職能的溝通樞紐，解決了別人不想碰的「測試環境難用」或「資料準備繁瑣」的痛點，不論你的職稱叫 QA 還是 RD，你在平行同事（Peers）心中的實質地位，早已超出了那張職稱的名牌。</li>
+<li><strong>主動拓寬技術與業務的邊界</strong>：<br>AI 降低了解讀複雜代碼的門檻，這給了測試工程師極大的紅利。我們不再受限於「黑箱測試」，而是能夠進一步參與系統設計的討論，從更上游去預防品質漏洞。</li>
+</ol>
+<hr>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><blockquote>
+<p><em>“Sometimes it seems you gain less than you lose</em><br><em>But we carry on.”</em></p>
+</blockquote>
+<p>在 AI 逐漸模糊所有技術界線的今天，市場與組織對「職稱」的定義或許會遲到、或許會產生陣痛與無奈，甚至有時會讓我們覺得，學了這麼多新東西，回頭看著組織的圍牆與考績天花板，好像 <em>gain less than we lose</em>。</p>
+<p>但這首歌的最後給了一句很有韌性的回答：<em>But we carry on</em>。</p>
+<p>當我們不再糾結於名牌上到底印的是 QA、SDET 還是 RD，而是把目光專注在「如何用更高效的工程手段去解決團隊的痛點」，這就是基層工程師在變革中最好的自我修練。我們默默鋪路、蓋好防禦網，然後帶著屬於自己的實質影響力，繼續前行。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/QA/">QA</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/SDET/">SDET</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/SRE/">SRE</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI%E6%99%82%E4%BB%A3/">AI時代</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%B5%84%E7%B9%94%E7%AE%A1%E7%90%86/">組織管理</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/not-just-make-manual-script-automate/"
+                                   title="不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E5%A4%A7%E4%BD%AC%E5%8F%A3%E4%B8%AD%E7%9A%84%E3%80%8CSDET-%E4%B8%8D%E9%9C%80%E8%A6%81%E8%AB%96%E3%80%8D%EF%BC%9A%E8%83%8C%E5%BE%8C%E7%9A%84%E9%9B%99%E9%87%8D%E8%AA%8D%E7%9F%A5%E5%81%8F%E8%AA%A4"><span class="nav-text">一、 大佬口中的「SDET 不需要論」：背後的雙重認知偏誤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B0%87-SDET-%E7%9A%84%E8%81%B7%E8%83%BD%E9%81%8E%E5%BA%A6%E7%B0%A1%E5%8C%96"><span class="nav-text">1. 將 SDET 的職能過度簡化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B7%B7%E6%B7%86%E4%BA%86%E3%80%8C%E9%96%8B%E7%99%BC%E6%80%9D%E7%B6%AD%E3%80%8D%E8%88%87%E3%80%8C%E5%93%81%E8%B3%AA%E6%80%9D%E7%B6%AD%E3%80%8D"><span class="nav-text">2. 混淆了「開發思維」與「品質思維」</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-SRE-%E7%9A%84%E9%A1%9E%E6%AF%94%EF%BC%9A%E5%BE%9E%E3%80%8C%E6%89%93%E9%9B%9C%E5%B9%AB%E5%BF%99%E3%80%8D%E5%88%B0%E3%80%8C%E5%BB%BA%E6%A7%8B%E6%B8%AC%E8%A9%A6%E5%9F%BA%E7%A4%8E%E8%A8%AD%E6%96%BD%E3%80%8D"><span class="nav-text">二、 SRE 的類比：從「打雜幫忙」到「建構測試基礎設施」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%9F%BA%E5%B1%A4%E7%9A%84%E7%8F%BE%E5%AF%A6%E7%84%A1%E5%A5%88%EF%BC%9A%E7%95%B6%E5%88%9D%E5%88%86%E5%B7%A5%E7%9A%84%E6%84%8F%E7%BE%A9%EF%BC%8C%E8%88%87-AI-%E5%B8%B6%E4%BE%86%E7%9A%84%E8%AE%8A%E9%9D%A9"><span class="nav-text">三、 基層的現實無奈：當初分工的意義，與 AI 帶來的變革</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E5%BD%B1%E5%AD%90%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E9%80%86%E8%A5%B2%EF%BC%9A%E4%B8%8D%E7%A0%B4%E5%A3%9E%E8%81%B7%E7%A8%B1%E7%9A%84%E7%94%9F%E5%AD%98%E7%AD%96%E7%95%A5"><span class="nav-text">四、 影子工程師的逆襲：不破壞職稱的生存策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-text">結語</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E5%A4%A7%E4%BD%AC%E5%8F%A3%E4%B8%AD%E7%9A%84%E3%80%8CSDET-%E4%B8%8D%E9%9C%80%E8%A6%81%E8%AB%96%E3%80%8D%EF%BC%9A%E8%83%8C%E5%BE%8C%E7%9A%84%E9%9B%99%E9%87%8D%E8%AA%8D%E7%9F%A5%E5%81%8F%E8%AA%A4"><span class="nav-text">一、 大佬口中的「SDET 不需要論」：背後的雙重認知偏誤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B0%87-SDET-%E7%9A%84%E8%81%B7%E8%83%BD%E9%81%8E%E5%BA%A6%E7%B0%A1%E5%8C%96"><span class="nav-text">1. 將 SDET 的職能過度簡化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B7%B7%E6%B7%86%E4%BA%86%E3%80%8C%E9%96%8B%E7%99%BC%E6%80%9D%E7%B6%AD%E3%80%8D%E8%88%87%E3%80%8C%E5%93%81%E8%B3%AA%E6%80%9D%E7%B6%AD%E3%80%8D"><span class="nav-text">2. 混淆了「開發思維」與「品質思維」</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-SRE-%E7%9A%84%E9%A1%9E%E6%AF%94%EF%BC%9A%E5%BE%9E%E3%80%8C%E6%89%93%E9%9B%9C%E5%B9%AB%E5%BF%99%E3%80%8D%E5%88%B0%E3%80%8C%E5%BB%BA%E6%A7%8B%E6%B8%AC%E8%A9%A6%E5%9F%BA%E7%A4%8E%E8%A8%AD%E6%96%BD%E3%80%8D"><span class="nav-text">二、 SRE 的類比：從「打雜幫忙」到「建構測試基礎設施」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%9F%BA%E5%B1%A4%E7%9A%84%E7%8F%BE%E5%AF%A6%E7%84%A1%E5%A5%88%EF%BC%9A%E7%95%B6%E5%88%9D%E5%88%86%E5%B7%A5%E7%9A%84%E6%84%8F%E7%BE%A9%EF%BC%8C%E8%88%87-AI-%E5%B8%B6%E4%BE%86%E7%9A%84%E8%AE%8A%E9%9D%A9"><span class="nav-text">三、 基層的現實無奈：當初分工的意義，與 AI 帶來的變革</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E5%BD%B1%E5%AD%90%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E9%80%86%E8%A5%B2%EF%BC%9A%E4%B8%8D%E7%A0%B4%E5%A3%9E%E8%81%B7%E7%A8%B1%E7%9A%84%E7%94%9F%E5%AD%98%E7%AD%96%E7%95%A5"><span class="nav-text">四、 影子工程師的逆襲：不破壞職稱的生存策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-text">結語</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>
