@@ -14,7 +14,8 @@ on:
       - 'notes/**'
       - 'source/_drafts/**'
   schedule:
-    - cron: '30 16 * * *'
+    # 每天重新部署兩次（台北時間 12:30 與 00:30），確保排程文章能準時釋出
+    - cron: '30 4,16 * * *'
   workflow_dispatch:
 
 # 允許 workflow 寫入 gh-pages branch
