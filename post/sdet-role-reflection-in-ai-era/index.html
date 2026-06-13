@@ -9,7 +9,7 @@
     
     <title>
         
-            【技術升級】Appium 3.0 來了！從 v2 遷移至 v3 的核心重點與避坑指南 |
+            「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師 |
         
         Elijah’s Quality Lab
     </title>
@@ -239,7 +239,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        【技術升級】Appium 3.0 來了！從 v2 遷移至 v3 的核心重點與避坑指南
+                        「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師
                     </div>
                 
 
@@ -267,13 +267,13 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2026-03-26</span>
+                <span class="datetime">2026-06-13</span>
             </span>
 
             
                 <span class="meta-info-item post-update-date">
                     <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                    <span class="datetime" data-updated="Thu Mar 26 2026 06:00:00 GMT+0000">2026-03-26</span>
+                    <span class="datetime" data-updated="Sat Jun 13 2026 04:00:00 GMT+0000">2026-06-13</span>
                 </span>
             
         
@@ -284,19 +284,25 @@
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Appium/">Appium</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/QA/">QA</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E9%96%8B%E7%99%BC/">測試開發</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/SDET/">SDET</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Test-Automation/">Test Automation</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/SRE/">SRE</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%8D%87%E7%B4%9A%E7%AD%86%E8%A8%98/">升級筆記</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI%E6%99%82%E4%BB%A3/">AI時代</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%B5%84%E7%B9%94%E7%AE%A1%E7%90%86/">組織管理</a></li>
                         
                     
                 </ul>
@@ -325,34 +331,112 @@
                     
 
                     
-                         <p>就在我們還在習慣 Appium 2.0 的獨立 Driver 安裝架構時，<strong>Appium 3.0</strong> 已經正式進入大家的視野。</p>
-<p>這次的升級並不像從 v1 到 v2 那樣有翻天覆地的架構改變，但卻有幾個針對「現代化」與「安全性」的關鍵修正。如果你正在考慮將團隊的自動化框架升級，這篇筆記能幫你快速掌握遷移重點。</p>
-<blockquote>
-<p>參考資料：<a class="link"   target="_blank" rel="noopener" href="https://appium.io/docs/en/latest/guides/migrating-2-to-3/" >Appium 官方遷移指南 (v2 to v3)<i class="fas fa-external-link-alt"></i></a></p>
+                         <blockquote>
+<p><em>“We’ve got holes, we’ve got holes</em><br><em>In our hearts, in our lives</em><br><em>But we carry on.”</em><br>—— Passenger, 〈Holes〉(2012)</p>
 </blockquote>
-<h3 id="1-為什麼要升級？Appium-3-的核心哲學"><a href="#1-為什麼要升級？Appium-3-的核心哲學" class="headerlink" title="1. 為什麼要升級？Appium 3 的核心哲學"></a>1. 為什麼要升級？Appium 3 的核心哲學</h3><p>Appium 3 延續了 v2 的「插拔式」精神，但更進一步地移除了許多過時的依賴，並強化了對最新行動作業系統（iOS 18+, Android 15+）的支援穩定性。</p>
-<p><strong>最主要的變化在於：</strong></p>
-<ul>
-<li><strong>Node.js 版本要求：</strong> Appium 3 建議（甚至在某些環境下要求）使用更高的 Node.js LTS 版本。</li>
-<li><strong>安全性增強：</strong> 針對內部 API 進行了重構，減少了潛在的安全漏洞。</li>
-</ul>
+<p>身為一個專注於軟體品質的工程師，我的日常工作就是為別人的系統找出各種「漏洞（Holes）」。但有時候，看著社群論壇與職場上的各種爭論，我會隱隱覺得：我們這些以「尋找漏洞」為生的人，自己的職涯與定位，是不是也正被時代與環境悄悄砸出一個洞？</p>
+<p>最近在網路上看到一段相當有意思的討論，一位資深的 Java 開發者提到：</p>
+<blockquote>
+<p>「測試跟 Code Review 應該是工程師之間交換做，不應該有 SDET（Software Development Engineer in Test）這種專門職位。因為你能看懂別人程式碼，還知道他哪裡寫錯，代表你的功力比原作者高深。既然你功力更高，為什麼不直接去做 RD，而要做一個專職的測試？」</p>
+</blockquote>
+<p>這句話在社群上引發了熱烈討論。對於很多待過中小型團隊、或是沒有與現代化軟體測試工程協作過的開發者來說，這段邏輯聽起來合情合理。但對於在現代軟體工程體系中打滾過的工程師而言，這段話其實精準地暴露出兩個極大的認知盲區。</p>
+<p>今天，我想聊聊關於 SDET 職能定位的迷思，並透過我們熟知的 SRE 角色進行類比。同時，身為一個無法直接改變公司組織架構的基層工程師，我們在 AI 變革下該如何看待自己的「職稱」，以及如何默默打造自己的職涯防禦率。</p>
 <hr>
-<h3 id="2-遷移四大重點-Migration-Checklist"><a href="#2-遷移四大重點-Migration-Checklist" class="headerlink" title="2. 遷移四大重點 (Migration Checklist)"></a>2. 遷移四大重點 (Migration Checklist)</h3><p>根據官方文件，以下是我們在遷移時必須檢查的項目：</p>
-<h4 id="A-驅動程式-Drivers-與外掛-Plugins-的更新"><a href="#A-驅動程式-Drivers-與外掛-Plugins-的更新" class="headerlink" title="A. 驅動程式 (Drivers) 與外掛 (Plugins) 的更新"></a>A. 驅動程式 (Drivers) 與外掛 (Plugins) 的更新</h4><p>Appium 3 需要對應版本的 Driver。升級後，請記得執行以下指令來更新你的核心驅動：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">appium driver update uiautomator2</span><br><span class="line">appium driver update xcuitest</span><br></pre></td></tr></table></figure>
-
-<h4 id="B-移除過時的-Capabilities"><a href="#B-移除過時的-Capabilities" class="headerlink" title="B. 移除過時的 Capabilities"></a>B. 移除過時的 Capabilities</h4><p>一些在 v2 已經標註為過時（Deprecated）的參數，在 v3 可能會直接失效。建議全面檢查並改用 appium:options 的巢狀結構來定義 Capabilities。</p>
-<h4 id="C-腳本相容性：WebDriver-協議"><a href="#C-腳本相容性：WebDriver-協議" class="headerlink" title="C. 腳本相容性：WebDriver 協議"></a>C. 腳本相容性：WebDriver 協議</h4><p>Appium 3 完全擁抱 W3C WebDriver Protocol。如果你的腳本中還殘留舊式的 JSON Wire Protocol 寫法，升級後可能會遇到定位失效或連線中斷的問題。</p>
-<h4 id="D-Plugin-的重大變更"><a href="#D-Plugin-的重大變更" class="headerlink" title="D. Plugin 的重大變更"></a>D. Plugin 的重大變更</h4><p>有些在 v2 廣泛使用的 Plugin 可能需要升級到 v3 相容版本，否則在啟動伺服器時會報錯。</p>
-<h3 id="3-實戰避坑：關於-Images-Plugin-的血淚經驗"><a href="#3-實戰避坑：關於-Images-Plugin-的血淚經驗" class="headerlink" title="3. 實戰避坑：關於 Images Plugin 的血淚經驗"></a>3. 實戰避坑：關於 Images Plugin 的血淚經驗</h3><p>這是這次升級中最具體的一個坑。如果你的專案有用到 Images Plugin（影像比對定位），請特別注意版本號：</p>
-<p>版本陷阱： 實測發現 appium-images-plugin 3.x 版本在環境適配上有些問題。</p>
-<p>目前的解決方案： 建議將版本鎖定在 4.1.1，在目前的測試環境中相對穩定。</p>
-<p>隱憂： 雖然 4.1.1 解決了安裝問題，但在 Appium v3 環境下，似乎存在「長時間運行會突然掛掉」的穩定性疑慮。這部分我還在持續觀察中，建議若非必要，先在 Dev 環境跑一段時間的壓力測試。</p>
-<h3 id="4-其他建議"><a href="#4-其他建議" class="headerlink" title="4. 其他建議"></a>4. 其他建議</h3><p>備份 Node Modules： 在執行 npm install -g appium@next 前，確保知道如何降級。</p>
-<p>Client 端同步： 伺服器升級後，Appium-Python-Client 等客戶端也需同步更新，避免通訊協定不匹配。</p>
-<p>善用 Appium Inspector： 定位不到元素時，先開 Inspector 檢查 DOM 結構是否因 Driver 更新而變動。</p>
-<h3 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h3><p>Appium 3 象徵行動自動化進入更精簡的時代。雖然為了穩定性（如上述的 Images Plugin 問題）可能需要花時間調整，但長遠來看是值得的投資。</p>
-<p>你已經開始嘗試 Appium 3 了嗎？或是升級過程中遇到了什麼卡關的地方？歡迎在下方留言，我們一起拆解問題！</p>
+<h2 id="一、-大佬口中的「SDET-不需要論」：背後的雙重認知偏誤"><a href="#一、-大佬口中的「SDET-不需要論」：背後的雙重認知偏誤" class="headerlink" title="一、 大佬口中的「SDET 不需要論」：背後的雙重認知偏誤"></a>一、 大佬口中的「SDET 不需要論」：背後的雙重認知偏誤</h2><p>這段認為「能找出 bug 代表功力更深，所以不需要專職 SDET」的論點，本質上犯了兩個盲區：</p>
+<h3 id="1-將-SDET-的職能過度簡化"><a href="#1-將-SDET-的職能過度簡化" class="headerlink" title="1. 將 SDET 的職能過度簡化"></a>1. 將 SDET 的職能過度簡化</h3><p>這句話把 SDET 的工作想像成「幫 RD 看代碼找錯」或「當專職的 Code Reviewer」。</p>
+<p>如果一個團隊中的 SDET &#x2F; QA 每天的工作只是坐在電腦前，等 RD 把代碼寫完，然後一行行去抓語法錯誤、或者做純人工的手動點擊測試，那確實由 RD 彼此交換做 Code Review 的效率會高得多。因為程式碼是 RD 自己寫的，脈絡最清楚。</p>
+<p>但這就像認為「SRE（Site Reliability Engineer）的工作只是幫 RD 部署程式、或是寫幾行開機腳本」一樣，是極度狹隘的認知。</p>
+<h3 id="2-混淆了「開發思維」與「品質思維」"><a href="#2-混淆了「開發思維」與「品質思維」" class="headerlink" title="2. 混淆了「開發思維」與「品質思維」"></a>2. 混淆了「開發思維」與「品質思維」</h3><p>「看得懂別人的程式碼，知道哪裡寫錯」跟「有能力設計出高覆蓋率、低維護成本的測試架構」，完全是兩碼子事。</p>
+<ul>
+<li><strong>RD 開發思維</strong>：關注的是**「如何實現功能」**。大腦處於建立邏輯、串接 API、讓 Happy Path 順利跑通的狀態。開發者很容易陷入路徑依賴（Path Dependency）的盲區——因為腦中預設了使用者會照著特定的流程操作，往往會忽略邊界外的異常。</li>
+<li><strong>QA&#x2F;SDET 品質思維</strong>：關注的是**「系統在什麼邊界、極端輸入、惡意負載或非同步環境下會崩潰」**。</li>
+</ul>
+<p>舉個生活中的例子：**大廚（RD）<strong>會煮出一桌精緻的法式料理，與</strong>食品衛生稽核員（QA）**知道如何建立一套系統化的流程來防範廚房食物中毒，是兩種完全不同的專業技術。稽核員不一定要比大廚更會煎牛排，但他必須知道在哪些溫度區間、哪些儲存條件下容易滋生細菌。</p>
+<p>能看出大廚今天沒洗手（程式低級 Bug），不代表你能規劃出全系統的食安防線（測試策略）。</p>
+<hr>
+<h2 id="二、-SRE-的類比：從「打雜幫忙」到「建構測試基礎設施」"><a href="#二、-SRE-的類比：從「打雜幫忙」到「建構測試基礎設施」" class="headerlink" title="二、 SRE 的類比：從「打雜幫忙」到「建構測試基礎設施」"></a>二、 SRE 的類比：從「打雜幫忙」到「建構測試基礎設施」</h2><p>要理解 SDET 在團隊中的真實價值，我們可以用 <strong>SRE</strong> 來做個非常貼切的類比。</p>
+<p>在十多年前 DevOps 概念還沒普及時，很多傳統開發者也會質疑：「為什麼要專職的 SRE 或運維工程師？部署跟架設伺服器我們 RD 自己寫腳本不就好了？」</p>
+<p>但當系統規模擴大、流量成長、微服務架構興起時，RD 開始發現力不從心：每個人寫的部署腳本標準不一、監控指標亂七八糟、伺服器掛掉時沒人知道是誰的問題。</p>
+<p>這時，SRE 的核心價值浮現了：<strong>SRE 從來不是「幫 RD 去部署程式的打雜工」，而是「建構一套安全、快速、自動化的部署平台與監控基礎設施，讓 RD 可以無痛地自我服務（Self-Service）」</strong>。</p>
+<p>同理，<strong>SDET 的核心價值，是建構「測試基礎設施（Test Infrastructure）」與推動「工程效能（Developer Productivity Engineering, DPE）」</strong>。</p>
+<table>
+<thead>
+<tr>
+<th align="left">維度</th>
+<th align="left">SRE (Site Reliability Engineer)</th>
+<th align="left">SDET (Software Development Engineer in Test)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>外界的誤解</strong></td>
+<td align="left">幫 RD 手動部署、寫開機腳本</td>
+<td align="left">幫 RD 做 Code Review、手動點點測試</td>
+</tr>
+<tr>
+<td align="left"><strong>真實核心價值</strong></td>
+<td align="left"><strong>建構運維與部署基礎設施</strong></td>
+<td align="left"><strong>建構自動化測試與品質基礎設施</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>具體交付物</strong></td>
+<td align="left">CI&#x2F;CD 流水線、Kubernetes 集群、監控看板、容災架構</td>
+<td align="left">自動化測試框架封裝、測試資料生成平台、環境自動還原工具、測試成效看板</td>
+</tr>
+<tr>
+<td align="left"><strong>終極目標</strong></td>
+<td align="left">讓 RD 能夠快速、安全且無痛地把程式發布上線</td>
+<td align="left">讓 RD 能夠快速、安全地獲取測試反饋，自己為品質把關</td>
+</tr>
+</tbody></table>
+<p>SDET 不是代替 RD 寫測試，而是<strong>為 RD 鋪路</strong>。他們開發工具、封裝框架，讓 RD 在寫完程式時，能在一分鐘內拿到可信賴的測試反饋，而不是每天花時間去調整不穩定的 UI Locator 或應付 Flaky Test。</p>
+<p>這是一門專門的「軟體工程」，它服務的對象是開發者，解決的是整個研發管線的摩擦力。</p>
+<hr>
+<h2 id="三、-基層的現實無奈：當初分工的意義，與-AI-帶來的變革"><a href="#三、-基層的現實無奈：當初分工的意義，與-AI-帶來的變革" class="headerlink" title="三、 基層的現實無奈：當初分工的意義，與 AI 帶來的變革"></a>三、 基層的現實無奈：當初分工的意義，與 AI 帶來的變革</h2><p>看到這裡，你可能會嘆口氣：「你說的都對，但那是在大廠或現代化團隊。我們只是一般的基層工程師，公司根本沒有 SDET 這種職缺，HR 招人也是 RD 歸 RD、QA 歸 QA，我根本改不了公司的組織與職稱。」</p>
+<p>這確實是實務上最無奈、也最真實的狀況。</p>
+<p>我們不是管理層，很難單憑一己之力去推翻當前的分工體制。其實，組織當初會劃分「RD 寫功能、QA 點測試」的界線，有其歷史背景與效率考量——透過<strong>專門化的分工</strong>來降低個人的認知負荷，讓每個人專注在自己的防區。</p>
+<p>然而，隨著 AI 時代的變革，這種極度僵化的分工防區正在面臨前所未有的挑戰：</p>
+<ul>
+<li><strong>AI 讓編碼成本暴跌</strong>：現在 RD 可以用 AI 在幾秒鐘內產出大量的程式碼與單元測試。</li>
+<li><strong>溝通與等待成為瓶頸</strong>：如果 RD 寫出代碼後，依然需要「丟給 QA 手動測試 -&gt; QA 提 bug -&gt; RD 再修復」的傳統循環，這中間的跨職能溝通與等待成本，會遠大於 AI 幫你省下的時間。</li>
+</ul>
+<p>身為非管理層的我們，如果只因為職稱是 QA 或 RD，就畫地自限，拒絕利用 AI 去理解底層代碼或建構測試工具，我們很快就會在這場高頻寬的開發革命中被邊緣化。</p>
+<h3 id="誠實的面對：如果期待不一致，換一間公司可能比在原地推動更快"><a href="#誠實的面對：如果期待不一致，換一間公司可能比在原地推動更快" class="headerlink" title="誠實的面對：如果期待不一致，換一間公司可能比在原地推動更快"></a>誠實的面對：如果期待不一致，換一間公司可能比在原地推動更快</h3><p>坦白說，如果你真的渴望往專職 SDET 的方向發展，你最該做的事情，其實不是竭盡所能去說服主管、說服部門或爭取高層的信任來幫你「更換職稱」。</p>
+<p>這就如同大人學張國洋（Joe）在<a class="link"   target="_blank" rel="noopener" href="https://www.darencademy.com/article/view/id/3579" >〈如果不想上火星，你就別去SpaceX—公司，應該是實現你夢想的地方〉<i class="fas fa-external-link-alt"></i></a>一文中所提到的邏輯：公司是實現目標與夢想的場域，而非民主議會。在職場中，我們有權利自由選擇與自己理念相符的環境。如果公司目前的工程成熟度與你的職涯期待根本不在同一個軌道上，花時間去說服、感化主管「這才是對的工程實踐」，往往是不切實際的。認清公司目前的工程狀態與你個人期待的不一致，選擇換一間已經有這個土壤的環境，往往是更有效率且痛苦更少的選項。</p>
+<h4 id="藉由「ESG-投入級別」來診斷公司的工程成熟度"><a href="#藉由「ESG-投入級別」來診斷公司的工程成熟度" class="headerlink" title="藉由「ESG 投入級別」來診斷公司的工程成熟度"></a>藉由「ESG 投入級別」來診斷公司的工程成熟度</h4><p>關於如何判斷公司的工程成熟度，在職涯諮詢中曾有一個非常經典的「ESG（企業永續）」三級診斷框架：</p>
+<ol>
+<li><strong>第一級：高層意志與資源灌注</strong>：例如由老闆的二代或核心心腹親自帶頭，成立資源與人手編制健全的 ESG 部門。這是上面動用真金白銀「玩真的」。</li>
+<li><strong>第二級：生存剛需驅動</strong>：因為被歐美大客戶強烈要求做 ESG，否則無法保住訂單。雖然不是主動想做，但為了生存，公司不得不全力配合，這是被商業剛需推著前進。</li>
+<li><strong>第三級：跟風與試水溫</strong>：老闆讀了幾本商業暢銷書或去外面聽了演講，回來講得天花亂墜，於是成立了一兩個人的功能性小組來「試試水溫」，但既不給預算，也不給實質決策權。</li>
+</ol>
+<p>有資深顧問曾如此建議：<strong>「你想看，如果你今天想在 ESG 領域發光發熱，你自然知道該去哪一類公司。」</strong></p>
+<p>將這個邏輯套回到軟體測試與 SDET：</p>
+<ul>
+<li><strong>第一級</strong>：公司高層將「工程生產力與品質」視為核心競爭力，直接撥資源成立專門的工程效能（DPE）或軟體測試工程團隊。</li>
+<li><strong>第二級</strong>：因為關鍵客戶、外部法規或核心業務在穩定性上面臨重大危機，被迫必須建立自動化測試防禦網。</li>
+<li><strong>第三級</strong>：主管或老闆聽到了新名詞（如 DevOps, AI 測試、或極速建置工具），口頭上高喊自動化，卻不給實質的人力與時間預算，只希望基層一邊做繁重的手動回歸、一邊「順便」生出自動化測試。</li>
+</ul>
+<p>至於我們自己目前待在第幾級的環境？又該如何看待現有崗位的現狀？這就留給各位讀者在心裡默默對號入座、賣個關子了。但可以肯定的是：當期待與資源出現落差時，別急著在原地當「佈道者」去感化體制。</p>
+<p>而下面我們要聊的「影子工程師」策略，則是當你因為種種現實因素暫時留在原地、或是想在現有崗位上為下一次跳槽積累實力時，一個最務實的自我修練與防禦手段。</p>
+<hr>
+<h2 id="四、-影子工程師的逆襲：不破壞職稱的生存策略"><a href="#四、-影子工程師的逆襲：不破壞職稱的生存策略" class="headerlink" title="四、 影子工程師的逆襲：不破壞職稱的生存策略"></a>四、 影子工程師的逆襲：不破壞職稱的生存策略</h2><p>既然我們無法改變名牌上的「職稱」，我們能改變的是<strong>自己為團隊解決問題的實質守備範圍</strong>。</p>
+<p>在 AI 時代下，一個聰明的基層工程師，應該採取**「影子工程師（Shadow Engineer）」**的生存策略：</p>
+<ol>
+<li><strong>以 QA 之名，行 SDET&#x2F;SRE 之實</strong>：<br>不用等到公司設立 SDET 的職位。如果你發現每次回歸測試都很耗時、或者部署環境總是不穩定，你可以利用 AI 的輔助，悄悄跨出一步去寫自動化腳本、優化 CI 流水線、或是封裝共用的定位器邏輯。你不需要推翻體制，你只需要默默地用程式碼幫團隊降低摩擦力。</li>
+<li><strong>用「實質影響力」建立護城河</strong>：<br>當你扮演了團隊中跨職能的溝通樞紐，解決了別人不想碰的「測試環境難用」或「資料準備繁瑣」的痛點，不論你的職稱叫 QA 還是 RD，你在平行同事（Peers）心中的實質地位，早已超出了那張職稱的名牌。</li>
+<li><strong>主動拓寬技術與業務的邊界</strong>：<br>AI 降低了解讀複雜代碼的門檻，這給了測試工程師極大的紅利。我們不再受限於「黑箱測試」，而是能夠進一步參與系統設計的討論，從更上游去預防品質漏洞。</li>
+</ol>
+<hr>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><blockquote>
+<p><em>“Sometimes it seems you gain less than you lose</em><br><em>But we carry on.”</em></p>
+</blockquote>
+<p>在 AI 逐漸模糊所有技術界線的今天，市場與組織對「職稱」的定義或許會遲到、或許會產生陣痛與無奈，甚至有時會讓我們覺得，學了這麼多新東西，回頭看著組織的圍牆與考績天花板，好像 <em>gain less than we lose</em>。</p>
+<p>但這首歌的最後給了一句很有韌性的回答：<em>But we carry on</em>。</p>
+<p>當我們不再糾結於名牌上到底印的是 QA、SDET 還是 RD，而是把目光專注在「如何用更高效的工程手段去解決團隊的痛點」，這就是基層工程師在變革中最好的自我修練。我們默默鋪路、蓋好防禦網，然後帶著屬於自己的實質影響力，繼續前行。</p>
+<hr>
+<h2 id="相關引用與參考資料"><a href="#相關引用與參考資料" class="headerlink" title="相關引用與參考資料"></a>相關引用與參考資料</h2><ul>
+<li><strong>專欄文章</strong>：張國洋 (Joe Chang)，<a class="link"   target="_blank" rel="noopener" href="https://www.darencademy.com/article/view/id/3579" >〈如果不想上火星，你就別去SpaceX—公司，應該是實現你夢想的地方〉<i class="fas fa-external-link-alt"></i></a>，《大人學》。</li>
+<li><strong>音樂歌曲</strong>：Passenger，〈Holes〉，收錄於專輯《All the Little Lights》(2012)。</li>
+</ul>
 
                     
                 </div>
@@ -365,23 +449,31 @@
                             <ul class="post-tags-box border-box">
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Appium/">Appium</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/QA/">QA</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E9%96%8B%E7%99%BC/">測試開發</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/SDET/">SDET</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Test-Automation/">Test Automation</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/SRE/">SRE</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%8D%87%E7%B4%9A%E7%AD%86%E8%A8%98/">升級筆記</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI%E6%99%82%E4%BB%A3/">AI時代</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%B5%84%E7%B9%94%E7%AE%A1%E7%90%86/">組織管理</a>
                                     </li>
                                 
                             </ul>
@@ -397,31 +489,15 @@
                 
                     <div class="post-nav border-box">
                         
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/post/black-box-limitations-and-strategy/"
-                                   title="當主管只想做「黑箱測試」：QA 如何在限制中推動品質進步？"
-                                >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">當主管只想做「黑箱測試」：QA 如何在限制中推動品質進步？</span>
-                                        <span class="post-nav-item">上一篇</span>
-                                    </span>
-                                </a>
-                            </div>
-                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/post/audio-testing-ffmpeg/"
-                                   title="【實戰筆記】語音聊天室錄音測試：從 FFmpeg 安裝到「口頭標記」驗證法"
+                                   href="/post/not-just-make-manual-script-automate/"
+                                   title="不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">【實戰筆記】語音聊天室錄音測試：從 FFmpeg 安裝到「口頭標記」驗證法</span>
+                                        <span class="post-nav-title-item text-ellipsis">不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？</span>
                                         <span class="post-nav-item">下一篇</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -550,7 +626,7 @@
             <div class="pc-post-toc left-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%8D%87%E7%B4%9A%EF%BC%9FAppium-3-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%93%B2%E5%AD%B8"><span class="nav-text">1. 為什麼要升級？Appium 3 的核心哲學</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%81%B7%E7%A7%BB%E5%9B%9B%E5%A4%A7%E9%87%8D%E9%BB%9E-Migration-Checklist"><span class="nav-text">2. 遷移四大重點 (Migration Checklist)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-%E9%A9%85%E5%8B%95%E7%A8%8B%E5%BC%8F-Drivers-%E8%88%87%E5%A4%96%E6%8E%9B-Plugins-%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="nav-text">A. 驅動程式 (Drivers) 與外掛 (Plugins) 的更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E7%A7%BB%E9%99%A4%E9%81%8E%E6%99%82%E7%9A%84-Capabilities"><span class="nav-text">B. 移除過時的 Capabilities</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E8%85%B3%E6%9C%AC%E7%9B%B8%E5%AE%B9%E6%80%A7%EF%BC%9AWebDriver-%E5%8D%94%E8%AD%B0"><span class="nav-text">C. 腳本相容性：WebDriver 協議</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-Plugin-%E7%9A%84%E9%87%8D%E5%A4%A7%E8%AE%8A%E6%9B%B4"><span class="nav-text">D. Plugin 的重大變更</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AF%A6%E6%88%B0%E9%81%BF%E5%9D%91%EF%BC%9A%E9%97%9C%E6%96%BC-Images-Plugin-%E7%9A%84%E8%A1%80%E6%B7%9A%E7%B6%93%E9%A9%97"><span class="nav-text">3. 實戰避坑：關於 Images Plugin 的血淚經驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%85%B6%E4%BB%96%E5%BB%BA%E8%AD%B0"><span class="nav-text">4. 其他建議</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-text">結語</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E5%A4%A7%E4%BD%AC%E5%8F%A3%E4%B8%AD%E7%9A%84%E3%80%8CSDET-%E4%B8%8D%E9%9C%80%E8%A6%81%E8%AB%96%E3%80%8D%EF%BC%9A%E8%83%8C%E5%BE%8C%E7%9A%84%E9%9B%99%E9%87%8D%E8%AA%8D%E7%9F%A5%E5%81%8F%E8%AA%A4"><span class="nav-text">一、 大佬口中的「SDET 不需要論」：背後的雙重認知偏誤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B0%87-SDET-%E7%9A%84%E8%81%B7%E8%83%BD%E9%81%8E%E5%BA%A6%E7%B0%A1%E5%8C%96"><span class="nav-text">1. 將 SDET 的職能過度簡化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B7%B7%E6%B7%86%E4%BA%86%E3%80%8C%E9%96%8B%E7%99%BC%E6%80%9D%E7%B6%AD%E3%80%8D%E8%88%87%E3%80%8C%E5%93%81%E8%B3%AA%E6%80%9D%E7%B6%AD%E3%80%8D"><span class="nav-text">2. 混淆了「開發思維」與「品質思維」</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-SRE-%E7%9A%84%E9%A1%9E%E6%AF%94%EF%BC%9A%E5%BE%9E%E3%80%8C%E6%89%93%E9%9B%9C%E5%B9%AB%E5%BF%99%E3%80%8D%E5%88%B0%E3%80%8C%E5%BB%BA%E6%A7%8B%E6%B8%AC%E8%A9%A6%E5%9F%BA%E7%A4%8E%E8%A8%AD%E6%96%BD%E3%80%8D"><span class="nav-text">二、 SRE 的類比：從「打雜幫忙」到「建構測試基礎設施」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%9F%BA%E5%B1%A4%E7%9A%84%E7%8F%BE%E5%AF%A6%E7%84%A1%E5%A5%88%EF%BC%9A%E7%95%B6%E5%88%9D%E5%88%86%E5%B7%A5%E7%9A%84%E6%84%8F%E7%BE%A9%EF%BC%8C%E8%88%87-AI-%E5%B8%B6%E4%BE%86%E7%9A%84%E8%AE%8A%E9%9D%A9"><span class="nav-text">三、 基層的現實無奈：當初分工的意義，與 AI 帶來的變革</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AA%A0%E5%AF%A6%E7%9A%84%E9%9D%A2%E5%B0%8D%EF%BC%9A%E5%A6%82%E6%9E%9C%E6%9C%9F%E5%BE%85%E4%B8%8D%E4%B8%80%E8%87%B4%EF%BC%8C%E6%8F%9B%E4%B8%80%E9%96%93%E5%85%AC%E5%8F%B8%E5%8F%AF%E8%83%BD%E6%AF%94%E5%9C%A8%E5%8E%9F%E5%9C%B0%E6%8E%A8%E5%8B%95%E6%9B%B4%E5%BF%AB"><span class="nav-text">誠實的面對：如果期待不一致，換一間公司可能比在原地推動更快</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%97%89%E7%94%B1%E3%80%8CESG-%E6%8A%95%E5%85%A5%E7%B4%9A%E5%88%A5%E3%80%8D%E4%BE%86%E8%A8%BA%E6%96%B7%E5%85%AC%E5%8F%B8%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%88%90%E7%86%9F%E5%BA%A6"><span class="nav-text">藉由「ESG 投入級別」來診斷公司的工程成熟度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E5%BD%B1%E5%AD%90%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E9%80%86%E8%A5%B2%EF%BC%9A%E4%B8%8D%E7%A0%B4%E5%A3%9E%E8%81%B7%E7%A8%B1%E7%9A%84%E7%94%9F%E5%AD%98%E7%AD%96%E7%95%A5"><span class="nav-text">四、 影子工程師的逆襲：不破壞職稱的生存策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-text">結語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E9%97%9C%E5%BC%95%E7%94%A8%E8%88%87%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-text">相關引用與參考資料</span></a></li></ol>
     </div>
 </div>
 
@@ -732,7 +808,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%8D%87%E7%B4%9A%EF%BC%9FAppium-3-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%93%B2%E5%AD%B8"><span class="nav-text">1. 為什麼要升級？Appium 3 的核心哲學</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%81%B7%E7%A7%BB%E5%9B%9B%E5%A4%A7%E9%87%8D%E9%BB%9E-Migration-Checklist"><span class="nav-text">2. 遷移四大重點 (Migration Checklist)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-%E9%A9%85%E5%8B%95%E7%A8%8B%E5%BC%8F-Drivers-%E8%88%87%E5%A4%96%E6%8E%9B-Plugins-%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="nav-text">A. 驅動程式 (Drivers) 與外掛 (Plugins) 的更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E7%A7%BB%E9%99%A4%E9%81%8E%E6%99%82%E7%9A%84-Capabilities"><span class="nav-text">B. 移除過時的 Capabilities</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E8%85%B3%E6%9C%AC%E7%9B%B8%E5%AE%B9%E6%80%A7%EF%BC%9AWebDriver-%E5%8D%94%E8%AD%B0"><span class="nav-text">C. 腳本相容性：WebDriver 協議</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-Plugin-%E7%9A%84%E9%87%8D%E5%A4%A7%E8%AE%8A%E6%9B%B4"><span class="nav-text">D. Plugin 的重大變更</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AF%A6%E6%88%B0%E9%81%BF%E5%9D%91%EF%BC%9A%E9%97%9C%E6%96%BC-Images-Plugin-%E7%9A%84%E8%A1%80%E6%B7%9A%E7%B6%93%E9%A9%97"><span class="nav-text">3. 實戰避坑：關於 Images Plugin 的血淚經驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%85%B6%E4%BB%96%E5%BB%BA%E8%AD%B0"><span class="nav-text">4. 其他建議</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-text">結語</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E5%A4%A7%E4%BD%AC%E5%8F%A3%E4%B8%AD%E7%9A%84%E3%80%8CSDET-%E4%B8%8D%E9%9C%80%E8%A6%81%E8%AB%96%E3%80%8D%EF%BC%9A%E8%83%8C%E5%BE%8C%E7%9A%84%E9%9B%99%E9%87%8D%E8%AA%8D%E7%9F%A5%E5%81%8F%E8%AA%A4"><span class="nav-text">一、 大佬口中的「SDET 不需要論」：背後的雙重認知偏誤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B0%87-SDET-%E7%9A%84%E8%81%B7%E8%83%BD%E9%81%8E%E5%BA%A6%E7%B0%A1%E5%8C%96"><span class="nav-text">1. 將 SDET 的職能過度簡化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B7%B7%E6%B7%86%E4%BA%86%E3%80%8C%E9%96%8B%E7%99%BC%E6%80%9D%E7%B6%AD%E3%80%8D%E8%88%87%E3%80%8C%E5%93%81%E8%B3%AA%E6%80%9D%E7%B6%AD%E3%80%8D"><span class="nav-text">2. 混淆了「開發思維」與「品質思維」</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-SRE-%E7%9A%84%E9%A1%9E%E6%AF%94%EF%BC%9A%E5%BE%9E%E3%80%8C%E6%89%93%E9%9B%9C%E5%B9%AB%E5%BF%99%E3%80%8D%E5%88%B0%E3%80%8C%E5%BB%BA%E6%A7%8B%E6%B8%AC%E8%A9%A6%E5%9F%BA%E7%A4%8E%E8%A8%AD%E6%96%BD%E3%80%8D"><span class="nav-text">二、 SRE 的類比：從「打雜幫忙」到「建構測試基礎設施」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%9F%BA%E5%B1%A4%E7%9A%84%E7%8F%BE%E5%AF%A6%E7%84%A1%E5%A5%88%EF%BC%9A%E7%95%B6%E5%88%9D%E5%88%86%E5%B7%A5%E7%9A%84%E6%84%8F%E7%BE%A9%EF%BC%8C%E8%88%87-AI-%E5%B8%B6%E4%BE%86%E7%9A%84%E8%AE%8A%E9%9D%A9"><span class="nav-text">三、 基層的現實無奈：當初分工的意義，與 AI 帶來的變革</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AA%A0%E5%AF%A6%E7%9A%84%E9%9D%A2%E5%B0%8D%EF%BC%9A%E5%A6%82%E6%9E%9C%E6%9C%9F%E5%BE%85%E4%B8%8D%E4%B8%80%E8%87%B4%EF%BC%8C%E6%8F%9B%E4%B8%80%E9%96%93%E5%85%AC%E5%8F%B8%E5%8F%AF%E8%83%BD%E6%AF%94%E5%9C%A8%E5%8E%9F%E5%9C%B0%E6%8E%A8%E5%8B%95%E6%9B%B4%E5%BF%AB"><span class="nav-text">誠實的面對：如果期待不一致，換一間公司可能比在原地推動更快</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%97%89%E7%94%B1%E3%80%8CESG-%E6%8A%95%E5%85%A5%E7%B4%9A%E5%88%A5%E3%80%8D%E4%BE%86%E8%A8%BA%E6%96%B7%E5%85%AC%E5%8F%B8%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%88%90%E7%86%9F%E5%BA%A6"><span class="nav-text">藉由「ESG 投入級別」來診斷公司的工程成熟度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E5%BD%B1%E5%AD%90%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E9%80%86%E8%A5%B2%EF%BC%9A%E4%B8%8D%E7%A0%B4%E5%A3%9E%E8%81%B7%E7%A8%B1%E7%9A%84%E7%94%9F%E5%AD%98%E7%AD%96%E7%95%A5"><span class="nav-text">四、 影子工程師的逆襲：不破壞職稱的生存策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-text">結語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E9%97%9C%E5%BC%95%E7%94%A8%E8%88%87%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-text">相關引用與參考資料</span></a></li></ol>
     </div>
 </div>
 
