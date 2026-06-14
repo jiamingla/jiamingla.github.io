@@ -1,7 +1,7 @@
 ---
 urlname: cross-departmental-relation-and-social-roi
 title: 「你在部門過得不開心嗎？」——從跨部門聚餐聊人際邊際效益，與職場社交的「多維度投資報酬率」
-date: 2026-06-16 12:00:00
+date: 2026-06-16 07:00:00
 tags: [職場人際, 職涯發展, 社交心理學, 邊際效益, 溝通樞紐, 破圈]
 ---
 
