@@ -32,12 +32,15 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（23 篇，依日期倒序）
+### 已上稿（26 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-16（排程） | 「你在部門過得不開心嗎？」——從跨部門聚餐聊人際邊際效益，與職場社交的「多維度投資報酬率」 | cross-departmental-relation-and-social-roi | 線十四 |
+| 2026-06-14 | 為什麼 AI 給的測試案例讀起來特別累？因為它的預設讀者不是你 | ai-test-output-default-reader-is-ai | 線二 / 線八 |
 | 2026-06-13（排程） | 「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師 | sdet-role-reflection-in-ai-era | 線九 / 線六 |
 | 2026-06-12 | 不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？ | not-just-make-manual-script-automate | 線三 / 線五 |
+| 2026-06-11 | 我打算在部門開一個「無負擔」讀書會：15 分鐘的抗完美主義實踐 | how-to-start-low-pressure-book-club | 線十一 |
 | 2026-06-11（排程） | 你的團隊 Bug 預設給誰？業界六種主流 Bug 分派（Triage）模式對照 | bug-triage-six-patterns-industry-survey | 線十 / 線八 |
 | 2026-06-10 | 【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案 | uv-torch-pyqt5-dll-conflict | 線三 |
 | 2026-06-08 | 【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？ | qa-report-workplace-wisdom | 線六 |
