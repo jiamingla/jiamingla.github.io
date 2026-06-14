@@ -188,7 +188,7 @@ tags: [軟體測試, UI 自動化, 測試策略, 自動化決策, 維護成本, 
 ---
 
 ## 延伸閱讀
-- [POM 重構實戰：把「能跑」的自動化腳本，改寫成「能被別人接手」的形狀](/post/pom-refactor-from-runnable-to-maintainable/)
+<!-- - [POM 重構實戰：把「能跑」的自動化腳本，改寫成「能被別人接手」的形狀](/post/pom-refactor-from-runnable-to-maintainable/) -->
 - [「煩」是 QA 的診斷工具：當重複的測試開始讓你感到無聊](/post/boredom-is-a-signal/)
 - [問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡](/post/problem-driven-testing-intro/)
 - 敏捷三叔公 David Ko：[關於測試自動化你該小心的地方](https://agile3uncles.com/2024/09/04/the-things-you-should-know-about-testauto/)——15 點提醒，跟本篇互補的外部視角

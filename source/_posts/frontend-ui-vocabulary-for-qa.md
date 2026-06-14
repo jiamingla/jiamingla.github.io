@@ -161,9 +161,9 @@ AI 寫的案例之所以難讀，不是因為我們能力不足，而是因為 *
 
 ## 📖 延伸閱讀
 
-- [你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man](/post/ai-as-yes-man-rd-pm-trust-calibration/)：反思 AI 產出的測試案例，我們該如何校準信任？
+- [你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man——給 RD/PM 的三個提問清單](/post/ai-as-yes-man-rd-pm-trust-calibration/)：反思 AI 產出的測試案例，我們該如何校準信任？
 - [「煩」是 QA 的診斷工具](/post/boredom-is-a-signal/)：如何透過日常工作的「煩躁感」發掘自動化的真正契機？
-- [問題驅動測試（PDT）](/post/problem-driven-testing-intro/)：探索本篇「AI 給的 skeleton loading」如何作為反向 PDT 鏡像的思考起點。
+- [問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡](/post/problem-driven-testing-intro/)：探索本篇「AI 給的 skeleton loading」如何作為反向 PDT 鏡像的思考起點。
 
 ---
 
