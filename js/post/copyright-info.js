@@ -55,8 +55,7 @@ function initCopyrightInfoHelper() {
     }
   }
 
-  if (KEEP.theme_config.post?.copyright_info === true 
-    || (KEEP.theme_config.post?.copyright_info?.custom_license && KEEP.theme_config.post?.copyright_info?.custom_link)) {
+  if (KEEP.theme_config.post?.copyright_info === true) {
     KEEP.utils.copyrightInfoHelper.initSetPostLink()
     KEEP.utils.copyrightInfoHelper.copyCopyrightInfo()
   }

@@ -11,7 +11,6 @@ window.addEventListener('DOMContentLoaded', () => {
     encryptKey: 'KEEP-ENCRYPT',
     styleStatus: {
       isDark: false,
-      isAutoTheme: true,
       fontSizeLevel: 0,
       isShowToc: true
     },

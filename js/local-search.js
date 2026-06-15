@@ -1,12 +1,25 @@
 /* global KEEP */
 
 KEEP.initLocalSearch = () => {
-  const root = KEEP.hexo_config.root || '/'
-  const searchPath = KEEP.theme_config.search_db_path
+  // Search DB path
+  let searchPath = KEEP.hexo_config.path
+  if (!searchPath) {
+    // Search DB path
+    console.warn('`hexo-generator-searchdb` plugin is not installed!')
+    return
+  }
+
+  // Popup Window
   let isfetched = false
-  let datas = []
+  let datas
+  let isXml = true
+  if (searchPath.length === 0) {
+    searchPath = 'search.xml'
+  } else if (searchPath.endsWith('json')) {
+    isXml = false
+  }
   const searchInputDom = document.querySelector('.search-input')
-  const resultContent = document.querySelector('#search-result')
+  const resultContent = document.getElementById('search-result')
 
   const getIndexByWord = (word, text, caseSensitive) => {
     let wordLen = word.length
@@ -155,12 +168,12 @@ KEEP.initLocalSearch = () => {
           let resultItem = ''
 
           if (slicesOfTitle.length !== 0) {
-            resultItem += `<li class="search-result-item"><a href="${url}" class="search-result-title">${highlightKeyword(
+            resultItem += `<li><a href="${url}" class="search-result-title">${highlightKeyword(
               title,
               slicesOfTitle[0]
             )}</a>`
           } else {
-            resultItem += `<li class="search-result-item"><a href="${url}" class="search-result-title">${title}</a>`
+            resultItem += `<li><a href="${url}" class="search-result-title">${title}</a>`
           }
 
           slicesOfContent.forEach((slice) => {
@@ -204,12 +217,22 @@ KEEP.initLocalSearch = () => {
   }
 
   const fetchData = () => {
-    fetch(root + searchPath)
+    fetch(KEEP.hexo_config.root + searchPath)
       .then((response) => response.text())
       .then((res) => {
         // Get the contents from search data
         isfetched = true
-        datas = JSON.parse(res)
+        datas = isXml
+          ? [...new DOMParser().parseFromString(res, 'text/xml').querySelectorAll('entry')].map(
+              (element) => {
+                return {
+                  title: element.querySelector('title').textContent,
+                  content: element.querySelector('content').textContent,
+                  url: element.querySelector('url').textContent
+                }
+              }
+            )
+          : JSON.parse(res)
         // Only match posts with not empty titles
         datas = datas
           .filter((data) => data.title)

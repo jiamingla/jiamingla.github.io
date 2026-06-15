@@ -10,7 +10,6 @@ KEEP.initModeToggle = () => {
       document.documentElement.classList.add('light-mode')
       this.iconDom && (this.iconDom.className = 'fas fa-moon')
       KEEP.themeInfo.styleStatus.isDark = false
-      KEEP.themeInfo.styleStatus.isAutoTheme = this.isAutoTheme()
       KEEP.setStyleStatus()
     },
 
@@ -19,15 +18,11 @@ KEEP.initModeToggle = () => {
       document.documentElement.classList.remove('light-mode')
       this.iconDom && (this.iconDom.className = 'fas fa-sun')
       KEEP.themeInfo.styleStatus.isDark = true
-      KEEP.themeInfo.styleStatus.isAutoTheme = this.isAutoTheme()
       KEEP.setStyleStatus()
     },
 
     isDarkPrefersColorScheme() {
-      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    },
-    isAutoTheme() {
-      return KEEP.themeInfo.styleStatus.isDark === this.isDarkPrefersColorScheme()
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
     },
 
     initModeStatus() {
@@ -45,10 +40,10 @@ KEEP.initModeToggle = () => {
 
       const styleStatus = KEEP.getStyleStatus()
 
-      if (styleStatus && !styleStatus.isAutoTheme) {
+      if (styleStatus) {
         styleStatus.isDark ? this.enableDarkMode() : this.enableLightMode()
       } else {
-        this.isDarkPrefersColorScheme() ? this.enableDarkMode() : this.enableLightMode()
+        this.isDarkPrefersColorScheme().matches ? this.enableDarkMode() : this.enableLightMode()
       }
     },
 
@@ -63,11 +58,10 @@ KEEP.initModeToggle = () => {
     },
 
     initModeAutoTrigger() {
-      if(window.matchMedia){ //guard
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-          e.matches ? this.enableDarkMode() : this.enableLightMode()
-        })
-      }
+      const isDarkMode = this.isDarkPrefersColorScheme()
+      isDarkMode.addEventListener('change', (e) => {
+        e.matches ? this.enableDarkMode() : this.enableLightMode()
+      })
     }
   }
 
