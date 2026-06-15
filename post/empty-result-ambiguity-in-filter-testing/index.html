@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            篩選後沒結果，是資料真的沒符合條件，還是篩選功能壞掉了？——自動化測試的五種解法 |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script>
+        (function () {
+            let theme = localStorage.getItem('KEEP-THEME-STATUS');
+            let classname = "";
+            if (!theme || (JSON.parse(theme).isAutoTheme)){
+                classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+            }
+            else{
+                classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+            }
+            document.documentElement.classList.add(classname);
+        })();
+    </script>
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs","custom":{"enable":false,"url":null}},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","search_db_path":"keep-search.json","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.3.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        篩選後沒結果，是資料真的沒符合條件，還是篩選功能壞掉了？——自動化測試的五種解法
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-06</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Sat Jun 06 2026 06:20:00 GMT+0800">2026-06-06</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD/">篩選功能</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A8%AD%E8%A8%88/">測試設計</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E6%B1%BA%E7%AD%96/">測試決策</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E9%9B%99%E5%90%91%E9%A9%97%E8%AD%89/">雙向驗證</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/POM/">POM</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：那個「查無資料」的瞬間"><a href="#前言：那個「查無資料」的瞬間" class="headerlink" title="前言：那個「查無資料」的瞬間"></a>前言：那個「查無資料」的瞬間</h2><p>你寫了一個自動化測試，跑「篩選某個條件」的功能。</p>
+<p>腳本點下篩選、等載入完成、抓結果列表。然後 UI 顯示「查無資料」。</p>
+<p>問題來了——<strong>這個「空」是 pass 還是 fail？</strong></p>
+<p>它可能是兩種完全不同的東西：</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>描述</th>
+<th>該回什麼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ 真空</td>
+<td>篩選邏輯正確，資料源剛好沒有符合條件的項目（合理的查無資料）</td>
+<td><code>pass</code></td>
+</tr>
+<tr>
+<td>❌ 偽空</td>
+<td>篩選 bug、後端錯誤、UI 沒渲染</td>
+<td><code>fail</code></td>
+</tr>
+</tbody></table>
+<p>兩種「空」在 UI 上<strong>長得一模一樣</strong>，自動化沒辦法直接分辨。</p>
+<p>最直觀的處理是回 <code>沒成功也沒失敗</code>，把它丟給人工 review——但這等於放棄自動化的精神。每次 release 都要花人時、不同人會有不同判斷、release cycle 變慢。</p>
+<p>這篇文章想拆的是——<strong>遇到 empty 歧義，QA 有哪些路可以走？怎麼選？</strong></p>
+<hr>
+<h2 id="一、Empty-歧義為什麼難解"><a href="#一、Empty-歧義為什麼難解" class="headerlink" title="一、Empty 歧義為什麼難解"></a>一、Empty 歧義為什麼難解</h2><p>先講為什麼這個問題這麼煩人：</p>
+<ol>
+<li><strong>單純看前端篩選後的結果無法判斷</strong> — 結果是空集合，沒有東西可以驗證對錯</li>
+<li><strong>沒有 ground truth（真實基準）</strong> — 你需要一個獨立的真相來源來告訴你「空到底合不合理」</li>
+<li><strong>後端跟前端常常各執一詞</strong> — 後端說我回對了、前端說我顯示對了，bug 卻在中間某處</li>
+<li><strong>歷史資料不重複</strong> — 同樣的篩選條件昨天有十筆、今天可能就 0 筆，沒辦法用 snapshot（快照）比對</li>
+</ol>
+<p>這個歧義在很多 domain 都會遇到：</p>
+<ul>
+<li>訂房平台篩選「五星級 + 某地區 + 某價位」</li>
+<li>電商搜尋「某品牌 + 某價位區間」</li>
+<li>求職網站「某類型 + 某薪資範圍」</li>
+<li>金融資訊 APP 篩選「漲跌幅 ≥ 某個百分比」</li>
+</ul>
+<p>只要你的功能是「<strong>對一個會變動的資料集做條件篩選</strong>」，這個歧義就會找上你。</p>
+<hr>
+<h2 id="二、五個方案，從理想到實用"><a href="#二、五個方案，從理想到實用" class="headerlink" title="二、五個方案，從理想到實用"></a>二、五個方案，從理想到實用</h2><h3 id="方案-1：後端直接交叉比對（理想，但成本高）"><a href="#方案-1：後端直接交叉比對（理想，但成本高）" class="headerlink" title="方案 1：後端直接交叉比對（理想，但成本高）"></a>方案 1：後端直接交叉比對（理想，但成本高）</h3><p>最乾淨的做法——直接打後端 API 抓「<strong>符合此條件的所有資料</strong>」，跟 UI 顯示比對：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">expected_count = api.count_items_matching(condition)</span><br><span class="line"><span class="keyword">if</span> expected_count == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;pass&#x27;</span>   <span class="comment"># 後端也沒有 → 真空</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;fail&#x27;</span>   <span class="comment"># 後端有 N 筆但 UI 空 → 偽空（UI bug）</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>優點</strong>：100% 客觀、權威、能完全消除歧義</p>
+<p><strong>缺點</strong>：</p>
+<ul>
+<li>需要把每支被測 APP 的後端 API、參數對應、欄位映射全部整理出來——這是長期基礎建設</li>
+<li>內部 API 通常有權限、版本、欄位差異等問題，更別提外部 API 可能距離 QA 更遠更無法控管</li>
+<li>短期內做不到時，這個方案只能當長期目標</li>
+</ul>
+<h3 id="方案-2：用「外部領域信號」做合理性-heuristic（啟發式判斷）"><a href="#方案-2：用「外部領域信號」做合理性-heuristic（啟發式判斷）" class="headerlink" title="方案 2：用「外部領域信號」做合理性 heuristic（啟發式判斷）"></a>方案 2：用「外部領域信號」做合理性 heuristic（啟發式判斷）</h3><p>如果你的 APP 所在的領域有一個<strong>外部信號</strong>可以用來推測「empty 合不合理」，可以用它做廉價的 heuristic。</p>
+<p>舉個具體例子（金融資訊 APP）：</p>
+<table>
+<thead>
+<tr>
+<th>篩選條件</th>
+<th>外部信號（市場大盤方向）</th>
+<th>empty 是否合理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>漲幅 ≥ 5%</td>
+<td>大盤下跌</td>
+<td>✅ 合理（市場跌的時候，漲幅高的個股自然少）</td>
+</tr>
+<tr>
+<td>跌幅 ≥ 5%</td>
+<td>大盤上漲</td>
+<td>✅ 合理（同上反向）</td>
+</tr>
+<tr>
+<td>任何「≥ 0%」系列</td>
+<td>任何</td>
+<td>❌ 永遠不合理（任何時候都該有個股漲跌幅 ≥ 0%）</td>
+</tr>
+<tr>
+<td>其他組合</td>
+<td>—</td>
+<td>保守視為不合理</td>
+</tr>
+</tbody></table>
+<p>寫起來很短：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">is_filter_empty_plausible</span>(<span class="params">filter_condition, external_signal</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    <span class="keyword">if</span> condition_is_trivially_satisfiable(filter_condition):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span>  <span class="comment"># ≥ 0% 這種條件永遠不該空</span></span><br><span class="line">    <span class="keyword">if</span> signal_aligns_with_emptiness(external_signal, filter_condition):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>優點</strong>：</p>
+<ul>
+<li>用得到的訊號往往本來就在 UI 上（例如金融 APP 的市場大盤指標），不需要新 API</li>
+<li>立即可用、成本極低</li>
+</ul>
+<p><strong>缺點</strong>：</p>
+<ul>
+<li>邊界場景會 false pass（例如大盤漲只一點點 + 篩選條件嚴格，理論上邊緣個股仍可能存在）</li>
+<li>只適用於<strong>有方向性</strong>的篩選條件（漲跌幅、上升下降、趨勢類）</li>
+<li>對「無方向性」的條件（價格範圍、品牌、地點）完全沒幫助</li>
+</ul>
+<h3 id="方案-3：原本驗證就好（放棄解-empty-歧義）"><a href="#方案-3：原本驗證就好（放棄解-empty-歧義）" class="headerlink" title="方案 3：原本驗證就好（放棄解 empty 歧義）"></a>方案 3：原本驗證就好（放棄解 empty 歧義）</h3><p>UI 空時直接回 <code>fail</code>——預設「篩選後空」就是錯。</p>
+<p><strong>優點</strong>：簡單、能抓「整個資料源壞掉」這種極端情況<br><strong>缺點</strong>：把所有真空 case 都誤殺成 fail。實務上不能用。</p>
+<h3 id="方案-4：沒成功也沒失敗-人工-review（保守）"><a href="#方案-4：沒成功也沒失敗-人工-review（保守）" class="headerlink" title="方案 4：沒成功也沒失敗 + 人工 review（保守）"></a>方案 4：<code>沒成功也沒失敗</code> + 人工 review（保守）</h3><p>加上詳細訊息（篩選條件、外部信號、時間戳）丟給人工判斷。</p>
+<p><strong>優點</strong>：保守、不會 false pass &#x2F; fail<br><strong>缺點</strong>：違背自動化精神。每次 release 都要花人時，不同人會有不同判斷。</p>
+<h3 id="方案-5：用「同一頁面的無篩選全量」做-client-side-cross-check（前端交叉驗證，巧妙）"><a href="#方案-5：用「同一頁面的無篩選全量」做-client-side-cross-check（前端交叉驗證，巧妙）" class="headerlink" title="方案 5：用「同一頁面的無篩選全量」做 client-side cross-check（前端交叉驗證，巧妙）"></a>方案 5：用「同一頁面的無篩選全量」做 client-side cross-check（前端交叉驗證，巧妙）</h3><p>對於<strong>沒有方向性的數值條件</strong>（價格、金額、市值範圍）——方案 2 的 heuristic 用不上，方案 1 的後端 API 又沒接好。怎麼辦？</p>
+<p>換個角度：<strong>用 APP 自己的「無篩選狀態」當 ground truth</strong>，跟客戶端篩選結果比對：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">verify_filter_consistent_with_unfiltered</span>(<span class="params">filter_name, expected_codes_fn</span>):</span><br><span class="line">    actual_codes = <span class="built_in">set</span>(get_current_result_ids())     <span class="comment"># 1. 抓篩選後</span></span><br><span class="line">    set_filter_to_none(filter_name); save()          <span class="comment"># 2. 取消無篩選</span></span><br><span class="line">    all_items = get_current_result_list()            <span class="comment"># 3. 抓全部</span></span><br><span class="line">    expected_codes = expected_codes_fn(all_items)    <span class="comment"># 4. caller 自訂判斷邏輯</span></span><br><span class="line">    <span class="keyword">return</span> actual_codes == expected_codes            <span class="comment"># 5. 集合相等</span></span><br></pre></td></tr></table></figure>
+
+<p><code>expected_codes_fn</code> 接整份 <code>dict[id, info]</code>，caller（呼叫端）自己寫 predicate（判斷式，例如 <code>price &lt;= 10</code>）。</p>
+<p><strong>優點</strong>：</p>
+<ul>
+<li><strong>不需要後端 API</strong>——用 APP 自己驗 APP，邏輯閉環</li>
+<li><strong>雙向驗證</strong>：能抓 false positive（多顯示）+ false negative（漏顯示）+ true empty（兩邊都空）</li>
+<li>完全消除 empty 歧義</li>
+<li>雙向相等比單向「actual ⊂ expected」更嚴謹</li>
+</ul>
+<p><strong>缺點 &#x2F; 注意事項</strong>：</p>
+<ul>
+<li>每個 case 多一次「取消篩選 + 抓完整列表」的開銷</li>
+<li>副作用：執行後篩選會變成「無篩選」狀態，下個 case 要記得 reset</li>
+<li>「無篩選」是同一頁所有資料，<strong>不是整個資料源</strong>——但對「篩選正確性」驗證已足夠</li>
+</ul>
+<hr>
+<h2 id="三、單向驗證-vs-雙向驗證——一個容易混淆的選擇"><a href="#三、單向驗證-vs-雙向驗證——一個容易混淆的選擇" class="headerlink" title="三、單向驗證 vs 雙向驗證——一個容易混淆的選擇"></a>三、單向驗證 vs 雙向驗證——一個容易混淆的選擇</h2><p>實作方案 5 時遇到一個重要的設計決策。先放一張對照表：</p>
+<table>
+<thead>
+<tr>
+<th>驗證方式</th>
+<th>描述</th>
+<th>抓得到的 bug</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>單向驗證</strong>（actual ⊂ expected）</td>
+<td>只檢查 actual 中每筆是否符合條件</td>
+<td>False positive（多顯示）</td>
+</tr>
+<tr>
+<td><strong>雙向驗證</strong>（actual &#x3D;&#x3D; expected）</td>
+<td>檢查兩個集合是否完全一樣</td>
+<td>False positive + false negative（漏顯示）</td>
+</tr>
+</tbody></table>
+<p>原本驗證設計是單向：「APP 顯示的要符合條件」。但方案 5 的實作天然是雙向的——它順便把驗證升級了。</p>
+<p><strong>這裡藏一個 scope creep（範圍蔓延）警告</strong>：解 empty 歧義 ≠ 雙向驗證。它們是<strong>兩個獨立的決策</strong>，常常被綁在一起做。雖然順便升級不一定壞，但設計時要意識到自己同時做了兩個決定。</p>
+<p>我們最後接受了雙向升級，因為：</p>
+<ul>
+<li>漏顯示的 bug 在原本的單向驗證下抓不到</li>
+<li>雙向驗證的成本邊際很小（只是把 <code>⊂</code> 改成 <code>==</code>）</li>
+</ul>
+<p>但下次設計類似測試時，<strong>請先把這兩個決策分開思考再合併</strong>。</p>
+<hr>
+<h2 id="四、為什麼最後是「方案-2-方案-5」並用"><a href="#四、為什麼最後是「方案-2-方案-5」並用" class="headerlink" title="四、為什麼最後是「方案 2 + 方案 5」並用"></a>四、為什麼最後是「方案 2 + 方案 5」並用</h2><p>最後的選擇——</p>
+<ul>
+<li><strong>有方向性的篩選條件</strong>（漲跌幅、增加減少、上升下降類） → <strong>方案 2（外部信號 heuristic）</strong></li>
+<li><strong>無方向性的數值條件</strong>（金額、範圍、容量類） → <strong>方案 5（無篩選 cross-check）</strong></li>
+<li><strong>長期目標</strong>（基礎建設到位後） → <strong>方案 1（後端交叉比對）</strong></li>
+</ul>
+<p>理由：</p>
+<ol>
+<li><strong>方案 1 最權威，但被「對應每支 APP 後端參數」這個前置工程擋住</strong>——短期做不到</li>
+<li><strong>方案 2 適用於有方向性的篩選</strong>——外部信號可以當 heuristic 信號，便宜可用</li>
+<li><strong>方案 5 適用於無方向性的篩選</strong>——外部信號用不上，但 APP 自己的「無篩選狀態」可以當 ground truth</li>
+<li><strong>方案 3 太邊緣</strong>（資料源整個壞才會抓到）</li>
+<li><strong>方案 4 是現狀</strong>，被改善的就是它</li>
+<li>三個方案<strong>不衝突</strong>——未來方案 1 上線後，方案 2&#x2F;5 還可以當第二道防線（API 失敗時 fallback）</li>
+</ol>
+<hr>
+<h2 id="五、副題：PageObject-該不該住-verify-方法？"><a href="#五、副題：PageObject-該不該住-verify-方法？" class="headerlink" title="五、副題：PageObject 該不該住 verify_* 方法？"></a>五、副題：PageObject 該不該住 verify_* 方法？</h2><p>實作方案 5 時遇到一個 PageObject 設計問題：<code>verify_volume_filter(threshold)</code> 這種「直接給 pass&#x2F;fail 結論」的方法，<strong>該住在 PageObject 裡嗎？</strong></p>
+<p>兩種立場：</p>
+<table>
+<thead>
+<tr>
+<th>立場</th>
+<th>主張</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>純 POM 派</strong>（嚴格）</td>
+<td>Page 只該封裝「頁面操作 + 狀態查詢」，不負責測試邏輯</td>
+<td>POM 描述「頁面長什麼樣」，不是「測試怎麼判斷對錯」——後者屬於 test layer（測試層）</td>
+</tr>
+<tr>
+<td><strong>實用派</strong>（寬鬆）</td>
+<td>POM 可以提供 verification helpers（驗證輔助方法）是合理的「商業邏輯封裝」</td>
+<td>避免每個 case 重複輪子（DRY），test script 保持宣告式</td>
+</tr>
+</tbody></table>
+<p>我們選擇實用派，理由：</p>
+<ol>
+<li><strong>既有 convention（慣例）</strong> — 專案早已有 <code>verify_*</code> 系列方法</li>
+<li><strong>case script 規模考量</strong> — 80+ 個 case 不可能每個都重複 10 行 verification 邏輯</li>
+<li><strong>目前還夠</strong> — PageObject 的方法數還沒多到難維護</li>
+</ol>
+<p>但有一條<strong>判斷紅線</strong>：</p>
+<blockquote>
+<p><strong>PageObject 不該知道「100」「10 元」這種特定 case 的 magic number（魔術數字／寫死的常數）</strong>。但「給我 threshold，我幫你驗整個流程」是 OK 的——這是把「<strong>怎麼驗</strong>」標準化，不是把「<strong>驗什麼</strong>」寫死。</p>
+</blockquote>
+<p>具體：</p>
+<table>
+<thead>
+<tr>
+<th>可接受 ✅</th>
+<th>不該放 ❌</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>verify_volume_filter(threshold)</code></td>
+<td><code>verify_volume_above_100()</code></td>
+</tr>
+<tr>
+<td><code>verify_price_filter(condition, threshold)</code></td>
+<td><code>verify_price_le_10()</code></td>
+</tr>
+<tr>
+<td><code>verify_filter_consistent_with_unfiltered(name, predicate_fn)</code></td>
+<td><code>verify_c050_passes()</code></td>
+</tr>
+</tbody></table>
+<p><strong>未來重構觸發點</strong>（任一條件成立就重新評估）：</p>
+<ul>
+<li>PageObject 方法數超過 50 個</li>
+<li><code>verify_*</code> 方法佔 PageObject 比例超過 40%</li>
+<li>出現「同一個 verify 方法被超過 5 個其他方法依賴」的警訊</li>
+<li>多個 caller 需要不同的「驗證策略」（strict vs loose）但用同一個 PageObject</li>
+</ul>
+<p>任一條件成立 → 考慮 extract 成獨立的 <code>Verifier</code> 類別。</p>
+<hr>
+<h2 id="六、學到的事（meta-lessons）"><a href="#六、學到的事（meta-lessons）" class="headerlink" title="六、學到的事（meta-lessons）"></a>六、學到的事（meta-lessons）</h2><p>排除技術細節，這次決策真正的價值在這幾條 meta-lesson：</p>
+<h3 id="1-Scope-creep-要警覺"><a href="#1-Scope-creep-要警覺" class="headerlink" title="1. Scope creep 要警覺"></a>1. Scope creep 要警覺</h3><p>我以為在解「empty 歧義」（方案 5），結果順便也做了「雙向驗證升級」。看似都對的兩件事，會讓決策難以追溯。<strong>下次出現「順便做了 X」，先停下來問自己：這是同一個決策嗎？</strong></p>
+<h3 id="2-假設要驗證"><a href="#2-假設要驗證" class="headerlink" title="2. 假設要驗證"></a>2. 假設要驗證</h3><p>原本假設「filter bug 通常是後端條件下錯」，後來才意識到——<strong>這個 APP 的篩選是 client-side 邏輯</strong>。bug 模式因此完全不同：不是 SQL where clause 錯，是 UI 控制元件 mapping 錯、欄位解析錯、跨閾值的邊界錯。</p>
+<p><strong>設計測試前，先確認系統實際運作方式</strong>。否則你會用對的方法解錯誤的問題。</p>
+<h3 id="3-工具-vs-認知是兩個瓶頸"><a href="#3-工具-vs-認知是兩個瓶頸" class="headerlink" title="3. 工具 vs 認知是兩個瓶頸"></a>3. 工具 vs 認知是兩個瓶頸</h3><p>組合爆炸（多種篩選 × 多閾值 &#x3D; 數千組）這個瓶頸<strong>有工具解</strong>：等價類劃分、邊界值、pairwise testing（配對測試）。</p>
+<p>但「<strong>哪些組合該測</strong>」這個瓶頸<strong>沒有工具能解</strong>——它需要 QA 對風險、對使用者、對歷史 bug 模式的判斷。</p>
+<p>工具能擴大產能，但<strong>選擇是 QA 的職責</strong>，這部分還沒有 AI 可以代替。</p>
+<h3 id="4-Feature-flag（功能開關）是策略空間"><a href="#4-Feature-flag（功能開關）是策略空間" class="headerlink" title="4. Feature flag（功能開關）是策略空間"></a>4. Feature flag（功能開關）是策略空間</h3><p>一開始不確定要不要做雙向驗證，覺得「設計空間留下來」比立即實作或永久砍掉都更好。<strong>用 feature flag &#x2F; config 預留切換能力，是測試框架設計裡很值的投資</strong>。</p>
+<h3 id="5-YAGNI（先別做還用不到的事）對-cache-的克制"><a href="#5-YAGNI（先別做還用不到的事）對-cache-的克制" class="headerlink" title="5. YAGNI（先別做還用不到的事）對 cache 的克制"></a>5. YAGNI（先別做還用不到的事）對 cache 的克制</h3><p>timing 數據出來前以為要加 cache（怕跑得慢）。等實際跑了才確認哪些調用真正成為瓶頸——大多數情況<strong>沒有瓶頸</strong>。</p>
+<p><strong>沒有測量過的優化都是早優化</strong>。</p>
+<hr>
+<h2 id="七、結語"><a href="#七、結語" class="headerlink" title="七、結語"></a>七、結語</h2><p>「篩選結果為空」這種看起來最不起眼的測試 case，<strong>其實是測試設計的好試金石</strong>。</p>
+<p>它逼你回答：</p>
+<ul>
+<li>你的 ground truth 從哪裡來？</li>
+<li>你的驗證是單向還是雙向？</li>
+<li>你的 PageObject 邊界在哪？</li>
+<li>你解的是「empty 歧義」這個問題，還是順便升級了驗證強度？</li>
+</ul>
+<p>每一題都不是「跑案例」這個行為的一部分——它們是<strong>測試設計的判斷題</strong>。</p>
+<blockquote>
+<p>寫測試的核心姿態，從來不是「我把所有 case 都跑了」，而是「<strong>這個結果為什麼可信？我憑什麼相信我的綠燈？</strong>」</p>
+</blockquote>
+<p>當你下次盯著一個自動化跑出來的「pass」，問自己這個問題。如果答得出來、答得清楚——這份綠燈才是真的綠燈。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD/">篩選功能</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A8%AD%E8%A8%88/">測試設計</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E6%B1%BA%E7%AD%96/">測試決策</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E9%9B%99%E5%90%91%E9%A9%97%E8%AD%89/">雙向驗證</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/POM/">POM</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/page-source-vs-find-element/"
+                                   title="UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/frontend-ui-vocabulary-for-qa/"
+                                   title="QA 該認識的 32 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補的課"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">QA 該認識的 32 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補的課</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E3%80%8C%E6%9F%A5%E7%84%A1%E8%B3%87%E6%96%99%E3%80%8D%E7%9A%84%E7%9E%AC%E9%96%93"><span class="nav-text">前言：那個「查無資料」的瞬間</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81Empty-%E6%AD%A7%E7%BE%A9%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9B%A3%E8%A7%A3"><span class="nav-text">一、Empty 歧義為什麼難解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BA%94%E5%80%8B%E6%96%B9%E6%A1%88%EF%BC%8C%E5%BE%9E%E7%90%86%E6%83%B3%E5%88%B0%E5%AF%A6%E7%94%A8"><span class="nav-text">二、五個方案，從理想到實用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-1%EF%BC%9A%E5%BE%8C%E7%AB%AF%E7%9B%B4%E6%8E%A5%E4%BA%A4%E5%8F%89%E6%AF%94%E5%B0%8D%EF%BC%88%E7%90%86%E6%83%B3%EF%BC%8C%E4%BD%86%E6%88%90%E6%9C%AC%E9%AB%98%EF%BC%89"><span class="nav-text">方案 1：後端直接交叉比對（理想，但成本高）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-2%EF%BC%9A%E7%94%A8%E3%80%8C%E5%A4%96%E9%83%A8%E9%A0%98%E5%9F%9F%E4%BF%A1%E8%99%9F%E3%80%8D%E5%81%9A%E5%90%88%E7%90%86%E6%80%A7-heuristic%EF%BC%88%E5%95%9F%E7%99%BC%E5%BC%8F%E5%88%A4%E6%96%B7%EF%BC%89"><span class="nav-text">方案 2：用「外部領域信號」做合理性 heuristic（啟發式判斷）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-3%EF%BC%9A%E5%8E%9F%E6%9C%AC%E9%A9%97%E8%AD%89%E5%B0%B1%E5%A5%BD%EF%BC%88%E6%94%BE%E6%A3%84%E8%A7%A3-empty-%E6%AD%A7%E7%BE%A9%EF%BC%89"><span class="nav-text">方案 3：原本驗證就好（放棄解 empty 歧義）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-4%EF%BC%9A%E6%B2%92%E6%88%90%E5%8A%9F%E4%B9%9F%E6%B2%92%E5%A4%B1%E6%95%97-%E4%BA%BA%E5%B7%A5-review%EF%BC%88%E4%BF%9D%E5%AE%88%EF%BC%89"><span class="nav-text">方案 4：沒成功也沒失敗 + 人工 review（保守）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-5%EF%BC%9A%E7%94%A8%E3%80%8C%E5%90%8C%E4%B8%80%E9%A0%81%E9%9D%A2%E7%9A%84%E7%84%A1%E7%AF%A9%E9%81%B8%E5%85%A8%E9%87%8F%E3%80%8D%E5%81%9A-client-side-cross-check%EF%BC%88%E5%89%8D%E7%AB%AF%E4%BA%A4%E5%8F%89%E9%A9%97%E8%AD%89%EF%BC%8C%E5%B7%A7%E5%A6%99%EF%BC%89"><span class="nav-text">方案 5：用「同一頁面的無篩選全量」做 client-side cross-check（前端交叉驗證，巧妙）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%96%AE%E5%90%91%E9%A9%97%E8%AD%89-vs-%E9%9B%99%E5%90%91%E9%A9%97%E8%AD%89%E2%80%94%E2%80%94%E4%B8%80%E5%80%8B%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E9%81%B8%E6%93%87"><span class="nav-text">三、單向驗證 vs 雙向驗證——一個容易混淆的選擇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9C%80%E5%BE%8C%E6%98%AF%E3%80%8C%E6%96%B9%E6%A1%88-2-%E6%96%B9%E6%A1%88-5%E3%80%8D%E4%B8%A6%E7%94%A8"><span class="nav-text">四、為什麼最後是「方案 2 + 方案 5」並用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%89%AF%E9%A1%8C%EF%BC%9APageObject-%E8%A9%B2%E4%B8%8D%E8%A9%B2%E4%BD%8F-verify-%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-text">五、副題：PageObject 該不該住 verify_* 方法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%AD%B8%E5%88%B0%E7%9A%84%E4%BA%8B%EF%BC%88meta-lessons%EF%BC%89"><span class="nav-text">六、學到的事（meta-lessons）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Scope-creep-%E8%A6%81%E8%AD%A6%E8%A6%BA"><span class="nav-text">1. Scope creep 要警覺</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%81%87%E8%A8%AD%E8%A6%81%E9%A9%97%E8%AD%89"><span class="nav-text">2. 假設要驗證</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B7%A5%E5%85%B7-vs-%E8%AA%8D%E7%9F%A5%E6%98%AF%E5%85%A9%E5%80%8B%E7%93%B6%E9%A0%B8"><span class="nav-text">3. 工具 vs 認知是兩個瓶頸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Feature-flag%EF%BC%88%E5%8A%9F%E8%83%BD%E9%96%8B%E9%97%9C%EF%BC%89%E6%98%AF%E7%AD%96%E7%95%A5%E7%A9%BA%E9%96%93"><span class="nav-text">4. Feature flag（功能開關）是策略空間</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-YAGNI%EF%BC%88%E5%85%88%E5%88%A5%E5%81%9A%E9%82%84%E7%94%A8%E4%B8%8D%E5%88%B0%E7%9A%84%E4%BA%8B%EF%BC%89%E5%B0%8D-cache-%E7%9A%84%E5%85%8B%E5%88%B6"><span class="nav-text">5. YAGNI（先別做還用不到的事）對 cache 的克制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%B5%90%E8%AA%9E"><span class="nav-text">七、結語</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E3%80%8C%E6%9F%A5%E7%84%A1%E8%B3%87%E6%96%99%E3%80%8D%E7%9A%84%E7%9E%AC%E9%96%93"><span class="nav-text">前言：那個「查無資料」的瞬間</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81Empty-%E6%AD%A7%E7%BE%A9%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9B%A3%E8%A7%A3"><span class="nav-text">一、Empty 歧義為什麼難解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BA%94%E5%80%8B%E6%96%B9%E6%A1%88%EF%BC%8C%E5%BE%9E%E7%90%86%E6%83%B3%E5%88%B0%E5%AF%A6%E7%94%A8"><span class="nav-text">二、五個方案，從理想到實用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-1%EF%BC%9A%E5%BE%8C%E7%AB%AF%E7%9B%B4%E6%8E%A5%E4%BA%A4%E5%8F%89%E6%AF%94%E5%B0%8D%EF%BC%88%E7%90%86%E6%83%B3%EF%BC%8C%E4%BD%86%E6%88%90%E6%9C%AC%E9%AB%98%EF%BC%89"><span class="nav-text">方案 1：後端直接交叉比對（理想，但成本高）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-2%EF%BC%9A%E7%94%A8%E3%80%8C%E5%A4%96%E9%83%A8%E9%A0%98%E5%9F%9F%E4%BF%A1%E8%99%9F%E3%80%8D%E5%81%9A%E5%90%88%E7%90%86%E6%80%A7-heuristic%EF%BC%88%E5%95%9F%E7%99%BC%E5%BC%8F%E5%88%A4%E6%96%B7%EF%BC%89"><span class="nav-text">方案 2：用「外部領域信號」做合理性 heuristic（啟發式判斷）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-3%EF%BC%9A%E5%8E%9F%E6%9C%AC%E9%A9%97%E8%AD%89%E5%B0%B1%E5%A5%BD%EF%BC%88%E6%94%BE%E6%A3%84%E8%A7%A3-empty-%E6%AD%A7%E7%BE%A9%EF%BC%89"><span class="nav-text">方案 3：原本驗證就好（放棄解 empty 歧義）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-4%EF%BC%9A%E6%B2%92%E6%88%90%E5%8A%9F%E4%B9%9F%E6%B2%92%E5%A4%B1%E6%95%97-%E4%BA%BA%E5%B7%A5-review%EF%BC%88%E4%BF%9D%E5%AE%88%EF%BC%89"><span class="nav-text">方案 4：沒成功也沒失敗 + 人工 review（保守）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-5%EF%BC%9A%E7%94%A8%E3%80%8C%E5%90%8C%E4%B8%80%E9%A0%81%E9%9D%A2%E7%9A%84%E7%84%A1%E7%AF%A9%E9%81%B8%E5%85%A8%E9%87%8F%E3%80%8D%E5%81%9A-client-side-cross-check%EF%BC%88%E5%89%8D%E7%AB%AF%E4%BA%A4%E5%8F%89%E9%A9%97%E8%AD%89%EF%BC%8C%E5%B7%A7%E5%A6%99%EF%BC%89"><span class="nav-text">方案 5：用「同一頁面的無篩選全量」做 client-side cross-check（前端交叉驗證，巧妙）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%96%AE%E5%90%91%E9%A9%97%E8%AD%89-vs-%E9%9B%99%E5%90%91%E9%A9%97%E8%AD%89%E2%80%94%E2%80%94%E4%B8%80%E5%80%8B%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E9%81%B8%E6%93%87"><span class="nav-text">三、單向驗證 vs 雙向驗證——一個容易混淆的選擇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9C%80%E5%BE%8C%E6%98%AF%E3%80%8C%E6%96%B9%E6%A1%88-2-%E6%96%B9%E6%A1%88-5%E3%80%8D%E4%B8%A6%E7%94%A8"><span class="nav-text">四、為什麼最後是「方案 2 + 方案 5」並用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%89%AF%E9%A1%8C%EF%BC%9APageObject-%E8%A9%B2%E4%B8%8D%E8%A9%B2%E4%BD%8F-verify-%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-text">五、副題：PageObject 該不該住 verify_* 方法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%AD%B8%E5%88%B0%E7%9A%84%E4%BA%8B%EF%BC%88meta-lessons%EF%BC%89"><span class="nav-text">六、學到的事（meta-lessons）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Scope-creep-%E8%A6%81%E8%AD%A6%E8%A6%BA"><span class="nav-text">1. Scope creep 要警覺</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%81%87%E8%A8%AD%E8%A6%81%E9%A9%97%E8%AD%89"><span class="nav-text">2. 假設要驗證</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B7%A5%E5%85%B7-vs-%E8%AA%8D%E7%9F%A5%E6%98%AF%E5%85%A9%E5%80%8B%E7%93%B6%E9%A0%B8"><span class="nav-text">3. 工具 vs 認知是兩個瓶頸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Feature-flag%EF%BC%88%E5%8A%9F%E8%83%BD%E9%96%8B%E9%97%9C%EF%BC%89%E6%98%AF%E7%AD%96%E7%95%A5%E7%A9%BA%E9%96%93"><span class="nav-text">4. Feature flag（功能開關）是策略空間</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-YAGNI%EF%BC%88%E5%85%88%E5%88%A5%E5%81%9A%E9%82%84%E7%94%A8%E4%B8%8D%E5%88%B0%E7%9A%84%E4%BA%8B%EF%BC%89%E5%B0%8D-cache-%E7%9A%84%E5%85%8B%E5%88%B6"><span class="nav-text">5. YAGNI（先別做還用不到的事）對 cache 的克制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%B5%90%E8%AA%9E"><span class="nav-text">七、結語</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>

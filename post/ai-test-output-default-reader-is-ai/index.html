@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            為什麼 AI 給的測試案例讀起來特別累？因為它的預設讀者不是你 |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script>
+        (function () {
+            let theme = localStorage.getItem('KEEP-THEME-STATUS');
+            let classname = "";
+            if (!theme || (JSON.parse(theme).isAutoTheme)){
+                classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+            }
+            else{
+                classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+            }
+            document.documentElement.classList.add(classname);
+        })();
+    </script>
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs","custom":{"enable":false,"url":null}},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","search_db_path":"keep-search.json","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.3.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        為什麼 AI 給的測試案例讀起來特別累？因為它的預設讀者不是你
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-14</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Sun Jun 14 2026 18:00:00 GMT+0800">2026-06-14</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI-%E6%B8%AC%E8%A9%A6/">AI 測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI-literacy/">AI literacy</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%B7%A8%E9%A0%98%E5%9F%9F/">跨領域</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E9%96%B1%E8%AE%80%E7%AD%96%E7%95%A5/">閱讀策略</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/prompt-design/">prompt design</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：你讀-AI-給的測試案例，會覺得累嗎？"><a href="#前言：你讀-AI-給的測試案例，會覺得累嗎？" class="headerlink" title="前言：你讀 AI 給的測試案例，會覺得累嗎？"></a>前言：你讀 AI 給的測試案例，會覺得累嗎？</h2><p>你有沒有過這個經驗——叫 AI 幫你寫測試案例，它劈頭就吐出這麼一段：</p>
+<blockquote>
+<p>「驗證 modal 彈出時應觸發 focus trap，並在 ESC 鍵按下時 dismiss，同時保留前一個 active element 的 focus state。」</p>
+</blockquote>
+<p>你讀了三次，每個中文詞都認得，但湊在一起就是需要大腦用力轉一下。<code>focus trap</code> 是什麼？<code>active element</code> 的 focus state 又該怎麼測？</p>
+<p>然後你停了下來，甚至開始懷疑自己是不是能力不足、該換工作了。</p>
+<p>先別急著責怪自己。<strong>AI 寫的這段測試案例，讀起來會累是正常的——因為它在寫的時候，心目中的預設讀者從來就不是你。它的預設讀者，是另一個 AI。</strong></p>
+<p>這篇文章不是要抱怨 AI 寫得不好，而是想拆解這個「讀起來很累」的認知摩擦力從何而來，以及我們身為人類 QA，該如何調整閱讀策略，在 AI 時代建立自己的詞彙護城河。</p>
+<hr>
+<h2 id="一、-三層-Mismatch：AI-的預設讀者-vs-真實的人類-QA"><a href="#一、-三層-Mismatch：AI-的預設讀者-vs-真實的人類-QA" class="headerlink" title="一、 三層 Mismatch：AI 的預設讀者 vs. 真實的人類 QA"></a>一、 三層 Mismatch：AI 的預設讀者 vs. 真實的人類 QA</h2><p>為什麼我們讀 AI 的輸出會感到磨損？因為在沒有額外設定的情況下，AI 會預設一個「超完美讀者」的畫像。這個畫像與真實的人類 QA 之間，存在著三層結構性的落差（Mismatch）：</p>
+<table>
+<thead>
+<tr>
+<th align="left">落差維度</th>
+<th align="left">AI 想像中的預設讀者</th>
+<th align="left">真實的人類 QA 讀者</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>專業廣度 (Specialty)</strong></td>
+<td align="left">跨所有領域的通才（同時精通前端、後端、App、安全性、DevOps、無障礙網頁規範等）</td>
+<td align="left">通常專精 1-2 個特定領域（例如專職後端 API 測試或行動 App 測試）</td>
+</tr>
+<tr>
+<td align="left"><strong>語言習慣 (Language)</strong></td>
+<td align="left">英文母語者，能毫無負擔地閱讀任何產業術語（Jargon）</td>
+<td align="left">中文母語者，對英文術語需要大腦進行二次翻譯與認知轉換</td>
+</tr>
+<tr>
+<td align="left"><strong>知識假設 (Assumption)</strong></td>
+<td align="left">假設讀者讀過所有的官方規範（例如 React&#x2F;Vue 文件、Material Design 規範、MDN Web Docs）</td>
+<td align="left">通常是在專案開發中「邊做邊學」，只掌握工作切身相關的知識</td>
+</tr>
+</tbody></table>
+<p>這三層落差加起來，就形成了一種「連續跨欄」的閱讀體驗。</p>
+<p>AI 產出測試案例時，會毫無預警地把各個領域的英文專有名詞交織在一起。如果我們剛好是偏後端的 QA，讀到 <code>focus trap</code>（焦點陷阱，前端用於確保鍵盤操作不會跳出彈窗的無障礙設計）或 <code>skeleton loading</code>（骨架屏）時，就會因為不熟悉前端 UI 詞彙而產生強烈的認知疲勞。</p>
+<p>這不是你的問題，<strong>你只是剛好站在 AI 預設讀者光譜之外罷了</strong>。</p>
+<hr>
+<h2 id="二、-為什麼這個-Mismatch-是結構性存在？"><a href="#二、-為什麼這個-Mismatch-是結構性存在？" class="headerlink" title="二、 為什麼這個 Mismatch 是結構性存在？"></a>二、 為什麼這個 Mismatch 是結構性存在？</h2><p>這不是 AI 在偷懶，也不是它的品味有問題，而是大型語言模型（LLM）訓練方式的結構性結果：</p>
+<ol>
+<li><strong>訓練語料的全球化與混雜性</strong>：LLM 的大腦裡裝的是整個互聯網的語料——從 GitHub 的程式碼、MDN 的技術文件，到 StackOverflow 的討論。對 AI 來說，前端 UI 技術與後端系統架構是放在同一個知識網路裡的，它不會預設「前端工程師不該懂後端」或「後端 QA 不需要懂前端」。</li>
+<li><strong>缺乏預設的「角度感知（Perspective）」</strong>：除非你主動宣告，否則 AI 在回答時是沒有「讀者畫像」概念的。它會自動採用整個互聯網語料的「平均水準」來回答，而這個平均水準通常是一個「英文極度流利、全棧開發與測試皆通的虛擬專家」。</li>
+<li><strong>英文術語是技術圈的萬國公語 (Lingua Franca)</strong>：即使你用中文提問，AI 的知識檢索依然是以英文術語為主。例如 <code>focus trap</code> 幾乎不會被翻成「焦點陷阱」，因為在網路上根本沒有人這樣用。這些英文 Jargon 就這樣被硬生生塞進中文句子裡，成了非母語讀者最大的認知磨損來源。</li>
+</ol>
+<hr>
+<h2 id="三、-真實-QA-該怎麼讀-AI-測試輸出？"><a href="#三、-真實-QA-該怎麼讀-AI-測試輸出？" class="headerlink" title="三、 真實 QA 該怎麼讀 AI 測試輸出？"></a>三、 真實 QA 該怎麼讀 AI 測試輸出？</h2><p>既然知道了這是結構性落差，我們就不該只是被動地被磨損。以下是四個具體且可落實的閱讀與協作技巧：</p>
+<h3 id="🛠️-技巧-1：主動為自己設計-Prompt，限縮讀者畫像"><a href="#🛠️-技巧-1：主動為自己設計-Prompt，限縮讀者畫像" class="headerlink" title="🛠️ 技巧 1：主動為自己設計 Prompt，限縮讀者畫像"></a>🛠️ 技巧 1：主動為自己設計 Prompt，限縮讀者畫像</h3><p>最簡單也最有效的方法，就是<strong>打破 AI 的預設讀者假設</strong>。不要只給它一段程式碼叫它寫測試案例，你要主動告訴它你是誰、你站在哪裡：</p>
+<blockquote>
+<p><strong>💡 Prompt 調整範例</strong><br>「請以後端 QA 的視角為這段功能撰寫測試案例。中文為主，英文術語第一次出現時請用括號加中文簡述。我不熟前端 UI 詞彙，請避免假設我懂 <code>focus trap</code>、<code>floating label</code> 這類細節，必要時請用一句話說明其測試目的。」</p>
+</blockquote>
+<p>僅僅是在 Prompt 最前面加上這段「設定讀者身分」的上下文，AI 輸出的友善度就會提升 60% 以上，省去你事後翻找名詞的時間。</p>
+<h3 id="🛠️-技巧-2：把讀不懂的詞，當作「免費的能力檢測」"><a href="#🛠️-技巧-2：把讀不懂的詞，當作「免費的能力檢測」" class="headerlink" title="🛠️ 技巧 2：把讀不懂的詞，當作「免費的能力檢測」"></a>🛠️ 技巧 2：把讀不懂的詞，當作「免費的能力檢測」</h3><p>當你讀到 AI 給出你不懂的術語時，不要感到沮喪，試著把心態翻轉過來：<strong>這正是 AI 在為你進行最便宜的『下一階能力檢測』</strong>。</p>
+<ul>
+<li>如果你看不懂 <code>skeleton loading</code>，這代表你的知識邊界剛好被推到了前端 UX 的領域。</li>
+<li>如果你看不懂 <code>idempotency key</code>（冪等金鑰），這代表你碰到了後端分散式系統設計的邊界。</li>
+</ul>
+<p>這正是我們先前提過「問題驅動測試（PDT）」的反向應用——AI 丟出來的陌生詞彙，就是你接下來最值得投資學習的長尾知識。花三分鐘弄懂它，你的知識邊界就往外擴張了一格。</p>
+<h3 id="🛠️-技巧-3：不要把-raw-AI-輸出直接貼給團隊"><a href="#🛠️-技巧-3：不要把-raw-AI-輸出直接貼給團隊" class="headerlink" title="🛠️ 技巧 3：不要把 raw AI 輸出直接貼給團隊"></a>🛠️ 技巧 3：不要把 raw AI 輸出直接貼給團隊</h3><p>許多人會把 AI 跑出來的測試案例，直接複製貼上到 JIRA Ticket 或 Slack 頻道裡。這是非常危險的，因為你正在把你的認知疲勞傳遞給整個團隊。</p>
+<p>在交付給研發（RD）或產品經理（PM）之前，你必須扮演「翻譯官」的角色：</p>
+<ul>
+<li><strong>去粗取精</strong>：拿掉與你們專案情境不符的跨領域測試點。</li>
+<li><strong>在地化術語</strong>：將英文 Jargon 換成你們團隊內部慣用的詞彙。</li>
+<li><strong>消除歧義</strong>：補上「在我們目前的情境下，這個欄位代表的是 X」等具體細節。（這也是延伸自我們之前討論的 <a href="/post/ai-as-yes-man-rd-pm-trust-calibration/">「Yes-man 提問清單」</a> 第三個問題——去檢查 AI 隱含與跳過了什麼）。</li>
+</ul>
+<h3 id="🛠️-技巧-4：建立屬於自己的團隊-Glossary"><a href="#🛠️-技巧-4：建立屬於自己的團隊-Glossary" class="headerlink" title="🛠️ 技巧 4：建立屬於自己的團隊 Glossary"></a>🛠️ 技巧 4：建立屬於自己的團隊 Glossary</h3><p>每次從 AI 輸出中學到一個新詞彙，或者把某個模糊的英文術語對齊到團隊的業務情境時，順手記在團隊的共享文件（Wiki &#x2F; Notion）中。</p>
+<p>一年下來，這份術語對照表會成為新進人員的救星，而你也會成為團隊中那個最懂「如何把 AI 術語落地到真實業務」的關鍵人物。這種跨領域的溝通價值，比單純補英文程度更有職場能見度。</p>
+<hr>
+<h2 id="四、-「會問」與「會讀」的雙重修煉"><a href="#四、-「會問」與「會讀」的雙重修煉" class="headerlink" title="四、 「會問」與「會讀」的雙重修煉"></a>四、 「會問」與「會讀」的雙重修煉</h2><p>在我們利用 AI 輔助品質工程時，「問」與「讀」是相輔相成的兩大核心技能：</p>
+<table>
+<thead>
+<tr>
+<th align="left">核心技能</th>
+<th align="left">實踐關鍵</th>
+<th align="left">解決的痛點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>會問（How to Ask）</strong></td>
+<td align="left">參考 <a href="/post/ai-as-yes-man-rd-pm-trust-calibration/">《你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man——給 RD&#x2F;PM 的三個提問清單》</a></td>
+<td align="left">防止被 AI 的「綠燈（Yes-man）」誤導，抓出隱藏的盲點與邊界條件。</td>
+</tr>
+<tr>
+<td align="left"><strong>會讀（How to Read）</strong></td>
+<td align="left">本篇介紹的四個閱讀策略與身分限縮</td>
+<td align="left">降低讀英文 Jargon 的認知疲勞，避免被資訊量磨損，轉化為自身成長。</td>
+</tr>
+</tbody></table>
+<p>只有兩者齊備，你才能在與 AI Pair Programming 時保持主導權，而不是被淹沒在無意義的字數與代碼中。</p>
+<hr>
+<h2 id="結語：不要被詞彙嚇退，讓-AI-拉著你前進"><a href="#結語：不要被詞彙嚇退，讓-AI-拉著你前進" class="headerlink" title="結語：不要被詞彙嚇退，讓 AI 拉著你前進"></a>結語：不要被詞彙嚇退，讓 AI 拉著你前進</h2><p>當你讀 AI 的測試輸出覺得累時，請對自己說一遍：<strong>「沒關係，這只是因為它預設我是個全知全能的 AI，但我不是。」</strong></p>
+<p>放下對完美主義的執著，把 AI 的輸出當作你的免費家教。只要我們不被那些光鮮亮麗的英文術語嚇退，主動調整提問視角，並在讀不懂時多問一句 <code>「請用白話的中文解釋這個詞在測試上的意思」</code>。</p>
+<p>久而久之，你的跨領域感知與知識視野，就會在日常工作中被 AI <strong>被動地拉著前進</strong>。</p>
+<p>這會比你去上任何系統化的課程，都來得更痛、更真實，也更有價值。</p>
+<hr>
+<p><strong>延伸閱讀</strong></p>
+<ul>
+<li><a href="/post/ai-as-yes-man-rd-pm-trust-calibration/">你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man——給 RD&#x2F;PM 的三個提問清單</a></li>
+<li><a href="/post/frontend-ui-vocabulary-for-qa/">QA 該認識的 32 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補的課</a></li>
+</ul>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI-%E6%B8%AC%E8%A9%A6/">AI 測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI-literacy/">AI literacy</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%B7%A8%E9%A0%98%E5%9F%9F/">跨領域</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E9%96%B1%E8%AE%80%E7%AD%96%E7%95%A5/">閱讀策略</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/prompt-design/">prompt design</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/sdet-role-reflection-in-ai-era/"
+                                   title="「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%BD%A0%E8%AE%80-AI-%E7%B5%A6%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%A1%88%E4%BE%8B%EF%BC%8C%E6%9C%83%E8%A6%BA%E5%BE%97%E7%B4%AF%E5%97%8E%EF%BC%9F"><span class="nav-text">前言：你讀 AI 給的測試案例，會覺得累嗎？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E4%B8%89%E5%B1%A4-Mismatch%EF%BC%9AAI-%E7%9A%84%E9%A0%90%E8%A8%AD%E8%AE%80%E8%80%85-vs-%E7%9C%9F%E5%AF%A6%E7%9A%84%E4%BA%BA%E9%A1%9E-QA"><span class="nav-text">一、 三層 Mismatch：AI 的預設讀者 vs. 真實的人類 QA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%82%BA%E4%BB%80%E9%BA%BC%E9%80%99%E5%80%8B-Mismatch-%E6%98%AF%E7%B5%90%E6%A7%8B%E6%80%A7%E5%AD%98%E5%9C%A8%EF%BC%9F"><span class="nav-text">二、 為什麼這個 Mismatch 是結構性存在？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E7%9C%9F%E5%AF%A6-QA-%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%AE%80-AI-%E6%B8%AC%E8%A9%A6%E8%BC%B8%E5%87%BA%EF%BC%9F"><span class="nav-text">三、 真實 QA 該怎麼讀 AI 測試輸出？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%8A%80%E5%B7%A7-1%EF%BC%9A%E4%B8%BB%E5%8B%95%E7%82%BA%E8%87%AA%E5%B7%B1%E8%A8%AD%E8%A8%88-Prompt%EF%BC%8C%E9%99%90%E7%B8%AE%E8%AE%80%E8%80%85%E7%95%AB%E5%83%8F"><span class="nav-text">🛠️ 技巧 1：主動為自己設計 Prompt，限縮讀者畫像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%8A%80%E5%B7%A7-2%EF%BC%9A%E6%8A%8A%E8%AE%80%E4%B8%8D%E6%87%82%E7%9A%84%E8%A9%9E%EF%BC%8C%E7%95%B6%E4%BD%9C%E3%80%8C%E5%85%8D%E8%B2%BB%E7%9A%84%E8%83%BD%E5%8A%9B%E6%AA%A2%E6%B8%AC%E3%80%8D"><span class="nav-text">🛠️ 技巧 2：把讀不懂的詞，當作「免費的能力檢測」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%8A%80%E5%B7%A7-3%EF%BC%9A%E4%B8%8D%E8%A6%81%E6%8A%8A-raw-AI-%E8%BC%B8%E5%87%BA%E7%9B%B4%E6%8E%A5%E8%B2%BC%E7%B5%A6%E5%9C%98%E9%9A%8A"><span class="nav-text">🛠️ 技巧 3：不要把 raw AI 輸出直接貼給團隊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%8A%80%E5%B7%A7-4%EF%BC%9A%E5%BB%BA%E7%AB%8B%E5%B1%AC%E6%96%BC%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9C%98%E9%9A%8A-Glossary"><span class="nav-text">🛠️ 技巧 4：建立屬於自己的團隊 Glossary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E3%80%8C%E6%9C%83%E5%95%8F%E3%80%8D%E8%88%87%E3%80%8C%E6%9C%83%E8%AE%80%E3%80%8D%E7%9A%84%E9%9B%99%E9%87%8D%E4%BF%AE%E7%85%89"><span class="nav-text">四、 「會問」與「會讀」的雙重修煉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E4%B8%8D%E8%A6%81%E8%A2%AB%E8%A9%9E%E5%BD%99%E5%9A%87%E9%80%80%EF%BC%8C%E8%AE%93-AI-%E6%8B%89%E8%91%97%E4%BD%A0%E5%89%8D%E9%80%B2"><span class="nav-text">結語：不要被詞彙嚇退，讓 AI 拉著你前進</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E4%BD%A0%E8%AE%80-AI-%E7%B5%A6%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%A1%88%E4%BE%8B%EF%BC%8C%E6%9C%83%E8%A6%BA%E5%BE%97%E7%B4%AF%E5%97%8E%EF%BC%9F"><span class="nav-text">前言：你讀 AI 給的測試案例，會覺得累嗎？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E4%B8%89%E5%B1%A4-Mismatch%EF%BC%9AAI-%E7%9A%84%E9%A0%90%E8%A8%AD%E8%AE%80%E8%80%85-vs-%E7%9C%9F%E5%AF%A6%E7%9A%84%E4%BA%BA%E9%A1%9E-QA"><span class="nav-text">一、 三層 Mismatch：AI 的預設讀者 vs. 真實的人類 QA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%82%BA%E4%BB%80%E9%BA%BC%E9%80%99%E5%80%8B-Mismatch-%E6%98%AF%E7%B5%90%E6%A7%8B%E6%80%A7%E5%AD%98%E5%9C%A8%EF%BC%9F"><span class="nav-text">二、 為什麼這個 Mismatch 是結構性存在？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E7%9C%9F%E5%AF%A6-QA-%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%AE%80-AI-%E6%B8%AC%E8%A9%A6%E8%BC%B8%E5%87%BA%EF%BC%9F"><span class="nav-text">三、 真實 QA 該怎麼讀 AI 測試輸出？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%8A%80%E5%B7%A7-1%EF%BC%9A%E4%B8%BB%E5%8B%95%E7%82%BA%E8%87%AA%E5%B7%B1%E8%A8%AD%E8%A8%88-Prompt%EF%BC%8C%E9%99%90%E7%B8%AE%E8%AE%80%E8%80%85%E7%95%AB%E5%83%8F"><span class="nav-text">🛠️ 技巧 1：主動為自己設計 Prompt，限縮讀者畫像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%8A%80%E5%B7%A7-2%EF%BC%9A%E6%8A%8A%E8%AE%80%E4%B8%8D%E6%87%82%E7%9A%84%E8%A9%9E%EF%BC%8C%E7%95%B6%E4%BD%9C%E3%80%8C%E5%85%8D%E8%B2%BB%E7%9A%84%E8%83%BD%E5%8A%9B%E6%AA%A2%E6%B8%AC%E3%80%8D"><span class="nav-text">🛠️ 技巧 2：把讀不懂的詞，當作「免費的能力檢測」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%8A%80%E5%B7%A7-3%EF%BC%9A%E4%B8%8D%E8%A6%81%E6%8A%8A-raw-AI-%E8%BC%B8%E5%87%BA%E7%9B%B4%E6%8E%A5%E8%B2%BC%E7%B5%A6%E5%9C%98%E9%9A%8A"><span class="nav-text">🛠️ 技巧 3：不要把 raw AI 輸出直接貼給團隊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%8A%80%E5%B7%A7-4%EF%BC%9A%E5%BB%BA%E7%AB%8B%E5%B1%AC%E6%96%BC%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9C%98%E9%9A%8A-Glossary"><span class="nav-text">🛠️ 技巧 4：建立屬於自己的團隊 Glossary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E3%80%8C%E6%9C%83%E5%95%8F%E3%80%8D%E8%88%87%E3%80%8C%E6%9C%83%E8%AE%80%E3%80%8D%E7%9A%84%E9%9B%99%E9%87%8D%E4%BF%AE%E7%85%89"><span class="nav-text">四、 「會問」與「會讀」的雙重修煉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E4%B8%8D%E8%A6%81%E8%A2%AB%E8%A9%9E%E5%BD%99%E5%9A%87%E9%80%80%EF%BC%8C%E8%AE%93-AI-%E6%8B%89%E8%91%97%E4%BD%A0%E5%89%8D%E9%80%B2"><span class="nav-text">結語：不要被詞彙嚇退，讓 AI 拉著你前進</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>

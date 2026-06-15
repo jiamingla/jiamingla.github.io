@@ -9,7 +9,7 @@
     
     <title>
         
-            「煩」是 QA 的診斷工具：判斷一個手動測試該不該被自動化的五個訊號 |
+            「無聊」是 QA 的診斷工具：判斷一個手動測試該不該被自動化的五個訊號 |
         
         Elijah’s Quality Lab
     </title>
@@ -19,10 +19,10 @@
     
         <link rel="shortcut icon" href="/images/logo.svg">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/brands.min.css">
     
         
             
@@ -34,15 +34,28 @@
             
         
     
+    <script>
+        (function () {
+            let theme = localStorage.getItem('KEEP-THEME-STATUS');
+            let classname = "";
+            if (!theme || (JSON.parse(theme).isAutoTheme)){
+                classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+            }
+            else{
+                classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+            }
+            document.documentElement.classList.add(classname);
+        })();
+    </script>
     <script class="keep-theme-configurations">
     const KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
-    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs","custom":{"enable":false,"url":null}},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","search_db_path":"keep-search.json","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.3.0"}
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
     KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
     KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
   </script>
-<meta name="generator" content="Hexo 8.1.1"></head>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
 
 
 <body>
@@ -239,7 +252,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        「煩」是 QA 的診斷工具：判斷一個手動測試該不該被自動化的五個訊號
+                        「無聊」是 QA 的診斷工具：判斷一個手動測試該不該被自動化的五個訊號
                     </div>
                 
 
@@ -254,7 +267,7 @@
                             <div class="author border-box">
                                 <span class="name">Elijah Ho</span>
                                 
-                                    <span class="author-badge">Lv2</span>
+                                    <span class="author-badge">Lv3</span>
                                 
                             </div>
                             <div class="meta-info border-box">
@@ -284,10 +297,16 @@
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
                         
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E8%87%AA%E5%8B%95%E5%8C%96/">測試自動化</a></li>
@@ -296,16 +315,19 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD/">篩選功能</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
-                        
-                    
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/QA%E7%95%B6%E8%B2%AC/">QA當責</a></li>
                         
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/ROI/">ROI</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%84%A1%E8%81%8A/">無聊</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%85%A9/">煩</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%84%A1%E8%81%8A%E5%BF%83%E7%90%86%E5%AD%B8/">無聊心理學</a></li>
                         
                     
                 </ul>
@@ -336,7 +358,7 @@
                     
                          <h2 id="前言：那個下午我意識到自己錯放了位置"><a href="#前言：那個下午我意識到自己錯放了位置" class="headerlink" title="前言：那個下午我意識到自己錯放了位置"></a>前言：那個下午我意識到自己錯放了位置</h2><p>最近我在測一個篩選功能。</p>
 <p>四個條件、每個三到四個值，光是基本組合就上百種；再加上排序、分頁、清除按鈕、預設值的交互——整整兩天，我坐在電腦前面，一組一組點下去、等載入、比對結果、寫紀錄。</p>
-<p>到了第二天下午，我手指麻了，眼睛酸了，但更難受的是另一個東西——</p>
+<p>到了第二天下午，我手指麻了，眼睛酸了，開始打嗑睡，但更難受的是另一個東西——</p>
 <blockquote>
 <p><strong>我突然發現，我做的這件事情裡，沒有任何一處需要「我」這個人。</strong></p>
 </blockquote>
@@ -431,7 +453,7 @@
 <p><strong>3.「短期 ROI 算不過來——這個 sprint 我手動跑得完，何必投資自動化？」</strong><br>這是最常被講的一句話。但它的盲點是——<strong>這次的「跑得完」，是用你下個 sprint 的時間預支來的</strong>。你的耐力就那麼多，今天耗在點篩選，下次出包時你會發現自己沒餘裕做應該做的探索式測試。</p>
 <p><strong>4.（最深的一個）「QA 的價值在於人手測」</strong><br>這是一個陳舊的職業自我定義。在我看來，<strong>QA 的價值從來不在點擊次數，而在判斷力</strong>——判斷哪些該測、判斷哪些不需測、判斷出問題時該怎麼解。判斷力是稀缺資源，把它耗在點篩選——等於把鑽石當磚頭用。</p>
 <hr>
-<h2 id="五、與〈spec-maintenance-gray-zone〉互為鏡像"><a href="#五、與〈spec-maintenance-gray-zone〉互為鏡像" class="headerlink" title="五、與〈spec-maintenance-gray-zone〉互為鏡像"></a>五、與〈spec-maintenance-gray-zone〉互為鏡像</h2><p>我前一篇 <a href="/post/spec-maintenance-gray-zone/">〈用 specs.md 餵 AI 生測試案例之前——先問一句：誰負責讓那份文件不過期？〉</a> 寫的是組織層面的失靈：<strong>公司把「文件維護」這種灰色地帶的工作丟給沒能力扛的人，然後期待 AI 能幫他們收尾</strong>。</p>
+<h2 id="五、與前一篇〈用-specs-md-餵-AI〉互為鏡像"><a href="#五、與前一篇〈用-specs-md-餵-AI〉互為鏡像" class="headerlink" title="五、與前一篇〈用 specs.md 餵 AI〉互為鏡像"></a>五、與前一篇〈用 specs.md 餵 AI〉互為鏡像</h2><p>我前一篇 <a href="/post/spec-maintenance-gray-zone/">〈用 specs.md 餵 AI 生測試案例之前——先問一句：誰負責讓那份文件不過期？〉</a> 寫的是組織層面的失靈：<strong>公司把「文件維護」這種灰色地帶的工作丟給沒能力扛的人，然後期待 AI 能幫他們收尾</strong>。</p>
 <p>這篇是它的反面：<strong>QA 也不該把「可自動化的勞動」丟給自己</strong>。</p>
 <p>兩者表面看起來方向相反，但背後是同一個原則：</p>
 <blockquote>
@@ -488,7 +510,41 @@
 </blockquote>
 <p>這跟我寫過的 <a href="/post/qa-performance-metrics-perspective/">〈測試工程師的「價值」如何量化？〉</a> 是同一條紀律——<strong>用主管的語言談 trade-off，而不是用 QA 的語言談技術</strong>。</p>
 <hr>
-<h2 id="八、結語：把「煩」當作-QA-的診斷儀器"><a href="#八、結語：把「煩」當作-QA-的診斷儀器" class="headerlink" title="八、結語：把「煩」當作 QA 的診斷儀器"></a>八、結語：把「煩」當作 QA 的診斷儀器</h2><p>QA 的職業姿態，從來不是用「能忍多煩」來證明自己的敬業。</p>
+<h2 id="八、如果現況真的動不了：給結構性受困的-QA-一條-plan-B"><a href="#八、如果現況真的動不了：給結構性受困的-QA-一條-plan-B" class="headerlink" title="八、如果現況真的動不了：給結構性受困的 QA 一條 plan B"></a>八、如果現況真的動不了：給結構性受困的 QA 一條 plan B</h2><p>前面七節有一個隱含前提：<strong>你的工作環境給得起你動手改變的空間</strong>。</p>
+<p>但我自己上一份工作就在另一種情境裡：</p>
+<ul>
+<li>系統老到沒有測試 seam，連 mock 都掛不上</li>
+<li>系統有上雲架構但測試工具沒跟上——什麼時候該打 DB、什麼時候該抓物件儲存、跨服務怎麼模擬，每一題都要花時間想清楚</li>
+<li>微服務拆得很細，光是搞清楚一條使用者流程跨幾個服務、每個服務該不該驗，就先吃掉一半時間</li>
+<li>測試環境建置需要跨團隊協作，QA 一半時間花在組織層面、不在技術層面</li>
+</ul>
+<p>第七節那三步——量化、估投資、提案——你都做了，主管也認，但<strong>結構上就是動不了</strong>。這節寫給卡在這種情境的 QA。</p>
+<p><strong>動不了的時候，你還能守住三件事</strong>。</p>
+<h3 id="1-機械跟判斷的時間分界"><a href="#1-機械跟判斷的時間分界" class="headerlink" title="1. 機械跟判斷的時間分界"></a>1. 機械跟判斷的時間分界</h3><p>不能把機械部分自動化掉，至少<strong>時間上隔離</strong>——</p>
+<ul>
+<li>機械操作集中在注意力最低的時段（例如剛上班的前 2 小時，腦袋還沒熱起來）</li>
+<li>判斷部分留給精神最好的時段，做探索式測試、追不和諧感、寫 bug report</li>
+<li><strong>不要邊機械邊判斷</strong>——這個切換成本會吃掉你最寶貴的腦力</li>
+</ul>
+<p>簡單的工具能幫上忙：截圖工具減少手寫筆記、test data 模板化、checklist 結構化讓跑得更快。<strong>這不是真的自動化，是把人工模式優化得更接近自動化</strong>。</p>
+<h3 id="2-把每次「煩」記成證據"><a href="#2-把每次「煩」記成證據" class="headerlink" title="2. 把每次「煩」記成證據"></a>2. 把每次「煩」記成證據</h3><p>你現在動不了，不代表組織永遠動不了。但你需要<strong>累積證據</strong>——</p>
+<ul>
+<li>每個 sprint 記錄：「這部分如果有自動化會省 X 小時、目前佔我 Y% 工時」</li>
+<li>哪些 bug 是在「機械模式時段」漏掉的（這是強證據——證明人工跑會出包）</li>
+<li>重大線上事件事後 review 時，能不能指出「這個如果有 regression test 就會被擋下」</li>
+</ul>
+<p>組織會動的時機通常不是「主動規劃」，是「<strong>某次出事之後</strong>」。那時候有沒有人手上握著一份完整的成本紀錄，會決定資源往哪邊跑。你今天跑的每一個機械測試，都是在累積那份紀錄。</p>
+<h3 id="3-守住識別力本身"><a href="#3-守住識別力本身" class="headerlink" title="3. 守住識別力本身"></a>3. 守住識別力本身</h3><p>這是最重要的一條。</p>
+<p>當你長期卡在「煩 &#x2F; 無聊」的環境裡，最大的風險不是技術沒進步，是<strong>你開始懷疑自己</strong>——是不是我不夠敬業？是不是別人都能撐我撐不下去？</p>
+<p>接回第六節《無聊心理學》那個論點：<strong>你身上的能動性在替整個系統呼喊「我被擺錯地方了」</strong>。聽見這個呼喊、辨認出它、把它寫下來——<strong>這份識別力本身就有價值，即使結構上你動不了</strong>。</p>
+<p>某天你會跳槽、會被推薦、會升到有授權改變的位置。<strong>那時候，今天這份識別力會變成你的判斷資產</strong>——你會記得哪些「煩」是組織該解決的、哪些是任務本身就該扛的。你不會把「QA 就是要忍」當作職業徽章。</p>
+<hr>
+<blockquote>
+<p><strong>守住識別力，比逼自己出產出更難、也更重要</strong>。</p>
+</blockquote>
+<p>當結構動不了的時候，能不能不被它磨掉判斷力——這本身就是 QA 紀律的一部分。</p>
+<hr>
+<h2 id="九、結語：把「煩」當作-QA-的診斷儀器"><a href="#九、結語：把「煩」當作-QA-的診斷儀器" class="headerlink" title="九、結語：把「煩」當作 QA 的診斷儀器"></a>九、結語：把「煩」當作 QA 的診斷儀器</h2><p>QA 的職業姿態，從來不是用「能忍多煩」來證明自己的敬業。</p>
 <p>是<strong>有沒有能力辨認出「這份煩在告訴我什麼」</strong>。</p>
 <p>煩可能在告訴你：這個任務該被自動化了。<br>煩可能在告訴你：這個產品的設計需要重來。<br>煩可能在告訴你：這個團隊的工作分配出了問題。<br>煩可能在告訴你：你不該繼續扛這份不屬於你的責任。<br>煩可能在告訴你：你身上的能力，社會還有別的地方更需要它。</p>
 <p>把煩當訊號來讀，你就比那個「咬牙撐過去」的版本，多了一個維度的觀察力。</p>
@@ -503,7 +559,7 @@
 <h2 id="給也是基督徒的讀者：一個禱告"><a href="#給也是基督徒的讀者：一個禱告" class="headerlink" title="給也是基督徒的讀者：一個禱告"></a>給也是基督徒的讀者：一個禱告</h2><p>如果你不是基督徒，這篇文章到上一段就結束了，謝謝你陪我讀到這裡。</p>
 <p>接下來，請容我以基督徒的身分，用一段簡短的禱告為這篇文章收尾。</p>
 <hr>
-<p>主，<br>謝謝祢給了我「煩」這個訊號。<br>原來它不只是疲倦，是祢在提醒我——<br>我身上的能力是祢造的，不該耗在機器更擅長的事情上。</p>
+<p>主，<br>謝謝祢給了我「無聊」、「煩燥」這兩個訊號。<br>原來它不只是疲倦，是祢在提醒我——<br>我身上的能力是祢造的，不該耗在機器更擅長的事情上。</p>
 <p>求祢讓我有勇氣，把該交給機器的交出去；<br>也讓我有判斷力，把該由人守住的守住。<br>在 AI 越來越能做事的時代，<br>讓我聽得到祢呼召我去的位置——<br>那個真正需要一個有名字、有信用、願意簽名的人的位置。</p>
 <p>奉主耶穌基督的名禱告，阿們。</p>
 <hr>
@@ -525,11 +581,19 @@
                             <ul class="post-tags-box border-box">
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
@@ -541,10 +605,6 @@
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
-                                    </li>
-                                
-                                    <li class="tag-item border-box">
                                         <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/QA%E7%95%B6%E8%B2%AC/">QA當責</a>
                                     </li>
                                 
@@ -553,7 +613,15 @@
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%84%A1%E8%81%8A/">無聊</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%85%A9/">煩</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%84%A1%E8%81%8A%E5%BF%83%E7%90%86%E5%AD%B8/">無聊心理學</a>
                                     </li>
                                 
                             </ul>
@@ -568,6 +636,22 @@
 
                 
                     <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/ten-minute-test-plan-when-test-stage-down/"
+                                   title="測試站登入壞了那天，我才被迫面對：我真的測完了嗎？"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">測試站登入壞了那天，我才被迫面對：我真的測完了嗎？</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
                         
                         
                             <div class="next-post">
@@ -706,7 +790,7 @@
             <div class="pc-post-toc left-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E4%B8%8B%E5%8D%88%E6%88%91%E6%84%8F%E8%AD%98%E5%88%B0%E8%87%AA%E5%B7%B1%E9%8C%AF%E6%94%BE%E4%BA%86%E4%BD%8D%E7%BD%AE"><span class="nav-text">前言：那個下午我意識到自己錯放了位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81QA-%E5%9C%88%E8%A3%A1%E9%82%A3%E7%A8%AE%E3%80%8C%E8%B6%8A%E7%85%A9%E8%B6%8A%E8%A6%81%E5%81%9A%E3%80%8D%E7%9A%84%E8%81%B7%E6%A5%AD%E6%96%87%E5%8C%96%EF%BC%8C%E5%8F%AA%E8%AA%AA%E4%BA%86%E4%B8%80%E5%8D%8A%E7%9A%84%E7%9C%9F%E8%A9%B1"><span class="nav-text">一、QA 圈裡那種「越煩越要做」的職業文化，只說了一半的真話</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BA%94%E5%80%8B%E8%A8%8A%E8%99%9F%EF%BC%9A%E7%95%B6%E4%BD%A0%E7%9C%BC%E5%89%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%AC%A6%E5%90%88%E9%80%99%E5%B9%BE%E5%80%8B%E8%A8%8A%E8%99%9F%EF%BC%8C%E5%AE%83%E5%9C%A8%E8%B7%9F%E4%BD%A0%E8%A8%8E%E6%95%91%E5%85%B5"><span class="nav-text">二、五個訊號：當你眼前的測試符合這幾個訊號，它在跟你討救兵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%B8%80%EF%BC%9A%E9%AB%98%E9%87%8D%E8%A4%87%E7%8E%87%EF%BC%88%E5%90%8C%E4%B8%80%E6%AE%B5%E6%93%8D%E4%BD%9C%E6%A8%A1%E5%BC%8F%EF%BC%8C%E6%AF%8F%E6%AC%A1%E5%B9%BE%E4%B9%8E%E4%B8%80%E6%A8%A3%EF%BC%89"><span class="nav-text">訊號一：高重複率（同一段操作模式，每次幾乎一樣）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%BA%8C%EF%BC%9A%E4%BD%8E%E8%AE%8A%E7%95%B0%E6%80%A7%EF%BC%88%E7%B5%90%E6%9E%9C%E6%9C%89%E6%98%8E%E7%A2%BA%E7%9A%84%E6%9C%9F%E6%9C%9B%E5%80%BC%EF%BC%89"><span class="nav-text">訊號二：低變異性（結果有明確的期望值）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%B8%89%EF%BC%9A%E7%B5%90%E6%9E%9C%E5%8F%AF%E6%A9%9F%E5%99%A8%E9%A9%97%E8%AD%89%EF%BC%88%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BA%BA%E9%A1%9E%E5%AF%A9%E7%BE%8E%EF%BC%89"><span class="nav-text">訊號三：結果可機器驗證（不需要人類審美）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E5%9B%9B-%E7%B5%84%E5%90%88%E7%88%86%E7%82%B8%EF%BC%88%E6%A2%9D%E4%BB%B6%E5%A4%9A%E5%88%B0%E6%8C%87%E6%95%B8%E7%B4%9A%EF%BC%89"><span class="nav-text">訊號四:組合爆炸（條件多到指數級）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%BA%94%EF%BC%9A%E5%9F%B7%E8%A1%8C%E6%99%82%E9%96%93%E9%95%B7%E5%88%B0%E6%94%B9%E8%AE%8A%E4%BD%A0%E7%9A%84%E6%B8%AC%E8%A9%A6%E5%A7%BF%E6%85%8B"><span class="nav-text">訊號五：執行時間長到改變你的測試姿態</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AF%E6%95%99%E7%A7%91%E6%9B%B8%E7%AD%94%E6%A1%88"><span class="nav-text">三、篩選功能為什麼是教科書答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%82%A3%E7%82%BA%E4%BB%80%E9%BA%BC%E5%BE%88%E5%A4%9A-QA-%E6%B2%92%E9%80%99%E6%A8%A3%E5%81%9A%EF%BC%9F"><span class="nav-text">四、那為什麼很多 QA 沒這樣做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%88%87%E3%80%88spec-maintenance-gray-zone%E3%80%89%E4%BA%92%E7%82%BA%E9%8F%A1%E5%83%8F"><span class="nav-text">五、與〈spec-maintenance-gray-zone〉互為鏡像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%B7%B1%E4%B8%80%E5%B1%A4%EF%BC%9A%E7%84%A1%E8%81%8A%E6%9C%AC%E8%BA%AB%E6%98%AF%E4%B8%80%E7%A8%AE%E8%A8%8A%E8%99%9F%EF%BC%88%E5%BE%9E%E3%80%8A%E7%84%A1%E8%81%8A%E5%BF%83%E7%90%86%E5%AD%B8%E3%80%8B%E8%AB%87%E8%B5%B7%EF%BC%89"><span class="nav-text">六、深一層：無聊本身是一種訊號（從《無聊心理學》談起）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E8%81%BD%E5%88%B0%E8%A8%8A%E8%99%9F%E4%B9%8B%E5%BE%8C%EF%BC%8C%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8B%95%EF%BC%9F"><span class="nav-text">七、聽到訊號之後，要怎麼動？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%8A%8A%E7%96%B2%E5%80%A6%E9%87%8F%E5%8C%96"><span class="nav-text">1. 把疲倦量化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BC%B0%E8%87%AA%E5%8B%95%E5%8C%96%E6%8A%95%E8%B3%87"><span class="nav-text">2. 估自動化投資</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8F%90%E6%A1%88%E2%80%94%E2%80%94%E4%B8%8D%E6%98%AF%E8%AB%87%E6%8A%80%E8%A1%93%EF%BC%8C%E6%98%AF%E8%AB%87-trade-off"><span class="nav-text">3. 提案——不是談技術，是談 trade-off</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9A%E6%8A%8A%E3%80%8C%E7%85%A9%E3%80%8D%E7%95%B6%E4%BD%9C-QA-%E7%9A%84%E8%A8%BA%E6%96%B7%E5%84%80%E5%99%A8"><span class="nav-text">八、結語：把「煩」當作 QA 的診斷儀器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%A6%E4%B9%9F%E6%98%AF%E5%9F%BA%E7%9D%A3%E5%BE%92%E7%9A%84%E8%AE%80%E8%80%85%EF%BC%9A%E4%B8%80%E5%80%8B%E7%A6%B1%E5%91%8A"><span class="nav-text">給也是基督徒的讀者：一個禱告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E4%B8%8B%E5%8D%88%E6%88%91%E6%84%8F%E8%AD%98%E5%88%B0%E8%87%AA%E5%B7%B1%E9%8C%AF%E6%94%BE%E4%BA%86%E4%BD%8D%E7%BD%AE"><span class="nav-text">前言：那個下午我意識到自己錯放了位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81QA-%E5%9C%88%E8%A3%A1%E9%82%A3%E7%A8%AE%E3%80%8C%E8%B6%8A%E7%85%A9%E8%B6%8A%E8%A6%81%E5%81%9A%E3%80%8D%E7%9A%84%E8%81%B7%E6%A5%AD%E6%96%87%E5%8C%96%EF%BC%8C%E5%8F%AA%E8%AA%AA%E4%BA%86%E4%B8%80%E5%8D%8A%E7%9A%84%E7%9C%9F%E8%A9%B1"><span class="nav-text">一、QA 圈裡那種「越煩越要做」的職業文化，只說了一半的真話</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BA%94%E5%80%8B%E8%A8%8A%E8%99%9F%EF%BC%9A%E7%95%B6%E4%BD%A0%E7%9C%BC%E5%89%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%AC%A6%E5%90%88%E9%80%99%E5%B9%BE%E5%80%8B%E8%A8%8A%E8%99%9F%EF%BC%8C%E5%AE%83%E5%9C%A8%E8%B7%9F%E4%BD%A0%E8%A8%8E%E6%95%91%E5%85%B5"><span class="nav-text">二、五個訊號：當你眼前的測試符合這幾個訊號，它在跟你討救兵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%B8%80%EF%BC%9A%E9%AB%98%E9%87%8D%E8%A4%87%E7%8E%87%EF%BC%88%E5%90%8C%E4%B8%80%E6%AE%B5%E6%93%8D%E4%BD%9C%E6%A8%A1%E5%BC%8F%EF%BC%8C%E6%AF%8F%E6%AC%A1%E5%B9%BE%E4%B9%8E%E4%B8%80%E6%A8%A3%EF%BC%89"><span class="nav-text">訊號一：高重複率（同一段操作模式，每次幾乎一樣）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%BA%8C%EF%BC%9A%E4%BD%8E%E8%AE%8A%E7%95%B0%E6%80%A7%EF%BC%88%E7%B5%90%E6%9E%9C%E6%9C%89%E6%98%8E%E7%A2%BA%E7%9A%84%E6%9C%9F%E6%9C%9B%E5%80%BC%EF%BC%89"><span class="nav-text">訊號二：低變異性（結果有明確的期望值）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%B8%89%EF%BC%9A%E7%B5%90%E6%9E%9C%E5%8F%AF%E6%A9%9F%E5%99%A8%E9%A9%97%E8%AD%89%EF%BC%88%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BA%BA%E9%A1%9E%E5%AF%A9%E7%BE%8E%EF%BC%89"><span class="nav-text">訊號三：結果可機器驗證（不需要人類審美）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E5%9B%9B-%E7%B5%84%E5%90%88%E7%88%86%E7%82%B8%EF%BC%88%E6%A2%9D%E4%BB%B6%E5%A4%9A%E5%88%B0%E6%8C%87%E6%95%B8%E7%B4%9A%EF%BC%89"><span class="nav-text">訊號四:組合爆炸（條件多到指數級）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%BA%94%EF%BC%9A%E5%9F%B7%E8%A1%8C%E6%99%82%E9%96%93%E9%95%B7%E5%88%B0%E6%94%B9%E8%AE%8A%E4%BD%A0%E7%9A%84%E6%B8%AC%E8%A9%A6%E5%A7%BF%E6%85%8B"><span class="nav-text">訊號五：執行時間長到改變你的測試姿態</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AF%E6%95%99%E7%A7%91%E6%9B%B8%E7%AD%94%E6%A1%88"><span class="nav-text">三、篩選功能為什麼是教科書答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%82%A3%E7%82%BA%E4%BB%80%E9%BA%BC%E5%BE%88%E5%A4%9A-QA-%E6%B2%92%E9%80%99%E6%A8%A3%E5%81%9A%EF%BC%9F"><span class="nav-text">四、那為什麼很多 QA 沒這樣做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%88%87%E5%89%8D%E4%B8%80%E7%AF%87%E3%80%88%E7%94%A8-specs-md-%E9%A4%B5-AI%E3%80%89%E4%BA%92%E7%82%BA%E9%8F%A1%E5%83%8F"><span class="nav-text">五、與前一篇〈用 specs.md 餵 AI〉互為鏡像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%B7%B1%E4%B8%80%E5%B1%A4%EF%BC%9A%E7%84%A1%E8%81%8A%E6%9C%AC%E8%BA%AB%E6%98%AF%E4%B8%80%E7%A8%AE%E8%A8%8A%E8%99%9F%EF%BC%88%E5%BE%9E%E3%80%8A%E7%84%A1%E8%81%8A%E5%BF%83%E7%90%86%E5%AD%B8%E3%80%8B%E8%AB%87%E8%B5%B7%EF%BC%89"><span class="nav-text">六、深一層：無聊本身是一種訊號（從《無聊心理學》談起）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E8%81%BD%E5%88%B0%E8%A8%8A%E8%99%9F%E4%B9%8B%E5%BE%8C%EF%BC%8C%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8B%95%EF%BC%9F"><span class="nav-text">七、聽到訊號之後，要怎麼動？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%8A%8A%E7%96%B2%E5%80%A6%E9%87%8F%E5%8C%96"><span class="nav-text">1. 把疲倦量化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BC%B0%E8%87%AA%E5%8B%95%E5%8C%96%E6%8A%95%E8%B3%87"><span class="nav-text">2. 估自動化投資</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8F%90%E6%A1%88%E2%80%94%E2%80%94%E4%B8%8D%E6%98%AF%E8%AB%87%E6%8A%80%E8%A1%93%EF%BC%8C%E6%98%AF%E8%AB%87-trade-off"><span class="nav-text">3. 提案——不是談技術，是談 trade-off</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%A6%82%E6%9E%9C%E7%8F%BE%E6%B3%81%E7%9C%9F%E7%9A%84%E5%8B%95%E4%B8%8D%E4%BA%86%EF%BC%9A%E7%B5%A6%E7%B5%90%E6%A7%8B%E6%80%A7%E5%8F%97%E5%9B%B0%E7%9A%84-QA-%E4%B8%80%E6%A2%9D-plan-B"><span class="nav-text">八、如果現況真的動不了：給結構性受困的 QA 一條 plan B</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A9%9F%E6%A2%B0%E8%B7%9F%E5%88%A4%E6%96%B7%E7%9A%84%E6%99%82%E9%96%93%E5%88%86%E7%95%8C"><span class="nav-text">1. 機械跟判斷的時間分界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8A%8A%E6%AF%8F%E6%AC%A1%E3%80%8C%E7%85%A9%E3%80%8D%E8%A8%98%E6%88%90%E8%AD%89%E6%93%9A"><span class="nav-text">2. 把每次「煩」記成證據</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%88%E4%BD%8F%E8%AD%98%E5%88%A5%E5%8A%9B%E6%9C%AC%E8%BA%AB"><span class="nav-text">3. 守住識別力本身</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9A%E6%8A%8A%E3%80%8C%E7%85%A9%E3%80%8D%E7%95%B6%E4%BD%9C-QA-%E7%9A%84%E8%A8%BA%E6%96%B7%E5%84%80%E5%99%A8"><span class="nav-text">九、結語：把「煩」當作 QA 的診斷儀器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%A6%E4%B9%9F%E6%98%AF%E5%9F%BA%E7%9D%A3%E5%BE%92%E7%9A%84%E8%AE%80%E8%80%85%EF%BC%9A%E4%B8%80%E5%80%8B%E7%A6%B1%E5%91%8A"><span class="nav-text">給也是基督徒的讀者：一個禱告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
     </div>
 </div>
 
@@ -888,7 +972,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E4%B8%8B%E5%8D%88%E6%88%91%E6%84%8F%E8%AD%98%E5%88%B0%E8%87%AA%E5%B7%B1%E9%8C%AF%E6%94%BE%E4%BA%86%E4%BD%8D%E7%BD%AE"><span class="nav-text">前言：那個下午我意識到自己錯放了位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81QA-%E5%9C%88%E8%A3%A1%E9%82%A3%E7%A8%AE%E3%80%8C%E8%B6%8A%E7%85%A9%E8%B6%8A%E8%A6%81%E5%81%9A%E3%80%8D%E7%9A%84%E8%81%B7%E6%A5%AD%E6%96%87%E5%8C%96%EF%BC%8C%E5%8F%AA%E8%AA%AA%E4%BA%86%E4%B8%80%E5%8D%8A%E7%9A%84%E7%9C%9F%E8%A9%B1"><span class="nav-text">一、QA 圈裡那種「越煩越要做」的職業文化，只說了一半的真話</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BA%94%E5%80%8B%E8%A8%8A%E8%99%9F%EF%BC%9A%E7%95%B6%E4%BD%A0%E7%9C%BC%E5%89%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%AC%A6%E5%90%88%E9%80%99%E5%B9%BE%E5%80%8B%E8%A8%8A%E8%99%9F%EF%BC%8C%E5%AE%83%E5%9C%A8%E8%B7%9F%E4%BD%A0%E8%A8%8E%E6%95%91%E5%85%B5"><span class="nav-text">二、五個訊號：當你眼前的測試符合這幾個訊號，它在跟你討救兵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%B8%80%EF%BC%9A%E9%AB%98%E9%87%8D%E8%A4%87%E7%8E%87%EF%BC%88%E5%90%8C%E4%B8%80%E6%AE%B5%E6%93%8D%E4%BD%9C%E6%A8%A1%E5%BC%8F%EF%BC%8C%E6%AF%8F%E6%AC%A1%E5%B9%BE%E4%B9%8E%E4%B8%80%E6%A8%A3%EF%BC%89"><span class="nav-text">訊號一：高重複率（同一段操作模式，每次幾乎一樣）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%BA%8C%EF%BC%9A%E4%BD%8E%E8%AE%8A%E7%95%B0%E6%80%A7%EF%BC%88%E7%B5%90%E6%9E%9C%E6%9C%89%E6%98%8E%E7%A2%BA%E7%9A%84%E6%9C%9F%E6%9C%9B%E5%80%BC%EF%BC%89"><span class="nav-text">訊號二：低變異性（結果有明確的期望值）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%B8%89%EF%BC%9A%E7%B5%90%E6%9E%9C%E5%8F%AF%E6%A9%9F%E5%99%A8%E9%A9%97%E8%AD%89%EF%BC%88%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BA%BA%E9%A1%9E%E5%AF%A9%E7%BE%8E%EF%BC%89"><span class="nav-text">訊號三：結果可機器驗證（不需要人類審美）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E5%9B%9B-%E7%B5%84%E5%90%88%E7%88%86%E7%82%B8%EF%BC%88%E6%A2%9D%E4%BB%B6%E5%A4%9A%E5%88%B0%E6%8C%87%E6%95%B8%E7%B4%9A%EF%BC%89"><span class="nav-text">訊號四:組合爆炸（條件多到指數級）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%BA%94%EF%BC%9A%E5%9F%B7%E8%A1%8C%E6%99%82%E9%96%93%E9%95%B7%E5%88%B0%E6%94%B9%E8%AE%8A%E4%BD%A0%E7%9A%84%E6%B8%AC%E8%A9%A6%E5%A7%BF%E6%85%8B"><span class="nav-text">訊號五：執行時間長到改變你的測試姿態</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AF%E6%95%99%E7%A7%91%E6%9B%B8%E7%AD%94%E6%A1%88"><span class="nav-text">三、篩選功能為什麼是教科書答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%82%A3%E7%82%BA%E4%BB%80%E9%BA%BC%E5%BE%88%E5%A4%9A-QA-%E6%B2%92%E9%80%99%E6%A8%A3%E5%81%9A%EF%BC%9F"><span class="nav-text">四、那為什麼很多 QA 沒這樣做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%88%87%E3%80%88spec-maintenance-gray-zone%E3%80%89%E4%BA%92%E7%82%BA%E9%8F%A1%E5%83%8F"><span class="nav-text">五、與〈spec-maintenance-gray-zone〉互為鏡像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%B7%B1%E4%B8%80%E5%B1%A4%EF%BC%9A%E7%84%A1%E8%81%8A%E6%9C%AC%E8%BA%AB%E6%98%AF%E4%B8%80%E7%A8%AE%E8%A8%8A%E8%99%9F%EF%BC%88%E5%BE%9E%E3%80%8A%E7%84%A1%E8%81%8A%E5%BF%83%E7%90%86%E5%AD%B8%E3%80%8B%E8%AB%87%E8%B5%B7%EF%BC%89"><span class="nav-text">六、深一層：無聊本身是一種訊號（從《無聊心理學》談起）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E8%81%BD%E5%88%B0%E8%A8%8A%E8%99%9F%E4%B9%8B%E5%BE%8C%EF%BC%8C%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8B%95%EF%BC%9F"><span class="nav-text">七、聽到訊號之後，要怎麼動？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%8A%8A%E7%96%B2%E5%80%A6%E9%87%8F%E5%8C%96"><span class="nav-text">1. 把疲倦量化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BC%B0%E8%87%AA%E5%8B%95%E5%8C%96%E6%8A%95%E8%B3%87"><span class="nav-text">2. 估自動化投資</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8F%90%E6%A1%88%E2%80%94%E2%80%94%E4%B8%8D%E6%98%AF%E8%AB%87%E6%8A%80%E8%A1%93%EF%BC%8C%E6%98%AF%E8%AB%87-trade-off"><span class="nav-text">3. 提案——不是談技術，是談 trade-off</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9A%E6%8A%8A%E3%80%8C%E7%85%A9%E3%80%8D%E7%95%B6%E4%BD%9C-QA-%E7%9A%84%E8%A8%BA%E6%96%B7%E5%84%80%E5%99%A8"><span class="nav-text">八、結語：把「煩」當作 QA 的診斷儀器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%A6%E4%B9%9F%E6%98%AF%E5%9F%BA%E7%9D%A3%E5%BE%92%E7%9A%84%E8%AE%80%E8%80%85%EF%BC%9A%E4%B8%80%E5%80%8B%E7%A6%B1%E5%91%8A"><span class="nav-text">給也是基督徒的讀者：一個禱告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E4%B8%8B%E5%8D%88%E6%88%91%E6%84%8F%E8%AD%98%E5%88%B0%E8%87%AA%E5%B7%B1%E9%8C%AF%E6%94%BE%E4%BA%86%E4%BD%8D%E7%BD%AE"><span class="nav-text">前言：那個下午我意識到自己錯放了位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81QA-%E5%9C%88%E8%A3%A1%E9%82%A3%E7%A8%AE%E3%80%8C%E8%B6%8A%E7%85%A9%E8%B6%8A%E8%A6%81%E5%81%9A%E3%80%8D%E7%9A%84%E8%81%B7%E6%A5%AD%E6%96%87%E5%8C%96%EF%BC%8C%E5%8F%AA%E8%AA%AA%E4%BA%86%E4%B8%80%E5%8D%8A%E7%9A%84%E7%9C%9F%E8%A9%B1"><span class="nav-text">一、QA 圈裡那種「越煩越要做」的職業文化，只說了一半的真話</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BA%94%E5%80%8B%E8%A8%8A%E8%99%9F%EF%BC%9A%E7%95%B6%E4%BD%A0%E7%9C%BC%E5%89%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%AC%A6%E5%90%88%E9%80%99%E5%B9%BE%E5%80%8B%E8%A8%8A%E8%99%9F%EF%BC%8C%E5%AE%83%E5%9C%A8%E8%B7%9F%E4%BD%A0%E8%A8%8E%E6%95%91%E5%85%B5"><span class="nav-text">二、五個訊號：當你眼前的測試符合這幾個訊號，它在跟你討救兵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%B8%80%EF%BC%9A%E9%AB%98%E9%87%8D%E8%A4%87%E7%8E%87%EF%BC%88%E5%90%8C%E4%B8%80%E6%AE%B5%E6%93%8D%E4%BD%9C%E6%A8%A1%E5%BC%8F%EF%BC%8C%E6%AF%8F%E6%AC%A1%E5%B9%BE%E4%B9%8E%E4%B8%80%E6%A8%A3%EF%BC%89"><span class="nav-text">訊號一：高重複率（同一段操作模式，每次幾乎一樣）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%BA%8C%EF%BC%9A%E4%BD%8E%E8%AE%8A%E7%95%B0%E6%80%A7%EF%BC%88%E7%B5%90%E6%9E%9C%E6%9C%89%E6%98%8E%E7%A2%BA%E7%9A%84%E6%9C%9F%E6%9C%9B%E5%80%BC%EF%BC%89"><span class="nav-text">訊號二：低變異性（結果有明確的期望值）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%B8%89%EF%BC%9A%E7%B5%90%E6%9E%9C%E5%8F%AF%E6%A9%9F%E5%99%A8%E9%A9%97%E8%AD%89%EF%BC%88%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BA%BA%E9%A1%9E%E5%AF%A9%E7%BE%8E%EF%BC%89"><span class="nav-text">訊號三：結果可機器驗證（不需要人類審美）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E5%9B%9B-%E7%B5%84%E5%90%88%E7%88%86%E7%82%B8%EF%BC%88%E6%A2%9D%E4%BB%B6%E5%A4%9A%E5%88%B0%E6%8C%87%E6%95%B8%E7%B4%9A%EF%BC%89"><span class="nav-text">訊號四:組合爆炸（條件多到指數級）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E8%99%9F%E4%BA%94%EF%BC%9A%E5%9F%B7%E8%A1%8C%E6%99%82%E9%96%93%E9%95%B7%E5%88%B0%E6%94%B9%E8%AE%8A%E4%BD%A0%E7%9A%84%E6%B8%AC%E8%A9%A6%E5%A7%BF%E6%85%8B"><span class="nav-text">訊號五：執行時間長到改變你的測試姿態</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AF%E6%95%99%E7%A7%91%E6%9B%B8%E7%AD%94%E6%A1%88"><span class="nav-text">三、篩選功能為什麼是教科書答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%82%A3%E7%82%BA%E4%BB%80%E9%BA%BC%E5%BE%88%E5%A4%9A-QA-%E6%B2%92%E9%80%99%E6%A8%A3%E5%81%9A%EF%BC%9F"><span class="nav-text">四、那為什麼很多 QA 沒這樣做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%88%87%E5%89%8D%E4%B8%80%E7%AF%87%E3%80%88%E7%94%A8-specs-md-%E9%A4%B5-AI%E3%80%89%E4%BA%92%E7%82%BA%E9%8F%A1%E5%83%8F"><span class="nav-text">五、與前一篇〈用 specs.md 餵 AI〉互為鏡像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%B7%B1%E4%B8%80%E5%B1%A4%EF%BC%9A%E7%84%A1%E8%81%8A%E6%9C%AC%E8%BA%AB%E6%98%AF%E4%B8%80%E7%A8%AE%E8%A8%8A%E8%99%9F%EF%BC%88%E5%BE%9E%E3%80%8A%E7%84%A1%E8%81%8A%E5%BF%83%E7%90%86%E5%AD%B8%E3%80%8B%E8%AB%87%E8%B5%B7%EF%BC%89"><span class="nav-text">六、深一層：無聊本身是一種訊號（從《無聊心理學》談起）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E8%81%BD%E5%88%B0%E8%A8%8A%E8%99%9F%E4%B9%8B%E5%BE%8C%EF%BC%8C%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8B%95%EF%BC%9F"><span class="nav-text">七、聽到訊號之後，要怎麼動？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%8A%8A%E7%96%B2%E5%80%A6%E9%87%8F%E5%8C%96"><span class="nav-text">1. 把疲倦量化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BC%B0%E8%87%AA%E5%8B%95%E5%8C%96%E6%8A%95%E8%B3%87"><span class="nav-text">2. 估自動化投資</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8F%90%E6%A1%88%E2%80%94%E2%80%94%E4%B8%8D%E6%98%AF%E8%AB%87%E6%8A%80%E8%A1%93%EF%BC%8C%E6%98%AF%E8%AB%87-trade-off"><span class="nav-text">3. 提案——不是談技術，是談 trade-off</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%A6%82%E6%9E%9C%E7%8F%BE%E6%B3%81%E7%9C%9F%E7%9A%84%E5%8B%95%E4%B8%8D%E4%BA%86%EF%BC%9A%E7%B5%A6%E7%B5%90%E6%A7%8B%E6%80%A7%E5%8F%97%E5%9B%B0%E7%9A%84-QA-%E4%B8%80%E6%A2%9D-plan-B"><span class="nav-text">八、如果現況真的動不了：給結構性受困的 QA 一條 plan B</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A9%9F%E6%A2%B0%E8%B7%9F%E5%88%A4%E6%96%B7%E7%9A%84%E6%99%82%E9%96%93%E5%88%86%E7%95%8C"><span class="nav-text">1. 機械跟判斷的時間分界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8A%8A%E6%AF%8F%E6%AC%A1%E3%80%8C%E7%85%A9%E3%80%8D%E8%A8%98%E6%88%90%E8%AD%89%E6%93%9A"><span class="nav-text">2. 把每次「煩」記成證據</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%88%E4%BD%8F%E8%AD%98%E5%88%A5%E5%8A%9B%E6%9C%AC%E8%BA%AB"><span class="nav-text">3. 守住識別力本身</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9A%E6%8A%8A%E3%80%8C%E7%85%A9%E3%80%8D%E7%95%B6%E4%BD%9C-QA-%E7%9A%84%E8%A8%BA%E6%96%B7%E5%84%80%E5%99%A8"><span class="nav-text">九、結語：把「煩」當作 QA 的診斷儀器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%A6%E4%B9%9F%E6%98%AF%E5%9F%BA%E7%9D%A3%E5%BE%92%E7%9A%84%E8%AE%80%E8%80%85%EF%BC%9A%E4%B8%80%E5%80%8B%E7%A6%B1%E5%91%8A"><span class="nav-text">給也是基督徒的讀者：一個禱告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
     </div>
 </div>
 
@@ -902,11 +986,11 @@
 
 
 <!-- common js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/libs/anime.min.js"></script>
 
 <!-- local search -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/local-search.min.js"></script>
 
 
 <!-- lazyload -->
@@ -919,11 +1003,11 @@
     <!-- post page -->
     
         <!-- post-helper -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/post-helper.min.js"></script>
 
         <!-- toc -->
         
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/toc.min.js"></script>
         
 
         <!-- copyright-info -->

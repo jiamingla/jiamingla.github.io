@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？ |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script>
+        (function () {
+            let theme = localStorage.getItem('KEEP-THEME-STATUS');
+            let classname = "";
+            if (!theme || (JSON.parse(theme).isAutoTheme)){
+                classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+            }
+            else{
+                classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+            }
+            document.documentElement.classList.add(classname);
+        })();
+    </script>
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs","custom":{"enable":false,"url":null}},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","search_db_path":"keep-search.json","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.3.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-12</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Fri Jun 12 2026 00:00:00 GMT+0800">2026-06-12</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/UI-%E8%87%AA%E5%8B%95%E5%8C%96/">UI 自動化</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B1%BA%E7%AD%96/">自動化決策</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%B6%AD%E8%AD%B7%E6%88%90%E6%9C%AC/">維護成本</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：那個熟悉的「來自動化吧」場景"><a href="#前言：那個熟悉的「來自動化吧」場景" class="headerlink" title="前言：那個熟悉的「來自動化吧」場景"></a>前言：那個熟悉的「來自動化吧」場景</h2><p>你一定經歷過、或者正在經歷這個讓人心跳加速卻又隱隱不安的場景：</p>
+<p>某天 Sprint 規劃會議上，主管或專案負責人看著那份累積了兩百多條、每次回歸測試都要花掉一個人整整兩天的試算表案例，深吸了一口氣說：</p>
+<blockquote>
+<p>「每次都要手動跑回歸太慢了，我們開始做自動化吧！這期先把這兩百條手動測試案例全部轉成自動化腳本。」</p>
+</blockquote>
+<p>你聽完熱血沸騰，心想終於可以擺脫無聊重複的點擊工作了。於是，你領了任務，開始像打字機一樣，把手動案例清單上的步驟，一行一行翻譯成 Selenium、Appium 或 Playwright 腳本：</p>
+<ul>
+<li><em>Step 1: 點擊登入按鈕 -&gt; <code>driver.find_element(By.ID, &quot;login-btn&quot;).click()</code></em></li>
+<li><em>Step 2: 輸入帳密 -&gt; <code>send_keys(...)</code></em></li>
+<li><em>Step 3: 驗證登入成功畫面 -&gt; <code>assert ...</code></em></li>
+</ul>
+<p>三個月過去了，你的自動化案例庫看起來蔚為壯觀。然而，現實的耳光很快就甩了過來：</p>
+<ul>
+<li>CI&#x2F;CD 執行自動化測試時，十次有八次在亮紅燈，但每次點進去檢查，發現程式根本沒壞，只是環境延遲、按鈕沒加載出來、或是前端改了個 Class 命名或換了個小組件，所以看起來一模一樣，但id不一樣影響了關鍵路徑，整組歹去。</li>
+<li>為了讓這些腳本維持運作，你每天有超過一半的時間都在修改那些碎掉的 Locator、調整 <code>time.sleep</code> 或是應付 Flaky 測試。</li>
+<li>最讓人氣餒的是，這兩百條自動化測試跑幾千次，卻幾乎沒幫你抓到過什麼有價值的 Bug。</li>
+</ul>
+<p>你站在被維護債淹沒的泥潭裡，看著每天依然被塞進來的線上 Ticket，不禁懷疑：<strong>「我們是不是搞錯了什麼？」</strong></p>
+<p>我們犯的第一個也是最致命的錯誤，就是誤以為：<strong>自動化測試是手動測試的「加快版本」</strong>。我們以為只要把步驟翻譯成代碼，就能跑得又快又省力。</p>
+<p>但事實上，手動測試與自動化測試，本質上是<strong>兩種完全不同的物種</strong>。直接搬運，就是崩盤的開始。</p>
+<hr>
+<h2 id="一、為什麼業界都這樣做？"><a href="#一、為什麼業界都這樣做？" class="headerlink" title="一、為什麼業界都這樣做？"></a>一、為什麼業界都這樣做？</h2><p>既然「直接轉換」這條路在三個月後通常會崩盤，為什麼不論是大廠還是小團隊，大家在啟動自動化時的直覺依然是「照搬手動案例」？</p>
+<p>因為這個做法在初期具有極強的吸引力：</p>
+<ol>
+<li><strong>看起來最直觀、最不用動腦</strong>：<br>手動測試案例是現成的，步驟寫得清清楚楚（「點這裡、輸入那裡、確認畫面長這樣」）。你只需要充當程式碼翻譯官，把人類語言對齊成 API 調用，幾乎不需要重新設計測試邏輯，上手門檻極低。</li>
+<li><strong>ROI（投資報酬率）看起來好算又漂亮</strong>：<br>在向主管匯報時，數字非常好呈現：「我們有 200 個案例，手動需要 16 小時；改用自動化後，30 分鐘就能跑完。」這種簡化的數學公式，主管最愛聽，專案預算和時間也最容易要到。</li>
+<li><strong>不用做二次決策</strong>：<br>在專案進度緊湊時，團隊沒有時間停下來重新評估「到底哪些東西適合自動化」、「哪些東西只適合人測」。直接把既有的東西「影印」一遍，是阻力最小的防禦性選擇。</li>
+</ol>
+<p>這條路在第一週會讓你覺得進展神速，上手快是它最大的優點——但這個優點同時也是它最大的陷阱。因為它跳過了軟體工程最核心的一步：<strong>因地制宜的設計</strong>。</p>
+<hr>
+<h2 id="二、為什麼這條路會崩盤？三個結構性原因"><a href="#二、為什麼這條路會崩盤？三個結構性原因" class="headerlink" title="二、為什麼這條路會崩盤？三個結構性原因"></a>二、為什麼這條路會崩盤？三個結構性原因</h2><p>當你把手動測試的步驟直接硬塞給機器時，專案的生命週期就已經進入倒數計時。這背後有三個無法被技術克服的結構性原因：</p>
+<h3 id="1-手動案例是「點-X，看-Y」，但「看-Y」高度依賴人類視覺與隱性判斷"><a href="#1-手動案例是「點-X，看-Y」，但「看-Y」高度依賴人類視覺與隱性判斷" class="headerlink" title="1. 手動案例是「點 X，看 Y」，但「看 Y」高度依賴人類視覺與隱性判斷"></a>1. 手動案例是「點 X，看 Y」，但「看 Y」高度依賴人類視覺與隱性判斷</h3><p>手動測試案例的驗證點往往寫得很簡單，例如：「驗證登入成功」或「驗證廣告橫幅正常顯示」。</p>
+<p>但在真實的操作中，人類測試員在確認「廣告橫幅正常顯示」時，大腦進行的是極為複雜的綜合判定：</p>
+<ul>
+<li>橫幅的文字有沒有超出邊框？</li>
+<li>動態折價券的圖案有沒有擋住關閉按鈕？</li>
+<li>跑馬燈字體在不同解析度下有沒有疊在一起？</li>
+</ul>
+<p>如果要把這些「畫面看起來對」的細節全部用 Selenium 代碼寫出來，你需要寫幾十行極端複雜的座標計算、樣式檢查（CSS value）與可見性判定。這類驗證在機器世界裡<strong>極端脆弱且容易誤報</strong>。一旦前端更換了設計風格，腳本就會全滅。</p>
+<h3 id="2-自動化做視覺判斷既慢又脆——Assertion-只能挑結構性事實"><a href="#2-自動化做視覺判斷既慢又脆——Assertion-只能挑結構性事實" class="headerlink" title="2. 自動化做視覺判斷既慢又脆——Assertion 只能挑結構性事實"></a>2. 自動化做視覺判斷既慢又脆——Assertion 只能挑結構性事實</h3><p>即使引入了圖像對比（Image Diff）或視覺回歸測試工具，這類驗證依然是 CI&#x2F;CD 流程中跑得最慢、最容易因為一像素的渲染差異而噴紅燈的部分。</p>
+<p>真正能被機器高效、穩定驗證的，從來不是視覺呈現，而是**「結構性事實」**。</p>
+<p>這裡有一個經典的對比案例：</p>
+<blockquote>
+<p><strong>「骨架屏（Skeleton Loading）的視覺跳動」</strong></p>
+<p>在測試一個內容列表頁面時，頁面加載時會先顯示骨架屏，接著資料載入後替換成真實內容。在這個過程中，如果發生了嚴重的視覺跳動（Layout Shift）或是閃爍，手動測試員一眼就能看出「這體驗極差，加載體驗壞了」。</p>
+<p>但如果換成 UI 自動化腳本，它在 <code>wait_for_element</code> 等到列表出現後，驗證了 <code>list.count == 10</code>。此時即使剛才加載時畫面上演了慘不忍睹的視覺崩潰，腳本依然會亮起<strong>毫無意義的綠燈</strong>。</p>
+</blockquote>
+<p>機器擅長驗證的是結構與資料：API 的 status code、Database 欄位值、LocalStorage 的 Token、或者是埋點事件的 Tag 是否正確發送。它不擅長、也不該去扮演人類的眼睛。</p>
+<h3 id="3-UI-變動頻率-通常顯著地高於-業務邏輯變動頻率"><a href="#3-UI-變動頻率-通常顯著地高於-業務邏輯變動頻率" class="headerlink" title="3. UI 變動頻率 通常顯著地高於 業務邏輯變動頻率"></a>3. UI 變動頻率 通常顯著地高於 業務邏輯變動頻率</h3><p>前端 UI 幾乎是整個軟體架構中最不穩定的地方。兩週改版一次按鈕顏色、調整一次欄位排版、或重構一次 CSS Class，在敏捷開發中是日常茶飯事。</p>
+<p>但底下的 API 協議、資料庫 Schema、以及核心的業務邏輯（例如「付費會員才能讀取這篇文章」），往往好幾個月甚至幾年都不會大幅變動。</p>
+<p>如果你把自動化測試腳本緊緊綁在 UI 元件上，就等於是把你的城堡蓋在隨時會位移的沙灘上。<strong>每次 UI 一動，你的腳本就 break，這就是自動化專案維護成本暴增、ROI 最終崩盤的數學原因。</strong></p>
+<hr>
+<h2 id="三、本質差異：兩者的稀缺資源不一樣"><a href="#三、本質差異：兩者的稀缺資源不一樣" class="headerlink" title="三、本質差異：兩者的稀缺資源不一樣"></a>三、本質差異：兩者的稀缺資源不一樣</h2><p>要治本，我們必須認清兩者在資源模型上的根本不同。我常這樣比喻：</p>
+<blockquote>
+<p><strong>手動測試，就像是在森林中慢步前行。</strong> 你一邊向前走，一邊用肉眼掃描整片森林，感受空氣、光影與環境的異樣，並在層層堆疊的落葉堆裡，尋找躲在暗處的那隻特定小蟲子。你身處林中，看到的是整片「林」。</p>
+<p><strong>自動化測試，則是設定好一條固定軌道，然後開著高鐵快速飛馳。</strong> 高鐵能在 10 秒內跑完你慢步走兩小時的路程，但它每次執行時，都只能機械式地驗證軌道旁邊「特定的那一棵樹」上有沒有長蟲。對於軌道十公尺外正在發生的森林大火，高鐵上的機器人完全一無所知。</p>
+</blockquote>
+<p>這就是自動化測試最常遇到的困境：<strong>「見樹不見林」</strong>。我們不能因為高鐵開得快，就預設它能幫我們看完這片森林。</p>
+<p>敏捷三叔公 David Ko 在<a class="link"   target="_blank" rel="noopener" href="https://agile3uncles.com/2024/09/04/the-things-you-should-know-about-testauto/" >〈關於測試自動化你該小心的地方〉<i class="fas fa-external-link-alt"></i></a>裡有一個更直接的講法：自動化測試做的其實是「<strong>checking</strong>」——驗證已知場景的預期結果，<strong>它無法替你找出未知的 bug</strong>。換句話說，高鐵軌道是你鋪的，它只會檢查你鋪過的地方。</p>
+<p>在資源模型上，兩者有著本質的不同：</p>
+<table>
+<thead>
+<tr>
+<th align="left">維度</th>
+<th align="left">手動測試</th>
+<th align="left">自動化測試</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>稀缺資源</strong></td>
+<td align="left"><strong>人的判斷時間</strong>（時間上限固定，會疲倦，且一次只能做一件事）</td>
+<td align="left"><strong>腳本維護成本</strong>（代碼量越大，維護債越重）</td>
+</tr>
+<tr>
+<td align="left"><strong>擅長領域</strong></td>
+<td align="left">探索、直覺判斷、視覺檢驗、發現未知的 Bug</td>
+<td align="left">重複執行、批次跑、確定性流程、結構資料驗證</td>
+</tr>
+<tr>
+<td align="left"><strong>失敗模式</strong></td>
+<td align="left">漏測、專注力下降、執行不一致</td>
+<td align="left">Flaky 誤報、過期失效、維護債累積</td>
+</tr>
+<tr>
+<td align="left"><strong>失敗代價</strong></td>
+<td align="left">一次性（這次沒測到，下次注意就好）</td>
+<td align="left"><strong>複利累積</strong>（一個 flaky 測試會持續污染 CI 直到被修好）</td>
+</tr>
+</tbody></table>
+<p>我們不該用便宜的資源（機器的執行時間），去做需要稀缺資源（人類的判斷力）的事；也不該用稀缺的人類注意力，去重複做機器能極其可靠完成的事。</p>
+<hr>
+<h2 id="四、該怎麼分工？"><a href="#四、該怎麼分工？" class="headerlink" title="四、該怎麼分工？"></a>四、該怎麼分工？</h2><p>當我們看清了兩者的資源模型後，自動化與手動的邊界自然就清晰了。不要嘗試把手動案例「翻譯」成自動化，而是要重新規劃兩者的職責：</p>
+<h3 id="🛠️-手動測試（與探索式測試）應該專責："><a href="#🛠️-手動測試（與探索式測試）應該專責：" class="headerlink" title="🛠️ 手動測試（與探索式測試）應該專責："></a>🛠️ 手動測試（與探索式測試）應該專責：</h3><ol>
+<li><strong>探索式測試（Exploratory Testing）</strong>：<br>帶著懷疑與直覺去探尋未知領域，尋找那些「沒有寫在規格書裡的設計漏洞」（這也是<a href="/post/problem-driven-testing-intro/">《問題驅動測試》</a>的核心舞台）。</li>
+<li><strong>邊界條件與異常路徑的體驗</strong>：<br>例如：當弱網狀態下使用者瘋狂點擊按鈕，畫面的遮罩有沒有適時阻擋？這類涉及人類心理與操作極限的情境。</li>
+<li><strong>UX 與排版美學</strong>：<br>字體有沒有跑版、動畫過渡是否流暢自然、有沒有讓人感到挫折的彈窗設計。</li>
+<li><strong>新功能發布的初次探索</strong>：<br>功能還沒穩定到值得寫腳本的程度，手動測試是最快獲得品質反饋的方式。</li>
+</ol>
+<h3 id="🤖-自動化測試應該專責："><a href="#🤖-自動化測試應該專責：" class="headerlink" title="🤖 自動化測試應該專責："></a>🤖 自動化測試應該專責：</h3><ol>
+<li><strong>API 層的一致性與合約驗證</strong>：<br>驗證 Payload 欄位結構、Status Code、Error Response 是否對齊規格。這是穩定度最高、執行最快的防線。</li>
+<li><strong>底層結構性 facts 驗證</strong>：<br>例如：用戶在 UI 點擊追蹤作者後，自動化腳本去驗證 API 是否回傳成功、Database 的關注表（Follow Table）是否新增了對應的 Row、以及前端埋點（GA&#x2F;AppsFlyer）是否發送了正確的事件 Tag。</li>
+<li><strong>Smoke Test（冒煙測試）</strong>：<br>在每次部署後，快速跑一遍主幹流程（Login -&gt; Search -&gt; Buy -&gt; Logout），確保系統最核心的 API 還活著。</li>
+<li><strong>批次與環境回歸</strong>：<br>自動化非常擅長在多種不同的語系配置或資料庫組合下，批次跑相同的數據組合驗證。</li>
+</ol>
+<hr>
+<h2 id="五、怎麼從現狀切換？（不是全砍重寫，而是漸進式清理）"><a href="#五、怎麼從現狀切換？（不是全砍重寫，而是漸進式清理）" class="headerlink" title="五、怎麼從現狀切換？（不是全砍重寫，而是漸進式清理）"></a>五、怎麼從現狀切換？（不是全砍重寫，而是漸進式清理）</h2><p>如果你的 codebase 裡已經躺了兩百條痛苦無比的 UI 自動化腳本，不要慌，你不需要全部砍掉重來。請用這三個「砍掉訊號」進行漸進式垃圾清理：</p>
+<ol>
+<li><strong>常常 Flaky 很脆弱，修了常常壞或根本修不好的</strong>：<br>如果一個案例在過去一個月內誤報了 3 次以上，且花費你大量時間，請<strong>果斷砍掉它</strong>，若是核心功能，改退回手動測試。</li>
+<li><strong>Assertion 幾乎全是視覺判斷的</strong>：<br>如果腳本都在比對「按鈕是不是綠色」、「彈窗有沒有跳出」，請<strong>砍掉它</strong>，改寫成 API 整合測試。</li>
+<li><strong>已經被手動跑了一輪「當保險」的</strong>：<br>如果你在 Release 前依然會不自覺地用手動去複測那條自動化案例（因為你底層根本不信任腳本的綠燈），這說明這條自動化已經失去價值。請<strong>毫不猶豫地砍掉它</strong>。</li>
+</ol>
+<p>根據我的實務經驗，在一個沒有經過設計、只是盲目照搬手動案例的自動化專案中：</p>
+<ul>
+<li>至少有 <strong>60%</strong> 的 UI 腳本是應該被無情刪除的。</li>
+<li>有 <strong>20%</strong> 應該被下沉、改寫為執行更快且更穩定的 API 測試。</li>
+<li>只有剩餘 <strong>20%</strong> 最核心、最關鍵的主幹流程（如登入、結帳），才值得保留在 UI E2E 測試層。</li>
+</ul>
+<p>把被維護債吃掉的時間騰出來，去寫底層結構性的驗證（如驗證 DB、API、事件 Tag），你的自動化綠燈才會重新獲得團隊的信任。</p>
+<hr>
+<h2 id="結語：自動化不是手動的「快版本」，是不同的測試"><a href="#結語：自動化不是手動的「快版本」，是不同的測試" class="headerlink" title="結語：自動化不是手動的「快版本」，是不同的測試"></a>結語：自動化不是手動的「快版本」，是不同的測試</h2><p>下次你的團隊再次準備大張旗鼓地「把所有手動案例自動化」時，請把這篇文章貼到群組裡，然後問大家這兩個問題：</p>
+<ol>
+<li>我們現在寫的自動化腳本，是在做「機器擅長的事」，還是在扮演一個「廉價且不穩定的手動影印機」？</li>
+<li>我們有沒有為了盲目追求 Dashboard 上的綠燈，而主動坍縮了我們對系統品質的感知頻寬？</li>
+</ol>
+<p>（順帶一提：敏捷三叔公甚至把「<strong>測試全部通過</strong>」「<strong>UI 測試從不出錯</strong>」列為該警覺的壞信號——全綠的 Dashboard 有時不是品質好，是測試已經失去偵測能力。）</p>
+<p>寫到「能跑」，只是自動化腳本的第一步；學會**「在對的位置，設計對的分工」**，才是品質工程的紀律。</p>
+<p>最後說個小祕密——這篇文章最初的標題，其實藏了一首歌：</p>
+<blockquote>
+<p>「你從不知道我想做的不只是朋友<br>還想有那麼一點點自私的佔有」<br>——黃小琥〈不只是朋友〉（詞：言兒／曲：伍思凱）</p>
+</blockquote>
+<p>你從不知道，我想做的不只是把手動測試自動化。對這份工作，我也想要那麼一點點「自私的佔有」——不只是當一台翻譯步驟的打字機，而是成為設計分工的人。</p>
+<p>這篇文章是我們探討 UI 自動化測試設計美學的第一篇。在接下來的篇章中，我們將陸續聊聊：</p>
+<ul>
+<li><strong>系列（二）</strong>：綠燈下的盲區：自動化測試中的「資訊坍縮」與隱性品質防護的流失。</li>
+<li><strong>系列（三）</strong>：放過 UI 元素吧！解耦 UI 動作與「資料狀態斷言」的自動化實戰。</li>
+<li><strong>系列（四）</strong>：自動化測試案例的半衰期：為什麼你該有刪除測試的「垃圾回收（GC）」機制？</li>
+<li><strong>系列（五）</strong>：AI 時代的自動化測試：我們不再寫步驟，我們寫 Page API 與觀測指標。</li>
+</ul>
+<p>敬請期待。</p>
+<hr>
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><!-- - [POM 重構實戰：把「能跑」的自動化腳本，改寫成「能被別人接手」的形狀](/post/pom-refactor-from-runnable-to-maintainable/) -->
+<ul>
+<li><a href="/post/boredom-is-a-signal/">「煩」是 QA 的診斷工具：當重複的測試開始讓你感到無聊</a></li>
+<li><a href="/post/problem-driven-testing-intro/">問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡</a></li>
+<li>敏捷三叔公 David Ko：<a class="link"   target="_blank" rel="noopener" href="https://agile3uncles.com/2024/09/04/the-things-you-should-know-about-testauto/" >關於測試自動化你該小心的地方<i class="fas fa-external-link-alt"></i></a>——15 點提醒，跟本篇互補的外部視角</li>
+</ul>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/UI-%E8%87%AA%E5%8B%95%E5%8C%96/">UI 自動化</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B1%BA%E7%AD%96/">自動化決策</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%B6%AD%E8%AD%B7%E6%88%90%E6%9C%AC/">維護成本</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/sdet-role-reflection-in-ai-era/"
+                                   title="「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/how-to-start-low-pressure-book-club/"
+                                   title="我打算在部門開一個「無負擔」讀書會：15 分鐘的抗完美主義實踐"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">我打算在部門開一個「無負擔」讀書會：15 分鐘的抗完美主義實踐</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E7%86%9F%E6%82%89%E7%9A%84%E3%80%8C%E4%BE%86%E8%87%AA%E5%8B%95%E5%8C%96%E5%90%A7%E3%80%8D%E5%A0%B4%E6%99%AF"><span class="nav-text">前言：那個熟悉的「來自動化吧」場景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E6%A5%AD%E7%95%8C%E9%83%BD%E9%80%99%E6%A8%A3%E5%81%9A%EF%BC%9F"><span class="nav-text">一、為什麼業界都這樣做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E9%80%99%E6%A2%9D%E8%B7%AF%E6%9C%83%E5%B4%A9%E7%9B%A4%EF%BC%9F%E4%B8%89%E5%80%8B%E7%B5%90%E6%A7%8B%E6%80%A7%E5%8E%9F%E5%9B%A0"><span class="nav-text">二、為什麼這條路會崩盤？三個結構性原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%89%8B%E5%8B%95%E6%A1%88%E4%BE%8B%E6%98%AF%E3%80%8C%E9%BB%9E-X%EF%BC%8C%E7%9C%8B-Y%E3%80%8D%EF%BC%8C%E4%BD%86%E3%80%8C%E7%9C%8B-Y%E3%80%8D%E9%AB%98%E5%BA%A6%E4%BE%9D%E8%B3%B4%E4%BA%BA%E9%A1%9E%E8%A6%96%E8%A6%BA%E8%88%87%E9%9A%B1%E6%80%A7%E5%88%A4%E6%96%B7"><span class="nav-text">1. 手動案例是「點 X，看 Y」，但「看 Y」高度依賴人類視覺與隱性判斷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%8B%95%E5%8C%96%E5%81%9A%E8%A6%96%E8%A6%BA%E5%88%A4%E6%96%B7%E6%97%A2%E6%85%A2%E5%8F%88%E8%84%86%E2%80%94%E2%80%94Assertion-%E5%8F%AA%E8%83%BD%E6%8C%91%E7%B5%90%E6%A7%8B%E6%80%A7%E4%BA%8B%E5%AF%A6"><span class="nav-text">2. 自動化做視覺判斷既慢又脆——Assertion 只能挑結構性事實</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-UI-%E8%AE%8A%E5%8B%95%E9%A0%BB%E7%8E%87-%E9%80%9A%E5%B8%B8%E9%A1%AF%E8%91%97%E5%9C%B0%E9%AB%98%E6%96%BC-%E6%A5%AD%E5%8B%99%E9%82%8F%E8%BC%AF%E8%AE%8A%E5%8B%95%E9%A0%BB%E7%8E%87"><span class="nav-text">3. UI 變動頻率 通常顯著地高於 業務邏輯變動頻率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%9C%AC%E8%B3%AA%E5%B7%AE%E7%95%B0%EF%BC%9A%E5%85%A9%E8%80%85%E7%9A%84%E7%A8%80%E7%BC%BA%E8%B3%87%E6%BA%90%E4%B8%8D%E4%B8%80%E6%A8%A3"><span class="nav-text">三、本質差異：兩者的稀缺資源不一樣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%A9%B2%E6%80%8E%E9%BA%BC%E5%88%86%E5%B7%A5%EF%BC%9F"><span class="nav-text">四、該怎麼分工？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%89%8B%E5%8B%95%E6%B8%AC%E8%A9%A6%EF%BC%88%E8%88%87%E6%8E%A2%E7%B4%A2%E5%BC%8F%E6%B8%AC%E8%A9%A6%EF%BC%89%E6%87%89%E8%A9%B2%E5%B0%88%E8%B2%AC%EF%BC%9A"><span class="nav-text">🛠️ 手動測試（與探索式測試）應該專責：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A4%96-%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%B0%88%E8%B2%AC%EF%BC%9A"><span class="nav-text">🤖 自動化測試應該專責：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%80%8E%E9%BA%BC%E5%BE%9E%E7%8F%BE%E7%8B%80%E5%88%87%E6%8F%9B%EF%BC%9F%EF%BC%88%E4%B8%8D%E6%98%AF%E5%85%A8%E7%A0%8D%E9%87%8D%E5%AF%AB%EF%BC%8C%E8%80%8C%E6%98%AF%E6%BC%B8%E9%80%B2%E5%BC%8F%E6%B8%85%E7%90%86%EF%BC%89"><span class="nav-text">五、怎麼從現狀切換？（不是全砍重寫，而是漸進式清理）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E8%87%AA%E5%8B%95%E5%8C%96%E4%B8%8D%E6%98%AF%E6%89%8B%E5%8B%95%E7%9A%84%E3%80%8C%E5%BF%AB%E7%89%88%E6%9C%AC%E3%80%8D%EF%BC%8C%E6%98%AF%E4%B8%8D%E5%90%8C%E7%9A%84%E6%B8%AC%E8%A9%A6"><span class="nav-text">結語：自動化不是手動的「快版本」，是不同的測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E5%80%8B%E7%86%9F%E6%82%89%E7%9A%84%E3%80%8C%E4%BE%86%E8%87%AA%E5%8B%95%E5%8C%96%E5%90%A7%E3%80%8D%E5%A0%B4%E6%99%AF"><span class="nav-text">前言：那個熟悉的「來自動化吧」場景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E6%A5%AD%E7%95%8C%E9%83%BD%E9%80%99%E6%A8%A3%E5%81%9A%EF%BC%9F"><span class="nav-text">一、為什麼業界都這樣做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E9%80%99%E6%A2%9D%E8%B7%AF%E6%9C%83%E5%B4%A9%E7%9B%A4%EF%BC%9F%E4%B8%89%E5%80%8B%E7%B5%90%E6%A7%8B%E6%80%A7%E5%8E%9F%E5%9B%A0"><span class="nav-text">二、為什麼這條路會崩盤？三個結構性原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%89%8B%E5%8B%95%E6%A1%88%E4%BE%8B%E6%98%AF%E3%80%8C%E9%BB%9E-X%EF%BC%8C%E7%9C%8B-Y%E3%80%8D%EF%BC%8C%E4%BD%86%E3%80%8C%E7%9C%8B-Y%E3%80%8D%E9%AB%98%E5%BA%A6%E4%BE%9D%E8%B3%B4%E4%BA%BA%E9%A1%9E%E8%A6%96%E8%A6%BA%E8%88%87%E9%9A%B1%E6%80%A7%E5%88%A4%E6%96%B7"><span class="nav-text">1. 手動案例是「點 X，看 Y」，但「看 Y」高度依賴人類視覺與隱性判斷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%8B%95%E5%8C%96%E5%81%9A%E8%A6%96%E8%A6%BA%E5%88%A4%E6%96%B7%E6%97%A2%E6%85%A2%E5%8F%88%E8%84%86%E2%80%94%E2%80%94Assertion-%E5%8F%AA%E8%83%BD%E6%8C%91%E7%B5%90%E6%A7%8B%E6%80%A7%E4%BA%8B%E5%AF%A6"><span class="nav-text">2. 自動化做視覺判斷既慢又脆——Assertion 只能挑結構性事實</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-UI-%E8%AE%8A%E5%8B%95%E9%A0%BB%E7%8E%87-%E9%80%9A%E5%B8%B8%E9%A1%AF%E8%91%97%E5%9C%B0%E9%AB%98%E6%96%BC-%E6%A5%AD%E5%8B%99%E9%82%8F%E8%BC%AF%E8%AE%8A%E5%8B%95%E9%A0%BB%E7%8E%87"><span class="nav-text">3. UI 變動頻率 通常顯著地高於 業務邏輯變動頻率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%9C%AC%E8%B3%AA%E5%B7%AE%E7%95%B0%EF%BC%9A%E5%85%A9%E8%80%85%E7%9A%84%E7%A8%80%E7%BC%BA%E8%B3%87%E6%BA%90%E4%B8%8D%E4%B8%80%E6%A8%A3"><span class="nav-text">三、本質差異：兩者的稀缺資源不一樣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%A9%B2%E6%80%8E%E9%BA%BC%E5%88%86%E5%B7%A5%EF%BC%9F"><span class="nav-text">四、該怎麼分工？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%89%8B%E5%8B%95%E6%B8%AC%E8%A9%A6%EF%BC%88%E8%88%87%E6%8E%A2%E7%B4%A2%E5%BC%8F%E6%B8%AC%E8%A9%A6%EF%BC%89%E6%87%89%E8%A9%B2%E5%B0%88%E8%B2%AC%EF%BC%9A"><span class="nav-text">🛠️ 手動測試（與探索式測試）應該專責：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A4%96-%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%B0%88%E8%B2%AC%EF%BC%9A"><span class="nav-text">🤖 自動化測試應該專責：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%80%8E%E9%BA%BC%E5%BE%9E%E7%8F%BE%E7%8B%80%E5%88%87%E6%8F%9B%EF%BC%9F%EF%BC%88%E4%B8%8D%E6%98%AF%E5%85%A8%E7%A0%8D%E9%87%8D%E5%AF%AB%EF%BC%8C%E8%80%8C%E6%98%AF%E6%BC%B8%E9%80%B2%E5%BC%8F%E6%B8%85%E7%90%86%EF%BC%89"><span class="nav-text">五、怎麼從現狀切換？（不是全砍重寫，而是漸進式清理）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E8%87%AA%E5%8B%95%E5%8C%96%E4%B8%8D%E6%98%AF%E6%89%8B%E5%8B%95%E7%9A%84%E3%80%8C%E5%BF%AB%E7%89%88%E6%9C%AC%E3%80%8D%EF%BC%8C%E6%98%AF%E4%B8%8D%E5%90%8C%E7%9A%84%E6%B8%AC%E8%A9%A6"><span class="nav-text">結語：自動化不是手動的「快版本」，是不同的測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>

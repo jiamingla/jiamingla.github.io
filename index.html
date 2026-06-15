@@ -17,10 +17,10 @@
     
         <link rel="shortcut icon" href="/images/logo.svg">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/brands.min.css">
     
         
             
@@ -32,15 +32,28 @@
             
         
     
+    <script>
+        (function () {
+            let theme = localStorage.getItem('KEEP-THEME-STATUS');
+            let classname = "";
+            if (!theme || (JSON.parse(theme).isAutoTheme)){
+                classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+            }
+            else{
+                classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+            }
+            document.documentElement.classList.add(classname);
+        })();
+    </script>
     <script class="keep-theme-configurations">
     const KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
-    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs","custom":{"enable":false,"url":null}},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","search_db_path":"keep-search.json","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.3.0"}
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
     KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
     KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
   </script>
-<meta name="generator" content="Hexo 8.1.1"></head>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
 
 
 <body>
@@ -285,13 +298,13 @@
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
-                        
-                    
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
                         
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
                         
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a></li>
@@ -322,16 +335,16 @@
                 <div class="home-post-item-bottom border-box">
                     
                     <h3 class="home-post-title border-box">
-                        <a href="/post/boredom-is-a-signal/">
-                            「煩」是 QA 的診斷工具：判斷一個手動測試該不該被自動化的五個訊號
+                        <a href="/post/ai-test-output-default-reader-is-ai/">
+                            為什麼 AI 給的測試案例讀起來特別累？因為它的預設讀者不是你
                         </a>
                     </h3>
 
                     <div class="home-post-content keep-markdown-body">
                         
-                            前言：那個下午我意識到自己錯放了位置最近我在測一個篩選功能。
-四個條件、每個三到四個值，光是基本組合就上百種；再加上排序、分頁、清除按鈕、預設值的交互——整整兩天，我坐在電腦前面，一組一組點下去、等載入、比對結果、寫紀錄。
-到了第二天下午，我手指麻了...
+                            前言：你讀 AI 給的測試案例，會覺得累嗎？你有沒有過這個經驗——叫 AI 幫你寫測試案例，它劈頭就吐出這麼一段：
+
+「驗證 modal 彈出時應觸發 focus trap，並在 ESC 鍵按下時 dismiss，同時保留前一個 active ele...
                         
                     </div>
 
@@ -342,86 +355,8 @@
         
             <span class="meta-info-item border-box">
                 <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Wed May 06 2026 18:45:00 GMT+0800"
-                >2026-05-06 18:45:00</span>
-            </span>
-        
-
-        
-
-        
-
-        
-            <span class="post-tag meta-info-item border-box">
-                <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E8%87%AA%E5%8B%95%E5%8C%96/">測試自動化</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD/">篩選功能</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
-                        
-                    
-                    
-                    
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/post/boredom-is-a-signal/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/post/spec-maintenance-gray-zone/">
-                            用 specs.md 餵 AI 生測試案例之前——先問一句：誰負責讓那份文件不過期？
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            前言：一個聽起來很合理的提案某次會議，測試主管講了一個聽起來非常合理的構想：
-
-「現在不是流行 vibe coding 嗎？開發那邊都會留一份 specs.md，我們就拿那個丟給 AI，請它幫我們生測試案例。這樣 QA 也可以加速。」
-
-會議室點頭的...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Sun May 03 2026 22:00:00 GMT+0800"
-                >2026-05-03 22:00:00</span>
+                                                                                data-updated="Sun Jun 14 2026 18:00:00 GMT+0800"
+                >2026-06-14 18:00:00</span>
             </span>
         
 
@@ -439,16 +374,14 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI/">AI</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI-%E6%B8%AC%E8%A9%A6/">AI 測試</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI%E7%94%9F%E6%88%90%E6%B8%AC%E8%A9%A6/">AI生成測試</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI-literacy/">AI literacy</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/vibe-coding/">vibe coding</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%B7%A8%E9%A0%98%E5%9F%9F/">跨領域</a></li>
                         
-                    
-                    
                     
                     
                     
@@ -463,7 +396,7 @@
     </div>
 
     
-        <a class="home-read-more" href="/post/spec-maintenance-gray-zone/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+        <a class="home-read-more" href="/post/ai-test-output-default-reader-is-ai/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
     
 </div>
 
@@ -477,15 +410,17 @@
                 <div class="home-post-item-bottom border-box">
                     
                     <h3 class="home-post-title border-box">
-                        <a href="/post/problem-driven-testing-intro/">
-                            問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡
+                        <a href="/post/sdet-role-reflection-in-ai-era/">
+                            「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師
                         </a>
                     </h3>
 
                     <div class="home-post-content keep-markdown-body">
                         
-                            前言：一個讓人難受的場景想像一個畫面：迭代尾聲，你加班把上百條測試案例全部跑完，報告漂漂亮亮、綠燈整片，信心滿滿地說「可以上線了」。結果上線不到一小時，客服群組跳出第一個 ticket——某個你從來沒想過的操作組合，讓後端噴出 500。
-你心裡浮出那...
+                            
+“We’ve got holes, we’ve got holesIn our hearts, in our livesBut we carry on.”—— Passenger, 〈Holes〉(2012)
+
+身為一個專注於軟體品質的工程師，我的...
                         
                     </div>
 
@@ -496,8 +431,84 @@
         
             <span class="meta-info-item border-box">
                 <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Fri Apr 24 2026 19:00:00 GMT+0800"
-                >2026-04-24 19:00:00</span>
+                                                                                data-updated="Sat Jun 13 2026 12:00:00 GMT+0800"
+                >2026-06-13 12:00:00</span>
+            </span>
+        
+
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/QA/">QA</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E6%B6%AF%E7%99%BC%E5%B1%95/">職涯發展</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/SDET/">SDET</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/SRE/">SRE</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI%E6%99%82%E4%BB%A3/">AI時代</a></li>
+                        
+                    
+                    
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/post/sdet-role-reflection-in-ai-era/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/post/not-just-make-manual-script-automate/">
+                            不要只是把手動測試腳本自動化：為什麼「直接搬運」是自動化專案崩盤的開始？
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            前言：那個熟悉的「來自動化吧」場景你一定經歷過、或者正在經歷這個讓人心跳加速卻又隱隱不安的場景：
+某天 Sprint 規劃會議上，主管或專案負責人看著那份累積了兩百多條、每次回歸測試都要花掉一個人整整兩天的試算表案例，深吸了一口氣說：
+
+「每次都要手...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Fri Jun 12 2026 00:00:00 GMT+0800"
+                >2026-06-12 00:00:00</span>
             </span>
         
 
@@ -510,18 +521,18 @@
                 <ul class="post-tag-ul">
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
                         
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/UI-%E8%87%AA%E5%8B%95%E5%8C%96/">UI 自動化</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PDT/">PDT</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B1%BA%E7%AD%96/">自動化決策</a></li>
                         
                     
                     
@@ -536,7 +547,7 @@
     </div>
 
     
-        <a class="home-read-more" href="/post/problem-driven-testing-intro/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+        <a class="home-read-more" href="/post/not-just-make-manual-script-automate/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
     
 </div>
 
@@ -550,15 +561,18 @@
                 <div class="home-post-item-bottom border-box">
                     
                     <h3 class="home-post-title border-box">
-                        <a href="/post/rethinking-regression-test-value/">
-                            我們真的跑了太多「無意義」的回歸測試嗎？從 MoT 論壇看測試的精簡與價值
+                        <a href="/post/how-to-start-low-pressure-book-club/">
+                            我打算在部門開一個「無負擔」讀書會：15 分鐘的抗完美主義實踐
                         </a>
                     </h3>
 
                     <div class="home-post-content keep-markdown-body">
                         
-                            最近在 Ministry of Testing (MoT) 論壇看到一個值得深思的討論：「我們是否跑了比實際需求更多的回歸測試？」
-在手動測試、自動化測試領域，我們很容易陷入「數量迷思」。當腳本從 100 條增加到 1000 條時，表面上覆蓋率更高、...
+                            前言：那個被「完美主義」卡死的點子你是不是也曾想過在部門內辦個讀書會？
+在技術團隊裡，這種想法通常會遵循一個標準的「完美主義」發展路徑：
+
+宏大的計畫：我們每週讀一章，每個人輪流做簡報（PPT），時間定為一小時。
+嚴格的要求：大家開會前必須把該章節讀...
                         
                     </div>
 
@@ -569,8 +583,8 @@
         
             <span class="meta-info-item border-box">
                 <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Fri Apr 17 2026 23:00:00 GMT+0800"
-                >2026-04-17 23:00:00</span>
+                                                                                data-updated="Thu Jun 11 2026 18:30:00 GMT+0800"
+                >2026-06-11 18:30:00</span>
             </span>
         
 
@@ -581,92 +595,20 @@
         
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%9B%9E%E6%AD%B8%E6%B8%AC%E8%A9%A6/">回歸測試</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/MoT/">MoT</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/post/rethinking-regression-test-value/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/post/qa-performance-metrics-perspective/">
-                            測試工程師的「價值」如何量化？初階 QA 對於績效指標的觀察與應對
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            對於初入職場的測試工程師（QA）來說，「績效指標（KPI&#x2F;OKR）」往往像是一層迷霧。
-我們的工作目標是確保產品品質，但「品質」本身是一個抽象且難以被單一數字定義的概念。在實際的職場運作中，公司需要量化數據來評估成效，而身為初階工程師，我們...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Wed Apr 08 2026 21:20:19 GMT+0800"
-                >2026-04-08 21:20:19</span>
-            </span>
-        
-
-        
-
-        
-
-        
-            <span class="post-tag meta-info-item border-box">
-                <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E5%A0%B4%E7%94%9F%E5%AD%98/">職場生存</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%B8%BE%E6%95%88%E7%AE%A1%E7%90%86/">績效管理</a></li>
-                        
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E6%B6%AF%E6%88%90%E9%95%B7/">職涯成長</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E7%AE%A1%E7%90%86/">品質管理</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%9C%98%E9%9A%8A%E5%8D%94%E4%BD%9C/">團隊協作</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%AE%80%E6%9B%B8%E6%9C%83/">讀書會</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%9F%A5%E8%AD%98%E5%85%B1%E4%BA%AB/">知識共享</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%9C%98%E9%9A%8A%E6%96%87%E5%8C%96/">團隊文化</a></li>
                         
                     
                     
@@ -681,7 +623,7 @@
     </div>
 
     
-        <a class="home-read-more" href="/post/qa-performance-metrics-perspective/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+        <a class="home-read-more" href="/post/how-to-start-low-pressure-book-club/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
     
 </div>
 
@@ -695,16 +637,16 @@
                 <div class="home-post-item-bottom border-box">
                     
                     <h3 class="home-post-title border-box">
-                        <a href="/post/black-box-limitations-and-strategy/">
-                            當主管只想做「黑箱測試」：QA 如何在限制中推動品質進步？
+                        <a href="/post/bug-triage-six-patterns-industry-survey/">
+                            你的團隊 Bug 預設給誰？業界六種主流 Bug 分派（Triage）模式對照
                         </a>
                     </h3>
 
                     <div class="home-post-content keep-markdown-body">
                         
-                            「我們只要確保功能照著規格跑就好，底層邏輯是開發的事。」
-這句話，你聽過嗎？在許多測試團隊中，主管可能因為專案時程緊迫、人力不足，或是為了釐清責任歸屬，傾向讓 QA 待在「黑箱測試」的安全區。
-但身為第一線的測試工程師，我們心裡明白：只做黑箱測試，其...
+                            前言：你的團隊收到一個 bug，預設是誰的？你的團隊收到一個新 bug 的時候，預設 assignee 是誰？
+是 PM？Tech Lead？QA？還是「未分派」，丟在一個沒人認領的佇列裡？
+你可能從來沒問過這個問題——它就是這樣，預設是繼承來的。前...
                         
                     </div>
 
@@ -715,8 +657,8 @@
         
             <span class="meta-info-item border-box">
                 <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Tue Mar 31 2026 22:00:00 GMT+0800"
-                >2026-03-31 22:00:00</span>
+                                                                                data-updated="Wed Jun 10 2026 22:00:00 GMT+0800"
+                >2026-06-10 22:00:00</span>
             </span>
         
 
@@ -731,17 +673,20 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E5%A0%B4%E7%94%9F%E5%AD%98/">職場生存</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%B7%A8%E5%9C%98%E9%9A%8A%E5%8D%94%E4%BD%9C/">跨團隊協作</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%81%B0%E7%AE%B1%E6%B8%AC%E8%A9%A6/">灰箱測試</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PM/">PM</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E6%96%87%E5%8C%96/">品質文化</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Bug-%E6%B2%BB%E7%90%86/">Bug 治理</a></li>
                         
+                    
+                    
+                    
                     
                 </ul>
             </span>
@@ -754,7 +699,7 @@
     </div>
 
     
-        <a class="home-read-more" href="/post/black-box-limitations-and-strategy/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+        <a class="home-read-more" href="/post/bug-triage-six-patterns-industry-survey/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
     
 </div>
 
@@ -768,15 +713,14 @@
                 <div class="home-post-item-bottom border-box">
                     
                     <h3 class="home-post-title border-box">
-                        <a href="/post/appium-v2-to-v3-migration/">
-                            【技術升級】Appium 3.0 來了！從 v2 遷移至 v3 的核心重點與避坑指南
+                        <a href="/post/uv-torch-pyqt5-dll-conflict/">
+                            【踩坑紀錄】uv + PyTorch + PyQt5 在 Windows 的 DLL 衝突：完整根因與解決方案
                         </a>
                     </h3>
 
                     <div class="home-post-content keep-markdown-body">
                         
-                            就在我們還在習慣 Appium 2.0 的獨立 Driver 安裝架構時，Appium 3.0 已經正式進入大家的視野。
-這次的升級並不像從 v1 到 v2 那樣有翻天覆地的架構改變，但卻有幾個針對「現代化」與「安全性」的關鍵修正。如果你正在考慮將團...
+                            前言：當「極速工具」遇上 Windows 的「隱形地雷」近年來，Python 社群正經歷一場套件管理工具的革命。為了擺脫過去 pip 安裝緩慢、poetry 解析依賴過久、以及本機全域 Python 被各種專案污染的噩夢，許多人（包括我）都高高興興地...
                         
                     </div>
 
@@ -787,8 +731,8 @@
         
             <span class="meta-info-item border-box">
                 <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Thu Mar 26 2026 14:00:00 GMT+0800"
-                >2026-03-26 14:00:00</span>
+                                                                                data-updated="Wed Jun 10 2026 00:40:00 GMT+0800"
+                >2026-06-10 00:40:00</span>
             </span>
         
 
@@ -799,6 +743,236 @@
         
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Python/">Python</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/uv/">uv</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PyTorch/">PyTorch</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PyQt5/">PyQt5</a></li>
+                        
+                    
+                    
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/post/uv-torch-pyqt5-dll-conflict/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/post/qa-report-workplace-wisdom/">
+                            【職場大人學】老闆要的不是綠燈，是心安：為什麼你的測試報告總是「對牛彈琴」？
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            前言：那個被無視的「完美報告」想像一個你可能非常熟悉的場景：
+迭代進入尾聲，你連續加班兩天，終於跑完了一千多條測試案例。你滿懷成就感地整理出一份精美的 Excel 報表，裡面有詳盡的圓餅圖、長條圖，標註著 98% 的通過率，以及剩下 2% 的已知問題...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Mon Jun 08 2026 20:00:00 GMT+0800"
+                >2026-06-08 20:00:00</span>
+            </span>
+        
+
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E5%A0%B4%E5%A4%A7%E4%BA%BA%E5%AD%B8/">職場大人學</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%BA%9D%E9%80%9A%E6%8A%80%E5%B7%A7/">溝通技巧</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/post/qa-report-workplace-wisdom/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/post/ai-replacement-seminary-calling/">
+                            如果有一天我被 AI 取代了，我大概會去讀神學院
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            前言：一個半認真的玩笑我跟朋友開玩笑說，如果哪天被 AI 取代了，我就去讀神學院。
+朋友聽完通常會笑——他們以為這是自嘲。其實我半認真。
+因為這個玩笑話的背後，藏著一個我這幾年才慢慢想清楚的問題：
+
+我到底是因為「AI 還做不到我做的事」才有價值，還...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Sun Jun 07 2026 12:00:00 GMT+0800"
+                >2026-06-07 12:00:00</span>
+            </span>
+        
+
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI/">AI</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI%E5%8F%96%E4%BB%A3/">AI取代</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%91%BC%E5%8F%AC/">呼召</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E4%BF%A1%E4%BB%B0/">信仰</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%81%B7%E6%B6%AF/">職涯</a></li>
+                        
+                    
+                    
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/post/ai-replacement-seminary-calling/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/post/page-source-vs-find-element/">
+                            UI 自動化跑得慢？先別怪裝置——page_source 與 find_element 的成本完全不同
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            前言：47 列資料，掃一次 80 秒某個自動化測試在掃一份列表——47 列、每列 4 個欄位。看起來不算大。
+但實際跑下來——單次掃描 80 秒。整個測試流程要捲動 5 次列表才能蓋齊全部，於是這個 case 光「讀資料」就花掉 6-7 分鐘。
+第一...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Sat Jun 06 2026 07:00:00 GMT+0800"
+                >2026-06-06 07:00:00</span>
+            </span>
+        
+
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Appium/">Appium</a></li>
                         
@@ -806,14 +980,13 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E9%96%8B%E7%99%BC/">測試開發</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Selenium/">Selenium</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Test-Automation/">Test Automation</a></li>
-                        
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%8D%87%E7%B4%9A%E7%AD%86%E8%A8%98/">升級筆記</a></li>
-                        
+                    
+                    
+                    
                     
                 </ul>
             </span>
@@ -826,139 +999,7 @@
     </div>
 
     
-        <a class="home-read-more" href="/post/appium-v2-to-v3-migration/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/post/audio-testing-ffmpeg/">
-                            【實戰筆記】語音聊天室錄音測試：從 FFmpeg 安裝到「口頭標記」驗證法
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            最近接到一個需求：驗證「語音聊天室自動錄音功能」。為了確保行銷團隊拿到的音訊檔案完整且無損，我嘗試使用 Audacity 搭配 FFmpeg 來進行驗證。
-沒想到，光是安裝工具就踩了一點小坑，這篇文記錄一下解決過程與我的測試計畫。
-1. 工具準備：W...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Tue Mar 24 2026 15:00:00 GMT+0800"
-                >2026-03-24 15:00:00</span>
-            </span>
-        
-
-        
-
-        
-
-        
-            <span class="post-tag meta-info-item border-box">
-                <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/FFmpeg/">FFmpeg</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Audacity/">Audacity</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%AA%9E%E9%9F%B3%E6%B8%AC%E8%A9%A6/">語音測試</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%AF%A6%E6%88%B0%E7%B6%93%E9%A9%97/">實戰經驗</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/post/audio-testing-ffmpeg/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/post/selenium-troubleshooting/">
-                            Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            Selenium 踩坑筆記：別盲目相信 By.ID，解析重複 ID 下的定位排序邏輯By.ID 和 By.XPATH 在底層掃描邏輯與規範約束力上的不同。這次明白了如果同一個ID有出現在畫面上的好幾個地方，用XPath雖然比較慢，但比較穩定不會定位到...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Tue Jan 20 2026 16:13:17 GMT+0800"
-                >2026-01-20 16:13:17</span>
-            </span>
-        
-
-        
-
-        
-
-        
-            <span class="post-tag meta-info-item border-box">
-                <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/selenium/">selenium</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/post/selenium-troubleshooting/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+        <a class="home-read-more" href="/post/page-source-vs-find-element/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
     
 </div>
 
@@ -984,8 +1025,8 @@
                    type="number"
                    value="1"
                    min="1"
-                   max="2"
-            /><span class="delimiter base-style">/</span><span class="base-style">2</span>
+                   max="3"
+            /><span class="delimiter base-style">/</span><span class="base-style">3</span>
         </div>
 
 
@@ -1144,11 +1185,11 @@
 
 
 <!-- common js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/libs/anime.min.js"></script>
 
 <!-- local search -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/local-search.min.js"></script>
 
 
 <!-- lazyload -->
@@ -1157,7 +1198,7 @@
 <div class="">
     <!-- home page -->
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/page/home-page.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/page/home-page.min.js"></script>
     
 
     <!-- post page -->

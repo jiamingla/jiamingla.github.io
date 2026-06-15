@@ -2,6 +2,147 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    
+    <loc>https://jiamingla.github.io/post/sdet-role-reflection-in-ai-era/</loc>
+    
+    <lastmod>2026-06-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/ai-test-output-default-reader-is-ai/</loc>
+    
+    <lastmod>2026-06-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/not-just-make-manual-script-automate/</loc>
+    
+    <lastmod>2026-06-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/how-to-start-low-pressure-book-club/</loc>
+    
+    <lastmod>2026-06-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/bug-triage-six-patterns-industry-survey/</loc>
+    
+    <lastmod>2026-06-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/uv-torch-pyqt5-dll-conflict/</loc>
+    
+    <lastmod>2026-06-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/qa-report-workplace-wisdom/</loc>
+    
+    <lastmod>2026-06-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/ai-replacement-seminary-calling/</loc>
+    
+    <lastmod>2026-06-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/page-source-vs-find-element/</loc>
+    
+    <lastmod>2026-06-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/empty-result-ambiguity-in-filter-testing/</loc>
+    
+    <lastmod>2026-06-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/frontend-ui-vocabulary-for-qa/</loc>
+    
+    <lastmod>2026-06-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/letter-to-new-qa-two-day-regression/</loc>
+    
+    <lastmod>2026-05-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/ai-as-yes-man-rd-pm-trust-calibration/</loc>
+    
+    <lastmod>2026-05-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
+    <loc>https://jiamingla.github.io/post/ten-minute-test-plan-when-test-stage-down/</loc>
+    
+    <lastmod>2026-05-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
     <loc>https://jiamingla.github.io/post/boredom-is-a-signal/</loc>
     
     <lastmod>2026-05-06</lastmod>
@@ -11,6 +152,7 @@
   </url>
   
   <url>
+    
     <loc>https://jiamingla.github.io/post/spec-maintenance-gray-zone/</loc>
     
     <lastmod>2026-05-03</lastmod>
@@ -20,6 +162,7 @@
   </url>
   
   <url>
+    
     <loc>https://jiamingla.github.io/post/problem-driven-testing-intro/</loc>
     
     <lastmod>2026-04-24</lastmod>
@@ -29,6 +172,7 @@
   </url>
   
   <url>
+    
     <loc>https://jiamingla.github.io/post/rethinking-regression-test-value/</loc>
     
     <lastmod>2026-04-17</lastmod>
@@ -38,7 +182,8 @@
   </url>
   
   <url>
-    <loc>https://jiamingla.github.io/about/index.html</loc>
+    
+    <loc>https://jiamingla.github.io/about/</loc>
     
     <lastmod>2026-04-17</lastmod>
     
@@ -47,6 +192,7 @@
   </url>
   
   <url>
+    
     <loc>https://jiamingla.github.io/post/qa-performance-metrics-perspective/</loc>
     
     <lastmod>2026-04-08</lastmod>
@@ -56,6 +202,7 @@
   </url>
   
   <url>
+    
     <loc>https://jiamingla.github.io/post/black-box-limitations-and-strategy/</loc>
     
     <lastmod>2026-03-31</lastmod>
@@ -65,6 +212,7 @@
   </url>
   
   <url>
+    
     <loc>https://jiamingla.github.io/post/appium-v2-to-v3-migration/</loc>
     
     <lastmod>2026-03-26</lastmod>
@@ -74,6 +222,7 @@
   </url>
   
   <url>
+    
     <loc>https://jiamingla.github.io/post/audio-testing-ffmpeg/</loc>
     
     <lastmod>2026-03-24</lastmod>
@@ -83,15 +232,7 @@
   </url>
   
   <url>
-    <loc>https://jiamingla.github.io/tags/index.html</loc>
     
-    <lastmod>2026-02-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiamingla.github.io/post/testing-manifesto/</loc>
     
     <lastmod>2026-01-28</lastmod>
@@ -101,6 +242,7 @@
   </url>
   
   <url>
+    
     <loc>https://jiamingla.github.io/post/selenium-troubleshooting/</loc>
     
     <lastmod>2026-01-20</lastmod>
@@ -110,6 +252,7 @@
   </url>
   
   <url>
+    
     <loc>https://jiamingla.github.io/post/hello-world/</loc>
     
     <lastmod>2026-01-18</lastmod>
@@ -120,8 +263,8 @@
   
 
   <url>
-    <loc>https://jiamingla.github.io/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <loc>https://jiamingla.github.io</loc>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

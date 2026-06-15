@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            QA 該認識的 32 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補的課 |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script>
+        (function () {
+            let theme = localStorage.getItem('KEEP-THEME-STATUS');
+            let classname = "";
+            if (!theme || (JSON.parse(theme).isAutoTheme)){
+                classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+            }
+            else{
+                classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+            }
+            document.documentElement.classList.add(classname);
+        })();
+    </script>
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs","custom":{"enable":false,"url":null}},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","search_db_path":"keep-search.json","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.3.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        QA 該認識的 32 個前端 UI 詞彙——從 AI 給我 skeleton loading 那天開始補的課
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-03</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed Jun 03 2026 22:00:00 GMT+0800">2026-06-03</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/AI-%E6%B8%AC%E8%A9%A6/">AI 測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/UI-UX/">UI/UX</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%AD%B8%E7%BF%92/">跨領域學習</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <blockquote>
+<p>✏️ 這是一篇專注於「QA 前端 UI 視角」的技術啟發式指南（Testing Heuristics Card）。</p>
+<p><strong>文章的核心價值</strong>：不在於字面上的定義（Definitions），而在於每個詞彙背後**「QA 該怎麼測」的雙維度測試啟發式思考**。無論你是後端背景想跨足前端，還是面臨 AI 自動生成案例時遇到詞彙缺口，這篇都將為用來幫助你奪回主導權，補上前端 UI 的最小生存集合。</p>
+</blockquote>
+<hr>
+<h2 id="緣起：主管在週會上的抱怨——「AI-寫的測試案例，怎麼反而看不懂了？」"><a href="#緣起：主管在週會上的抱怨——「AI-寫的測試案例，怎麼反而看不懂了？」" class="headerlink" title="緣起：主管在週會上的抱怨——「AI 寫的測試案例，怎麼反而看不懂了？」"></a>緣起：主管在週會上的抱怨——「AI 寫的測試案例，怎麼反而看不懂了？」</h2><p>在今天早上的 QA 週會上，主管盯著一個由 AI 自動生成的測試案例，眉頭深鎖地說：</p>
+<blockquote>
+<p>「這一個 test case 怎麼有高達六個預期結果？而且裡面塞滿了 banner、modal 這種中英文夾雜的詞，讀起來真的很痛苦。AI 寫的案例，怎麼反而讓人看不懂了？」</p>
+</blockquote>
+<p>主管的抱怨，道出了目前許多團隊引進 AI 輔助測試時的真實痛點：<strong>當 AI 揮舞著精準的前端設計名詞（如 skeleton loading、optimistic UI、focus trap…），並用一種冰冷、繁複且中英夾雜的格式填滿測試步驟時，容易讓英文非母語的 QA 感到閱讀與對齊上的困難。</strong></p>
+<p>我做了好幾年 QA，跑過 API、debug 過 SQL、追過 race condition。但坦白說，當 AI 開始在步驟裡塞入這些前端的專有名詞時，我也曾有過被詞彙卡住三秒的無力感。</p>
+<p>這正是 <a href="/post/problem-driven-testing-intro/">問題驅動測試（PDT）</a> 的反向應用：<strong>AI 給出的難讀產出，正好成為照亮我們知識盲區與流程斷層的「擴張鏡」</strong>。</p>
+<p>AI 寫的案例之所以難讀，不是因為我們能力不足，而是因為 <strong>AI 的預設讀者是另一個 AI，而不是真實的人類 QA</strong>。但身為品質守門員，我們不能只是一起抱怨「AI 寫得很難懂」；我們需要做兩件事來奪回主導權：</p>
+<ol>
+<li><strong>建立前端 UI 詞彙的「最小生存集合」</strong>：不再被 AI 的術語牽著走，能用與開發（RD）和設計（UI&#x2F;UX）相同的語言精準對話。</li>
+<li><strong>將冷冰冰的術語轉化為「測試啟發式策略」</strong>：把 AI 拋出來的中英夾雜詞彙，翻譯成人類能懂、能實操的「怎麼測」清單，並用來反向馴服 AI 的 Prompt。</li>
+</ol>
+<p>為此，我整理了這份大而全的 <strong>「前端 UI 測試啟發式卡片（Testing Heuristics Card）」</strong>。</p>
+<hr>
+<h2 id="🎯-測試啟發式卡片：雙維度測試視角-2-Dimension-Heuristics"><a href="#🎯-測試啟發式卡片：雙維度測試視角-2-Dimension-Heuristics" class="headerlink" title="🎯 測試啟發式卡片：雙維度測試視角 (2-Dimension Heuristics)"></a>🎯 測試啟發式卡片：雙維度測試視角 (2-Dimension Heuristics)</h2><p>這張卡片不談空洞的理論，而是針對每個元件，統一拆解為兩個維度的測試策略：</p>
+<ol>
+<li><strong>狀態轉換與互動（Happy Path &amp; Transition）</strong>：正常操作下的顯示、切換與動畫過渡。</li>
+<li><strong>邊界、異常與防禦（Edge Case, Error &amp; Defense）</strong>：慢速網路、超時、資料異常或極端輸入下的防禦行為。</li>
+</ol>
+<h3 id="快速導航（Quick-Navigation）"><a href="#快速導航（Quick-Navigation）" class="headerlink" title="快速導航（Quick Navigation）"></a>快速導航（Quick Navigation）</h3><ul>
+<li><a href="#%E4%B8%80-%E8%BC%89%E5%85%A5%E7%8B%80%E6%85%8Bloading-states">⏳ 一、 載入狀態 (Loading States)</a></li>
+<li><a href="#%E4%BA%8C-%E7%94%A8%E6%88%B6%E5%8F%8D%E9%A5%8Buser-feedback">💬 二、 用戶反饋 (User Feedback)</a></li>
+<li><a href="#%E4%B8%89-%E8%A1%A8%E5%96%AE%E7%8B%80%E6%85%8Bform-states">📝 三、 表單狀態 (Form States)</a></li>
+<li><a href="#%E5%9B%9B-%E5%B0%8E%E8%88%AA%E7%B5%90%E6%A7%8Bnavigation">🧭 四、 導航結構 (Navigation)</a></li>
+<li><a href="#%E4%BA%94-%E8%A8%8A%E6%81%AF%E5%AF%86%E5%BA%A6information-density">📊 五、 訊息密度 (Information Density)</a></li>
+<li><a href="#%E5%85%AD-%E5%8B%95%E7%95%AB%E8%A1%93%E8%AA%9Eanimation--micro-interaction">🎬 六、 動畫術語 (Animation &amp; Micro-interaction)</a></li>
+<li><a href="#%E4%B8%83-%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6--%E5%95%86%E6%A5%AD%E5%8C%96access-control--monetization">🔐 七、 存取控制 &#x2F; 商業化 (Access Control &amp; Monetization)</a></li>
+</ul>
+<hr>
+<h3 id="一、-載入狀態（Loading-States）"><a href="#一、-載入狀態（Loading-States）" class="headerlink" title="一、 載入狀態（Loading States）"></a>一、 載入狀態（Loading States）</h3><p>載入狀態是使用者與系統產生交談的起點。優秀的載入設計能平撫使用者的等待焦慮，而糟糕的載入則會讓使用者以為系統當機。</p>
+<table>
+<thead>
+<tr>
+<th align="left">詞彙</th>
+<th align="left">狀態轉換與互動（Happy Path &amp; Transition）</th>
+<th align="left">邊界、異常與防禦（Edge Case, Error &amp; Defense）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>1. Skeleton loading</strong><br>(骨架螢幕)</td>
+<td align="left">載入時是否精確呈現內容的大致輪廓與結構；資料返回後，骨架是否能<strong>平滑替換</strong>成真實資料，轉換過程不得有肉眼可見的「閃爍」或「版面跳動」。</td>
+<td align="left">當 API 發生超時或報錯時，骨架是否能正確隱藏並優雅地轉化為錯誤提示（Error state），<strong>不可永遠卡在灰色塊狀態</strong>。</td>
+</tr>
+<tr>
+<td align="left"><strong>2. Spinner</strong><br>(旋轉圓圈)</td>
+<td align="left">僅在<strong>非同步阻塞操作</strong>（如提交表單、付款中）時顯示；動畫需保持流暢，避免因為 CPU 過載而出現卡頓或定格。</td>
+<td align="left">當操作時間超過預設閾值（如 10 秒）時，Spinner 必須自動消失，並提供「超時重試」按鈕與錯誤提示，<strong>嚴禁無限轉圈</strong>。</td>
+</tr>
+<tr>
+<td align="left"><strong>3. Progress bar</strong><br>(進度條)</td>
+<td align="left">進度條的百分比或長度是否能與實際載入進度（如檔案下載容量）真實對齊，且進度動畫必須是單向向前，不可出現倒退現象。</td>
+<td align="left">如果進度在中途因為網路中斷而<strong>停滯</strong>，進度條是否有提示（如變為紅色並顯示「連線中斷」），而非假裝自己還在下載。</td>
+</tr>
+<tr>
+<td align="left"><strong>4. Shimmer</strong><br>(微光起動畫)</td>
+<td align="left">骨架螢幕上的「流光效果」方向與速度是否自然流暢，且流光動畫的執行週期是否在主線程卡頓時依然能保持基本運作。</td>
+<td align="left">在低階手機或開啟「省電模式」的裝置上，Shimmer 動畫是否會造成嚴重的 <strong>CPU &#x2F; GPU 飆高與發熱</strong>，必要時應降級為靜態灰色塊。</td>
+</tr>
+<tr>
+<td align="left"><strong>5. Infinite scroll</strong><br>(無限滾動)</td>
+<td align="left">當滾動到頁面底部預設距離（如剩餘 20% 螢幕高度）時，是否自動觸發下一頁 API，且新舊資料的拼接必須無縫，不可丟失滾動位置。</td>
+<td align="left">網路極慢時，滾動到底部必須顯示「載入中…」提示；若連續快速向下滾動，必須有 <strong>Debounce 防抖機制</strong>，防止重複發送多次 API 請求導致資料錯亂。</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><em>看完了系統默默運作的載入狀態，接下來我們來看與使用者最直接、也最貼近感官反饋的「用戶反饋」元件。</em></p>
+</blockquote>
+<h3 id="二、-用戶反饋（User-Feedback）"><a href="#二、-用戶反饋（User-Feedback）" class="headerlink" title="二、 用戶反饋（User Feedback）"></a>二、 用戶反饋（User Feedback）</h3><p>反饋是用戶操作後的「回音」。好的反饋必須即時、清晰，且不打擾用戶的流暢體驗。</p>
+<table>
+<thead>
+<tr>
+<th align="left">詞彙</th>
+<th align="left">狀態轉換與互動（Happy Path &amp; Transition）</th>
+<th align="left">邊界、異常與防禦（Edge Case, Error &amp; Defense）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>6. Toast</strong><br>(輕量提示)</td>
+<td align="left">彈出位置是否醒目但不遮擋核心操作；在預設時間（通常 3-5 秒）後是否<strong>平滑淡出並自動消失</strong>，且淡出後其 DOM 節點需被正確銷毀。</td>
+<td align="left">當用戶連續點擊導致多個 Toast <strong>連續觸發</strong>時，UI 應有清晰的堆疊排序邏輯（如向上推移或只保留最新一個），不可全部疊在同一個座標上。</td>
+</tr>
+<tr>
+<td align="left"><strong>7. Snackbar</strong><br>(操作型提示)</td>
+<td align="left">通常出現在螢幕底部，包含文字與一個極簡動作按鈕（如「撤銷」、「重試」）；點擊動作按鈕後必須立刻執行相應行為並關閉提示。</td>
+<td align="left">作為非阻塞反饋，當用戶忽略它並點擊畫面上其他核心 CTA 時，Snackbar 是否會自動收起，避免持續佔用手機螢幕的黃金版位。</td>
+</tr>
+<tr>
+<td align="left"><strong>8. Banner</strong><br>(橫幅提示)</td>
+<td align="left">屬於持久型的高優先級提示（常居於頂部）；必須提供清楚的「關閉（X）」按鈕，且點擊關閉後的關閉動畫不能造成下方內容排版突兀地震動。</td>
+<td align="left">用戶關閉該 Banner 後，系統是否在本地端（Local Storage）或資料庫上記住此狀態，<strong>避免每次重新整理或切換頁面時它又重覆跳出</strong>。</td>
+</tr>
+<tr>
+<td align="left"><strong>9. Modal &#x2F; Dialog</strong><br>(模態彈窗)</td>
+<td align="left">彈出時背景必須有半透明遮罩（Backdrop）阻擋操作；彈窗必須具備 <strong>Focus trap（焦點鎖定）</strong>，即鍵盤 Tab 鍵只能在彈窗內的按鈕輪塊間循環，不能跑到背景網頁。</td>
+<td align="left">必須支援點擊遮罩外部或按鍵盤 <strong><code>ESC</code> 鍵一鍵關閉</strong>；若彈窗內有已輸入的未儲存資料，關閉時必須跳出二次確認，防範誤觸導致資料丟失。</td>
+</tr>
+<tr>
+<td align="left"><strong>10. Drawer</strong><br>(抽屜側邊欄)</td>
+<td align="left">從螢幕邊緣（左&#x2F;右&#x2F;下）滑出的過渡動畫是否與手勢流暢對齊；當抽屜內容過長時，必須在抽屜內部自適應滾動，<strong>不可造成全螢幕網頁一起滾動（Scroll chain）</strong>。</td>
+<td align="left">手機端是否支援「往邊緣滑動」的滑動關閉手勢；當點擊抽屜外部透明區時，抽屜是否能像 Modal 一樣安全收回。</td>
+</tr>
+<tr>
+<td align="left"><strong>11. Optimistic UI</strong><br>(樂觀 UI)</td>
+<td align="left">用戶操作（如按讚、收藏、發表簡慢留言）後，UI <strong>先假設 API 會成功並立刻更新為成功狀態</strong>（紅心亮起、留言出現），提供極致順暢的體感。</td>
+<td align="left"><strong>關鍵防禦點</strong>：當 API 最終回傳失敗（如網路斷線、權限不足）時，UI 必須能夠**精確且平滑地 Rollback（回滾）**到操作前的狀態，並跳出 Toast 告知用戶「操作失敗，已為您復原」。</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><em>當使用者收到反饋並決定開始與系統進一步互動時，我們便來到了前端最容易出錯的重災區——表單狀態。</em></p>
+</blockquote>
+<h3 id="三、-表單狀態（Form-States）"><a href="#三、-表單狀態（Form-States）" class="headerlink" title="三、 表單狀態（Form States）"></a>三、 表單狀態（Form States）</h3><p>表單是收集用戶資料的港口。不清晰的表單驗證與狀態提示，是用戶流失（Drop-off）的最大元兇。</p>
+<table>
+<thead>
+<tr>
+<th align="left">詞彙</th>
+<th align="left">狀態轉換與互動（Happy Path &amp; Transition）</th>
+<th align="left">邊界、異常與防禦（Edge Case, Error &amp; Defense）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>12. Floating label</strong><br>(浮動標籤)</td>
+<td align="left">當滑鼠聚焦輸入框（Focus）或有文字輸入時，Label 必須平滑縮小並浮動到輸入框上方；當輸入框內容被清空並失去焦點（Defocus）時，Label 需平滑回到原位。</td>
+<td align="left">預設填入資料（如瀏覽器自動填入帳密或編輯舊資料）時，Label 必須直接處於浮動狀態，<strong>絕對不可與預填的文字重疊</strong>。</td>
+</tr>
+<tr>
+<td align="left"><strong>13. Helper text</strong><br>(欄位提示字)</td>
+<td align="left">位於輸入框下方，通常用於提示格式規範（如：密碼需包含大寫字母）；字體與顏色必須與標籤有明確的層級視覺差，不喧賓佇主。</td>
+<td align="left">當輸入框校驗出錯時，Helper text 必須<strong>被紅色的 Error message（錯誤訊息）完美替換</strong>，並在錯誤修正後恢復為原先的說明文字。</td>
+</tr>
+<tr>
+<td align="left"><strong>14. Validation states</strong><br>(校驗狀態)</td>
+<td align="left">出現錯誤時，輸入框外框、Helper text、前方 Icon 必須<strong>同步變為紅色（或警告色）</strong>；此狀態更新必須即時且顯眼。</td>
+<td align="left"><strong>無障礙防禦</strong>：提示不能僅依賴顏色（如只把框變紅），因為色盲用戶無法分辨。必須**同時搭配文字（Error message）或 Icon（如 ⚠️）**來傳達錯誤。</td>
+</tr>
+<tr>
+<td align="left"><strong>15. Inline validation</strong><br>(即時校驗)</td>
+<td align="left">用戶輸入時邊填邊校驗。最理想的觸發時機是 <code>onBlur</code>（焦點離開時）或 <code>onChange</code>（有防抖機制的延遲觸發），提供漸進式反饋。</td>
+<td align="left"><strong>體驗防禦</strong>：當用戶剛點進空欄位準備輸入第一個字時，<strong>絕不能立刻跳出「格式不符」的紅色錯誤</strong>。這會造成嚴重的挫折感，校驗時機必須合理。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>[!NOTE]<br><strong>QA 實戰痛點：即時校驗過早觸發 (Inline Validation)</strong><br>很多前端元件在 <code>onChange</code>（只要字元變動）時就觸發即時校驗。當用戶才剛在信箱欄位輸入第一個英文字母 “j”，欄位下方就立刻亮起紅色的「信箱格式不正確」，這會造成極差的挫折感。QA 應該推動將校驗時機改為 <code>onBlur</code>（焦點離開時）或加入適當的 Debounce（防抖延遲），而非在使用者剛點進欄位時就對他「無情警告」。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><em>表單收集完資料後，使用者需要知道自己在系統中身處何處，這就輪到指引大局的導航結構登場了。</em></p>
+</blockquote>
+<h3 id="四、-導航結構（Navigation）"><a href="#四、-導航結構（Navigation）" class="headerlink" title="四、 導航結構（Navigation）"></a>四、 導航結構（Navigation）</h3><p>導航指引著用戶在應用中的方位。混亂的導航會讓用戶在資訊架構中徹底迷失。</p>
+<table>
+<thead>
+<tr>
+<th align="left">詞彙</th>
+<th align="left">狀態轉換與互動（Happy Path &amp; Transition）</th>
+<th align="left">邊界、異常與防禦（Edge Case, Error &amp; Defense）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>16. Breadcrumb</strong><br>(麵包屑)</td>
+<td align="left">能否精確呈現目前頁面在系統中的物理層級（如：首頁 &gt; 產品 &gt; 筆記型電腦）；除了「目前頁」不可點擊外，其煙每層連結都必須能正確跳轉。</td>
+<td align="left">當頁面層級極深或名稱極長時，麵包屑是否會撐破網頁版面，應有**中間路徑自動省略（如 …）**或自適應截斷的防禦機制。</td>
+</tr>
+<tr>
+<td align="left"><strong>17. Tab</strong><br>(標籤頁)</td>
+<td align="left">切換 Tab 時，下方內容區的渲染必須即時且無縫；URL 最好能與 Tab 選中狀態同步（Deep link 支持），方便用戶複製網址直接分享該分頁。</td>
+<td align="left"><strong>防禦點</strong>：在 Tab A 輸入表單到一半，若不小心點擊切換到 Tab B，再切回 Tab A 時<strong>已輸入的表單資料必須依然保留</strong>，不可被重設銷毀。</td>
+</tr>
+<tr>
+<td align="left"><strong>18. Pagination</strong><br>(分頁)</td>
+<td align="left">點擊分頁號碼、上一頁、下一頁時，頁面滾動位置是否能自動重設回頂部；目前所選的頁碼在視覺上必須有明顯的活動狀態（Active state）。</td>
+<td align="left">當處於「第一頁」時，「上一頁」按鈕必須呈現 <strong>Disabled（禁用）</strong> 狀態且無法點擊；同理，「最後一頁」時的「下一頁」按鈕亦然。</td>
+</tr>
+<tr>
+<td align="left"><strong>19. Stepper</strong><br>(步驟條)</td>
+<td align="left">是否能清晰指引用戶目前的進度（如：購物車 &gt; 填寫資料 &gt; 確認付款 &gt; 完成）；每個步驟的完成、進行中、未完成狀態必須有明確的視覺對比。</td>
+<td align="left"><strong>防禦點</strong>：用戶不能跳過未完成的步驟直接點選後續步驟跳轉；但用戶點擊「上一步」返回修改時，<strong>之前步驟填寫的資料必須完美保留</strong>。</td>
+</tr>
+<tr>
+<td align="left"><strong>20. Hamburger menu</strong><br>(漢堡選單)</td>
+<td align="left">手機端點擊三條線圖示後，選單展開與收起的動畫必須順暢；點擊選單內的連結跳轉後，漢堡選單必須<strong>自動收起</strong>。</td>
+<td align="left">當展開漢堡選單時，背景網頁內容必須被遮罩覆蓋且無法滾動；點擊遮罩空白處，必須能主動關閉選單。</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><em>在各個頁面跳轉之餘，如何優雅地調配單一畫面中的資訊量，則考驗著訊息密度的設計。</em></p>
+</blockquote>
+<h3 id="五、-訊息密度（Information-Density）"><a href="#五、-訊息密度（Information-Density）" class="headerlink" title="五、 訊息密度（Information Density）"></a>五、 訊息密度（Information Density）</h3><p>訊息密度決定了頁面的整潔度。利用層級懸停或折疊，能讓資訊在需要時才被看見。</p>
+<table>
+<thead>
+<tr>
+<th align="left">詞彙</th>
+<th align="left">狀態轉換與互動（Happy Path &amp; Transition）</th>
+<th align="left">邊界、異常與防禦（Edge Case, Error &amp; Defense）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>21. Tooltip</strong><br>(文字提示)</td>
+<td align="left">滑鼠懸停（Hover）在特定 Icon 上時，在鄰近位置平滑飄出小段說明文字；滑鼠移開後立刻平滑消失。</td>
+<td align="left"><strong>移動端防禦</strong>：手機沒有 Hover 事件，Tooltip 必須改為**「點擊觸發」且「點擊外部任何地方會關閉」**，否則手機用戶將永遠看不到此說明。</td>
+</tr>
+<tr>
+<td align="left"><strong>22. Popover</strong><br>(彈出浮層)</td>
+<td align="left">點擊按鈕後彈出一個比 Tooltip 大、且包含互動元件（如輸入框、按鈕）的浮層；其出現位置必須自動計算，不可超出螢幕視窗（Viewport）邊界。</td>
+<td align="left">用戶點擊 Popover 外部任何地方，或者點擊內部的 CTA 動作後，Popover 必須自動收起，<strong>絕不可在背景殘留</strong>。</td>
+</tr>
+<tr>
+<td align="left"><strong>23. Badge</strong><br>(徽章角標)</td>
+<td align="left">用於顯示通知數量（通常為紅色圓點）。當數值發生變更時，Badge 是否能即時更新；當數值為 <code>0</code> 時，<strong>Badge 必須徹底隱藏，不可留下一顆空的紅點</strong>。</td>
+<td align="left">當通知數量極高時，必須有<strong>截斷邏輯</strong>（如數值超過 99 時自動顯示 <code>99+</code>），避免數字過長撐破 Badge 的圓形外框。</td>
+</tr>
+<tr>
+<td align="left"><strong>24. Tag &#x2F; Chip</strong><br>(標籤&#x2F;碎屑)</td>
+<td align="left">用於過濾或分類（如商品標籤）。若標籤支援刪除，點擊「X」後必須觸發刪除動畫，且其餘標籤必須順暢地遞補空位。</td>
+<td align="left">當標籤文字極長時（例如用戶自定義的標籤），必須有長字截斷（<code>text-overflow: ellipsis</code>）防禦，不可讓標籤高度無限撐開或擠壓其他元件。</td>
+</tr>
+<tr>
+<td align="left"><strong>25. CTA</strong><br>(行動呼籲按鈕)</td>
+<td align="left">畫面上引導用戶進行核心操作的主要按鈕（如「立即購買」）。視覺上必須是全網頁最高優先級；<strong>在點擊後、API 返回前，按鈕必須變為 Loading 狀態且 Disabled</strong>，防止用戶重複點擊。</td>
+<td align="left"><strong>文案與防禦</strong>：按鈕文字必須清晰具體（如「同意並付款」優於「確定」）。多按鈕並列時，主 CTA 與次 CTA（如「取消」）的視覺對比必須顯著，不可讓用戶混淆。</td>
+</tr>
+<tr>
+<td align="left"><strong>26. Empty state</strong><br>(空白狀態)</td>
+<td align="left">當頁面或列表沒有任何資料時呈現的畫面。<strong>絕對不能只留下一個慘白的空白網頁</strong>；必須包含「一個溫暖的插圖 + 一句解釋原因的文字 + 一個引導動作的 CTA（如：立即新增第一筆資料）」。</td>
+<td align="left">必須區分 <strong>「初次加載無資料的 Empty state」</strong> 與 <strong>「搜尋&#x2F;篩選無結果的 Empty state」</strong>，後者的引導動作應該是「清除篩選條件」。</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><em>元件都擺好之後，要如何讓介面動起來、充滿「物理真實感」，這就是動畫與微互動的範疇。</em></p>
+</blockquote>
+<h3 id="六、-動畫術語（Animation-Micro-interaction）"><a href="#六、-動畫術語（Animation-Micro-interaction）" class="headerlink" title="六、 動畫術語（Animation &amp; Micro-interaction）"></a>六、 動畫術語（Animation &amp; Micro-interaction）</h3><p>動畫是界面的靈魂，它賦予靜態網頁生命力與物理真實感。</p>
+<table>
+<thead>
+<tr>
+<th align="left">詞彙</th>
+<th align="left">狀態轉換與互動（Happy Path &amp; Transition）</th>
+<th align="left">邊界、異常與防禦（Edge Case, Error &amp; Defense）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>27. Transition</strong><br>(過渡效果)</td>
+<td align="left">元件在狀態改變時（如 Hover 導致按鈕變色、展開收起選單），顏色、大小或位置的改變必須是<strong>漸進式</strong>的，轉換過程不得有突兀的跳變。</td>
+<td align="left">動畫時間（Duration）必須克制。一般 Transition 應控制在 <strong><code>200ms - 300ms</code></strong> 之間，太慢會讓用戶覺得系統「卡頓、反應遲鈍」。</td>
+</tr>
+<tr>
+<td align="left"><strong>28. Easing</strong><br>(速度曲線)</td>
+<td align="left">動畫運行的加速度控制（如 <code>ease-in</code> 漸快、<code>ease-out</code> 漸慢）。優秀的界面動畫會採用符合物理慣性的曲線（如 <code>spring</code> 彈性曲線），讓移動顯得自然。</td>
+<td align="left">避免使用完全勻速的 <code>linear</code> 曲線（除非是進度條），因為完全勻速的動畫在人類視覺中會顯得極度僵硬與機械化。</td>
+</tr>
+<tr>
+<td align="left"><strong>29. Micro-interaction</strong><br>(微互動)</td>
+<td align="left">用戶進行微小操作時獲得的動態視覺反饋（如：點擊收藏時星星微微彈跳一下、勾選 Checkbox 時勾勾平滑繪製出來），極大地提升產品精緻感。</td>
+<td align="left"><strong>效能防禦</strong>：微互動動畫的響應延遲必須 <strong>控制在 <code>100ms</code> 以內</strong>。如果點擊按鈕後，彈跳動畫延遲了 200ms 才出現，用戶的大腦會感知到「延遲」，反而降低體驗。</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><em>最後，當所有的互動與體驗都臻於完美時，我們必須為系統加上守護商業變現的存取控制與付費門檻。</em></p>
+</blockquote>
+<h3 id="七、-存取控制-商業化（Access-Control-Monetization）"><a href="#七、-存取控制-商業化（Access-Control-Monetization）" class="headerlink" title="七、 存取控制 &#x2F; 商業化（Access Control &amp; Monetization）"></a>七、 存取控制 &#x2F; 商業化（Access Control &amp; Monetization）</h3><p>在現實世界中，軟體工程必須服務於商業模式。這類控制門鎖，是產品營收的防線。</p>
+<table>
+<thead>
+<tr>
+<th align="left">詞彙</th>
+<th align="left">狀態轉換與互動（Happy Path &amp; Transition）</th>
+<th align="left">邊界、異常與防禦（Edge Case, Error &amp; Defense）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>30. Paywall</strong><br>(付費牆)</td>
+<td align="left">限制免費用戶使用進階功能或內容的阻擋界面（如：閱讀文章到一半跳出「付費解鎖」）。解鎖路徑（引導購買）必須極度流暢且無痛。</td>
+<td align="left"><strong>極致防禦點</strong>：確保後端有嚴格的 API 權限校驗，<strong>絕不能只靠前端 CSS 把付費內容「隱藏」或「打馬賽克」</strong>。資深用戶可以用 DevTools 直接把 CSS Paywall 刪除來免費看，這是重大資安漏洞。</td>
+</tr>
+<tr>
+<td align="left"><strong>31. Feature gate</strong><br>(功能閥&#x2F;開關)</td>
+<td align="left">針對不同訂閱級別（Tier）或實驗群組（A&#x2F;B Test）開啟特定功能的控制開關（如：免費版只能匯出 CSV，進階版才能匯出 PDF，未解鎖功能在畫面上可能呈現灰置鎖定 Icon）。</td>
+<td align="left"><strong>狀態即時同步</strong>：當免費用戶在付費牆完成結帳升級後，功能開關必須<strong>當場解鎖</strong>，用戶不應該需要「重新整理頁面」或「重新登入帳號」才能使用新功能。</td>
+</tr>
+<tr>
+<td align="left"><strong>32. Login wall</strong><br>(強制登入牆)</td>
+<td align="left">強制用戶必須登入才能繼續瀏覽或操作。觸發時機必須精確（如：點擊「加入購物車」的那一瞬間才跳出登入牆）。</td>
+<td align="left"><strong>上下文保留防禦</strong>：登入牆必須支援 <strong>「原路返回」</strong>。用戶登入成功後，系統必須將用戶<strong>導回他跳出登入牆之前的那個精確座標與狀態</strong>（如原本看的那件商品頁，且自動完成剛才點擊的加入購物車動作），不能直接把用戶丟回首頁。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📖-延伸閱讀"><a href="#📖-延伸閱讀" class="headerlink" title="📖 延伸閱讀"></a>📖 延伸閱讀</h2><ul>
+<li><a href="/post/ai-as-yes-man-rd-pm-trust-calibration/">你以為 AI Agent 在做稱職的 QA，其實它在當你的 Yes Man——給 RD&#x2F;PM 的三個提問清單</a>：反思 AI 產出的測試案例，我們該如何校準信任？</li>
+<li><a href="/post/boredom-is-a-signal/">「煩」是 QA 的診斷工具</a>：如何透過日常工作的「煩躁感」發掘自動化的真正契機？</li>
+<li><a href="/post/problem-driven-testing-intro/">問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡</a>：探索本篇「AI 給的 skeleton loading」如何作為反向 PDT 鏡像的思考起點。</li>
+</ul>
+<hr>
+<h2 id="🔮-結語：從「看不大懂」到「反向調教-AI」"><a href="#🔮-結語：從「看不大懂」到「反向調教-AI」" class="headerlink" title="🔮 結語：從「看不大懂」到「反向調教 AI」"></a>🔮 結語：從「看不大懂」到「反向調教 AI」</h2><p>在週會上，看著主管和同事因為 AI 寫的中英夾雜、囉唆繁複的案例而感到頭痛時，我更加確信了一件事：</p>
+<p><strong>在 AI 時代，QA 的價值不再是「幫 AI 跑腿」，而是成為 AI 輸出的「責任編輯」與「反向調教者」。</strong></p>
+<p>AI 工具的博學跨越了我們的舒適區，用這些精準卻冰冷的前端專有名詞，逼我們看見自己不知道的空缺。如果我們對這些詞彙一知半解，當 AI 給出一個「有六個預期結果、滿是 banner 和 modal」的糟糕案例時，我們除了抱怨，別無選擇。</p>
+<p>但當你手握這 32 個詞彙與雙維度測試啟發式策略時，情況就完全不同了。你不僅能一眼看穿 AI 的空洞與囉唆，甚至能寫出這樣的 Prompt 去反向要求它：</p>
+<blockquote>
+<p>「請針對登入流程生成測試案例。使用中文，步驟必須精簡至 3 步以內，且單一案例的預期結果不得超過 2 個。若涉及 Modal，請特別補充鍵盤 Focus trap 的防禦測試步驟，並確保 Login wall 登入成功後能正確原路返回。」</p>
+</blockquote>
+<p>這時候，AI 就不再是那個寫出「讓人看不懂案例」的麻煩製造者，而是你手下最聽話、最高效的初階助理。</p>
+<p>當然，隨著 Prompt 技術與大模型的演進，也許未來我們有辦法把 AI 調整得更好，讓它輸出盡量簡短且人類閱讀性高的內容。但在此之前，這段中英夾雜、甚至有些囉唆的「過渡期」，剛好成為了我們重新認識前端名詞的絕佳契機。</p>
+<p>更重要的是，這也讓我們有機會反思：<strong>當初為什麼會有人設計這些前端的功能？</strong></p>
+<p>不論是 Skeleton Loading、Optimistic UI，還是 Focus Trap，這些名詞背後所對應的，從來都不是冷冰冰的程式碼規格，而是設計師與開發者為了解決人類的等待焦慮、操作挫折與無障礙需求，所想出來的溫暖解決方案。</p>
+<p>理解了這些，我們在測試時，就不再只是核對功能「動不動得」，而是能開始理解它當初「為什麼要這樣設計」。</p>
+<hr>
+<p>在這篇「前端 UI 測試啟發式卡片」的起草過程中，我本來還規劃了另一個龐大、且後端 QA 幾乎從未踏足的新世界：<strong>Accessibility（無障礙網頁測試，如 Focus trap、Aria labels、螢幕閱讀器相容性等）</strong>。但由於這 32 個詞彙的測試策略寫完後篇幅已經爆炸，我決定把無障礙測試留作下一篇的伏筆。</p>
+<p>實話實說，在我們目前的專案與團隊節奏中，PM 還沒有機會把「無障礙測試」這類需求正式寫成 ticket 發給 QA。對於大多數追求敏捷交付的商業專案來說，無障礙設計往往落在最邊緣的「灰色地帶」。</p>
+<p>但身為一名品質工程師，我心中一直藏著一個微小、卻極其堅定的願望：</p>
+<p><strong>我希望哪一天，我有機會親手測到一款專門給盲人或視障同胞使用的「股票看盤 APP」。</strong></p>
+<p>看著那些在黑暗中，透過螢幕閱讀器與震動回饋，能在 1 秒內無礙地聽讀即時股價、掌控自己財務選擇的盲人用戶——那一刻，代碼的流暢、焦點的鎖定與語意標籤的精確，將不再只是冷冰冰的規格，而是照亮他人黑暗的一道光。</p>
+<p>那才是我心目中，「品質工程」所能達到的、最溫暖的寬度。</p>
+<p>在那一天到來之前，讓我們先用這 32 個前端詞彙奪回主導權，把基本功練好。</p>
+<p>我們下期見。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/AI-%E6%B8%AC%E8%A9%A6/">AI 測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/UI-UX/">UI/UX</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%AD%B8%E7%BF%92/">跨領域學習</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/empty-result-ambiguity-in-filter-testing/"
+                                   title="篩選後沒結果，是資料真的沒符合條件，還是篩選功能壞掉了？——自動化測試的五種解法"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">篩選後沒結果，是資料真的沒符合條件，還是篩選功能壞掉了？——自動化測試的五種解法</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/letter-to-new-qa-two-day-regression/"
+                                   title="給新進 QA 的第一封信：如何在兩天內穩定的回歸測試完一個產品？"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">給新進 QA 的第一封信：如何在兩天內穩定的回歸測試完一個產品？</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B7%A3%E8%B5%B7%EF%BC%9A%E4%B8%BB%E7%AE%A1%E5%9C%A8%E9%80%B1%E6%9C%83%E4%B8%8A%E7%9A%84%E6%8A%B1%E6%80%A8%E2%80%94%E2%80%94%E3%80%8CAI-%E5%AF%AB%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%A1%88%E4%BE%8B%EF%BC%8C%E6%80%8E%E9%BA%BC%E5%8F%8D%E8%80%8C%E7%9C%8B%E4%B8%8D%E6%87%82%E4%BA%86%EF%BC%9F%E3%80%8D"><span class="nav-text">緣起：主管在週會上的抱怨——「AI 寫的測試案例，怎麼反而看不懂了？」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-%E6%B8%AC%E8%A9%A6%E5%95%9F%E7%99%BC%E5%BC%8F%E5%8D%A1%E7%89%87%EF%BC%9A%E9%9B%99%E7%B6%AD%E5%BA%A6%E6%B8%AC%E8%A9%A6%E8%A6%96%E8%A7%92-2-Dimension-Heuristics"><span class="nav-text">🎯 測試啟發式卡片：雙維度測試視角 (2-Dimension Heuristics)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B0%8E%E8%88%AA%EF%BC%88Quick-Navigation%EF%BC%89"><span class="nav-text">快速導航（Quick Navigation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E8%BC%89%E5%85%A5%E7%8B%80%E6%85%8B%EF%BC%88Loading-States%EF%BC%89"><span class="nav-text">一、 載入狀態（Loading States）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%94%A8%E6%88%B6%E5%8F%8D%E9%A5%8B%EF%BC%88User-Feedback%EF%BC%89"><span class="nav-text">二、 用戶反饋（User Feedback）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E8%A1%A8%E5%96%AE%E7%8B%80%E6%85%8B%EF%BC%88Form-States%EF%BC%89"><span class="nav-text">三、 表單狀態（Form States）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E5%B0%8E%E8%88%AA%E7%B5%90%E6%A7%8B%EF%BC%88Navigation%EF%BC%89"><span class="nav-text">四、 導航結構（Navigation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81-%E8%A8%8A%E6%81%AF%E5%AF%86%E5%BA%A6%EF%BC%88Information-Density%EF%BC%89"><span class="nav-text">五、 訊息密度（Information Density）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81-%E5%8B%95%E7%95%AB%E8%A1%93%E8%AA%9E%EF%BC%88Animation-Micro-interaction%EF%BC%89"><span class="nav-text">六、 動畫術語（Animation &amp; Micro-interaction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81-%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6-%E5%95%86%E6%A5%AD%E5%8C%96%EF%BC%88Access-Control-Monetization%EF%BC%89"><span class="nav-text">七、 存取控制 &#x2F; 商業化（Access Control &amp; Monetization）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%96-%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">📖 延伸閱讀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%AE-%E7%B5%90%E8%AA%9E%EF%BC%9A%E5%BE%9E%E3%80%8C%E7%9C%8B%E4%B8%8D%E5%A4%A7%E6%87%82%E3%80%8D%E5%88%B0%E3%80%8C%E5%8F%8D%E5%90%91%E8%AA%BF%E6%95%99-AI%E3%80%8D"><span class="nav-text">🔮 結語：從「看不大懂」到「反向調教 AI」</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B7%A3%E8%B5%B7%EF%BC%9A%E4%B8%BB%E7%AE%A1%E5%9C%A8%E9%80%B1%E6%9C%83%E4%B8%8A%E7%9A%84%E6%8A%B1%E6%80%A8%E2%80%94%E2%80%94%E3%80%8CAI-%E5%AF%AB%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%A1%88%E4%BE%8B%EF%BC%8C%E6%80%8E%E9%BA%BC%E5%8F%8D%E8%80%8C%E7%9C%8B%E4%B8%8D%E6%87%82%E4%BA%86%EF%BC%9F%E3%80%8D"><span class="nav-text">緣起：主管在週會上的抱怨——「AI 寫的測試案例，怎麼反而看不懂了？」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-%E6%B8%AC%E8%A9%A6%E5%95%9F%E7%99%BC%E5%BC%8F%E5%8D%A1%E7%89%87%EF%BC%9A%E9%9B%99%E7%B6%AD%E5%BA%A6%E6%B8%AC%E8%A9%A6%E8%A6%96%E8%A7%92-2-Dimension-Heuristics"><span class="nav-text">🎯 測試啟發式卡片：雙維度測試視角 (2-Dimension Heuristics)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B0%8E%E8%88%AA%EF%BC%88Quick-Navigation%EF%BC%89"><span class="nav-text">快速導航（Quick Navigation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E8%BC%89%E5%85%A5%E7%8B%80%E6%85%8B%EF%BC%88Loading-States%EF%BC%89"><span class="nav-text">一、 載入狀態（Loading States）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%94%A8%E6%88%B6%E5%8F%8D%E9%A5%8B%EF%BC%88User-Feedback%EF%BC%89"><span class="nav-text">二、 用戶反饋（User Feedback）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E8%A1%A8%E5%96%AE%E7%8B%80%E6%85%8B%EF%BC%88Form-States%EF%BC%89"><span class="nav-text">三、 表單狀態（Form States）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E5%B0%8E%E8%88%AA%E7%B5%90%E6%A7%8B%EF%BC%88Navigation%EF%BC%89"><span class="nav-text">四、 導航結構（Navigation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81-%E8%A8%8A%E6%81%AF%E5%AF%86%E5%BA%A6%EF%BC%88Information-Density%EF%BC%89"><span class="nav-text">五、 訊息密度（Information Density）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81-%E5%8B%95%E7%95%AB%E8%A1%93%E8%AA%9E%EF%BC%88Animation-Micro-interaction%EF%BC%89"><span class="nav-text">六、 動畫術語（Animation &amp; Micro-interaction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81-%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6-%E5%95%86%E6%A5%AD%E5%8C%96%EF%BC%88Access-Control-Monetization%EF%BC%89"><span class="nav-text">七、 存取控制 &#x2F; 商業化（Access Control &amp; Monetization）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%96-%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">📖 延伸閱讀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%AE-%E7%B5%90%E8%AA%9E%EF%BC%9A%E5%BE%9E%E3%80%8C%E7%9C%8B%E4%B8%8D%E5%A4%A7%E6%87%82%E3%80%8D%E5%88%B0%E3%80%8C%E5%8F%8D%E5%90%91%E8%AA%BF%E6%95%99-AI%E3%80%8D"><span class="nav-text">🔮 結語：從「看不大懂」到「反向調教 AI」</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>

@@ -32,7 +32,7 @@
         
         // 如果有记忆的评论系统，则显示对应标签页
         if (comment) {
-            const element = document.querySelector(`a[data-comment="${comment}"]`);
+            const element = document.querySelector(`a[data-comments="${comment}"]`);
             if (element) {
                 activateTab(element);
             } else {
@@ -46,11 +46,14 @@
         
         // 绑定点击事件
         bindTabEvents();
+        
+        // 绑定滚轮横向滚动事件
+        bindWheelScroll();
     }
     
     // 激活第一个标签页
     function activateFirstTab() {
-        const firstTab = document.querySelector('.nav-tabs a[data-toggle="tab"]');
+        const firstTab = document.querySelector('.comments-nav-tabs a[data-toggle="tab"]');
         if (firstTab) {
             activateTab(firstTab);
         }
@@ -75,7 +78,7 @@
             
             // 如果启用了存储功能，则记住用户选择
             if (storage) {
-                const comment = target.dataset.comment;
+                const comment = target.dataset.comments;
                 if (comment) {
                     Diversity.data.set("selected_comment", comment);
                 }
@@ -91,10 +94,10 @@
         const targetId = tabElement.getAttribute('href');
         if (!targetId) return;
         
-        // 获取所有标签和面板
-        const allTabs = document.querySelectorAll('.nav-tabs li');
-        const allTabLinks = document.querySelectorAll('.nav-tabs a[data-toggle="tab"]');
-        const allPanes = document.querySelectorAll('.tab-content .tab-pane');
+        // 获取所有标签和面板（使用新的类名）
+        const allTabs = document.querySelectorAll('.comments-nav-tabs li');
+        const allTabLinks = document.querySelectorAll('.comments-nav-tabs a[data-toggle="tab"]');
+        const allPanes = document.querySelectorAll('.comments-tab-content .comments-tab-pane');
         
         // 移除所有标签和面板的激活状态
         allTabs.forEach(tab => tab.classList.remove('active'));
@@ -113,5 +116,18 @@
         if (targetPane) {
             targetPane.classList.add('active');
         }
+    }
+    
+    // 滚轮横向滚动（tab 过多时支持鼠标滚轮左右滑动）
+    function bindWheelScroll() {
+        const navTabs = document.getElementById('comment-nav-tab');
+        if (!navTabs) return;
+        
+        navTabs.addEventListener('wheel', function(e) {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                navTabs.scrollLeft += e.deltaY;
+            }
+        }, { passive: false });
     }
 })();

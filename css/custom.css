@@ -12,3 +12,19 @@ home.announcement	的句子太長了後面被省略
   text-overflow: clip;
   line-height: 1.6;
 }
+
+/* Table overrides for better reading experience on desktop and mobile */
+.keep-markdown-body .table-container table td,
+.keep-markdown-body .table-container table th {
+  white-space: normal !important;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Ensure the first column (Vocabulary/Term) has a stable width and wraps nicely without breaking letters */
+.keep-markdown-body .table-container table th:first-child,
+.keep-markdown-body .table-container table td:first-child {
+  min-width: 140px;
+  width: 20%;
+  white-space: nowrap !important;
+}
