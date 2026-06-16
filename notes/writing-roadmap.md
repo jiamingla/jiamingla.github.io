@@ -63,11 +63,11 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（0 篇，在 _drafts/）
+### 完稿草稿待上稿（1 篇，在 _drafts/）
 
 | 文章 | 主題線 | 長尾 | 狀態備註 |
 |---|---|---|---|
-| (無) | — | — | 所有完稿皆已移至 posts 排程上稿 |
+| [pass-fail-not-enough-for-ai-testing](../source/_drafts/pass-fail-not-enough-for-ai-testing.md) | 線二（AI 測試判讀） | ⭐⭐⭐ | **6/16 從規劃檔轉成完稿、排程 2026-06-24 發**。六月第一次「骨架→完稿」轉換 rep（測轉換速率）。拿掉 notest 詞（去指紋）、urlname 從 notest-... 改成 pass-fail-...。規劃記錄移至 [notes/ai-test-result-schema-planning.md](ai-test-result-schema-planning.md) |
 
 > 註 1：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
 > 註 2：**bug-triage-six-patterns**——6/8 一度降為規劃檔（揭露邊界 gating），同日揭露邊界定案（前公司只示範 F+E、不掛 QA 第一手、現公司不寫）後**已生成全文並排程 2026-06-10**，移入 _posts/。規劃檔 [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) 保留決策紀錄。
@@ -76,7 +76,6 @@
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
-| [notest-ambiguity-skip-vs-low-confidence-planning](../source/_drafts/notest-ambiguity-skip-vs-low-confidence-planning.md) | 線二（AI 測試判讀） | ⭐⭐⭐ 長尾。已積 ~21k 字（比「骨架」成熟，但未確認完稿）。6 月中後 |
 | [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已融入 AI 價值，暫不發布，保留作為個人技術與工程備忘 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。

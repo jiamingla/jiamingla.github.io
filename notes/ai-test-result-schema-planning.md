@@ -1,11 +1,15 @@
----
-urlname: notest-ambiguity-skip-vs-low-confidence
-title: 當你把測試計畫交給 AI 執行，pass / fail 兩個欄位還夠用嗎？
-date: 2026-07-01 22:00:00
-tags: [軟體測試, AI 測試, 測試判讀, 問題驅動測試, 自動化測試, 測試結果歧義, 信心度, 品質工程]
+# 【規劃檔】AI 測試結果 schema：pass/fail 不夠用——素材與決策紀錄
+
+> 📂 **2026-06-16 狀態**：已生成完稿 → [source/_drafts/pass-fail-not-enough-for-ai-testing.md](../source/_drafts/pass-fail-not-enough-for-ai-testing.md)（排程 2026-06-24 發）。
+> **轉換時的兩個決定**：
+> 1. **拿掉「notest」這個詞**——使用者前兩份工作沒見過此詞、很可能是現公司 / 現工具特有，是指紋且讀者不熟。完稿改用「第三狀態」泛稱、把 notest 降為「某些團隊的叫法」之一。urlname 也從 `notest-ambiguity-...` 改成 `pass-fail-not-enough-for-ai-testing`。
+> 2. **去個人化**：同公司不同產品的對照 → 改成「我見過不同團隊的切法」（去掉「同公司」指紋）；自我反省段保留但不綁特定欄位名。
+>
+> 以下為原始規劃內容（素材庫 + 決策紀錄，保留供未來改版參考）。
+
 ---
 
-> ✏️ 這是一篇種子稿。等手上 [篩選後沒結果的歧義](/post/empty-result-ambiguity-in-filter-testing/) 寫完後展開。**姐妹篇 [ai-as-yes-man-rd-pm-trust-calibration](ai-as-yes-man-rd-pm-trust-calibration.md) 先於本篇上稿**（2026-05-13 訂）——本篇從 schema 層延伸它的提問清單。
+> ✏️ 原種子稿註記：等手上 [篩選後沒結果的歧義](/post/empty-result-ambiguity-in-filter-testing/) 寫完後展開。**姐妹篇 [ai-as-yes-man-rd-pm-trust-calibration](/post/ai-as-yes-man-rd-pm-trust-calibration/) 先於本篇上稿**（2026-05-13 訂）——本篇從 schema 層延伸它的提問清單。
 
 ---
 
