@@ -3,6 +3,16 @@
   
   <url>
     
+    <loc>https://jiamingla.github.io/post/cross-departmental-relation-and-social-roi/</loc>
+    
+    <lastmod>2026-06-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
     <loc>https://jiamingla.github.io/post/sdet-role-reflection-in-ai-era/</loc>
     
     <lastmod>2026-06-15</lastmod>
@@ -264,7 +274,7 @@
 
   <url>
     <loc>https://jiamingla.github.io</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
