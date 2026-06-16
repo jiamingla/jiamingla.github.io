@@ -330,7 +330,7 @@
                     
                          <blockquote>
 <p>✏️ 這是一篇專注於「QA 前端 UI 視角」的技術啟發式指南（Testing Heuristics Card）。</p>
-<p><strong>文章的核心價值</strong>：不在於字面上的定義（Definitions），而在於每個詞彙背後**「QA 該怎麼測」的雙維度測試啟發式思考**。無論你是後端背景想跨足前端，還是面臨 AI 自動生成案例時遇到詞彙缺口，這篇都將為用來幫助你奪回主導權，補上前端 UI 的最小生存集合。</p>
+<p><strong>文章的核心價值</strong>：不在於字面上的定義（Definitions），而在於每個詞彙背後 <strong>「QA 該怎麼測」的雙維度測試啟發式思考</strong> 。無論你是後端背景想跨足前端，還是面臨 AI 自動生成案例時遇到詞彙缺口，這篇都將為用來幫助你奪回主導權，補上前端 UI 的最小生存集合。</p>
 </blockquote>
 <hr>
 <h2 id="緣起：主管在週會上的抱怨——「AI-寫的測試案例，怎麼反而看不懂了？」"><a href="#緣起：主管在週會上的抱怨——「AI-寫的測試案例，怎麼反而看不懂了？」" class="headerlink" title="緣起：主管在週會上的抱怨——「AI 寫的測試案例，怎麼反而看不懂了？」"></a>緣起：主管在週會上的抱怨——「AI 寫的測試案例，怎麼反而看不懂了？」</h2><p>在今天早上的 QA 週會上，主管盯著一個由 AI 自動生成的測試案例，眉頭深鎖地說：</p>
@@ -438,7 +438,7 @@
 <tr>
 <td align="left"><strong>11. Optimistic UI</strong><br>(樂觀 UI)</td>
 <td align="left">用戶操作（如按讚、收藏、發表簡慢留言）後，UI <strong>先假設 API 會成功並立刻更新為成功狀態</strong>（紅心亮起、留言出現），提供極致順暢的體感。</td>
-<td align="left"><strong>關鍵防禦點</strong>：當 API 最終回傳失敗（如網路斷線、權限不足）時，UI 必須能夠**精確且平滑地 Rollback（回滾）**到操作前的狀態，並跳出 Toast 告知用戶「操作失敗，已為您復原」。</td>
+<td align="left"><strong>關鍵防禦點</strong>：當 API 最終回傳失敗（如網路斷線、權限不足）時，UI 必須能夠 <strong>精確且平滑地 Rollback（回滾）</strong> 到操作前的狀態，並跳出 Toast 告知用戶「操作失敗，已為您復原」。</td>
 </tr>
 </tbody></table>
 <hr>
@@ -467,7 +467,7 @@
 <tr>
 <td align="left"><strong>14. Validation states</strong><br>(校驗狀態)</td>
 <td align="left">出現錯誤時，輸入框外框、Helper text、前方 Icon 必須<strong>同步變為紅色（或警告色）</strong>；此狀態更新必須即時且顯眼。</td>
-<td align="left"><strong>無障礙防禦</strong>：提示不能僅依賴顏色（如只把框變紅），因為色盲用戶無法分辨。必須**同時搭配文字（Error message）或 Icon（如 ⚠️）**來傳達錯誤。</td>
+<td align="left"><strong>無障礙防禦</strong>：提示不能僅依賴顏色（如只把框變紅），因為色盲用戶無法分辨。必須 <strong>同時搭配文字（Error message）或 Icon（如 ⚠️）</strong> 來傳達錯誤。</td>
 </tr>
 <tr>
 <td align="left"><strong>15. Inline validation</strong><br>(即時校驗)</td>
@@ -494,7 +494,7 @@
 <tbody><tr>
 <td align="left"><strong>16. Breadcrumb</strong><br>(麵包屑)</td>
 <td align="left">能否精確呈現目前頁面在系統中的物理層級（如：首頁 &gt; 產品 &gt; 筆記型電腦）；除了「目前頁」不可點擊外，其煙每層連結都必須能正確跳轉。</td>
-<td align="left">當頁面層級極深或名稱極長時，麵包屑是否會撐破網頁版面，應有**中間路徑自動省略（如 …）**或自適應截斷的防禦機制。</td>
+<td align="left">當頁面層級極深或名稱極長時，麵包屑是否會撐破網頁版面，應有 <strong>中間路徑自動省略（如 …）</strong> 或自適應截斷的防禦機制。</td>
 </tr>
 <tr>
 <td align="left"><strong>17. Tab</strong><br>(標籤頁)</td>
@@ -533,7 +533,7 @@
 <tbody><tr>
 <td align="left"><strong>21. Tooltip</strong><br>(文字提示)</td>
 <td align="left">滑鼠懸停（Hover）在特定 Icon 上時，在鄰近位置平滑飄出小段說明文字；滑鼠移開後立刻平滑消失。</td>
-<td align="left"><strong>移動端防禦</strong>：手機沒有 Hover 事件，Tooltip 必須改為**「點擊觸發」且「點擊外部任何地方會關閉」**，否則手機用戶將永遠看不到此說明。</td>
+<td align="left"><strong>移動端防禦</strong>：手機沒有 Hover 事件，Tooltip 必須改為 <strong>「點擊觸發」且「點擊外部任何地方會關閉」</strong> ，否則手機用戶將永遠看不到此說明。</td>
 </tr>
 <tr>
 <td align="left"><strong>22. Popover</strong><br>(彈出浮層)</td>
