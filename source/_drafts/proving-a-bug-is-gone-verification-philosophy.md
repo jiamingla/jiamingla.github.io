@@ -110,3 +110,22 @@ QA 的工作是一輩子在替別人的系統尋找漏洞（Holes）。但做久
 *   *「我已經透過核心冒煙測試與邊界防禦，排除了最致命的商業風險。剩下那些未知的、在現有條件下測不了的邊界問題，我已經建立好了線上監控與回滾機制，有能力在它發生的第一時間知道並迅速反應。」*
 
 我們無法消滅所有的黑盒子。承認洞的存在，與系統的不確定性和平共處，然後帶著這份清醒繼續前行，這才是品質工程最成熟的終極當責。
+
+---
+
+## 💡 參考資料與醫學文獻
+
+本篇引用的醫學研究與數據整理如下：
+
+*   **患者自評與醫生量表的不一致率 (51% - 55%)**：
+    - *Comparison between self-administered depression questionnaires and patients' own views of their response to treatment* | [PMC8108392](https://pmc.ncbi.nlm.nih.gov/articles/PMC8108392/)
+    - *Concordance between clinician-rated and patient-reported depressive symptom severity in patients with major depressive disorder* | [PMC8672917](https://pmc.ncbi.nlm.nih.gov/articles/PMC8672917/)
+*   **「症狀緩解 (Remission)」與「功能性康復 (Recovery)」的分野**：
+    - *From symptom remission to functional recovery in depression* | [PMC9360322](https://pmc.ncbi.nlm.nih.gov/articles/PMC9360322/)
+*   **康復的嚴格定義與時間維度持續觀察**：
+    - *Defining and measuring recovery from depression: an umbrella review* | [Molecular Psychiatry (s41380-023-02298-3)](https://www.nature.com/articles/s41380-023-02298-3)
+*   **走完療程對降低復發率 (Relapse) 的影響 (37% vs. 18%)**：
+    - *Antidepressant discontinuation versus maintenance after remission in major depressive disorder: a systematic review and meta-analysis* | [Molecular Psychiatry (s41380-020-0843-0)](https://www.nature.com/articles/s41380-020-0843-0)
+*   **評估標準的缺失（沒有絕對基準的詮釋難題）**：
+    - *Clinical Global Impression (CGI) in liaison psychiatry* | [PMC9059324](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9059324/)
+
