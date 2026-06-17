@@ -53,21 +53,52 @@
 | 政治 | 高（跨部門、向上管理） | 幾乎無 |
 | 接的位置 | 接 Head 的椅 | 全新白紙 |
 
-**看似衝突，但有漂亮的 reconcile**：
-- **「新創第一位測試工程師」是「定義者」最純粹的形態**——沒有遺留流程、沒有組織政治、從白紙定義整間公司的品質。這比大組織 QA Head **更貼** mission statement「**從執行者升級成定義者**」（[ai-era-tw-qa-needs](ai-era-tw-qa-needs.md)）
-- 兩條可能是**序列**（大組織練方法論 → 帶去新創單兵應用），也可能是**真實偏好在移動**（從「管大組織」往「單兵建造」）
-- **這正是「別把對方定格、人會成長」用在自己身上**（連 [facing-overwhelm](facing-overwhelm-via-steelmanning-regression-vs-smoke.md) 6/17 那層）——**user 的 endgame 自己也在演化**
+**看似衝突，但 reconcile 很漂亮——而且兩條本質是同一套能力（user 6/17 點出）**：
 
-→ **不在現在解。8 月底鐵人賽心理體檢時，這是核心待答**：我要的到底是大組織 Head、還是新創單兵定義者？（或先後）
+**共同點（兩個 endgame 都需要、都在練）**：
+- **看懂局**（讀組織 / 產品 / 政治的真實結構）
+- **破局思維**（不被現狀框住）
+- **跟不同人交涉的能力**（PM / RD / 主管 / 老闆）
+- **帶人**——**「第一位測試」意味著後續是這個第一位去招、去帶第二位**。所以新創第一位 QA **不是永遠單兵**，是「**從零 founder QA 職能 → 帶第二、第三位**」= **從白紙長出來的 Head**
+
+→ **兩個 endgame 不是分岔、是同一套能力、不同起點**：
+| | 大組織 QA Head | 新創第一位測試工程師 |
+|---|---|---|
+| 起點 | 接 Head（Ming）的椅、繼承既有團隊 | 白紙、從零蓋 QA 職能 |
+| 終點 | 帶人、調度、product-embedded | **一樣帶人**（招並帶第二位）、定義整間公司品質 |
+| 共同能力 | 看懂局 + 破局 + 跨人交涉 + 帶人 | 同左 |
+
+- 補充：新創第一位也是**「定義者」最純形態**（沒遺留流程 / 政治、從白紙定義品質）——貼 mission statement「從執行者升級成定義者」（[ai-era-tw-qa-needs](ai-era-tw-qa-needs.md)）
+- **這正是「別把對方定格、人會成長」用在自己身上**（連 [facing-overwhelm](facing-overwhelm-via-steelmanning-regression-vs-smoke.md)）——endgame 在演化，但**核心能力不變、所以現在練的不會白費**
+
+→ **好消息**：因為兩條共用能力，**現在不必急著二選一**——你在大組織練的「看懂局 / 破局 / 交涉 / 帶人」，去新創一樣用得上。8 月底心理體檢時定的是「**起點選哪個**」、不是「能力練哪套」（能力同一套）。
 
 ---
 
-## niche 機會：中文圈「小團隊 / 單兵 QA」幾乎空白
+## niche 機會（⚠️ 2026-06-17 查證後大幅下修，別當藍海）
 
-- 中文圈「大組織 QA 方法論」少、但有人寫；「**新創 / 單兵 / 獨立開發者怎麼做品質**」**幾乎空白**
-- 台灣 indie / 接案 / SaaS 創業圈活躍——**沒有 QA、但需要品質思維**，是被忽略的讀者
-- 連 [ai-era-tw-qa-needs Gap 5](ai-era-tw-qa-needs.md)「中文圈方法論稀缺」——**規模維度是這個 niche 的新切面**
-- **比大組織更藍海**：大組織 QA 內容雖少還是有競爭；小團隊 QA 幾乎沒人佔
+> 🔍 **查證紀錄**：user 提醒「別在沒驗證前宣稱藍海」（QBT/Preely 那課）。WebSearch 後結果↓——**「單兵 / 新創第一位 QA」根本不是藍海**。
+
+| 語圈 | 真實狀況 |
+|---|---|
+| **英文** | **完全飽和**。專文一堆（Codacy / Codemify / 11Sigma / BrowserStack / Muuktest「0 budget」/ DEV「Lone QA Engineer」）+ 書《The QA Advantage》。**而且 framing 跟我們發想的撞**：「不只是 tester、是 shaping quality culture」（=定義者）、「small incremental improvements 建信任」（=影子工程師）、「8-12 工程師才招第一個 QA」、Playwright/API first |
+| **中文** | **較薄、但不空白**。有職涯介紹型（換日線〈12 年職涯錦囊〉含新創、GoFreight QA 經驗、叡揚職涯手冊），**少有「AI 時代 × 單兵建造方法論」的深度** |
+
+**真正的護城河不是「題目」、是「組合」**：
+- 「單兵 QA」topic 不原創（英文寫爛了）——它是**載體**、不是 moat
+- 真正稀缺 = **繁中 × AI 時代 × PDT 招牌 × 第一性原理/驗證哲學 × 個人敘事（水電工/Holes）** 的組合。**topic 撞沒關係，角度跟聲音不撞**
+- **英文那些文章是資產**：像引用 DavidKo 一樣讀它們、站在肩上寫繁中 AI 版，**別假裝自己第一個想到**
+
+**動筆前要做的**（同 QBT/Preely 紀律）：
+- 先讀 2-3 篇英文的（Codacy / Codemify roadmap / Muuktest 0-budget），確認我的角度跟它們的差異、可引用佐證
+- 中文版的差異點明確標：AI 時代 + PDT + 繁中個人敘事，不是「教你怎麼當第一個 QA」（那英文有了）
+
+**參考來源（動筆前讀）**：
+- [Codacy: First QA Engineer in a Startup](https://blog.codacy.com/first-qa-engineer-in-a-startup)
+- [Codemify: QA Startup Success Roadmap](https://codemify.com/qa-startup-success-roadmap)
+- [Muuktest: Build QA at a Startup, 0 Budget 5 Engineers](https://muuktest.com/blog/build-qa-startup-no-budget)
+- [Medium: Build QA with Only 1 Developer and 0 Testers](https://medium.com/qevolution/how-i-would-build-a-qa-process-in-a-startup-with-only-1-developer-and-0-testers-a4060427aa58)
+- 中文：[換日線〈12 年軟體測試工程師職涯錦囊〉](https://crossing.cw.com.tw/article/19008)
 
 ---
 

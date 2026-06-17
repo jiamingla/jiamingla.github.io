@@ -1,6 +1,6 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-06-11
+**最後更新**：2026-06-17
 **對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外大肆推廣。**6 月不推廣**——用「沒人在看」的空窗刻意練 publish-then-revise（發了再反覆讀、反覆改）來克服完美主義；國際社群（Ministry of Testing）試水延到**報名 iThome 鐵人賽的當週**才啟動（報名動作 = 「準備好對外」的觸發點，試水搭著那股氣勢一起做）。
 **並進文件**：
 - [writing-themes.md](writing-themes.md) — 13 條主題線的長期版圖（策略型，較少更新）
@@ -101,6 +101,10 @@
 - [pdt-coach-session-2026-05-28-insights.md](coach-sessions/2026-05-28-insights.md) — **Org-Signal Coach 三天**（5/28-30）：**本年地圖大校正**（Head 是支撐桿、接班 = 接 Head 不是 Manager）+ 跟接班對象第一次微妙分歧 + 混合動機承認 + 個人化歸因警覺 + Coach 5/30 主動踩煞車。新孕育 5 個文章角度（A 文「QBT 責任編輯」⭐⭐⭐⭐ + E 文「Coach 該何時叫使用者離開」⭐⭐⭐⭐ 最強）
 - [pdt-coach-session-2026-06-01-insights.md](coach-sessions/2026-06-01-insights.md) — **Org-Signal Coach 三天**（6/1-3）：**「被看見會自然發生」實證**（IB 事件鏈印證 5/28 權力地圖）+ 「工作不是全部的出口」personal 覺察 + 「你跟 QA-A 的分野」定位浮現（組織派 vs 技術派）+ 綠燈做決策 / 紅燈做執行內化。新孕育 8 個文章角度（C「組織派 vs 技術派」⭐⭐⭐⭐ + G「報告一眼看懂」⭐⭐⭐⭐ 最強、跟 [first-principle](software-testing-first-principle.md) 強連動）
 - [pdt-coach-session-2026-06-04-insights.md](coach-sessions/2026-06-04-insights.md) — **Org-Signal Coach 六天**（6/4-9）：**自己踩煞車能力成形**（自己診斷紅燈 + 切回 + 比 Coach 更務實判斷）+ 對外溝通內外有別（RD-Al 事件）+ 樞紐 ≠ 客服 reframe + 「想職涯是想工作的高級偽裝」（請假日鏡子）+ **核心測試發現「測不了的已知風險」**（[first-principle](software-testing-first-principle.md) 活案例）+ 讀懂 Head 不給 PM 太多文件原則（DTNO 例子、補 5/29 分歧）+ 跟同類型 PM-Ve 溝通的盲點。**新孕育 8 個文章角度**（A「測不了的已知風險」⭐⭐⭐⭐ + D「不會忙到沒成長」⭐⭐⭐⭐ + F「同類型人溝通盲點」⭐⭐⭐⭐ 最強）
+- [pdt-coach-session-2026-06-10-insights.md](coach-sessions/2026-06-10-insights.md) — **Org-Signal Coach 六天**（6/10-15）：**挖到核心矛盾**——「忙=價值」（信念 A、假）vs「聰明做事=價值」（信念 B、真），A 傷害 B、放掉 A 才解焦慮（用使用者自己三週的證據拆穿）+ 旺季交付 / 淡季投資策略分流（旺季成長=調度=Head 能力）+ 想像的忙 vs 真實的忙 + 辨識紅燈進化（事後也能辨識）+ 把問題問對人（PM vs RD-Ty）+ 假警報自我放大（停三秒回想做了什麼）+ 讀組織訊號轉向善意 + 「日常任務是主線的礦場」。**新孕育 6 個角度**（A「忙=價值假信念」⭐⭐⭐⭐ 最強 + B「日常任務是礦場」⭐⭐⭐）
+- [facing-overwhelm-via-steelmanning-regression-vs-smoke.md](facing-overwhelm-via-steelmanning-regression-vs-smoke.md) — **2026-06-17 骨架**：面對做不完（回歸 vs 冒煙 steelman）；做不完的煩悶=「不認同卻被迫做」、steelman 對方本金（規模化是 KPI+方向 align+燒 token 窗口）→ 從被迫變參與配置；多產品線放大（修一個 bug 驗 N 個 APP）；別把對方定格（Head 觀念也在演化）
+- [small-team-qa-content-and-startup-endgame.md](small-team-qa-content-and-startup-endgame.md) — **2026-06-17 戰略檔**：20 篇 19 篇預設大組織、只有 yes-man 跨規模；規模維度 lens（靠 AI/思維=跨規模、靠組織/政治=鎖大公司）；新職涯願景「新創第一位測試工程師」= 從白紙長出的 Head（與大組織 Head 同能力、不同起點）。⚠️ **查證後下修**：單兵 QA 英文圈飽和（含書）、中文較薄不空白，moat 是繁中×AI×PDT×個人敘事的組合不是 topic
+- [proving-a-bug-is-gone-verification-philosophy.md](proving-a-bug-is-gone-verification-philosophy.md) — **2026-06-16 骨架**：證明 bug「不存在」極難（認識論+成本兩種難）；護理師朋友視角（零個人健康揭露）；醫學研究打底（病人自評 vs 醫生量表不一致 51-55%）；8 類 bug 難度光譜；LLM 機率論放大難題
 - [pdt-vs-qbt-positioning.md](pdt-vs-qbt-positioning.md) — **2026-06-01 戰略檔**：QBT 不是業界 established term（WebSearch + Preely 驗證後）；Preely 的 QBT 在 UX 領域、不撞義；PDT 對內 / QBT 對外的雙層架構討論。**rebrand 成本評估：PDT 投資 47 檔案不划算**
 - [rethinking-regression-sequel-idea.md](rethinking-regression-sequel-idea.md) — 〈4 個刪測試問題加第 5 個〉的續篇 idea（5/15）
 - [yes-man-sequel-what-qa-still-owns.md](yes-man-sequel-what-qa-still-owns.md) — yes-man 發後讀者會問的續篇 idea（5/20）
