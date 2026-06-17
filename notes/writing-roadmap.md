@@ -76,6 +76,7 @@
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
+| [proving-a-bug-is-gone-verification-philosophy](../source/_drafts/proving-a-bug-is-gone-verification-philosophy.md) | 線一 / 線二 / 線九 | 2026-06-18 新生草稿，探討驗證 Bug 消失的哲學難題，包含身心科療程類比及 LLM 機率特徵。 |
 | [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已融入 AI 價值，暫不發布，保留作為個人技術與工程備忘 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
