@@ -113,9 +113,19 @@ QA 的工作是一輩子在替別人的系統尋找漏洞（Holes）。但做久
 
 ---
 
-## 💡 參考資料與醫學文獻
+## 💡 參考資料與文獻
 
-本篇引用的醫學研究與數據整理如下：
+### 1. 軟體品質與測試決策文獻
+
+*   **Elijah Ho (本站文章)**：
+    - [〈太多「無意義」的回歸測試嗎？〉](/post/rethinking-regression-test-value/) — 探討在資源約束下的回歸測試成本模型與風險策略。
+*   **Jersey Su**：
+    - [〈計畫趕得上變化〉](https://medium.com/@loverjersey/%E8%A8%88%E7%95%AB%E8%B6%95%E5%BE%97%E4%B8%8A%E8%AE%8A%E5%8C%96-4d960a76f429) — 探討應對快速變動的測試計畫實踐（One Page Test Plan / ACC 框架），強調品質是設計而非測試出來的。
+*   **David Ko (柯仁傑 / 敏捷三叔公)**：
+    - [〈軟體測試何時可以停止？〉](https://agile3uncles.com/) — 討論測試作為「資訊蒐集」而非「窮盡檢查」的本質，以及時間與預算限制下的結束指標（Exit Criteria）。
+    - 《軟體測試修練指南：我獨自升級的實戰心法》 — 書中針對測試執行流程、回歸測試策略、測試指標與何時停止測試有深入探討。
+
+### 2. 醫學研究與數據文獻
 
 *   **患者自評與醫生量表的不一致率 (51% - 55%)**：
     - *Comparison between self-administered depression questionnaires and patients' own views of their response to treatment* | [PMC8108392](https://pmc.ncbi.nlm.nih.gov/articles/PMC8108392/)
