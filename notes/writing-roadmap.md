@@ -1,6 +1,6 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-06-17
+**最後更新**：2026-06-18
 **對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外大肆推廣。**6 月不推廣**——用「沒人在看」的空窗刻意練 publish-then-revise（發了再反覆讀、反覆改）來克服完美主義；國際社群（Ministry of Testing）試水延到**報名 iThome 鐵人賽的當週**才啟動（報名動作 = 「準備好對外」的觸發點，試水搭著那股氣勢一起做）。
 **並進文件**：
 - [writing-themes.md](writing-themes.md) — 13 條主題線的長期版圖（策略型，較少更新）
@@ -63,11 +63,12 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（1 篇，在 _drafts/）
+### 完稿草稿待上稿（2 篇，在 _drafts/）
 
 | 文章 | 主題線 | 長尾 | 狀態備註 |
 |---|---|---|---|
 | [pass-fail-not-enough-for-ai-testing](../source/_drafts/pass-fail-not-enough-for-ai-testing.md) | 線二（AI 測試判讀） | ⭐⭐⭐ | **6/16 從規劃檔轉成完稿、排程 2026-06-24 發**。六月第一次「骨架→完稿」轉換 rep（測轉換速率）。拿掉 notest 詞（去指紋）、urlname 從 notest-... 改成 pass-fail-...。規劃記錄移至 [notes/ai-test-result-schema-planning.md](ai-test-result-schema-planning.md) |
+| [proving-a-bug-is-gone-verification-philosophy](../source/_drafts/proving-a-bug-is-gone-verification-philosophy.md) | 線一（測試哲學） / 線二 / 線九 | ⭐⭐⭐ | **6/18 完成並排程 2026-06-28 發**。探討驗證 Bug 消失的哲學與認識論難題、身心科療程類比、LLM 機率特徵。融入 David Ko 測試停止指標與 Cem Kaner Lesson 185，結尾提供讀者具體的下一步行動指南（溝通降噪、本金配置、線上顯影液）。 |
 
 > 註 1：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
 > 註 2：**bug-triage-six-patterns**——6/8 一度降為規劃檔（揭露邊界 gating），同日揭露邊界定案（前公司只示範 F+E、不掛 QA 第一手、現公司不寫）後**已生成全文並排程 2026-06-10**，移入 _posts/。規劃檔 [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) 保留決策紀錄。
@@ -76,7 +77,6 @@
 
 | 文章 | 主題線 | 狀態備註 |
 |---|---|---|
-| [proving-a-bug-is-gone-verification-philosophy](../source/_drafts/proving-a-bug-is-gone-verification-philosophy.md) | 線一 / 線二 / 線九 | 2026-06-18 新生草稿，探討驗證 Bug 消失的哲學難題，包含身心科療程類比及 LLM 機率特徵。 |
 | [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已融入 AI 價值，暫不發布，保留作為個人技術與工程備忘 |
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
@@ -105,7 +105,7 @@
 - [pdt-coach-session-2026-06-10-insights.md](coach-sessions/2026-06-10-insights.md) — **Org-Signal Coach 六天**（6/10-15）：**挖到核心矛盾**——「忙=價值」（信念 A、假）vs「聰明做事=價值」（信念 B、真），A 傷害 B、放掉 A 才解焦慮（用使用者自己三週的證據拆穿）+ 旺季交付 / 淡季投資策略分流（旺季成長=調度=Head 能力）+ 想像的忙 vs 真實的忙 + 辨識紅燈進化（事後也能辨識）+ 把問題問對人（PM vs RD-Ty）+ 假警報自我放大（停三秒回想做了什麼）+ 讀組織訊號轉向善意 + 「日常任務是主線的礦場」。**新孕育 6 個角度**（A「忙=價值假信念」⭐⭐⭐⭐ 最強 + B「日常任務是礦場」⭐⭐⭐）
 - [facing-overwhelm-via-steelmanning-regression-vs-smoke.md](facing-overwhelm-via-steelmanning-regression-vs-smoke.md) — **2026-06-17 骨架**：面對做不完（回歸 vs 冒煙 steelman）；做不完的煩悶=「不認同卻被迫做」、steelman 對方本金（規模化是 KPI+方向 align+燒 token 窗口）→ 從被迫變參與配置；多產品線放大（修一個 bug 驗 N 個 APP）；別把對方定格（Head 觀念也在演化）
 - [small-team-qa-content-and-startup-endgame.md](small-team-qa-content-and-startup-endgame.md) — **2026-06-17 戰略檔**：20 篇 19 篇預設大組織、只有 yes-man 跨規模；規模維度 lens（靠 AI/思維=跨規模、靠組織/政治=鎖大公司）；新職涯願景「新創第一位測試工程師」= 從白紙長出的 Head（與大組織 Head 同能力、不同起點）。⚠️ **查證後下修**：單兵 QA 英文圈飽和（含書）、中文較薄不空白，moat 是繁中×AI×PDT×個人敘事的組合不是 topic
-- [proving-a-bug-is-gone-verification-philosophy.md](proving-a-bug-is-gone-verification-philosophy.md) — **2026-06-16 骨架**：證明 bug「不存在」極難（認識論+成本兩種難）；護理師朋友視角（零個人健康揭露）；醫學研究打底（病人自評 vs 醫生量表不一致 51-55%）；8 類 bug 難度光譜；LLM 機率論放大難題
+- [proving-a-bug-is-gone-verification-philosophy.md](proving-a-bug-is-gone-verification-philosophy.md) — **2026-06-16 骨架**：證明 bug「不存在」極難（認識論+成本兩種難）；護理師朋友視角（零個人健康揭露）；醫學研究打底（病人自評 vs 醫生量表不一致 51-55%）；8 類 bug 難度光譜；LLM 機率論放大難題（於 6/18 完稿，併入 David Ko 測試停止與 Lesson 185 討論）
 - [pdt-vs-qbt-positioning.md](pdt-vs-qbt-positioning.md) — **2026-06-01 戰略檔**：QBT 不是業界 established term（WebSearch + Preely 驗證後）；Preely 的 QBT 在 UX 領域、不撞義；PDT 對內 / QBT 對外的雙層架構討論。**rebrand 成本評估：PDT 投資 47 檔案不划算**
 - [rethinking-regression-sequel-idea.md](rethinking-regression-sequel-idea.md) — 〈4 個刪測試問題加第 5 個〉的續篇 idea（5/15）
 - [yes-man-sequel-what-qa-still-owns.md](yes-man-sequel-what-qa-still-owns.md) — yes-man 發後讀者會問的續篇 idea（5/20）
@@ -272,6 +272,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | **page-source-vs-find-element** | page_source vs find_element、UI 自動化效能 | ⭐⭐⭐⭐ | 已排 6/20，極具長尾 |
 | **empty-result-ambiguity-in-filter-testing** | 篩選沒結果、自動化測試 empty | ⭐⭐⭐ | 已排 6/6 |
 | **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | ✅ **已上稿 2026-06-12** |
+| **proving-a-bug-is-gone-verification-philosophy** | 證明 Bug 消失、測試何時結束、軟體測試哲學 | ⭐⭐⭐ | ✅ **已排程 2026-06-28** |
 | **notest-ambiguity-skip-vs-low-confidence** | AI 測試 pass fail 不夠、notest 歧義 | ⭐⭐⭐ | 6 月中後 |
 | **pom-refactor-from-runnable-to-maintainable** | POM 重構、Page Object Pattern | ⭐⭐⭐ | 暫不發布（作為個人技術與工程備忘） |
 | **letter-to-new-qa-two-day-regression** | 新進 QA、兩天回歸測試 | ⭐⭐ | 5/24-25（已建議） |
