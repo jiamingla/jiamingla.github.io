@@ -40,6 +40,18 @@
 
 ---
 
+## 🟢 你已經有單兵實證了：smoke 框架（2026-06-17）
+
+> 今早焦慮「我沒單兵作戰經驗、不知道哪些能寫」——**但你手上的 smoke 框架就是單兵實戰**：
+
+- 一個人（「發想與維護：Elijah」）設計一套服務 **7 個 APP、4 種架構**的冒煙框架、共用 `pages/` 一行未改（`AutoTesting/Author/smoke_script/`，去識別版 [smoke-test-golden-set-spec](smoke-test-golden-set-spec.md)）
+- 「給 AI 半小時調定位器、人工 review」= 單兵 + AI 的真實工作法
+- **這比大多數「新創第一位 QA」更硬的單兵實戰**——你不是沒經驗、是還沒意識到這就是那個經驗
+
+→ 寫單兵 / 小團隊文時，**這套框架是你最強的第一手素材**（去識別後）。連 [writing-without-lived-experience](writing-without-lived-experience-honest-stance.md) 的「能寫 vs 別硬寫」：smoke 框架是 ✅ 能寫的真實經驗，不是推演。
+
+---
+
 ## 🎯 職涯願景：新創的第一位測試工程師（6/17 新 surface）
 
 > user：「單兵策略就是我想寫的，我也算期待兩三年後能夠成為新創的第一位測試工程師。」
