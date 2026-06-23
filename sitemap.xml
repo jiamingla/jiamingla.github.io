@@ -3,6 +3,16 @@
   
   <url>
     
+    <loc>https://jiamingla.github.io/post/proving-a-bug-is-gone-verification-philosophy/</loc>
+    
+    <lastmod>2026-06-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    
     <loc>https://jiamingla.github.io/post/pass-fail-not-enough-for-ai-testing/</loc>
     
     <lastmod>2026-06-18</lastmod>
@@ -284,7 +294,7 @@
 
   <url>
     <loc>https://jiamingla.github.io</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
