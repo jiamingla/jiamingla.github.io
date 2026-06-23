@@ -38,8 +38,8 @@ AI 幫你跑完 200 個測試案例，交給你一張結果表。
 
 | 性質 | 這 30 筆裡的例子 | 本質 |
 |---|---|---|
-| **ought but can't**（應測、但測不到） | 案例跟不上改動了，或 AI 就是做不到 | 外部限制——值得被看見、值得補資源 |
-| **ought but won't**（應測、但不想測） | 這次價值不夠、步驟太麻煩、要改環境、要跨部門喬 | 內部選擇——容易被同一欄包裝掉 |
+| **ought but can't**<br>（應測、但測不到） | 案例跟不上改動了，<br>或 AI 就是做不到 | 外部限制——<br>值得被看見、值得補資源 |
+| **ought but won't**<br>（應測、但不想測） | 這次價值不夠、步驟太麻煩、<br>要改環境、要跨部門喬 | 內部選擇——<br>容易被同一欄包裝掉 |
 
 > 假設這 30 筆裡有一筆，理由欄寫「資料量太少不重要」。這可能是「真的不值得測」，也可能是「測起來太麻煩，我用『不重要』包裝它」。**欄位本身分不出這兩種。**
 
@@ -78,10 +78,10 @@ AI 幫你跑完 200 個測試案例，交給你一張結果表。
 
 | 欄位 | 取值 | 說明 |
 |---|---|---|
-| **execution** | `done` / `aborted` / `not_started` | 跑了沒、有沒有跑完 |
-| **verdict** | `pass` / `fail` / `inconclusive` / `skipped_by_design` | 跑了的話結論是什麼 |
-| **confidence** | `high` / `medium` / `low` | 對 verdict 的信心 |
-| **action** | `accept` / `human_review` / `rerun` / `fix_env` / `update_spec` | 下一步建議 |
+| **execution** | `done` /<br>`aborted` /<br>`not_started` | 跑了沒、有沒有跑完 |
+| **verdict** | `pass` /<br>`fail` /<br>`inconclusive` /<br>`skipped_by_design` | 跑了的話結論是什麼 |
+| **confidence** | `high` /<br>`medium` /<br>`low` | 對 verdict 的信心 |
+| **action** | `accept` /<br>`human_review` /<br>`rerun` /<br>`fix_env` /<br>`update_spec` | 下一步建議 |
 
 再加一個自由文本 **`evidence`**：記錄「為什麼下這個 verdict」+「不確定來自哪」。
 
@@ -104,8 +104,8 @@ AI 幫你跑完 200 個測試案例，交給你一張結果表。
 
 | 你手上的資訊 | 你能做的事 | 心理結果 |
 |---|---|---|
-| **稀薄**（只有 `pass / fail / 未測`） | 只能整批接受 / 整批拒絕 | **不敢簽**——簽下去等於空白支票 |
-| **豐富**（多軸 + evidence） | 可以精準同意一部分、挑戰一部分 | **敢簽**——知道自己同意了什麼 |
+| **稀薄**<br>（只有 `pass / fail / 未測`） | 只能整批接受 /<br>整批拒絕 | **不敢簽**——<br>簽下去等於空白支票 |
+| **豐富**<br>（多軸 + evidence） | 可以精準同意一部分、<br>挑戰一部分 | **敢簽**——<br>知道自己同意了什麼 |
 
 **schema 的豐富度，是 QA 願意當「責任承擔者」的前提。** 沒有 evidence trail，QA 簽下去等於空白支票；有了它，QA 簽下去是對特定主張的背書。
 

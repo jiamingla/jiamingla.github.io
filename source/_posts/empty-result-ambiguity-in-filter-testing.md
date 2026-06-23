@@ -17,8 +17,8 @@ tags: [軟體測試, 自動化測試, 測試設計, 篩選功能, 測試決策, 
 
 | 種類 | 描述 | 該回什麼 |
 |---|---|---|
-| ✅ 真空 | 篩選邏輯正確，資料源剛好沒有符合條件的項目（合理的查無資料） | `pass` |
-| ❌ 偽空 | 篩選 bug、後端錯誤、UI 沒渲染 | `fail` |
+| ✅ 真空 | 篩選邏輯正確，<br>資料源剛好沒有符合條件的項目<br>（合理的查無資料） | `pass` |
+| ❌ 偽空 | 篩選 bug、後端錯誤、<br>UI 沒渲染 | `fail` |
 
 兩種「空」在 UI 上**長得一模一樣**，自動化沒辦法直接分辨。
 
@@ -75,11 +75,11 @@ else:
 
 舉個具體例子（金融資訊 APP）：
 
-| 篩選條件 | 外部信號（市場大盤方向） | empty 是否合理 |
+| 篩選條件 | 外部信號<br>（市場大盤方向） | empty 是否合理 |
 |---|---|---|
-| 漲幅 ≥ 5% | 大盤下跌 | ✅ 合理（市場跌的時候，漲幅高的個股自然少） |
+| 漲幅 ≥ 5% | 大盤下跌 | ✅ 合理<br>（市場跌的時候，<br>漲幅高的個股自然少） |
 | 跌幅 ≥ 5% | 大盤上漲 | ✅ 合理（同上反向） |
-| 任何「≥ 0%」系列 | 任何 | ❌ 永遠不合理（任何時候都該有個股漲跌幅 ≥ 0%） |
+| 任何「≥ 0%」系列 | 任何 | ❌ 永遠不合理<br>（任何時候都該有<br>個股漲跌幅 ≥ 0%） |
 | 其他組合 | — | 保守視為不合理 |
 
 寫起來很短：
@@ -152,8 +152,8 @@ def verify_filter_consistent_with_unfiltered(filter_name, expected_codes_fn):
 
 | 驗證方式 | 描述 | 抓得到的 bug |
 |---|---|---|
-| **單向驗證**（actual ⊂ expected） | 只檢查 actual 中每筆是否符合條件 | False positive（多顯示） |
-| **雙向驗證**（actual == expected） | 檢查兩個集合是否完全一樣 | False positive + false negative（漏顯示） |
+| **單向驗證**<br>（actual ⊂ expected） | 只檢查 actual 中<br>每筆是否符合條件 | False positive<br>（多顯示） |
+| **雙向驗證**<br>（actual == expected） | 檢查兩個集合<br>是否完全一樣 | False positive +<br>false negative<br>（漏顯示） |
 
 原本驗證設計是單向：「APP 顯示的要符合條件」。但方案 5 的實作天然是雙向的——它順便把驗證升級了。
 
@@ -195,8 +195,8 @@ def verify_filter_consistent_with_unfiltered(filter_name, expected_codes_fn):
 
 | 立場 | 主張 | 理由 |
 |---|---|---|
-| **純 POM 派**（嚴格） | Page 只該封裝「頁面操作 + 狀態查詢」，不負責測試邏輯 | POM 描述「頁面長什麼樣」，不是「測試怎麼判斷對錯」——後者屬於 test layer（測試層） |
-| **實用派**（寬鬆） | POM 可以提供 verification helpers（驗證輔助方法）是合理的「商業邏輯封裝」 | 避免每個 case 重複輪子（DRY），test script 保持宣告式 |
+| **純 POM 派**<br>（嚴格） | Page 只該封裝<br>「頁面操作 + 狀態查詢」，<br>不負責測試邏輯 | POM 描述「頁面長什麼樣」，<br>不是「測試怎麼判斷對錯」<br>——後者屬於 test layer<br>（測試層） |
+| **實用派**<br>（寬鬆） | POM 可以提供<br>verification helpers<br>（驗證輔助方法）<br>是合理的「商業邏輯封裝」 | 避免每個 case 重複輪子（DRY），<br>test script 保持宣告式 |
 
 我們選擇實用派，理由：
 

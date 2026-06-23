@@ -62,12 +62,12 @@ tags: [職涯發展, SDET, QA, SRE, AI時代, 軟體工程, 組織管理]
 
 同理， **SDET 的核心價值，是建構「測試基礎設施（Test Infrastructure）」與推動「工程效能（Developer Productivity Engineering, DPE）」** 。
 
-| 維度 | SRE (Site Reliability Engineer) | SDET (Software Development Engineer in Test) |
+| 維度 | SRE<br>(Site Reliability Engineer) | SDET<br>(Software Development Engineer in Test) |
 | :--- | :--- | :--- |
-| **外界的誤解** | 幫 RD 手動部署、寫開機腳本 | 幫 RD 做 Code Review、手動點點測試 |
+| **外界的誤解** | 幫 RD 手動部署、<br>寫開機腳本 | 幫 RD 做 Code Review、<br>手動點點測試 |
 | **真實核心價值** | **建構運維與部署基礎設施** | **建構自動化測試與品質基礎設施** |
-| **具體交付物** | CI/CD 流水線、Kubernetes 集群、監控看板、容災架構 | 自動化測試框架封裝、測試資料生成平台、環境自動還原工具、測試成效看板 |
-| **終極目標** | 讓 RD 能夠快速、安全且無痛地把程式發布上線 | 讓 RD 能夠快速、安全地獲取測試反饋，自己為品質把關 |
+| **具體交付物** | CI/CD 流水線、<br>Kubernetes 集群、<br>監控看板、容災架構 | 自動化測試框架封裝、<br>測試資料生成平台、<br>環境自動還原工具、<br>測試成效看板 |
+| **終極目標** | 讓 RD 能夠快速、安全<br>且無痛地把程式發布上線 | 讓 RD 能夠快速、安全地<br>獲取測試反饋，<br>自己為品質把關 |
 
 SDET 不是代替 RD 寫測試，而是**為 RD 鋪路**。他們開發工具、封裝框架，讓 RD 在寫完程式時，能在一分鐘內拿到可信賴的測試反饋，而不是每天花時間去調整不穩定的 UI Locator 或應付 Flaky Test。
 

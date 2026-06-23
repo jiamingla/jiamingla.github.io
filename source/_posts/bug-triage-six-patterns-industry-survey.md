@@ -46,12 +46,12 @@ tags: [軟體測試, Bug 治理, 跨團隊協作, 組織設計, 入門, QA, PM, 
 
 | 模式 | 預設給誰 | 典型場景 | 優點 | 代價 |
 |---|---|---|---|---|
-| **A. PM 預設** | Product Manager | B2C 消費型、product-led 組織 | 商業優先級判斷準 | 缺技術深度，severity 估不準、難 dedup |
-| **B. Tech Lead 預設** | RD lead / 模組 owner | 工程主導的 startup、infra team | 修復難度估得準 | 商業權重失衡，使用者體驗的 bug 容易被低估 |
-| **C. QA 預設** | QA team / QA lead | 金融、醫療、高合規 enterprise | dedup 與 severity 校準一致 | **QA 變成 default janitor（預設清潔工）** |
-| **D. 未分派佇列** | 任何人 pick up | Open source、客服中心 | 負載自然平均 | **無主之地，bug 默默老化** |
-| **E. Triage 委員會** | 每週開會決定 | 跨部門大委員會（微軟 / Google 經典）；也有 cross-functional team 內部的輕量版 | ownership 顯式、爭議當場解 | 會議開銷大、bug 要等到下次會議 |
-| **F. 模組 owner / CODEOWNER** | 程式區域的 owner | 大型 codebase | domain expertise 對位 | 跨模組的 bug 卡在邊界、互推 |
+| **A. PM 預設** | Product Manager | B2C 消費型、<br>product-led 組織 | 商業優先級<br>判斷準 | 缺技術深度，<br>severity 估不準、<br>難 dedup |
+| **B. Tech Lead 預設** | RD lead /<br>模組 owner | 工程主導的 startup、<br>infra team | 修復難度<br>估得準 | 商業權重失衡，<br>使用者體驗的 bug<br>容易被低估 |
+| **C. QA 預設** | QA team /<br>QA lead | 金融、醫療、<br>高合規 enterprise | dedup 與 severity<br>校準一致 | **QA 變成<br>default janitor<br>（預設清潔工）** |
+| **D. 未分派佇列** | 任何人<br>pick up | Open source、<br>客服中心 | 負載自然<br>平均 | **無主之地，<br>bug 默默老化** |
+| **E. Triage 委員會** | 每週開會<br>決定 | 跨部門大委員會<br>（微軟/Google 經典）；<br>也有 cross-functional<br>team 內部的輕量版 | ownership 顯式、<br>爭議當場解 | 會議開銷大、<br>bug 要等到<br>下次會議 |
+| **F. 模組 owner / CODEOWNER** | 程式區域的<br>owner | 大型<br>codebase | domain expertise<br>對位 | 跨模組的 bug<br>卡在邊界、互推 |
 
 幾個值得展開的觀察：
 
@@ -75,13 +75,13 @@ tags: [軟體測試, Bug 治理, 跨團隊協作, 組織設計, 入門, QA, PM, 
 
 | 做法 | 邏輯 | 局限 |
 |---|---|---|
-| **Bug bash** | 釋出前全團隊集中獵 bug，有時帶獎勵 | 是釋出前的 surge capacity，**不解既有 backlog** |
-| **Bug bankruptcy** | 定期把超過 N 天未處理的 bug 全部 close | 真 bug 被一起殺掉，製造「乾淨了」的**假信號** |
-| **Zero bug policy** | bug 一進來 24–48 小時內必須 triage | 需要有人專職盯，成本高 |
-| **只看 severity** | 只處理 S1 / S2，S3 / S4 永遠在 backlog | paper cuts 累積，體驗一點一點折損 |
-| **Fix-it Friday / 修 bug 衝刺** | 每隔幾個 sprint 撥時間清 backlog | 治標，不改變 bug 流進來的流程 |
-| **SLA 分級** | 客戶報的有回應 SLA，內部報的沒有 | **二級制度**，內部發現的 bug 被餓死 |
-| **Embedded QA / shift-left** | QA 跟開發團隊同坐，開發中即時 triage | 治本，但需要組織結構改造 |
+| **Bug bash** | 釋出前全團隊<br>集中獵 bug，<br>有時帶獎勵 | 是釋出前的<br>surge capacity，<br>**不解既有 backlog** |
+| **Bug bankruptcy** | 定期把超過 N 天<br>未處理的 bug<br>全部 close | 真 bug 被一起殺掉，<br>製造「乾淨了」的<br>**假信號** |
+| **Zero bug policy** | bug 一進來<br>24–48 小時內<br>必須 triage | 需要有人專職盯，<br>成本高 |
+| **只看 severity** | 只處理 S1 / S2，<br>S3 / S4 永遠在<br>backlog | paper cuts 累積，<br>體驗一點一點折損 |
+| **Fix-it Friday / 修 bug 衝刺** | 每隔幾個 sprint<br>撥時間清 backlog | 治標，不改變<br>bug 流進來的流程 |
+| **SLA 分級** | 客戶報的有回應 SLA，<br>內部報的沒有 | **二級制度**，<br>內部發現的 bug<br>被餓死 |
+| **Embedded QA / shift-left** | QA 跟開發團隊同坐，<br>開發中即時 triage | 治本，但需要<br>組織結構改造 |
 
 這裡面我想特別點一個 **bug bankruptcy** 的隱形代價——它的痛不只是「假信號」這麼技術性。
 
