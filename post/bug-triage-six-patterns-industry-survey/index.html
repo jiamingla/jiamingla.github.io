@@ -371,44 +371,44 @@
 <tbody><tr>
 <td><strong>A. PM 預設</strong></td>
 <td>Product Manager</td>
-<td>B2C 消費型、product-led 組織</td>
-<td>商業優先級判斷準</td>
-<td>缺技術深度，severity 估不準、難 dedup</td>
+<td>B2C 消費型、<br>product-led 組織</td>
+<td>商業優先級<br>判斷準</td>
+<td>缺技術深度，<br>severity 估不準、<br>難 dedup</td>
 </tr>
 <tr>
 <td><strong>B. Tech Lead 預設</strong></td>
-<td>RD lead &#x2F; 模組 owner</td>
-<td>工程主導的 startup、infra team</td>
-<td>修復難度估得準</td>
-<td>商業權重失衡，使用者體驗的 bug 容易被低估</td>
+<td>RD lead &#x2F;<br>模組 owner</td>
+<td>工程主導的 startup、<br>infra team</td>
+<td>修復難度<br>估得準</td>
+<td>商業權重失衡，<br>使用者體驗的 bug<br>容易被低估</td>
 </tr>
 <tr>
 <td><strong>C. QA 預設</strong></td>
-<td>QA team &#x2F; QA lead</td>
-<td>金融、醫療、高合規 enterprise</td>
-<td>dedup 與 severity 校準一致</td>
-<td><strong>QA 變成 default janitor（預設清潔工）</strong></td>
+<td>QA team &#x2F;<br>QA lead</td>
+<td>金融、醫療、<br>高合規 enterprise</td>
+<td>dedup 與 severity<br>校準一致</td>
+<td><strong>QA 變成<br>default janitor<br>（預設清潔工）</strong></td>
 </tr>
 <tr>
 <td><strong>D. 未分派佇列</strong></td>
-<td>任何人 pick up</td>
-<td>Open source、客服中心</td>
-<td>負載自然平均</td>
-<td><strong>無主之地，bug 默默老化</strong></td>
+<td>任何人<br>pick up</td>
+<td>Open source、<br>客服中心</td>
+<td>負載自然<br>平均</td>
+<td><strong>無主之地，<br>bug 默默老化</strong></td>
 </tr>
 <tr>
 <td><strong>E. Triage 委員會</strong></td>
-<td>每週開會決定</td>
-<td>跨部門大委員會（微軟 &#x2F; Google 經典）；也有 cross-functional team 內部的輕量版</td>
-<td>ownership 顯式、爭議當場解</td>
-<td>會議開銷大、bug 要等到下次會議</td>
+<td>每週開會<br>決定</td>
+<td>跨部門大委員會<br>（微軟&#x2F;Google 經典）；<br>也有 cross-functional<br>team 內部的輕量版</td>
+<td>ownership 顯式、<br>爭議當場解</td>
+<td>會議開銷大、<br>bug 要等到<br>下次會議</td>
 </tr>
 <tr>
 <td><strong>F. 模組 owner &#x2F; CODEOWNER</strong></td>
-<td>程式區域的 owner</td>
-<td>大型 codebase</td>
-<td>domain expertise 對位</td>
-<td>跨模組的 bug 卡在邊界、互推</td>
+<td>程式區域的<br>owner</td>
+<td>大型<br>codebase</td>
+<td>domain expertise<br>對位</td>
+<td>跨模組的 bug<br>卡在邊界、互推</td>
 </tr>
 </tbody></table>
 <p>幾個值得展開的觀察：</p>
@@ -432,38 +432,38 @@
 </thead>
 <tbody><tr>
 <td><strong>Bug bash</strong></td>
-<td>釋出前全團隊集中獵 bug，有時帶獎勵</td>
-<td>是釋出前的 surge capacity，<strong>不解既有 backlog</strong></td>
+<td>釋出前全團隊<br>集中獵 bug，<br>有時帶獎勵</td>
+<td>是釋出前的<br>surge capacity，<br><strong>不解既有 backlog</strong></td>
 </tr>
 <tr>
 <td><strong>Bug bankruptcy</strong></td>
-<td>定期把超過 N 天未處理的 bug 全部 close</td>
-<td>真 bug 被一起殺掉，製造「乾淨了」的<strong>假信號</strong></td>
+<td>定期把超過 N 天<br>未處理的 bug<br>全部 close</td>
+<td>真 bug 被一起殺掉，<br>製造「乾淨了」的<br><strong>假信號</strong></td>
 </tr>
 <tr>
 <td><strong>Zero bug policy</strong></td>
-<td>bug 一進來 24–48 小時內必須 triage</td>
-<td>需要有人專職盯，成本高</td>
+<td>bug 一進來<br>24–48 小時內<br>必須 triage</td>
+<td>需要有人專職盯，<br>成本高</td>
 </tr>
 <tr>
 <td><strong>只看 severity</strong></td>
-<td>只處理 S1 &#x2F; S2，S3 &#x2F; S4 永遠在 backlog</td>
-<td>paper cuts 累積，體驗一點一點折損</td>
+<td>只處理 S1 &#x2F; S2，<br>S3 &#x2F; S4 永遠在<br>backlog</td>
+<td>paper cuts 累積，<br>體驗一點一點折損</td>
 </tr>
 <tr>
 <td><strong>Fix-it Friday &#x2F; 修 bug 衝刺</strong></td>
-<td>每隔幾個 sprint 撥時間清 backlog</td>
-<td>治標，不改變 bug 流進來的流程</td>
+<td>每隔幾個 sprint<br>撥時間清 backlog</td>
+<td>治標，不改變<br>bug 流進來的流程</td>
 </tr>
 <tr>
 <td><strong>SLA 分級</strong></td>
-<td>客戶報的有回應 SLA，內部報的沒有</td>
-<td><strong>二級制度</strong>，內部發現的 bug 被餓死</td>
+<td>客戶報的有回應 SLA，<br>內部報的沒有</td>
+<td><strong>二級制度</strong>，<br>內部發現的 bug<br>被餓死</td>
 </tr>
 <tr>
 <td><strong>Embedded QA &#x2F; shift-left</strong></td>
-<td>QA 跟開發團隊同坐，開發中即時 triage</td>
-<td>治本，但需要組織結構改造</td>
+<td>QA 跟開發團隊同坐，<br>開發中即時 triage</td>
+<td>治本，但需要<br>組織結構改造</td>
 </tr>
 </tbody></table>
 <p>這裡面我想特別點一個 <strong>bug bankruptcy</strong> 的隱形代價——它的痛不只是「假信號」這麼技術性。</p>

@@ -351,18 +351,18 @@
 </thead>
 <tbody><tr>
 <td><strong>第一層：實體系統（如馬克杯）</strong></td>
-<td>物理極限明確，邊界可窮盡。</td>
-<td><strong>容易</strong>。改物理材質，耐熱&#x2F;容量可被算乾淨。</td>
+<td>物理極限明確，<br>邊界可窮盡。</td>
+<td><strong>容易</strong>。改物理材質，<br>耐熱&#x2F;容量可被算乾淨。</td>
 </tr>
 <tr>
 <td><strong>第二層：傳統軟體系統</strong></td>
-<td>邏輯決定論（Deterministic），但我們自己寫的 Code 通常只佔系統整體的 1% 到 10%，其餘是由開源套件、資料庫、作業系統與第三方 API 交織而成的龐大黑盒。</td>
-<td><strong>難</strong>。RD 修改了一行程式碼說「應該修好了，你測測看」，QA 在驗證時本質上是在盲人摸象。</td>
+<td>邏輯決定論（Deterministic），<br>但我們自己寫的 Code<br>通常只佔系統整體的 1% 到 10%，<br>其餘是由開源套件、資料庫、<br>作業系統與第三方 API<br>交織而成的龐大黑盒。</td>
+<td><strong>難</strong>。RD 修改了一行程式碼說<br>「應該修好了，你測測看」，<br>QA 在驗證時本質上是在盲人摸象。</td>
 </tr>
 <tr>
 <td><strong>第三層：AI 與 LLM 系統</strong></td>
-<td><strong>機率論（Probabilistic）</strong>。系統沒有固定的邏輯路徑，連開發者也無法精確解釋模型是如何產出某個特定答案的。</td>
-<td><strong>幾乎不可能</strong>。微調了 Prompt 或調整了參數後，我們要輸入多少排列組合的測試資料，才敢宣稱它「永遠不會再產生幻覺（Hallucination）」？</td>
+<td><strong>機率論（Probabilistic）</strong>。<br>系統沒有固定的邏輯路徑，<br>連開發者也無法精確解釋模型<br>是如何產出某個特定答案的。</td>
+<td><strong>幾乎不可能</strong>。微調了 Prompt<br>或調整了參數後，<br>我們要輸入多少排列組合的<br>測試資料，才敢宣稱它<br>「永遠不會再產生幻覺<br>（Hallucination）」？</td>
 </tr>
 </tbody></table>
 <p>在傳統軟體中，雖然我們面對的是龐大的第三方接縫，但底層邏輯好歹是「決定論」——同樣的輸入在同樣的環境下，理論上應該得到同樣的輸出。</p>
@@ -395,49 +395,49 @@
 <td>按鈕點擊後沒有跳轉</td>
 <td>是</td>
 <td>低</td>
-<td>修復與驗證範圍一致，測過該路徑即可。</td>
+<td>修復與驗證範圍一致，<br>測過該路徑即可。</td>
 </tr>
 <tr>
 <td><strong>配置 &#x2F; 環境型</strong></td>
-<td>修改 k8s 的一行 <code>config.yaml</code> 參數</td>
+<td>修改 k8s 的一行<br><code>config.yaml</code> 參數</td>
 <td>是</td>
 <td><strong>高成本</strong></td>
-<td><strong>修復只需 5 秒改一行；驗證卻需要跑過受該配置影響的整組微服務</strong>。這就是典型的「成本難」。</td>
+<td><strong>修復只需 5 秒改一行；<br>驗證卻需要跑過<br>受該配置影響的整組微服務</strong>。<br>這就是典型的「成本難」。</td>
 </tr>
 <tr>
 <td><strong>整合 &#x2F; 接縫型</strong></td>
-<td>兩個模組各自單測正確，接起來壞掉</td>
+<td>兩個模組各自單測正確，<br>接起來壞掉</td>
 <td>部分</td>
 <td>中</td>
-<td>改動一側需要重新驗證兩者之間的所有互動邊界。</td>
+<td>改動一側需要重新驗證<br>兩者之間的所有互動邊界。</td>
 </tr>
 <tr>
 <td><strong>效能 &#x2F; 負載型</strong></td>
-<td>系統在高併發或巨量資料下崩潰</td>
+<td>系統在高併發或<br>巨量資料下崩潰</td>
 <td>否</td>
 <td>高</td>
-<td>必須在測試環境複製「規模與時間變數」才驗得到。</td>
+<td>必須在測試環境複製<br>「規模與時間變數」才驗得到。</td>
 </tr>
 <tr>
 <td><strong>偶發 &#x2F; Race Condition</strong></td>
-<td>多執行緒在特定時序下會鎖死</td>
+<td>多執行緒在特定時序下<br>會鎖死</td>
 <td>否</td>
 <td>極高</td>
-<td>測 100 次沒發生不代表沒有——典型的「認識論難」。</td>
+<td>測 100 次沒發生不代表沒有<br>——典型的「認識論難」。</td>
 </tr>
 <tr>
 <td><strong>資安 &#x2F; 邏輯漏洞</strong></td>
 <td>繞過驗證進行越權存取</td>
 <td>否</td>
 <td>極高</td>
-<td>證明漏洞不存在，等於要對「所有惡意輸入」證明全稱否定。</td>
+<td>證明漏洞不存在，<br>等於要對「所有惡意輸入」<br>證明全稱否定。</td>
 </tr>
 <tr>
 <td><strong>LLM &#x2F; 機率型</strong></td>
-<td>模型在特定語境下吐出偏見或幻覺</td>
+<td>模型在特定語境下<br>吐出偏見或幻覺</td>
 <td>否</td>
 <td>幾乎不可能</td>
-<td>樣本空間無限，同一個 Prompt 執行兩次可能結果相異。</td>
+<td>樣本空間無限，<br>同一個 Prompt 執行兩次<br>可能結果相異。</td>
 </tr>
 </tbody></table>
 <p>當開發人員修改了一個 Race Condition 的 Bug，對著 QA 說：「我改了那行程式碼，應該修好了，你測測看。」這句話背後隱含的，其實是將整個系統的「最終不確定性風險」，轉嫁到了測試人員的身上。</p>

@@ -21,10 +21,12 @@ home.announcement	的句子太長了後面被省略
   word-break: break-word;
 }
 
-/* Ensure the first column (Vocabulary/Term) has a stable width and wraps nicely without breaking letters */
-.keep-markdown-body .table-container table th:first-child,
-.keep-markdown-body .table-container table td:first-child {
-  min-width: 140px;
-  width: 20%;
-  white-space: nowrap !important;
+/* Ensure the first column (Vocabulary/Term) has a stable width on desktop/tablet, but remains flexible on mobile */
+@media (min-width: 768px) {
+  .keep-markdown-body .table-container table th:first-child,
+  .keep-markdown-body .table-container table td:first-child {
+    min-width: 140px;
+    width: 20%;
+    white-space: nowrap !important;
+  }
 }

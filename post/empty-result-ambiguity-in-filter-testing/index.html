@@ -293,10 +293,10 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A8%AD%E8%A8%88/">測試設計</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD/">篩選功能</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD/">篩選功能</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A8%AD%E8%A8%88/">測試設計</a></li>
                         
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E6%B1%BA%E7%AD%96/">測試決策</a></li>
@@ -348,12 +348,12 @@
 </thead>
 <tbody><tr>
 <td>✅ 真空</td>
-<td>篩選邏輯正確，資料源剛好沒有符合條件的項目（合理的查無資料）</td>
+<td>篩選邏輯正確，<br>資料源剛好沒有符合條件的項目<br>（合理的查無資料）</td>
 <td><code>pass</code></td>
 </tr>
 <tr>
 <td>❌ 偽空</td>
-<td>篩選 bug、後端錯誤、UI 沒渲染</td>
+<td>篩選 bug、後端錯誤、<br>UI 沒渲染</td>
 <td><code>fail</code></td>
 </tr>
 </tbody></table>
@@ -393,14 +393,14 @@
 <thead>
 <tr>
 <th>篩選條件</th>
-<th>外部信號（市場大盤方向）</th>
+<th>外部信號<br>（市場大盤方向）</th>
 <th>empty 是否合理</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>漲幅 ≥ 5%</td>
 <td>大盤下跌</td>
-<td>✅ 合理（市場跌的時候，漲幅高的個股自然少）</td>
+<td>✅ 合理<br>（市場跌的時候，<br>漲幅高的個股自然少）</td>
 </tr>
 <tr>
 <td>跌幅 ≥ 5%</td>
@@ -410,7 +410,7 @@
 <tr>
 <td>任何「≥ 0%」系列</td>
 <td>任何</td>
-<td>❌ 永遠不合理（任何時候都該有個股漲跌幅 ≥ 0%）</td>
+<td>❌ 永遠不合理<br>（任何時候都該有<br>個股漲跌幅 ≥ 0%）</td>
 </tr>
 <tr>
 <td>其他組合</td>
@@ -465,14 +465,14 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>單向驗證</strong>（actual ⊂ expected）</td>
-<td>只檢查 actual 中每筆是否符合條件</td>
-<td>False positive（多顯示）</td>
+<td><strong>單向驗證</strong><br>（actual ⊂ expected）</td>
+<td>只檢查 actual 中<br>每筆是否符合條件</td>
+<td>False positive<br>（多顯示）</td>
 </tr>
 <tr>
-<td><strong>雙向驗證</strong>（actual &#x3D;&#x3D; expected）</td>
-<td>檢查兩個集合是否完全一樣</td>
-<td>False positive + false negative（漏顯示）</td>
+<td><strong>雙向驗證</strong><br>（actual &#x3D;&#x3D; expected）</td>
+<td>檢查兩個集合<br>是否完全一樣</td>
+<td>False positive +<br>false negative<br>（漏顯示）</td>
 </tr>
 </tbody></table>
 <p>原本驗證設計是單向：「APP 顯示的要符合條件」。但方案 5 的實作天然是雙向的——它順便把驗證升級了。</p>
@@ -511,14 +511,14 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>純 POM 派</strong>（嚴格）</td>
-<td>Page 只該封裝「頁面操作 + 狀態查詢」，不負責測試邏輯</td>
-<td>POM 描述「頁面長什麼樣」，不是「測試怎麼判斷對錯」——後者屬於 test layer（測試層）</td>
+<td><strong>純 POM 派</strong><br>（嚴格）</td>
+<td>Page 只該封裝<br>「頁面操作 + 狀態查詢」，<br>不負責測試邏輯</td>
+<td>POM 描述「頁面長什麼樣」，<br>不是「測試怎麼判斷對錯」<br>——後者屬於 test layer<br>（測試層）</td>
 </tr>
 <tr>
-<td><strong>實用派</strong>（寬鬆）</td>
-<td>POM 可以提供 verification helpers（驗證輔助方法）是合理的「商業邏輯封裝」</td>
-<td>避免每個 case 重複輪子（DRY），test script 保持宣告式</td>
+<td><strong>實用派</strong><br>（寬鬆）</td>
+<td>POM 可以提供<br>verification helpers<br>（驗證輔助方法）<br>是合理的「商業邏輯封裝」</td>
+<td>避免每個 case 重複輪子（DRY），<br>test script 保持宣告式</td>
 </tr>
 </tbody></table>
 <p>我們選擇實用派，理由：</p>
@@ -609,11 +609,11 @@
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A8%AD%E8%A8%88/">測試設計</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD/">篩選功能</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%AF%A9%E9%81%B8%E5%8A%9F%E8%83%BD/">篩選功能</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E8%A8%AD%E8%A8%88/">測試設計</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
