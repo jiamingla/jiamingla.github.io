@@ -1,6 +1,6 @@
 # 寫作路線圖（Writing Roadmap）
 
-**最後更新**：2026-06-18
+**最後更新**：2026-06-25
 **對應策略**：寫作目前以「累積、SEO 自然成長」為導向，不主動對外大肆推廣。**6 月不推廣**——用「沒人在看」的空窗刻意練 publish-then-revise（發了再反覆讀、反覆改）來克服完美主義；國際社群（Ministry of Testing）試水延到**報名 iThome 鐵人賽的當週**才啟動（報名動作 = 「準備好對外」的觸發點，試水搭著那股氣勢一起做）。
 **並進文件**：
 - [writing-themes.md](writing-themes.md) — 13 條主題線的長期版圖（策略型，較少更新）
@@ -32,10 +32,13 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（26 篇，依日期倒序）
+### 已上稿（29 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-25 | POM 重構實戰：把「能跑」的自動化腳本，改寫成「能被別人接手」的形狀 | pom-refactor-from-runnable-to-maintainable | 線三（技術深度／教材） |
+| 2026-06-23 | 如何證明一個 Bug 已經消失？——從療程驗證看軟體與 AI 測試的哲學難題 | proving-a-bug-is-gone-verification-philosophy | 線一 / 線二 / 線九 |
+| 2026-06-18 | 當你把測試計畫交給 AI 執行，pass / fail 兩個欄位還夠用嗎？ | pass-fail-not-enough-for-ai-testing | 線二（AI 測試判讀） |
 | 2026-06-16（排程） | 「你在部門過得不開心嗎？」——從跨部門聚餐聊人際邊際效益，與職場社交的「多維度投資報酬率」 | cross-departmental-relation-and-social-roi | 線十四 |
 | 2026-06-14 | 為什麼 AI 給的測試案例讀起來特別累？因為它的預設讀者不是你 | ai-test-output-default-reader-is-ai | 線二 / 線八 |
 | 2026-06-13（排程） | 「能看懂代碼並抓出 Bug，為什麼不去做 RD？」——聊聊專職 SDET 的定位迷思與 AI 時代下的影子工程師 | sdet-role-reflection-in-ai-era | 線九 / 線六 |
@@ -63,21 +66,13 @@
 | 2026-01-20 | Selenium 踩坑筆記 | selenium-troubleshooting | 技術實戰 |
 | 2026-01-18 | Hello World | hello-world | 開台 |
 
-### 完稿草稿待上稿（2 篇，在 _drafts/）
+### 完稿草稿待上稿（0 篇）
 
-| 文章 | 主題線 | 長尾 | 狀態備註 |
-|---|---|---|---|
-| [pass-fail-not-enough-for-ai-testing](../source/_drafts/pass-fail-not-enough-for-ai-testing.md) | 線二（AI 測試判讀） | ⭐⭐⭐ | **6/16 從規劃檔轉成完稿、排程 2026-06-24 發**。六月第一次「骨架→完稿」轉換 rep（測轉換速率）。拿掉 notest 詞（去指紋）、urlname 從 notest-... 改成 pass-fail-...。規劃記錄移至 [notes/ai-test-result-schema-planning.md](ai-test-result-schema-planning.md) |
-| [proving-a-bug-is-gone-verification-philosophy](../source/_drafts/proving-a-bug-is-gone-verification-philosophy.md) | 線一（測試哲學） / 線二 / 線九 | ⭐⭐⭐ | **6/18 完成並排程 2026-06-28 發**。探討驗證 Bug 消失的哲學與認識論難題、身心科療程類比、LLM 機率特徵。融入 David Ko 測試停止指標與 Cem Kaner Lesson 185，結尾提供讀者具體的下一步行動指南（溝通降噪、本金配置、線上顯影液）。 |
+> 2026-06-25：`_drafts/` 已清空。原三篇（pass-fail / proving / pom-refactor）皆於 6/18–6/25 陸續上稿（見上表）。**下一篇要從 notes 骨架起草**——目前鎖定 B〈日常任務是主線的礦場〉，骨架見 [daily-tasks-are-the-mine-not-the-enemy.md](daily-tasks-are-the-mine-not-the-enemy.md)。
 
 > 註 1：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
 > 註 2：**bug-triage-six-patterns**——6/8 一度降為規劃檔（揭露邊界 gating），同日揭露邊界定案（前公司只示範 F+E、不掛 QA 第一手、現公司不寫）後**已生成全文並排程 2026-06-10**，移入 _posts/。規劃檔 [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) 保留決策紀錄。
-
-### 草稿（已寫但尚未確認完稿）
-
-| 文章 | 主題線 | 狀態備註 |
-|---|---|---|
-| [pom-refactor-from-runnable-to-maintainable](../source/_drafts/pom-refactor-from-runnable-to-maintainable.md) | 技術深度 / 教材潛力 | ⭐⭐⭐ 長尾。已融入 AI 價值，暫不發布，保留作為個人技術與工程備忘 |
+> 註 3：**pom-refactor**——原標「暫不發布、保留作技術備忘」，6/25 低能量日決定先發（符合 publish-then-revise）；真實 smoke 框架升級虛構 demo 之事留淡季再做。
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
