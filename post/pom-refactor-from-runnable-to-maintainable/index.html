@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            POM 重構實戰：把「能跑」的自動化腳本，改寫成「能被別人接手」的形狀 |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        POM 重構實戰：把「能跑」的自動化腳本，改寫成「能被別人接手」的形狀
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-25</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Thu Jun 25 2026 10:20:00 GMT+0000">2026-06-25</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Appium/">Appium</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/POM/">POM</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Selenium/">Selenium</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E6%9E%B6%E6%A7%8B/">測試架構</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Page-Object-Pattern/">Page Object Pattern</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Python/">Python</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%A8%8B%E5%BC%8F%E7%A2%BC%E9%87%8D%E6%A7%8B/">程式碼重構</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言：那份「再也沒有人敢動」的測試腳本"><a href="#前言：那份「再也沒有人敢動」的測試腳本" class="headerlink" title="前言：那份「再也沒有人敢動」的測試腳本"></a>前言：那份「再也沒有人敢動」的測試腳本</h2><p>你接手了一份前人留下的自動化測試。它<strong>會跑</strong>。但你打開檔案的瞬間，呼吸停了半秒——</p>
+<ul>
+<li>一個檔案 1500 行</li>
+<li>同樣的 CSS selector 散在二十幾個地方</li>
+<li><code>time.sleep(5)</code> 像撒鹽一樣到處都是</li>
+<li>登入、瀏覽、結帳、登出全部塞在一個 function 裡</li>
+<li>assertion 混在 navigation 的步驟之間，讀的時候要倒著推</li>
+</ul>
+<p>你站在三選一的岔路口：</p>
+<ol>
+<li><strong>跟著爛</strong> — 加新 case 就照原本的味道繼續寫，反正能跑</li>
+<li><strong>全部重寫</strong> — 把它整個丟掉，重來一份乾淨的</li>
+<li><strong>有方法的重構</strong> — 慢慢把它拉直，但中間每一刻都保持綠燈不破</li>
+</ol>
+<p>第一種短期最舒服，但你的下下個 sprint 會付代價；第二種讓你想離職一個月；<strong>這篇文章是寫給選第三種的你</strong>。</p>
+<p>這讓我想起自己大四在軟體公司實習時的啟蒙。那時我第一次聽說 POM（Page Object Model &#x2F; Pattern）這個詞，當時只覺得它不過是個「把網頁上的 XPath、CSS 定位點集中放到一個 Class 屬性」的排版技巧，沒什麼大不了的。</p>
+<p>然而多年以後，在職場上面對真實、龐大且無比脆弱的自動化測試專案，經歷了無數次「UI 小改版，幾百個測試案例瞬間全面雪崩」的痛楚後，我才終於明白，大四實習時學到的那個設計模式，威力是多麼強大。那顆多年前射出的子彈，在多年後終於正中紅心。</p>
+<p>這篇文章，除了想履行當初在<a href="/post/testing-manifesto/">《【開台宣言】測試的靈魂在於提問：我未來想分享的寫作藍圖》</a>中許下分享 Page Object Pattern 的承諾之外，更想跟你聊聊，在經歷無數實戰與踩坑後，我對這個模式的重新理解：</p>
+<blockquote>
+<p><strong>POM 真正在解的問題是什麼？三層責任分離長什麼樣？什麼時候 POM 反而會傷你？</strong></p>
+</blockquote>
+<p>如果你的目標是「<strong>這份 code 一年後能被別人接手</strong>」，POM 設計得好不好，幾乎就是分水嶺。</p>
+<hr>
+<h2 id="一、POM-不是「把-selector-抓出來」這麼簡單"><a href="#一、POM-不是「把-selector-抓出來」這麼簡單" class="headerlink" title="一、POM 不是「把 selector 抓出來」這麼簡單"></a>一、POM 不是「把 selector 抓出來」這麼簡單</h2><p>很多人對 POM 的第一印象是：<strong>「就是把 selector 集中放到一個檔案裡，避免 hardcode 散到處嘛」</strong>。</p>
+<p>這個理解只對了 20%。</p>
+<p>如果 POM 只是「selector 集中管理」，那寫成一個 <code>selectors.py</code> 字典就夠了，不需要 class、不需要 method、不需要設計。實務上<strong>很多 QA 寫的 POM 就停在這個層級</strong>——把 selector 集中，但其他什麼都沒變。結果是：</p>
+<ul>
+<li>selector 集中了，但 wait 還是散在 test 裡</li>
+<li>每個 test 還是直接呼叫 <code>driver.find_element(...).click()</code></li>
+<li>換頁邏輯混在斷言之間，讀起來還是天書</li>
+</ul>
+<p>POM 真正的本質是這個——</p>
+<blockquote>
+<p><strong>把一個「頁面」當作一個物件。這個物件知道：自己有哪些元件（結構）、可以對它做哪些事（行為）。怎麼做到，是它自己的事，外面不該管。</strong></p>
+</blockquote>
+<p>換句話說，POM 是一種<strong>封裝</strong>：把「<strong>這一頁的 UI 細節</strong>」跟「<strong>用這一頁做事的人</strong>」分開。test 不應該知道 username 欄位的 CSS selector 是什麼——test 只應該說「我要登入，帳號是 X，密碼是 Y」。</p>
+<p>當你看清楚這個本質，你會發現 POM 真正要解的<strong>從來不是 selector 重複</strong>，是另一個更大的問題：</p>
+<blockquote>
+<p><strong>UI 會變，但測試意圖不變。POM 是一座在這兩者之間的橋。</strong></p>
+</blockquote>
+<p>UI 改版的時候，selector 換、wait 條件變、結構重組——你不該因此重寫 test 的意圖。<strong>你應該只動那座橋本身</strong>，test 一個字都不用改。能不能做到這件事，就是 POM 寫得好不好的試金石。</p>
+<hr>
+<h2 id="二、三層責任分離：POM-的核心紀律"><a href="#二、三層責任分離：POM-的核心紀律" class="headerlink" title="二、三層責任分離：POM 的核心紀律"></a>二、三層責任分離：POM 的核心紀律</h2><p>任何一段自動化測試，本質上都在做三件事：</p>
+<ol>
+<li><strong>找東西</strong>（Selector）— 這個按鈕在哪？這個輸入框在哪？</li>
+<li><strong>等到對的時機</strong>（Wait）— 元件出現了嗎？頁面 ready 了嗎？資料載入完了嗎？</li>
+<li><strong>驗證結果</strong>（Assertion）— 這個畫面長對嗎？這個值對嗎？</li>
+</ol>
+<p>沒有設計的 code，這三件事<strong>會混在每一個 step 裡</strong>。每跑一個動作就 <code>find_element + sleep + assert</code> 一次，三件事像義大利麵一樣纏在一起。</p>
+<p>POM 的核心紀律就是把這三層分開，讓每一層住在它該住的地方：</p>
+<table>
+<thead>
+<tr>
+<th>層</th>
+<th>職責</th>
+<th>該住在哪</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Selector</td>
+<td>描述「東西在哪」</td>
+<td><strong>PageObject 的 class attribute</strong></td>
+</tr>
+<tr>
+<td>Wait</td>
+<td>描述「什麼時候 ready」</td>
+<td><strong>PageObject 的 method 內部</strong></td>
+</tr>
+<tr>
+<td>Assertion</td>
+<td>描述「對 &#x2F; 不對」</td>
+<td><strong>Test 裡，不該進 PageObject</strong></td>
+</tr>
+</tbody></table>
+<p>特別點出第三條——<strong>assertion 不該寫進 PageObject</strong>。這是初學者最常踩的雷：覺得「assert 寫在 page object 裡比較整齊」，結果整個物件變成「半 navigation 半 verification」的混合體。一旦這樣，你的 PageObject 就再也不能被另一個 test 重複使用——因為它身上綁著上一個 test 的 assertion。</p>
+<p>PageObject 是工具，<strong>assertion 是測試意圖</strong>。工具該被重複使用，意圖則屬於每一個 test 自己。把它們分開，才能讓你的測試組合像樂高一樣自由拼接。</p>
+<hr>
+<h2 id="三、Before-After：一段虛構但典型的爛-code"><a href="#三、Before-After：一段虛構但典型的爛-code" class="headerlink" title="三、Before &#x2F; After：一段虛構但典型的爛 code"></a>三、Before &#x2F; After：一段虛構但典型的爛 code</h2><p>下面這個例子是虛構的——一個 demo 電商網站的「登入＋加購物車」流程。但裡面每一個壞習慣，我都從真實 code 裡看過。</p>
+<h3 id="Before：能跑、但沒人想動"><a href="#Before：能跑、但沒人想動" class="headerlink" title="Before：能跑、但沒人想動"></a>Before：能跑、但沒人想動</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_login_and_add_to_cart</span>():</span><br><span class="line">    driver = webdriver.Chrome()</span><br><span class="line">    driver.get(<span class="string">&quot;https://shop.example.com/login&quot;</span>)</span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line">    driver.find_element(By.CSS_SELECTOR, <span class="string">&quot;input#username&quot;</span>).send_keys(<span class="string">&quot;test@example.com&quot;</span>)</span><br><span class="line">    driver.find_element(By.CSS_SELECTOR, <span class="string">&quot;input#password&quot;</span>).send_keys(<span class="string">&quot;password123&quot;</span>)</span><br><span class="line">    driver.find_element(By.CSS_SELECTOR, <span class="string">&quot;button.login-btn&quot;</span>).click()</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">assert</span> <span class="string">&quot;Welcome&quot;</span> <span class="keyword">in</span> driver.find_element(By.CSS_SELECTOR, <span class="string">&quot;.user-greeting&quot;</span>).text</span><br><span class="line">    driver.find_element(By.CSS_SELECTOR, <span class="string">&quot;.product-card:nth-child(1) button.add-to-cart&quot;</span>).click()</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">assert</span> driver.find_element(By.CSS_SELECTOR, <span class="string">&quot;.cart-count&quot;</span>).text == <span class="string">&quot;1&quot;</span></span><br><span class="line">    driver.quit()</span><br></pre></td></tr></table></figure>
+
+<p><strong>這段 code 能跑。但它有以下問題：</strong></p>
+<ol>
+<li><strong>Selector 全部 hardcode 在 test 裡</strong> — UI 一改，這個 test 跟未來十個 test 全部要改</li>
+<li><strong>Sleep 處處</strong> — 不是 explicit wait，是 <code>time.sleep</code>。網路慢一點就 flaky；網路快的時候是浪費時間</li>
+<li><strong>登入 &#x2F; 瀏覽 &#x2F; 加購物車的邏輯全部塞在一個 test 裡</strong> — 下一個 test 想複用「登入」？只能 copy-paste</li>
+<li><strong>Assertion 跟 navigation 混在一起</strong> — 讀的時候要在腦中切換「這行是動作 &#x2F; 這行是檢查」</li>
+<li><strong>沒有 setup &#x2F; teardown 結構</strong> — driver 直接在 test 裡開關，第二個 test 又要寫一遍</li>
+</ol>
+<h3 id="After：把責任拆開後的版本"><a href="#After：把責任拆開後的版本" class="headerlink" title="After：把責任拆開後的版本"></a>After：把責任拆開後的版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pages/login_page.py</span></span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LoginPage</span>:</span><br><span class="line">    URL = <span class="string">&quot;/login&quot;</span></span><br><span class="line"></span><br><span class="line">    USERNAME_INPUT = (By.CSS_SELECTOR, <span class="string">&quot;input#username&quot;</span>)</span><br><span class="line">    PASSWORD_INPUT = (By.CSS_SELECTOR, <span class="string">&quot;input#password&quot;</span>)</span><br><span class="line">    LOGIN_BUTTON   = (By.CSS_SELECTOR, <span class="string">&quot;button.login-btn&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, driver, base_url: <span class="built_in">str</span></span>):</span><br><span class="line">        <span class="variable language_">self</span>.driver = driver</span><br><span class="line">        <span class="variable language_">self</span>.base_url = base_url</span><br><span class="line">        <span class="variable language_">self</span>.wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">open</span>(<span class="params">self</span>) -&gt; <span class="string">&quot;LoginPage&quot;</span>:</span><br><span class="line">        <span class="variable language_">self</span>.driver.get(<span class="variable language_">self</span>.base_url + <span class="variable language_">self</span>.URL)</span><br><span class="line">        <span class="variable language_">self</span>.wait.until(EC.visibility_of_element_located(<span class="variable language_">self</span>.USERNAME_INPUT))</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">self, username: <span class="built_in">str</span>, password: <span class="built_in">str</span></span>) -&gt; <span class="string">&quot;HomePage&quot;</span>:</span><br><span class="line">        <span class="variable language_">self</span>.driver.find_element(*<span class="variable language_">self</span>.USERNAME_INPUT).send_keys(username)</span><br><span class="line">        <span class="variable language_">self</span>.driver.find_element(*<span class="variable language_">self</span>.PASSWORD_INPUT).send_keys(password)</span><br><span class="line">        <span class="variable language_">self</span>.driver.find_element(*<span class="variable language_">self</span>.LOGIN_BUTTON).click()</span><br><span class="line">        <span class="keyword">return</span> HomePage(<span class="variable language_">self</span>.driver, <span class="variable language_">self</span>.base_url).wait_until_loaded()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pages/home_page.py</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HomePage</span>:</span><br><span class="line">    USER_GREETING = (By.CSS_SELECTOR, <span class="string">&quot;.user-greeting&quot;</span>)</span><br><span class="line">    FIRST_PRODUCT_ADD_BUTTON = (By.CSS_SELECTOR, <span class="string">&quot;.product-card:nth-child(1) button.add-to-cart&quot;</span>)</span><br><span class="line">    CART_COUNT = (By.CSS_SELECTOR, <span class="string">&quot;.cart-count&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, driver, base_url: <span class="built_in">str</span></span>):</span><br><span class="line">        <span class="variable language_">self</span>.driver = driver</span><br><span class="line">        <span class="variable language_">self</span>.base_url = base_url</span><br><span class="line">        <span class="variable language_">self</span>.wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wait_until_loaded</span>(<span class="params">self</span>) -&gt; <span class="string">&quot;HomePage&quot;</span>:</span><br><span class="line">        <span class="variable language_">self</span>.wait.until(EC.visibility_of_element_located(<span class="variable language_">self</span>.USER_GREETING))</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">greeting_text</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.driver.find_element(*<span class="variable language_">self</span>.USER_GREETING).text</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">cart_count</span>(<span class="params">self</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(<span class="variable language_">self</span>.driver.find_element(*<span class="variable language_">self</span>.CART_COUNT).text)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_first_product_to_cart</span>(<span class="params">self</span>) -&gt; <span class="string">&quot;HomePage&quot;</span>:</span><br><span class="line">        before = <span class="variable language_">self</span>.cart_count</span><br><span class="line">        <span class="variable language_">self</span>.driver.find_element(*<span class="variable language_">self</span>.FIRST_PRODUCT_ADD_BUTTON).click()</span><br><span class="line">        <span class="variable language_">self</span>.wait.until(<span class="keyword">lambda</span> d: <span class="variable language_">self</span>.cart_count &gt; before)</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tests/test_shopping.py</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_login_and_add_to_cart</span>(<span class="params">driver, base_url</span>):</span><br><span class="line">    home = (</span><br><span class="line">        LoginPage(driver, base_url)</span><br><span class="line">        .<span class="built_in">open</span>()</span><br><span class="line">        .login(<span class="string">&quot;test@example.com&quot;</span>, <span class="string">&quot;password123&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">assert</span> <span class="string">&quot;Welcome&quot;</span> <span class="keyword">in</span> home.greeting_text</span><br><span class="line"></span><br><span class="line">    home.add_first_product_to_cart()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">assert</span> home.cart_count == <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>改了什麼？</strong></p>
+<ul>
+<li><strong>Selector 集中在 PageObject 的 class attribute</strong>（第一層分離）</li>
+<li><strong>Wait 內建在 method 裡</strong>——<code>open()</code> 自帶等元件、<code>wait_until_loaded()</code> 在轉頁後等 ready、<code>add_first_product_to_cart()</code> 等到 cart 真的變了才返回（第二層分離）</li>
+<li><strong>Assertion 完全留在 test 裡</strong>——PageObject 只負責動作跟讀資料（第三層分離）</li>
+<li><strong>Method 回傳下一個 PageObject</strong>——支援 method chaining，test 讀起來就是業務動作的順序</li>
+<li><strong><code>time.sleep</code> 全部消失</strong>——換成 explicit wait，flaky 大幅降低</li>
+</ul>
+<p>test 從十幾行混亂剪成五行業務語義。<strong>未來 UI 改版？只動 PageObject。Test 一個字都不用變。</strong></p>
+<hr>
+<h2 id="四、重構後最容易再走偏的四個-anti-pattern"><a href="#四、重構後最容易再走偏的四個-anti-pattern" class="headerlink" title="四、重構後最容易再走偏的四個 anti-pattern"></a>四、重構後最容易再走偏的四個 anti-pattern</h2><p>寫完 POM 不代表結束。POM 寫到一半最常出現的「假乾淨」狀態，通常是這四種：</p>
+<h3 id="1-God-PageObject（一個-class-包整個網站）"><a href="#1-God-PageObject（一個-class-包整個網站）" class="headerlink" title="1. God PageObject（一個 class 包整個網站）"></a>1. God PageObject（一個 class 包整個網站）</h3><p>寫一寫覺得「都是同一個 app 嘛，幹嘛分這麼多檔」，然後出現一個 <code>MyAppPage</code> class 裡面有 80 個 method、覆蓋從登入到結帳到後台。</p>
+<blockquote>
+<p><strong>判斷標準</strong>：一個 PageObject 該對應「一個畫面 &#x2F; 一個功能區塊」。如果你的 PageObject 名字無法用一個畫面截圖描述，它就太大了。</p>
+</blockquote>
+<h3 id="2-太瘦的-PageObject（每個-method-只是-wrap-一個-click）"><a href="#2-太瘦的-PageObject（每個-method-只是-wrap-一個-click）" class="headerlink" title="2. 太瘦的 PageObject（每個 method 只是 wrap 一個 click）"></a>2. 太瘦的 PageObject（每個 method 只是 wrap 一個 click）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反例</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">click_login_button</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="variable language_">self</span>.driver.find_element(*<span class="variable language_">self</span>.LOGIN_BUTTON).click()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">click_logout_button</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="variable language_">self</span>.driver.find_element(*<span class="variable language_">self</span>.LOGOUT_BUTTON).click()</span><br></pre></td></tr></table></figure>
+
+<p>這種 method 沒提供任何抽象——它只是把 <code>driver.find_element().click()</code> 改寫了一次。<strong>好的 PageObject method 應該包業務語義</strong>：<code>login(username, password)</code> 而不是 <code>click_login_button()</code>。</p>
+<blockquote>
+<p><strong>判斷標準</strong>：你的 method 名稱是描述「使用者要做什麼」（login、checkout、search），還是描述「操作 UI 哪個元件」（click_X、type_in_Y）？前者是業務語義，後者是 UI 語義。<strong>業務語義才是 POM 的目的</strong>。</p>
+</blockquote>
+<h3 id="3-Wait-散落到處（sleep-與-explicit-wait-混用）"><a href="#3-Wait-散落到處（sleep-與-explicit-wait-混用）" class="headerlink" title="3. Wait 散落到處（sleep 與 explicit wait 混用）"></a>3. Wait 散落到處（sleep 與 explicit wait 混用）</h3><p>最常見的爛狀態：PageObject 內部寫了 explicit wait，但因為「有時候會 flaky」，又在 test 外面塞了幾個 <code>time.sleep(2)</code> 「保險」。</p>
+<blockquote>
+<p><strong>判斷標準</strong>：你的 test 檔案裡如果出現 <code>time.sleep</code>，<strong>99% 是 PageObject 的 wait 沒寫好</strong>。回去把責任放對位置，不要用 sleep 補。</p>
+</blockquote>
+<h3 id="4-Assertion-寫進-PageObject"><a href="#4-Assertion-寫進-PageObject" class="headerlink" title="4. Assertion 寫進 PageObject"></a>4. Assertion 寫進 PageObject</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反例</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">self, username, password</span>):</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="keyword">assert</span> <span class="string">&quot;Welcome&quot;</span> <span class="keyword">in</span> <span class="variable language_">self</span>.driver.find_element(*<span class="variable language_">self</span>.USER_GREETING).text  <span class="comment"># ⚠️</span></span><br><span class="line">    <span class="keyword">return</span> HomePage(...)</span><br></pre></td></tr></table></figure>
+
+<p>PageObject 一旦帶了 assertion，它就<strong>只能服務一種 test 情境</strong>——只測「登入成功」的那種。如果你想寫一個「登入失敗該怎麼樣」的 test？這個 PageObject 直接報錯，因為它預期登入會成功。</p>
+<blockquote>
+<p><strong>判斷標準</strong>：PageObject 只負責「能不能做這件事」，不負責「做完之後對不對」。對不對是 test 的責任。</p>
+</blockquote>
+<hr>
+<h2 id="五、在-AI-時代，為什麼我們比以前更需要-POM？"><a href="#五、在-AI-時代，為什麼我們比以前更需要-POM？" class="headerlink" title="五、在 AI 時代，為什麼我們比以前更需要 POM？"></a>五、在 AI 時代，為什麼我們比以前更需要 POM？</h2><p>在這個生成式 AI 與 AI Agent 快速發展的時代，有人會問：「既然 AI 都能幫忙寫代碼、修測試了，我們還需要花心思去設計什麼 Page Object 嗎？」</p>
+<p>我的答案是：<strong>恰恰相反，在 AI 時代，你比以前更需要高品質的 POM。</strong></p>
+<p>當撰寫、維護自動化腳本的「代理人」從人類工程師逐漸變為 AI 時，傳統的 POM 不僅沒有過時，反而展現了全新的戰略價值：</p>
+<h3 id="1-為-AI-建立一套高品質的「樂高積木（Tool-API）」"><a href="#1-為-AI-建立一套高品質的「樂高積木（Tool-API）」" class="headerlink" title="1. 為 AI 建立一套高品質的「樂高積木（Tool API）」"></a>1. 為 AI 建立一套高品質的「樂高積木（Tool API）」</h3><p>如果我們直接把最底層的 <code>driver.find_element</code> 控制權丟給 AI（例如透過 AI Agent 來自動生成或修復測試），AI 必須直接面對混亂的 HTML 結構、隨機變動的 CSS&#x2F;XPath 與異步載入時機。這極易導致 AI 產生<strong>幻覺（Hallucination）</strong>，寫出極度脆弱且難以維護的代碼。</p>
+<p>而如果我們將頁面封裝成乾淨的 Page Object，給 AI 提供類似 <code>LoginPage.login(user, pwd)</code> 這種高語義的 Method 時，對 AI 來說這就是一組<strong>已經封裝好的「Tool &#x2F; Skill」</strong>。AI 只需要專注於「呼叫 Tool 拼接業務意圖」，其生成代碼的出錯率能降低 80% 以上。</p>
+<h3 id="2-隔離-AI-的修改邊界（Context-Isolation）"><a href="#2-隔離-AI-的修改邊界（Context-Isolation）" class="headerlink" title="2. 隔離 AI 的修改邊界（Context Isolation）"></a>2. 隔離 AI 的修改邊界（Context Isolation）</h3><p>當系統 UI 改版時，如果沒有 POM，AI 在進行測試自我修復（Self-healing）時，必須去讀取並修改數十個受影響的測試案例檔案。這會消耗極大的 Context Window 額度，而且很容易在修改過程中「按下葫蘆起了瓢」，引入新的 Bug。</p>
+<p>在 POM 的架構下，UI 改動的影響範圍被<strong>完全限縮在特定的 Page Object 類別中</strong>。我們（或 AI）只需要修改單一檔案的定位點或行為，上層的測試案例一個字都不需要改。這讓 AI 自我修復的成本和風險降到最低。</p>
+<h3 id="3-人機協作的新分工（Human-AI-Partition）"><a href="#3-人機協作的新分工（Human-AI-Partition）" class="headerlink" title="3. 人機協作的新分工（Human-AI Partition）"></a>3. 人機協作的新分工（Human-AI Partition）</h3><p>在自動化專案中，人類與 AI 應該這樣分工：</p>
+<ul>
+<li><strong>人類的職責</strong>：看懂系統的「局」，負責設計與定義高品質、高語義的 Page Object 介面（API），確保底層定位與等待機制的硬度。</li>
+<li><strong>AI 的職責</strong>：利用人類提供的高階 Page Object 積木，快速且大量地撰寫、生成、排列組合出數百條不同的測試案例。</li>
+</ul>
+<p><strong>POM 寫得好不好，直接決定了你的自動化架構對 AI 協作是否友善。</strong></p>
+<p>這背後其實折射出 AI 時代一個更宏大的演變：<strong>角色職能的合流與溝通壁壘的消解。</strong></p>
+<p>在產品開發中，我們已經看到 AI 正在讓 PM 變得懂技術（可以請 AI 快速解讀程式碼、拆解系統架構），也讓 RD 開始理解 PM 的商業語言（可以用 AI 輔助撰寫 PRD、對齊商業目標）。而在測試領域，類似的變革也正在發生——</p>
+<p>以往，手動測試（業務與探索）與自動化測試被視為兩種完全不同的職能。手動 QA 懂業務細節與使用者直覺，卻苦於程式屏障；自動化工程師懂語法，卻常常與真實業務場景脫節。</p>
+<p>在 AI 時代，<strong>高品質的 Page Object 加上 AI，就是那座消除藩籬的橋樑</strong>。當自動化框架被 POM 抽象出高階語義時，手動測試的夥伴只需對 AI 說：「幫我用這套 Page Object，把『註冊後重複登入』的邊界測試寫出來。」AI 就能立刻生成正確的自動化腳本。</p>
+<p>這意味著：手動 QA 不再被排斥在自動化之外，自動化工程師也能解放雙手去深入探索業務。這種「角色合流」的變革，才是 AI 帶給軟體品質工程真正的價值。</p>
+<h3 id="4-後端-API-測試中的「POM-變奏」：Service-Object"><a href="#4-後端-API-測試中的「POM-變奏」：Service-Object" class="headerlink" title="4. 後端&#x2F;API 測試中的「POM 變奏」：Service Object"></a>4. 後端&#x2F;API 測試中的「POM 變奏」：Service Object</h3><p>對於「只測後端、不碰前端 UI」的 QA 而言，POM 模式（代表 Page 網頁）確實沒有用武之地。但它的 <strong>封裝心法（Separating Intent from Implementation，將意圖與實作分離）</strong> 完全是共通的。</p>
+<p>在後端測試中，我們不寫 Page Object，而是寫 <strong>API Client Wrapper</strong> 或 <strong>Service Object</strong>。我們不應該把 HTTP 請求的細節（URL、Header、Payload 結構、Auth 機制）散落到各個測試案例中。我們應該將其封裝進一個 API Class（例如 <code>UserApiClient.create_member(name, age)</code>）。這同樣隔離了 API 協定的變動，並為 AI Agent 提供了乾淨的「後端 API 工具箱」，本質上就是「POM 思維在後端的完美變奏」。</p>
+<hr>
+<h2 id="六、網頁-vs-手機：共通的設計原則"><a href="#六、網頁-vs-手機：共通的設計原則" class="headerlink" title="六、網頁 vs. 手機：共通的設計原則"></a>六、網頁 vs. 手機：共通的設計原則</h2><p>Selenium 跟 Appium 是不同的框架，但<strong>POM 的設計原則是 1:1 對應</strong>。差別只在 selector strategy：</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>Selector 策略範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Web (Selenium)</td>
+<td>CSS selector、XPath、ID</td>
+</tr>
+<tr>
+<td>Android (Appium)</td>
+<td>accessibility id、resource-id、UiSelector</td>
+</tr>
+<tr>
+<td>iOS (Appium)</td>
+<td>accessibility id、predicate、class chain</td>
+</tr>
+</tbody></table>
+<p>一個簡化的 mobile 對照：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pages/mobile_login_page.py</span></span><br><span class="line"><span class="keyword">from</span> appium.webdriver.common.appiumby <span class="keyword">import</span> AppiumBy</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MobileLoginPage</span>:</span><br><span class="line">    USERNAME_INPUT = (AppiumBy.ACCESSIBILITY_ID, <span class="string">&quot;username_input&quot;</span>)</span><br><span class="line">    PASSWORD_INPUT = (AppiumBy.ACCESSIBILITY_ID, <span class="string">&quot;password_input&quot;</span>)</span><br><span class="line">    LOGIN_BUTTON   = (AppiumBy.ACCESSIBILITY_ID, <span class="string">&quot;login_button&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># __init__ / open / login 結構與 Web 版一樣</span></span><br><span class="line">    <span class="comment"># 唯一差別：找元件用的 By 不一樣</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>整段 PageObject 的結構、職責切分、method 命名邏輯——完全一樣</strong>。Wait 策略也是同樣的（Appium 也有 WebDriverWait）。</p>
+<p><strong>POM 是設計模式，不是框架特性</strong>。框架是工具，工具會換、會升級、會被取代（比如 Appium v2 → v3）；但<strong>設計思維會跨工具沿用</strong>。投資在設計思維上，比投資在某個框架的特定 API 上更值得。</p>
+<p>如果你同時測網頁跟手機，可以考慮做一個 <code>BasePage</code> 抽出共用的 wait &#x2F; find 邏輯，再讓 Web &#x2F; Mobile 各自繼承。但這是進階話題，先把單一平台的 POM 寫好再說。</p>
+<hr>
+<h2 id="七、給接手爛-code-的人：重構的進場順序"><a href="#七、給接手爛-code-的人：重構的進場順序" class="headerlink" title="七、給接手爛 code 的人：重構的進場順序"></a>七、給接手爛 code 的人：重構的進場順序</h2><p>如果你正在面對前人留下的 1500 行義大利麵，請忍住想全部重寫的衝動。重寫看起來最快，但<strong>它通常會讓你卡在 50% 完成度的地獄</strong>——舊 code 還沒淘汰、新 code 沒蓋完、兩邊都不能信。</p>
+<p>我推薦的順序：</p>
+<h3 id="1-先讓它能持續綠燈（不重構，先穩定）"><a href="#1-先讓它能持續綠燈（不重構，先穩定）" class="headerlink" title="1. 先讓它能持續綠燈（不重構，先穩定）"></a>1. 先讓它能持續綠燈（不重構，先穩定）</h3><p>把 <code>time.sleep</code> 改成 explicit wait、把最 flaky 的 case 加 retry——這些動作幾乎不動結構，但能立刻提高你接下來重構的安全感。<strong>你不能在地震的房子裡裝潢</strong>。</p>
+<h3 id="2-從「最常壞的那個流程」下手"><a href="#2-從「最常壞的那個流程」下手" class="headerlink" title="2. 從「最常壞的那個流程」下手"></a>2. 從「最常壞的那個流程」下手</h3><p>不要從「最簡單的」開始（那是 ego trap：你會選最容易的 case 來秀重構成果）。從<strong>最常出問題、最痛的流程</strong>先做——它的重構 ROI 最高，也最能幫團隊立刻減痛。</p>
+<h3 id="3-拆三層的順序：Selector-→-Wait-→-Method-結構"><a href="#3-拆三層的順序：Selector-→-Wait-→-Method-結構" class="headerlink" title="3. 拆三層的順序：Selector → Wait → Method 結構"></a>3. 拆三層的順序：Selector → Wait → Method 結構</h3><p>這個順序是有意義的：</p>
+<ul>
+<li>先把 selector 抽出來（最機械、最不會破事）</li>
+<li>再把 wait 整理進 PageObject method（這時候你會看清楚每個動作該等什麼）</li>
+<li>最後才動 method 結構與 method chaining（這個動到 test 介面，最容易破）</li>
+</ul>
+<h3 id="4-全程綠燈不破"><a href="#4-全程綠燈不破" class="headerlink" title="4. 全程綠燈不破"></a>4. 全程綠燈不破</h3><p>每一步重構結束都要跑一輪測試。<strong>綠燈一旦破了不要繼續往下重構</strong>——回頭把它修綠再走。這個紀律比任何技術細節都重要。</p>
+<h3 id="5-不一次重構完全部-case"><a href="#5-不一次重構完全部-case" class="headerlink" title="5. 不一次重構完全部 case"></a>5. 不一次重構完全部 case</h3><p>只重構你接下來會動到的部分。其他部分等到下次再碰它時再說。<strong>重構是個持續的 90&#x2F;10——90% 的 case 永遠不會被改寫，10% 在改寫的當下順手做就好</strong>。</p>
+<hr>
+<h2 id="八、結語：POM-真正解的是「未來的你跟你同事」這個問題"><a href="#八、結語：POM-真正解的是「未來的你跟你同事」這個問題" class="headerlink" title="八、結語：POM 真正解的是「未來的你跟你同事」這個問題"></a>八、結語：POM 真正解的是「未來的你跟你同事」這個問題</h2><p>寫到最後，我想退一步講一件事。</p>
+<p>很多人覺得 POM 是為了「讓 code 更乾淨」。這個說法不算錯，但太抽象了。POM 真正在解的問題是這個：</p>
+<blockquote>
+<p><strong>這份 code 一年後，當原作者已經換工作了、UI 已經改版三輪了、團隊裡只剩沒看過這段 code 的新人——它還能不能被理解、被修改、被信任？</strong></p>
+</blockquote>
+<p>POM 不是寫給此刻的你看的——它是寫給<strong>未來的某一個人看的</strong>，那個人可能是你自己（六個月後忘了一切的你），也可能是接手你這份遺產的同事。</p>
+<p>但我想說得更尖銳一點：<strong>我們寫 POM，不只是為了自己閱讀方便，更是為了團隊的「好好合作」，打破 QA 內部「手動與自動化」的有害分工。</strong></p>
+<p>在許多 QA 團隊裡，常存在一種涇渭分明的劃分：一個專人只負責寫自動化，其他人只負責做手動測試。寫自動化的人關在自己那份 1500 行的代碼黑盒子裡，手動測試的人則看著自動化專案望而生畏，覺得那是另一個次元的學問。</p>
+<p>這種分工是非常不健康的。<strong>理想的 QA 狀態，應該是兩個人都會寫自動化，也都同時會做手動測試。</strong></p>
+<p>手動測試能帶給你對產品靈魂的洞察力，以及對未知邊界 Bug 的直覺；而自動化測試則是你用來釋放與擴大這些直覺的槓桿。如果因為你把 Page Object 寫得跟鬼一樣，底層定位、等待條件全部跟業務語意混成一坨，這無形中就築起了一道技術高牆，把那些擅長手動探索、想要加入自動化行列的夥伴硬生生擋在門外。</p>
+<p>當你把 POM 封裝得足夠乾淨，讓 <code>test_shopping.py</code> 讀起來就跟用英文寫的測試案例一樣直覺時，自動化就再也不是少數人的「專利領地」。主要負責手動測試的夥伴，可以用你寫好的 Page Object 像堆樂高一樣，快速且安全地拼裝出新的案例；而原先專注自動化的你，也能抽出空來，去做更深度的手動探索式測試。兩者合流，整個團隊才能真正發揮戰力。</p>
+<p>寫到這一步，你會發現一件事——<strong>POM 設計得好不好，會直接影響你能不能做有風險假設的探索式測試</strong>。當你想驗證「在這個邊界條件下使用者會踩到什麼」，能不能快速用既有 PageObject 拼出一個新 case？這是 <a href="/post/problem-driven-testing-intro/">〈問題驅動測試（PDT）〉</a> 能不能落地的基礎建設。</p>
+<p><strong>POM 寫得爛，PDT 就跑不起來</strong>——因為你光是為了跑一個新提問，就得花大把時間去修那一堆碎掉的 Selector；而當 POM 寫得好，搭配 AI Agent 的輔助，你甚至可以讓 AI 自動幫你把這些「問題」轉化為測試案例跑起來。</p>
+<p>所以下次你打開那份 1500 行的爛 code，請記得：</p>
+<blockquote>
+<p><strong>寫到「能跑」，只是自動化測試的第一步。寫到「能被別人接手」，才是 QA 工程的紀律。</strong></p>
+</blockquote>
+<p>這份紀律沒有人會在 sprint review 上鼓掌，但它會在某一個你已經離開團隊的早上，讓某個沒見過你的同事，順利把測試跑起來。</p>
+<p>那個早上你不會在現場——但你寫過的 PageObject 會替你在現場。</p>
+<hr>
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><ul>
+<li><a href="/post/selenium-troubleshooting/">Selenium 踩坑筆記：別盲目相信 By.ID</a></li>
+<li><a href="/post/appium-v2-to-v3-migration/">Appium v2 → v3 遷移指南</a></li>
+<li><a href="/post/problem-driven-testing-intro/">問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡</a></li>
+</ul>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Appium/">Appium</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/">自動化測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/POM/">POM</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Selenium/">Selenium</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E6%9E%B6%E6%A7%8B/">測試架構</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Page-Object-Pattern/">Page Object Pattern</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Python/">Python</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%A8%8B%E5%BC%8F%E7%A2%BC%E9%87%8D%E6%A7%8B/">程式碼重構</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/proving-a-bug-is-gone-verification-philosophy/"
+                                   title="如何證明一個 Bug 已經消失？——從療程驗證看軟體與 AI 測試的哲學難題"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">如何證明一個 Bug 已經消失？——從療程驗證看軟體與 AI 測試的哲學難題</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E4%BB%BD%E3%80%8C%E5%86%8D%E4%B9%9F%E6%B2%92%E6%9C%89%E4%BA%BA%E6%95%A2%E5%8B%95%E3%80%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E8%85%B3%E6%9C%AC"><span class="nav-text">前言：那份「再也沒有人敢動」的測試腳本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81POM-%E4%B8%8D%E6%98%AF%E3%80%8C%E6%8A%8A-selector-%E6%8A%93%E5%87%BA%E4%BE%86%E3%80%8D%E9%80%99%E9%BA%BC%E7%B0%A1%E5%96%AE"><span class="nav-text">一、POM 不是「把 selector 抓出來」這麼簡單</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%89%E5%B1%A4%E8%B2%AC%E4%BB%BB%E5%88%86%E9%9B%A2%EF%BC%9APOM-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%B4%80%E5%BE%8B"><span class="nav-text">二、三層責任分離：POM 的核心紀律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Before-After%EF%BC%9A%E4%B8%80%E6%AE%B5%E8%99%9B%E6%A7%8B%E4%BD%86%E5%85%B8%E5%9E%8B%E7%9A%84%E7%88%9B-code"><span class="nav-text">三、Before &#x2F; After：一段虛構但典型的爛 code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Before%EF%BC%9A%E8%83%BD%E8%B7%91%E3%80%81%E4%BD%86%E6%B2%92%E4%BA%BA%E6%83%B3%E5%8B%95"><span class="nav-text">Before：能跑、但沒人想動</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#After%EF%BC%9A%E6%8A%8A%E8%B2%AC%E4%BB%BB%E6%8B%86%E9%96%8B%E5%BE%8C%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-text">After：把責任拆開後的版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%87%8D%E6%A7%8B%E5%BE%8C%E6%9C%80%E5%AE%B9%E6%98%93%E5%86%8D%E8%B5%B0%E5%81%8F%E7%9A%84%E5%9B%9B%E5%80%8B-anti-pattern"><span class="nav-text">四、重構後最容易再走偏的四個 anti-pattern</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-God-PageObject%EF%BC%88%E4%B8%80%E5%80%8B-class-%E5%8C%85%E6%95%B4%E5%80%8B%E7%B6%B2%E7%AB%99%EF%BC%89"><span class="nav-text">1. God PageObject（一個 class 包整個網站）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A4%AA%E7%98%A6%E7%9A%84-PageObject%EF%BC%88%E6%AF%8F%E5%80%8B-method-%E5%8F%AA%E6%98%AF-wrap-%E4%B8%80%E5%80%8B-click%EF%BC%89"><span class="nav-text">2. 太瘦的 PageObject（每個 method 只是 wrap 一個 click）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Wait-%E6%95%A3%E8%90%BD%E5%88%B0%E8%99%95%EF%BC%88sleep-%E8%88%87-explicit-wait-%E6%B7%B7%E7%94%A8%EF%BC%89"><span class="nav-text">3. Wait 散落到處（sleep 與 explicit wait 混用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Assertion-%E5%AF%AB%E9%80%B2-PageObject"><span class="nav-text">4. Assertion 寫進 PageObject</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%9C%A8-AI-%E6%99%82%E4%BB%A3%EF%BC%8C%E7%82%BA%E4%BB%80%E9%BA%BC%E6%88%91%E5%80%91%E6%AF%94%E4%BB%A5%E5%89%8D%E6%9B%B4%E9%9C%80%E8%A6%81-POM%EF%BC%9F"><span class="nav-text">五、在 AI 時代，為什麼我們比以前更需要 POM？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%82%BA-AI-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%A5%97%E9%AB%98%E5%93%81%E8%B3%AA%E7%9A%84%E3%80%8C%E6%A8%82%E9%AB%98%E7%A9%8D%E6%9C%A8%EF%BC%88Tool-API%EF%BC%89%E3%80%8D"><span class="nav-text">1. 為 AI 建立一套高品質的「樂高積木（Tool API）」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%9A%94%E9%9B%A2-AI-%E7%9A%84%E4%BF%AE%E6%94%B9%E9%82%8A%E7%95%8C%EF%BC%88Context-Isolation%EF%BC%89"><span class="nav-text">2. 隔離 AI 的修改邊界（Context Isolation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BA%BA%E6%A9%9F%E5%8D%94%E4%BD%9C%E7%9A%84%E6%96%B0%E5%88%86%E5%B7%A5%EF%BC%88Human-AI-Partition%EF%BC%89"><span class="nav-text">3. 人機協作的新分工（Human-AI Partition）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%BE%8C%E7%AB%AF-API-%E6%B8%AC%E8%A9%A6%E4%B8%AD%E7%9A%84%E3%80%8CPOM-%E8%AE%8A%E5%A5%8F%E3%80%8D%EF%BC%9AService-Object"><span class="nav-text">4. 後端&#x2F;API 測試中的「POM 變奏」：Service Object</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B6%B2%E9%A0%81-vs-%E6%89%8B%E6%A9%9F%EF%BC%9A%E5%85%B1%E9%80%9A%E7%9A%84%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87"><span class="nav-text">六、網頁 vs. 手機：共通的設計原則</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%B5%A6%E6%8E%A5%E6%89%8B%E7%88%9B-code-%E7%9A%84%E4%BA%BA%EF%BC%9A%E9%87%8D%E6%A7%8B%E7%9A%84%E9%80%B2%E5%A0%B4%E9%A0%86%E5%BA%8F"><span class="nav-text">七、給接手爛 code 的人：重構的進場順序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%85%88%E8%AE%93%E5%AE%83%E8%83%BD%E6%8C%81%E7%BA%8C%E7%B6%A0%E7%87%88%EF%BC%88%E4%B8%8D%E9%87%8D%E6%A7%8B%EF%BC%8C%E5%85%88%E7%A9%A9%E5%AE%9A%EF%BC%89"><span class="nav-text">1. 先讓它能持續綠燈（不重構，先穩定）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BE%9E%E3%80%8C%E6%9C%80%E5%B8%B8%E5%A3%9E%E7%9A%84%E9%82%A3%E5%80%8B%E6%B5%81%E7%A8%8B%E3%80%8D%E4%B8%8B%E6%89%8B"><span class="nav-text">2. 從「最常壞的那個流程」下手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8B%86%E4%B8%89%E5%B1%A4%E7%9A%84%E9%A0%86%E5%BA%8F%EF%BC%9ASelector-%E2%86%92-Wait-%E2%86%92-Method-%E7%B5%90%E6%A7%8B"><span class="nav-text">3. 拆三層的順序：Selector → Wait → Method 結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%85%A8%E7%A8%8B%E7%B6%A0%E7%87%88%E4%B8%8D%E7%A0%B4"><span class="nav-text">4. 全程綠燈不破</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%B8%8D%E4%B8%80%E6%AC%A1%E9%87%8D%E6%A7%8B%E5%AE%8C%E5%85%A8%E9%83%A8-case"><span class="nav-text">5. 不一次重構完全部 case</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9APOM-%E7%9C%9F%E6%AD%A3%E8%A7%A3%E7%9A%84%E6%98%AF%E3%80%8C%E6%9C%AA%E4%BE%86%E7%9A%84%E4%BD%A0%E8%B7%9F%E4%BD%A0%E5%90%8C%E4%BA%8B%E3%80%8D%E9%80%99%E5%80%8B%E5%95%8F%E9%A1%8C"><span class="nav-text">八、結語：POM 真正解的是「未來的你跟你同事」這個問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E9%82%A3%E4%BB%BD%E3%80%8C%E5%86%8D%E4%B9%9F%E6%B2%92%E6%9C%89%E4%BA%BA%E6%95%A2%E5%8B%95%E3%80%8D%E7%9A%84%E6%B8%AC%E8%A9%A6%E8%85%B3%E6%9C%AC"><span class="nav-text">前言：那份「再也沒有人敢動」的測試腳本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81POM-%E4%B8%8D%E6%98%AF%E3%80%8C%E6%8A%8A-selector-%E6%8A%93%E5%87%BA%E4%BE%86%E3%80%8D%E9%80%99%E9%BA%BC%E7%B0%A1%E5%96%AE"><span class="nav-text">一、POM 不是「把 selector 抓出來」這麼簡單</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%89%E5%B1%A4%E8%B2%AC%E4%BB%BB%E5%88%86%E9%9B%A2%EF%BC%9APOM-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%B4%80%E5%BE%8B"><span class="nav-text">二、三層責任分離：POM 的核心紀律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Before-After%EF%BC%9A%E4%B8%80%E6%AE%B5%E8%99%9B%E6%A7%8B%E4%BD%86%E5%85%B8%E5%9E%8B%E7%9A%84%E7%88%9B-code"><span class="nav-text">三、Before &#x2F; After：一段虛構但典型的爛 code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Before%EF%BC%9A%E8%83%BD%E8%B7%91%E3%80%81%E4%BD%86%E6%B2%92%E4%BA%BA%E6%83%B3%E5%8B%95"><span class="nav-text">Before：能跑、但沒人想動</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#After%EF%BC%9A%E6%8A%8A%E8%B2%AC%E4%BB%BB%E6%8B%86%E9%96%8B%E5%BE%8C%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-text">After：把責任拆開後的版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%87%8D%E6%A7%8B%E5%BE%8C%E6%9C%80%E5%AE%B9%E6%98%93%E5%86%8D%E8%B5%B0%E5%81%8F%E7%9A%84%E5%9B%9B%E5%80%8B-anti-pattern"><span class="nav-text">四、重構後最容易再走偏的四個 anti-pattern</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-God-PageObject%EF%BC%88%E4%B8%80%E5%80%8B-class-%E5%8C%85%E6%95%B4%E5%80%8B%E7%B6%B2%E7%AB%99%EF%BC%89"><span class="nav-text">1. God PageObject（一個 class 包整個網站）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A4%AA%E7%98%A6%E7%9A%84-PageObject%EF%BC%88%E6%AF%8F%E5%80%8B-method-%E5%8F%AA%E6%98%AF-wrap-%E4%B8%80%E5%80%8B-click%EF%BC%89"><span class="nav-text">2. 太瘦的 PageObject（每個 method 只是 wrap 一個 click）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Wait-%E6%95%A3%E8%90%BD%E5%88%B0%E8%99%95%EF%BC%88sleep-%E8%88%87-explicit-wait-%E6%B7%B7%E7%94%A8%EF%BC%89"><span class="nav-text">3. Wait 散落到處（sleep 與 explicit wait 混用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Assertion-%E5%AF%AB%E9%80%B2-PageObject"><span class="nav-text">4. Assertion 寫進 PageObject</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%9C%A8-AI-%E6%99%82%E4%BB%A3%EF%BC%8C%E7%82%BA%E4%BB%80%E9%BA%BC%E6%88%91%E5%80%91%E6%AF%94%E4%BB%A5%E5%89%8D%E6%9B%B4%E9%9C%80%E8%A6%81-POM%EF%BC%9F"><span class="nav-text">五、在 AI 時代，為什麼我們比以前更需要 POM？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%82%BA-AI-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%A5%97%E9%AB%98%E5%93%81%E8%B3%AA%E7%9A%84%E3%80%8C%E6%A8%82%E9%AB%98%E7%A9%8D%E6%9C%A8%EF%BC%88Tool-API%EF%BC%89%E3%80%8D"><span class="nav-text">1. 為 AI 建立一套高品質的「樂高積木（Tool API）」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%9A%94%E9%9B%A2-AI-%E7%9A%84%E4%BF%AE%E6%94%B9%E9%82%8A%E7%95%8C%EF%BC%88Context-Isolation%EF%BC%89"><span class="nav-text">2. 隔離 AI 的修改邊界（Context Isolation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BA%BA%E6%A9%9F%E5%8D%94%E4%BD%9C%E7%9A%84%E6%96%B0%E5%88%86%E5%B7%A5%EF%BC%88Human-AI-Partition%EF%BC%89"><span class="nav-text">3. 人機協作的新分工（Human-AI Partition）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%BE%8C%E7%AB%AF-API-%E6%B8%AC%E8%A9%A6%E4%B8%AD%E7%9A%84%E3%80%8CPOM-%E8%AE%8A%E5%A5%8F%E3%80%8D%EF%BC%9AService-Object"><span class="nav-text">4. 後端&#x2F;API 測試中的「POM 變奏」：Service Object</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B6%B2%E9%A0%81-vs-%E6%89%8B%E6%A9%9F%EF%BC%9A%E5%85%B1%E9%80%9A%E7%9A%84%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87"><span class="nav-text">六、網頁 vs. 手機：共通的設計原則</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%B5%A6%E6%8E%A5%E6%89%8B%E7%88%9B-code-%E7%9A%84%E4%BA%BA%EF%BC%9A%E9%87%8D%E6%A7%8B%E7%9A%84%E9%80%B2%E5%A0%B4%E9%A0%86%E5%BA%8F"><span class="nav-text">七、給接手爛 code 的人：重構的進場順序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%85%88%E8%AE%93%E5%AE%83%E8%83%BD%E6%8C%81%E7%BA%8C%E7%B6%A0%E7%87%88%EF%BC%88%E4%B8%8D%E9%87%8D%E6%A7%8B%EF%BC%8C%E5%85%88%E7%A9%A9%E5%AE%9A%EF%BC%89"><span class="nav-text">1. 先讓它能持續綠燈（不重構，先穩定）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BE%9E%E3%80%8C%E6%9C%80%E5%B8%B8%E5%A3%9E%E7%9A%84%E9%82%A3%E5%80%8B%E6%B5%81%E7%A8%8B%E3%80%8D%E4%B8%8B%E6%89%8B"><span class="nav-text">2. 從「最常壞的那個流程」下手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8B%86%E4%B8%89%E5%B1%A4%E7%9A%84%E9%A0%86%E5%BA%8F%EF%BC%9ASelector-%E2%86%92-Wait-%E2%86%92-Method-%E7%B5%90%E6%A7%8B"><span class="nav-text">3. 拆三層的順序：Selector → Wait → Method 結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%85%A8%E7%A8%8B%E7%B6%A0%E7%87%88%E4%B8%8D%E7%A0%B4"><span class="nav-text">4. 全程綠燈不破</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%B8%8D%E4%B8%80%E6%AC%A1%E9%87%8D%E6%A7%8B%E5%AE%8C%E5%85%A8%E9%83%A8-case"><span class="nav-text">5. 不一次重構完全部 case</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%B5%90%E8%AA%9E%EF%BC%9APOM-%E7%9C%9F%E6%AD%A3%E8%A7%A3%E7%9A%84%E6%98%AF%E3%80%8C%E6%9C%AA%E4%BE%86%E7%9A%84%E4%BD%A0%E8%B7%9F%E4%BD%A0%E5%90%8C%E4%BA%8B%E3%80%8D%E9%80%99%E5%80%8B%E5%95%8F%E9%A1%8C"><span class="nav-text">八、結語：POM 真正解的是「未來的你跟你同事」這個問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>
