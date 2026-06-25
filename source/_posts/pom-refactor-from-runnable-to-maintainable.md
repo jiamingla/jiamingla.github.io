@@ -1,7 +1,7 @@
 ---
 urlname: pom-refactor-from-runnable-to-maintainable
 title: POM 重構實戰：把「能跑」的自動化腳本，改寫成「能被別人接手」的形狀
-date: 2026-06-21 10:00:00
+date: 2026-06-25 18:20:00
 tags: [軟體測試, 自動化測試, Page Object Pattern, POM, Selenium, Appium, Python, 測試架構, 程式碼重構, 品質工程]
 ---
 
