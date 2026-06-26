@@ -32,10 +32,11 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（29 篇，依日期倒序）
+### 已上稿（30 篇，含 1 篇排程，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
+| 2026-06-27（排程） | 日常任務不是主線的對手，是主線的礦場——一位前輩的「每天擠一支 script」，與 AI 時代的新版本 | daily-tasks-are-the-mine-not-the-enemy | 線六 / 線一 PDT meta |
 | 2026-06-25 | POM 重構實戰：把「能跑」的自動化腳本，改寫成「能被別人接手」的形狀 | pom-refactor-from-runnable-to-maintainable | 線三（技術深度／教材） |
 | 2026-06-23 | 如何證明一個 Bug 已經消失？——從療程驗證看軟體與 AI 測試的哲學難題 | proving-a-bug-is-gone-verification-philosophy | 線一 / 線二 / 線九 |
 | 2026-06-18 | 當你把測試計畫交給 AI 執行，pass / fail 兩個欄位還夠用嗎？ | pass-fail-not-enough-for-ai-testing | 線二（AI 測試判讀） |
@@ -68,7 +69,7 @@
 
 ### 完稿草稿待上稿（0 篇）
 
-> 2026-06-25：`_drafts/` 已清空。原三篇（pass-fail / proving / pom-refactor）皆於 6/18–6/25 陸續上稿（見上表）。**下一篇要從 notes 骨架起草**——目前鎖定 B〈日常任務是主線的礦場〉，骨架見 [daily-tasks-are-the-mine-not-the-enemy.md](daily-tasks-are-the-mine-not-the-enemy.md)。
+> 2026-06-26：`_drafts/` 已清空。原三篇（pass-fail / proving / pom-refactor）於 6/18–6/25 陸續上稿；B〈日常任務是主線的礦場〉已於 6/26 起草完成、**排程 6/27（週六）晚上發**（含前一份工作資深 QA 前輩「每天擠一支 script」的活素材＋完美主義/彈吉他打掃廁所類比＋AI 時代「人盯著 agent」轉折）。骨架見 [daily-tasks-are-the-mine-not-the-enemy.md](daily-tasks-are-the-mine-not-the-enemy.md)。**下一篇待定**（可從 6/10 的 A「忙=價值」⭐⭐⭐⭐ 或醫院電子化鏡子等候選挑）。
 
 > 註 1：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
 > 註 2：**bug-triage-six-patterns**——6/8 一度降為規劃檔（揭露邊界 gating），同日揭露邊界定案（前公司只示範 F+E、不掛 QA 第一手、現公司不寫）後**已生成全文並排程 2026-06-10**，移入 _posts/。規劃檔 [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) 保留決策紀錄。
