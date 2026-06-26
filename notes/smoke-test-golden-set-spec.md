@@ -2,7 +2,7 @@
 
 **建立日期**：2026-06-02  
 **狀態**：🟡 Pilot 進行中（app_a 完成，app_b 進行中）→ **2026-06-17 更新：真實版已長到 7 個 APP / 4 種架構**（見 `AutoTesting/Author/smoke_script/README.md`）  
-**來源**：[brand-value-and-smoke-test-proposal.md](brand-value-and-smoke-test-proposal.md) 第十節  
+**來源**：[brand-value-and-smoke-test-proposal.md](skeletons-active/brand-value-and-smoke-test-proposal.md) 第十節  
 **技術環境**：Python + Pytest + Appium，獨立 `smoke_script/` 目錄，與現有回歸測試目錄分離
 
 ---
@@ -15,10 +15,10 @@
 
 | 角度 | 賣點 |
 |---|---|
-| **〈一套 POM 服務 N 個 APP：冒煙測試框架實戰〉** | 「框架是常數、adapter 是變數」；7 APP / 4 架構、`pages/` 一行未改——[pom-refactor](pom-refactor-from-runnable-to-maintainable-planning.md) 的真實案例 |
-| **〈冒煙測試是 AI 規模化的地基〉** | 接 [facing-overwhelm 回歸 vs 冒煙](facing-overwhelm-via-steelmanning-regression-vs-smoke.md)：冒煙不取代回歸、是給 AI 跑回歸的高信賴度基準線。「給 AI 半小時調定位器、人工 review」 |
+| **〈一套 POM 服務 N 個 APP：冒煙測試框架實戰〉** | 「框架是常數、adapter 是變數」；7 APP / 4 架構、`pages/` 一行未改——[pom-refactor](skeletons-done/pom-refactor-from-runnable-to-maintainable-planning.md) 的真實案例 |
+| **〈冒煙測試是 AI 規模化的地基〉** | 接 [facing-overwhelm 回歸 vs 冒煙](skeletons-active/facing-overwhelm-via-steelmanning-regression-vs-smoke.md)：冒煙不取代回歸、是給 AI 跑回歸的高信賴度基準線。「給 AI 半小時調定位器、人工 review」 |
 | **〈單兵 QA 怎麼用一套冒煙框架撐住 N 個產品〉** | [small-team / 新創第一位 QA](small-team-qa-content-and-startup-endgame.md) 的**真實單兵實證**——駁「我沒單兵經驗」（見 [writing-without-lived-experience](writing-without-lived-experience-honest-stance.md)） |
-| **xfail ≠ skip：已知 bug 的誠實記錄** | 接 [proving-a-bug-is-gone](proving-a-bug-is-gone-verification-philosophy.md)：xfail 是「已知、有記錄、預期失敗」；XPASS = RD 修好了的訊號 |
+| **xfail ≠ skip：已知 bug 的誠實記錄** | 接 [proving-a-bug-is-gone](skeletons-done/proving-a-bug-is-gone-verification-philosophy.md)：xfail 是「已知、有記錄、預期失敗」；XPASS = RD 修好了的訊號 |
 
 → **這份 spec + brand-value 提案（向上管理面）+ README（技術細節）= 一個主題的三個切面**，挑一個角度就能成文。
 
@@ -210,6 +210,6 @@ pytest smoke_script/tests/ -v -s --platform ios --device <UDID>
 
 ## 八、相關連結
 
-- [brand-value-and-smoke-test-proposal.md](brand-value-and-smoke-test-proposal.md) — 提案背景與攻防腳本
+- [brand-value-and-smoke-test-proposal.md](skeletons-active/brand-value-and-smoke-test-proposal.md) — 提案背景與攻防腳本
 - [cross-app-locator-strategy.md](cross-app-locator-strategy.md) — 元素定位三階段策略
 - [sole-qa-bottom-up-automation.md](sole-qa-bottom-up-automation.md) — 影子自動化生存策略

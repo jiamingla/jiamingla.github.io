@@ -69,22 +69,22 @@
 
 ### 完稿草稿待上稿（0 篇）
 
-> 2026-06-26：`_drafts/` 已清空。原三篇（pass-fail / proving / pom-refactor）於 6/18–6/25 陸續上稿；B〈日常任務是主線的礦場〉已於 6/26 起草完成、**排程 6/27（週六）晚上發**（含前一份工作資深 QA 前輩「每天擠一支 script」的活素材＋完美主義/彈吉他打掃廁所類比＋AI 時代「人盯著 agent」轉折）。骨架見 [daily-tasks-are-the-mine-not-the-enemy.md](daily-tasks-are-the-mine-not-the-enemy.md)。**下一篇待定**（可從 6/10 的 A「忙=價值」⭐⭐⭐⭐ 或醫院電子化鏡子等候選挑）。
+> 2026-06-26：`_drafts/` 已清空。原三篇（pass-fail / proving / pom-refactor）於 6/18–6/25 陸續上稿；B〈日常任務是主線的礦場〉已於 6/26 起草完成、**排程 6/27（週六）晚上發**（含前一份工作資深 QA 前輩「每天擠一支 script」的活素材＋完美主義/彈吉他打掃廁所類比＋AI 時代「人盯著 agent」轉折）。骨架見 [daily-tasks-are-the-mine-not-the-enemy.md](skeletons-active/daily-tasks-are-the-mine-not-the-enemy.md)。**下一篇待定**（可從 6/10 的 A「忙=價值」⭐⭐⭐⭐ 或醫院電子化鏡子等候選挑）。
 
-> 註 1：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
-> 註 2：**bug-triage-six-patterns**——6/8 一度降為規劃檔（揭露邊界 gating），同日揭露邊界定案（前公司只示範 F+E、不掛 QA 第一手、現公司不寫）後**已生成全文並排程 2026-06-10**，移入 _posts/。規劃檔 [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) 保留決策紀錄。
+> 註 1：原列此處的 ai-replacement-accountability-checklist 已於 2026-06-05 移回 [notes/](skeletons-active/ai-replacement-accountability-checklist.md)（重構為「品質責任編輯當責模型」骨架），不再是待上稿草稿。
+> 註 2：**bug-triage-six-patterns**——6/8 一度降為規劃檔（揭露邊界 gating），同日揭露邊界定案（前公司只示範 F+E、不掛 QA 第一手、現公司不寫）後**已生成全文並排程 2026-06-10**，移入 _posts/。規劃檔 [bug-triage-six-patterns-planning.md](skeletons-done/bug-triage-six-patterns-planning.md) 保留決策紀錄。
 > 註 3：**pom-refactor**——原標「暫不發布、保留作技術備忘」，6/25 低能量日決定先發（符合 publish-then-revise）；真實 smoke 框架升級虛構 demo 之事留淡季再做。
 
 > 註：原 survival-kit-when-test-stage-down 在 5/11 重寫為 [ten-minute-test-plan-when-test-stage-down](/post/ten-minute-test-plan-when-test-stage-down/)，主軸從「Survival Kit 三件事」改為「ACC 自審覆蓋率」，已排程 5/13 上稿。
 
 ### 規劃文件（notes/，不會直接成為文章）
 
-- [successor-communication-and-ai-impatience.md](successor-communication-and-ai-impatience.md) — **2026-06-10 新**：大人學接班人（溝通樞紐）的實踐、尋求平行肯定，以及 AI 即時回饋帶來的「組織耐性赤字」反思。
-- [cross-departmental-relation-and-social-roi.md](cross-departmental-relation-and-social-roi.md) — **2026-06-12 新**：跨部門聚餐引發的社交反思，包含接班人溝通樞紐實踐、人際關係的邊際效益遞減，以及個人生活圈擴大的探索。
-- [sdet-role-reflection-in-ai-era.md](sdet-role-reflection-in-ai-era.md) — **2026-06-12 新**：專職 SDET 的定位迷思、SRE 的建置基礎設施類比，以及 AI 時代職稱去標籤化與職能流動的思考。（已於 6/12 發布為文章）
-- [white-label-app-testing-strategy.md](white-label-app-testing-strategy.md) — **2026-06-10 新**：白牌/多 App 自動化測試的痛點分析與漸進式定位抽象策略。
-- [bug-triage-six-patterns-planning.md](bug-triage-six-patterns-planning.md) — **2026-06-08 新**：bug-triage 六種模式對照的素材 + 待思考問題。**gating decision = 揭露邊界**（改用兩間前公司第一手案例，去識別化 / 法務距離 / 情緒中立想清楚才生成文章）。⭐⭐⭐⭐ 長尾，線八主場 + 線十前傳
-- [pom-refactor-from-runnable-to-maintainable-planning.md](pom-refactor-from-runnable-to-maintainable-planning.md) — **2026-06-09 新**：大四實習時的 POM 啟蒙與現今實踐對照，並思考封裝良好的 Page Object 在 AI 時代作為 Agent Tool API 的全新戰略價值。
+- [successor-communication-and-ai-impatience.md](skeletons-active/successor-communication-and-ai-impatience.md) — **2026-06-10 新**：大人學接班人（溝通樞紐）的實踐、尋求平行肯定，以及 AI 即時回饋帶來的「組織耐性赤字」反思。
+- [cross-departmental-relation-and-social-roi.md](skeletons-done/cross-departmental-relation-and-social-roi.md) — **2026-06-12 新**：跨部門聚餐引發的社交反思，包含接班人溝通樞紐實踐、人際關係的邊際效益遞減，以及個人生活圈擴大的探索。
+- [sdet-role-reflection-in-ai-era.md](skeletons-done/sdet-role-reflection-in-ai-era.md) — **2026-06-12 新**：專職 SDET 的定位迷思、SRE 的建置基礎設施類比，以及 AI 時代職稱去標籤化與職能流動的思考。（已於 6/12 發布為文章）
+- [white-label-app-testing-strategy.md](skeletons-active/white-label-app-testing-strategy.md) — **2026-06-10 新**：白牌/多 App 自動化測試的痛點分析與漸進式定位抽象策略。
+- [bug-triage-six-patterns-planning.md](skeletons-done/bug-triage-six-patterns-planning.md) — **2026-06-08 新**：bug-triage 六種模式對照的素材 + 待思考問題。**gating decision = 揭露邊界**（改用兩間前公司第一手案例，去識別化 / 法務距離 / 情緒中立想清楚才生成文章）。⭐⭐⭐⭐ 長尾，線八主場 + 線十前傳
+- [pom-refactor-from-runnable-to-maintainable-planning.md](skeletons-done/pom-refactor-from-runnable-to-maintainable-planning.md) — **2026-06-09 新**：大四實習時的 POM 啟蒙與現今實踐對照，並思考封裝良好的 Page Object 在 AI 時代作為 Agent Tool API 的全新戰略價值。
 - [analogy-series-proposals.md](analogy-series-proposals.md) — PDT 類比系列（醫生 / 記者 / 偵探 / 讀者）
 - [book-ideas-qa-growth-guide.md](book-ideas-qa-growth-guide.md) — 讀書延伸題目（《QA 職涯手冊》七個切角）
 - [tools-roadmap.md](tools-roadmap.md) — PDT/Self-Review Agent 工具路線
@@ -96,22 +96,22 @@
 - [pdt-coach-session-2026-05-27-insights.md](coach-sessions/2026-05-27-insights.md) — **Org-Signal Coach 三天**（5/25-27）：北極星 + Head 被拒不受傷 + **比較表上桌**。**最深揭曉：B 堆不是 QA 主場、C 堆才是；訓練面對反駁是練論點硬度不是膽量**。新孕育 7 個文章角度（A 文「UX vs 系統行為裂縫」最強）
 - [2026-05-31-brand-value-and-smoke-test-proposal.md](coach-sessions/brand-value-and-smoke-test-proposal.md) — **品牌價值與冒煙測試提案**（異常處理價值 / 向上管理劇本 / 技術與業務共生策略）
 - [pdt-coach-session-2026-05-28-insights.md](coach-sessions/2026-05-28-insights.md) — **Org-Signal Coach 三天**（5/28-30）：**本年地圖大校正**（Head 是支撐桿、接班 = 接 Head 不是 Manager）+ 跟接班對象第一次微妙分歧 + 混合動機承認 + 個人化歸因警覺 + Coach 5/30 主動踩煞車。新孕育 5 個文章角度（A 文「QBT 責任編輯」⭐⭐⭐⭐ + E 文「Coach 該何時叫使用者離開」⭐⭐⭐⭐ 最強）
-- [pdt-coach-session-2026-06-01-insights.md](coach-sessions/2026-06-01-insights.md) — **Org-Signal Coach 三天**（6/1-3）：**「被看見會自然發生」實證**（IB 事件鏈印證 5/28 權力地圖）+ 「工作不是全部的出口」personal 覺察 + 「你跟 QA-A 的分野」定位浮現（組織派 vs 技術派）+ 綠燈做決策 / 紅燈做執行內化。新孕育 8 個文章角度（C「組織派 vs 技術派」⭐⭐⭐⭐ + G「報告一眼看懂」⭐⭐⭐⭐ 最強、跟 [first-principle](software-testing-first-principle.md) 強連動）
-- [pdt-coach-session-2026-06-04-insights.md](coach-sessions/2026-06-04-insights.md) — **Org-Signal Coach 六天**（6/4-9）：**自己踩煞車能力成形**（自己診斷紅燈 + 切回 + 比 Coach 更務實判斷）+ 對外溝通內外有別（RD-Al 事件）+ 樞紐 ≠ 客服 reframe + 「想職涯是想工作的高級偽裝」（請假日鏡子）+ **核心測試發現「測不了的已知風險」**（[first-principle](software-testing-first-principle.md) 活案例）+ 讀懂 Head 不給 PM 太多文件原則（DTNO 例子、補 5/29 分歧）+ 跟同類型 PM-Ve 溝通的盲點。**新孕育 8 個文章角度**（A「測不了的已知風險」⭐⭐⭐⭐ + D「不會忙到沒成長」⭐⭐⭐⭐ + F「同類型人溝通盲點」⭐⭐⭐⭐ 最強）
+- [pdt-coach-session-2026-06-01-insights.md](coach-sessions/2026-06-01-insights.md) — **Org-Signal Coach 三天**（6/1-3）：**「被看見會自然發生」實證**（IB 事件鏈印證 5/28 權力地圖）+ 「工作不是全部的出口」personal 覺察 + 「你跟 QA-A 的分野」定位浮現（組織派 vs 技術派）+ 綠燈做決策 / 紅燈做執行內化。新孕育 8 個文章角度（C「組織派 vs 技術派」⭐⭐⭐⭐ + G「報告一眼看懂」⭐⭐⭐⭐ 最強、跟 [first-principle](skeletons-active/software-testing-first-principle.md) 強連動）
+- [pdt-coach-session-2026-06-04-insights.md](coach-sessions/2026-06-04-insights.md) — **Org-Signal Coach 六天**（6/4-9）：**自己踩煞車能力成形**（自己診斷紅燈 + 切回 + 比 Coach 更務實判斷）+ 對外溝通內外有別（RD-Al 事件）+ 樞紐 ≠ 客服 reframe + 「想職涯是想工作的高級偽裝」（請假日鏡子）+ **核心測試發現「測不了的已知風險」**（[first-principle](skeletons-active/software-testing-first-principle.md) 活案例）+ 讀懂 Head 不給 PM 太多文件原則（DTNO 例子、補 5/29 分歧）+ 跟同類型 PM-Ve 溝通的盲點。**新孕育 8 個文章角度**（A「測不了的已知風險」⭐⭐⭐⭐ + D「不會忙到沒成長」⭐⭐⭐⭐ + F「同類型人溝通盲點」⭐⭐⭐⭐ 最強）
 - [pdt-coach-session-2026-06-10-insights.md](coach-sessions/2026-06-10-insights.md) — **Org-Signal Coach 六天**（6/10-15）：**挖到核心矛盾**——「忙=價值」（信念 A、假）vs「聰明做事=價值」（信念 B、真），A 傷害 B、放掉 A 才解焦慮（用使用者自己三週的證據拆穿）+ 旺季交付 / 淡季投資策略分流（旺季成長=調度=Head 能力）+ 想像的忙 vs 真實的忙 + 辨識紅燈進化（事後也能辨識）+ 把問題問對人（PM vs RD-Ty）+ 假警報自我放大（停三秒回想做了什麼）+ 讀組織訊號轉向善意 + 「日常任務是主線的礦場」。**新孕育 6 個角度**（A「忙=價值假信念」⭐⭐⭐⭐ 最強 + B「日常任務是礦場」⭐⭐⭐）
-- [facing-overwhelm-via-steelmanning-regression-vs-smoke.md](facing-overwhelm-via-steelmanning-regression-vs-smoke.md) — **2026-06-17 骨架**：面對做不完（回歸 vs 冒煙 steelman）；做不完的煩悶=「不認同卻被迫做」、steelman 對方本金（規模化是 KPI+方向 align+燒 token 窗口）→ 從被迫變參與配置；多產品線放大（修一個 bug 驗 N 個 APP）；別把對方定格（Head 觀念也在演化）
+- [facing-overwhelm-via-steelmanning-regression-vs-smoke.md](skeletons-active/facing-overwhelm-via-steelmanning-regression-vs-smoke.md) — **2026-06-17 骨架**：面對做不完（回歸 vs 冒煙 steelman）；做不完的煩悶=「不認同卻被迫做」、steelman 對方本金（規模化是 KPI+方向 align+燒 token 窗口）→ 從被迫變參與配置；多產品線放大（修一個 bug 驗 N 個 APP）；別把對方定格（Head 觀念也在演化）
 - [small-team-qa-content-and-startup-endgame.md](small-team-qa-content-and-startup-endgame.md) — **2026-06-17 戰略檔**：20 篇 19 篇預設大組織、只有 yes-man 跨規模；規模維度 lens（靠 AI/思維=跨規模、靠組織/政治=鎖大公司）；新職涯願景「新創第一位測試工程師」= 從白紙長出的 Head（與大組織 Head 同能力、不同起點）。⚠️ **查證後下修**：單兵 QA 英文圈飽和（含書）、中文較薄不空白，moat 是繁中×AI×PDT×個人敘事的組合不是 topic
-- [proving-a-bug-is-gone-verification-philosophy.md](proving-a-bug-is-gone-verification-philosophy.md) — **2026-06-16 骨架**：證明 bug「不存在」極難（認識論+成本兩種難）；護理師朋友視角（零個人健康揭露）；醫學研究打底（病人自評 vs 醫生量表不一致 51-55%）；8 類 bug 難度光譜；LLM 機率論放大難題
+- [proving-a-bug-is-gone-verification-philosophy.md](skeletons-done/proving-a-bug-is-gone-verification-philosophy.md) — **2026-06-16 骨架**：證明 bug「不存在」極難（認識論+成本兩種難）；護理師朋友視角（零個人健康揭露）；醫學研究打底（病人自評 vs 醫生量表不一致 51-55%）；8 類 bug 難度光譜；LLM 機率論放大難題
 - [writing-without-lived-experience-honest-stance.md](writing-without-lived-experience-honest-stance.md) — **2026-06-17 心理錨**（焦慮時讀）：「沒那段實戰經驗、哪些能寫」——寫思考不寫經驗、誠實標明視角來源、可遷移的料就能寫；駁「沒經驗=沒資格」（同源自我評價 pattern）
-- [hospital-emr-mirrors-ai-adoption.md](hospital-emr-mirrors-ai-adoption.md) — **2026-06-18 骨架**：借大學課堂學到的醫院電子化（EMR/HIS 導入）歷史，類比 AI 導入。**主軸=導入陣痛是常態**（初期效率反降、人員抗拒是必經谷底，別用初期的痛否定方向）；素材=課堂理論（誠實標明、不假裝第一手）；同構對照表淺而準；garbage in/二次利用/系統給數據人下判斷當配菜
-- 🆕 **衍生篇 idea（2026-06-18）：pass/fail 那篇 ×「AI 100% 開發 100% 測試」**——詳見 [ai-test-result-schema-planning.md](ai-test-result-schema-planning.md) 的「衍生篇 idea」段。三個切入點：球員兼裁判（AI 寫 code 又判 code、盲點相關＝假綠燈加強版）/ 100% 是數量、這篇講可讀性（跑完≠可信≠可簽）/「100%」是該被誠實姿態戳破的口號（ought-can't、oracle 缺失＝永遠關不起來的殘差）。本篇只在最前面挖坑，完整論述留這篇
-- 🟢 **smoke 框架 = 多篇活證據（2026-06-17）**：`AutoTesting/Author/smoke_script/` 真實 7 APP/4 架構單兵框架（去識別版 = [smoke-test-golden-set-spec](smoke-test-golden-set-spec.md)）餵 5 條線——POM（[planning](pom-refactor-from-runnable-to-maintainable-planning.md) 真實案例升級 + 分工金句「AI 找 locator、人決定預期結果」）/ 回歸 vs 冒煙（[facing-overwhelm](facing-overwhelm-via-steelmanning-regression-vs-smoke.md) 冒煙是 AI 規模化地基的實體）/ cross-app / 單兵（[small-team](small-team-qa-content-and-startup-endgame.md) 駁「沒單兵經驗」）/ AI×POM。**一份真實作品餵五篇**（於 6/18 完稿，併入 David Ko 測試停止與 Lesson 185 討論）
+- [hospital-emr-mirrors-ai-adoption.md](skeletons-active/hospital-emr-mirrors-ai-adoption.md) — **2026-06-18 骨架**：借大學課堂學到的醫院電子化（EMR/HIS 導入）歷史，類比 AI 導入。**主軸=導入陣痛是常態**（初期效率反降、人員抗拒是必經谷底，別用初期的痛否定方向）；素材=課堂理論（誠實標明、不假裝第一手）；同構對照表淺而準；garbage in/二次利用/系統給數據人下判斷當配菜
+- 🆕 **衍生篇 idea（2026-06-18）：pass/fail 那篇 ×「AI 100% 開發 100% 測試」**——詳見 [ai-test-result-schema-planning.md](skeletons-done/ai-test-result-schema-planning.md) 的「衍生篇 idea」段。三個切入點：球員兼裁判（AI 寫 code 又判 code、盲點相關＝假綠燈加強版）/ 100% 是數量、這篇講可讀性（跑完≠可信≠可簽）/「100%」是該被誠實姿態戳破的口號（ought-can't、oracle 缺失＝永遠關不起來的殘差）。本篇只在最前面挖坑，完整論述留這篇
+- 🟢 **smoke 框架 = 多篇活證據（2026-06-17）**：`AutoTesting/Author/smoke_script/` 真實 7 APP/4 架構單兵框架（去識別版 = [smoke-test-golden-set-spec](smoke-test-golden-set-spec.md)）餵 5 條線——POM（[planning](skeletons-done/pom-refactor-from-runnable-to-maintainable-planning.md) 真實案例升級 + 分工金句「AI 找 locator、人決定預期結果」）/ 回歸 vs 冒煙（[facing-overwhelm](skeletons-active/facing-overwhelm-via-steelmanning-regression-vs-smoke.md) 冒煙是 AI 規模化地基的實體）/ cross-app / 單兵（[small-team](small-team-qa-content-and-startup-endgame.md) 駁「沒單兵經驗」）/ AI×POM。**一份真實作品餵五篇**（於 6/18 完稿，併入 David Ko 測試停止與 Lesson 185 討論）
 - [pdt-vs-qbt-positioning.md](pdt-vs-qbt-positioning.md) — **2026-06-01 戰略檔**：QBT 不是業界 established term（WebSearch + Preely 驗證後）；Preely 的 QBT 在 UX 領域、不撞義；PDT 對內 / QBT 對外的雙層架構討論。**rebrand 成本評估：PDT 投資 47 檔案不划算**
 - [rethinking-regression-sequel-idea.md](rethinking-regression-sequel-idea.md) — 〈4 個刪測試問題加第 5 個〉的續篇 idea（5/15）
-- [yes-man-sequel-what-qa-still-owns.md](yes-man-sequel-what-qa-still-owns.md) — yes-man 發後讀者會問的續篇 idea（5/20）
-- [cant-teach-while-doing.md](cant-teach-while-doing.md) — 〈我懂了我爸做水電時為什麼沒辦法邊教邊做〉（5/20）
+- [yes-man-sequel-what-qa-still-owns.md](skeletons-active/yes-man-sequel-what-qa-still-owns.md) — yes-man 發後讀者會問的續篇 idea（5/20）
+- [cant-teach-while-doing.md](skeletons-active/cant-teach-while-doing.md) — 〈我懂了我爸做水電時為什麼沒辦法邊教邊做〉（5/20）
 - [cross-app-locator-strategy.md](cross-app-locator-strategy.md) — 跨 APP 測試框架的元素定位策略（漸進式三階段：fallback chain → LocatorStrategy → per-APP class）。**含公司指紋**，blog 化需洗（5/28）→ ⭐⭐⭐⭐ 長尾力，建議落線三、跟 pom-refactor 形成 POM 雙篇
-- [pm-bug-management-structural-DRAWER.md](pm-bug-management-structural-DRAWER.md) — 🗄️ Framing B 抽屜文（暫不發表）
+- [pm-bug-management-structural-DRAWER.md](skeletons-done/pm-bug-management-structural-DRAWER.md) — 🗄️ Framing B 抽屜文（暫不發表）
 - [qa-self-review-agent-prompt-v1.md](qa-self-review-agent-prompt-v1.md) — PDT Coach v1 系統 prompt
 
 
@@ -268,7 +268,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 
 | 草稿 | 長尾關鍵字方向 | 長尾力 | 建議發稿時機 |
 |---|---|---|---|
-| **bug-triage-six-patterns** | Bug Triage 業界六種模式、Bug 分派、QA bug 指派 | ⭐⭐⭐⭐ | ✅ **已生成並排程 2026-06-11**（前公司 F+E 第一手 + 業界 survey），見 [planning](bug-triage-six-patterns-planning.md) |
+| **bug-triage-six-patterns** | Bug Triage 業界六種模式、Bug 分派、QA bug 指派 | ⭐⭐⭐⭐ | ✅ **已生成並排程 2026-06-11**（前公司 F+E 第一手 + 業界 survey），見 [planning](skeletons-done/bug-triage-six-patterns-planning.md) |
 | **page-source-vs-find-element** | page_source vs find_element、UI 自動化效能 | ⭐⭐⭐⭐ | 已排 6/20，極具長尾 |
 | **empty-result-ambiguity-in-filter-testing** | 篩選沒結果、自動化測試 empty | ⭐⭐⭐ | 已排 6/6 |
 | **not-just-make-manual-script-automate** | 手動測試轉自動化、UI 自動化分工 | ⭐⭐⭐ | ✅ **已上稿 2026-06-12** |
@@ -302,8 +302,8 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 | 5 | 6/7 | **ai-replacement-seminary-calling** | ⭐⭐ | 線七 | ✅ **已上稿** |
 | 6 | 6/8 | **qa-report-workplace-wisdom** | ⭐⭐ | 線六 | ✅ **已上稿** |
 | 7 | 6/11（排程） | **bug-triage-six-patterns** | ⭐⭐⭐⭐ | 線十 / 線八 | ✅ **已生成並排程**（前公司 F+E 第一手 + 業界 survey） |
-| 8 | 6/14（排程） | **ai-test-output-default-reader** | ⭐⭐ | 線二 | ✅ **已生成並排程**（配對 yes-man，規劃檔為 [ai-test-output-default-reader-is-ai-planning.md](ai-test-output-default-reader-is-ai-planning.md)） |
-| 9 | 6/11（排程） | **how-to-start-low-pressure-book-club** | — | 線十一 | ✅ **已生成並排程**（規劃檔為 [how-to-start-low-pressure-book-club-planning.md](how-to-start-low-pressure-book-club-planning.md)） |
+| 8 | 6/14（排程） | **ai-test-output-default-reader** | ⭐⭐ | 線二 | ✅ **已生成並排程**（配對 yes-man，規劃檔為 [ai-test-output-default-reader-is-ai-planning.md](skeletons-done/ai-test-output-default-reader-is-ai-planning.md)） |
+| 9 | 6/11（排程） | **how-to-start-low-pressure-book-club** | — | 線十一 | ✅ **已生成並排程**（規劃檔為 [how-to-start-low-pressure-book-club-planning.md](skeletons-done/how-to-start-low-pressure-book-club-planning.md)） |
 
 > ⚠️ 線六提醒：qa-report（線六）已於 6/8 上稿——「未來 4-6 週避開線六」的時鐘從 6/8 起算，下一篇線六約等到 7 月中後。
 
@@ -346,7 +346,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 5. **不涉及任何台灣公司情境**——translation 阻力最低
 6. **kinofrost 那則批判跟你的主張共鳴**——你的翻譯可以直接 quote 他然後延伸，這在 MoT 文化裡是被歡迎的「building on each other」動作
 
-### 翻譯次選（5/25 升級）：[frontend-ui-vocabulary-for-qa](frontend-ui-vocabulary-planning.md)
+### 翻譯次選（5/25 升級）：[frontend-ui-vocabulary-for-qa](skeletons-done/frontend-ui-vocabulary-planning.md)
 
 **5/25 framing 校準後升級為翻譯次選**——理由比 ai-as-yes-man 更強：
 
@@ -363,7 +363,7 @@ POM 那篇也可以走類似路線：文章先發、之後可能變成內部 wor
 - 「**PDT 的反向應用**」→ "**AI as a vocabulary mirror**" 或 "**reverse exploratory testing**"
 - 自貶式句子 → "I had to look this up too"（humble but not self-deprecating）
 
-→ 詳細 adapt 筆記見 [frontend-ui-vocabulary-planning.md](frontend-ui-vocabulary-planning.md) 頂部「MoT 英文版的差異化」段。
+→ 詳細 adapt 筆記見 [frontend-ui-vocabulary-planning.md](skeletons-done/frontend-ui-vocabulary-planning.md) 頂部「MoT 英文版的差異化」段。
 
 ### 翻譯第三順位：[ai-as-yes-man-rd-pm-trust-calibration](/post/ai-as-yes-man-rd-pm-trust-calibration/)
 

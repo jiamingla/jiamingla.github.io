@@ -100,8 +100,8 @@
 | 終點 | 帶人、調度、product-embedded | **一樣帶人**（招並帶第二位）、定義整間公司品質 |
 | 共同能力 | 看懂局 + 破局 + 跨人交涉 + 帶人 | 同左 |
 
-- 補充：新創第一位也是**「定義者」最純形態**（沒遺留流程 / 政治、從白紙定義品質）——貼 mission statement「從執行者升級成定義者」（[ai-era-tw-qa-needs](ai-era-tw-qa-needs.md)）
-- **這正是「別把對方定格、人會成長」用在自己身上**（連 [facing-overwhelm](facing-overwhelm-via-steelmanning-regression-vs-smoke.md)）——endgame 在演化，但**核心能力不變、所以現在練的不會白費**
+- 補充：新創第一位也是**「定義者」最純形態**（沒遺留流程 / 政治、從白紙定義品質）——貼 mission statement「從執行者升級成定義者」（[ai-era-tw-qa-needs](skeletons-active/ai-era-tw-qa-needs.md)）
+- **這正是「別把對方定格、人會成長」用在自己身上**（連 [facing-overwhelm](skeletons-active/facing-overwhelm-via-steelmanning-regression-vs-smoke.md)）——endgame 在演化，但**核心能力不變、所以現在練的不會白費**
 
 → **好消息**：因為兩條共用能力，**現在不必急著二選一**——你在大組織練的「看懂局 / 破局 / 交涉 / 帶人」，去新創一樣用得上。8 月底心理體檢時定的是「**起點選哪個**」、不是「能力練哪套」（能力同一套）。
 
@@ -148,9 +148,9 @@
 | 連動 | 關係 |
 |---|---|
 | [sole-qa-bottom-up-automation](sole-qa-bottom-up-automation.md) | 線十二主場——單兵自動化的具體戰術，這檔是它的戰略傘 + 職涯框架 |
-| [ai-era-tw-qa-needs](ai-era-tw-qa-needs.md) | Gap 5 niche + mission statement「定義者」 |
+| [ai-era-tw-qa-needs](skeletons-active/ai-era-tw-qa-needs.md) | Gap 5 niche + mission statement「定義者」 |
 | [ithome-ironman-2026-planning](ithome-ironman-2026-planning.md) | 鐵人賽方向 + endgame |
-| [facing-overwhelm](facing-overwhelm-via-steelmanning-regression-vs-smoke.md) | 「人會成長（含自己）」用在 endgame 演化 |
+| [facing-overwhelm](skeletons-active/facing-overwhelm-via-steelmanning-regression-vs-smoke.md) | 「人會成長（含自己）」用在 endgame 演化 |
 | yes-man（[/post](/post/ai-as-yes-man-rd-pm-trust-calibration/)） | 唯一跨規模通用的既有文——示範「靠 AI 主詞 = 跨規模」 |
 
 ---

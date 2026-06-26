@@ -62,7 +62,7 @@
 
 > **「我手上哪幾篇，把『大組織預設』拔掉、就直接是小團隊版？」**
 
-初步猜（待確認）：[first-principle](software-testing-first-principle.md)、[proving-a-bug-is-gone 驗證哲學](proving-a-bug-is-gone-verification-philosophy.md)、yes-man、boredom——這些本來就沒綁規模，拔掉組織預設就通用。
+初步猜（待確認）：[first-principle](skeletons-active/software-testing-first-principle.md)、[proving-a-bug-is-gone 驗證哲學](skeletons-done/proving-a-bug-is-gone-verification-philosophy.md)、yes-man、boredom——這些本來就沒綁規模，拔掉組織預設就通用。
 
 ---
 
@@ -71,6 +71,6 @@
 | 連動 | 關係 |
 |---|---|
 | [small-team-qa-content-and-startup-endgame](small-team-qa-content-and-startup-endgame.md) | 這篇是那條內容線的「心理錨」——焦慮時先讀這篇再動筆 |
-| [proving-a-bug-is-gone](proving-a-bug-is-gone-verification-philosophy.md) | 6/16 護理師朋友視角 = 同一個「誠實標明視角來源」原則 |
+| [proving-a-bug-is-gone](skeletons-done/proving-a-bug-is-gone-verification-philosophy.md) | 6/16 護理師朋友視角 = 同一個「誠實標明視角來源」原則 |
 | 6/15 核心矛盾（[2026-06-10-insights](coach-sessions/2026-06-10-insights.md)） | 被看見靠判斷準 / 誠實、不是裝得多 |
 | memory: 自我評價 pattern | 「沒經驗=沒資格」是同源的自我貶低 |
