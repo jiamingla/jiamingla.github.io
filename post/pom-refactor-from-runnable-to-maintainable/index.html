@@ -382,7 +382,12 @@
 </blockquote>
 <p>UI 改版的時候，selector 換、wait 條件變、結構重組——你不該因此重寫 test 的意圖。<strong>你應該只動那座橋本身</strong>，test 一個字都不用改。能不能做到這件事，就是 POM 寫得好不好的試金石。</p>
 <hr>
-<h2 id="二、三層責任分離：POM-的核心紀律"><a href="#二、三層責任分離：POM-的核心紀律" class="headerlink" title="二、三層責任分離：POM 的核心紀律"></a>二、三層責任分離：POM 的核心紀律</h2><p>任何一段自動化測試，本質上都在做三件事：</p>
+<h2 id="二、三層責任分離：POM-的核心紀律"><a href="#二、三層責任分離：POM-的核心紀律" class="headerlink" title="二、三層責任分離：POM 的核心紀律"></a>二、三層責任分離：POM 的核心紀律</h2><p>在動手拆之前，先給這件事一個正式的名字——<strong>關注點分離（Separation of Concerns，SoC）</strong>。</p>
+<blockquote>
+<p>SoC 是軟體設計的一條基本原則：<strong>把系統拆成數個部分，每個部分只處理「一種關注點」（一類問題），讓它們能各自被理解、修改、重複使用，而不會牽一髮動全身。</strong></p>
+</blockquote>
+<p>它不是 POM 專屬的東西——分層架構、MVC、前後端分離，骨子裡都是同一招。SoC 要對付的痛永遠是同一個：<strong>當不同的關注點纏在一起，你改其中一個，就被迫動到其他全部。</strong> 反過來，當它們被分開，每一個都能獨立變動——這正是 POM 要的那句「UI 變、測試意圖不變」。</p>
+<p>POM 就是把這個原則落在自動化測試上。任何一段自動化測試，本質上都在做三件事——也就是<strong>三種不同的關注點</strong>：</p>
 <ol>
 <li><strong>找東西</strong>（Selector）— 這個按鈕在哪？這個輸入框在哪？</li>
 <li><strong>等到對的時機</strong>（Wait）— 元件出現了嗎？頁面 ready 了嗎？資料載入完了嗎？</li>
