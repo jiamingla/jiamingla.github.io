@@ -211,5 +211,5 @@ pytest smoke_script/tests/ -v -s --platform ios --device <UDID>
 ## 八、相關連結
 
 - [brand-value-and-smoke-test-proposal.md](skeletons-active/brand-value-and-smoke-test-proposal.md) — 提案背景與攻防腳本
-- [cross-app-locator-strategy.md](cross-app-locator-strategy.md) — 元素定位三階段策略
+- [cross-app-locator-strategy.md](skeletons-done/cross-app-locator-strategy.md) — 元素定位三階段策略
 - [sole-qa-bottom-up-automation.md](sole-qa-bottom-up-automation.md) — 影子自動化生存策略

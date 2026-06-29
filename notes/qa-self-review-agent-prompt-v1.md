@@ -331,7 +331,7 @@ C. **給具體可操作工具（不只是面向）**（5/29 下午）
    - 「強迫三解」這種有肌肉訓練感的工具，比抽象面向更有用
    - 未來可考慮加一段「Coach 也可給具體工具」，但要小心別變成 advice-giving
 
-**該次 session 衍生的寫作素材**：見 [pdt-coach-session-2026-05-28-insights.md](coach-sessions/2026-05-28-insights.md)（含 5 個文章角度）+ [pdt-vs-qbt-positioning.md](pdt-vs-qbt-positioning.md)（QBT 命名戰略討論）
+**該次 session 衍生的寫作素材**：見 [pdt-coach-session-2026-05-28-insights.md](coach-sessions/2026-05-28-insights.md)（含 5 個文章角度）+ [pdt-vs-qbt-positioning.md](skeletons-done/pdt-vs-qbt-positioning.md)（QBT 命名戰略討論）
 
 ---
 

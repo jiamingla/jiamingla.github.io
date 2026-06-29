@@ -30,7 +30,7 @@
 | 4 | 軟體測試第一性原理 | 🟡 | [software-testing-first-principle](skeletons-active/software-testing-first-principle.md) | SD/書(統計學) | 線一 |
 | 5 | AI 導入後測試成本結構 | 🟡 | [ai-automation-cost-structure](skeletons-active/ai-automation-cost-structure.md) | SD | 線二/五 |
 | 6 | White-label 趨勢篇 | 🟡 | [white-label](skeletons-active/white-label-app-testing-strategy.md) | SD | 線二/三 |
-| 7 | White-label 實戰篇（三階段定位抽象） | 🟡 | 同上 + [cross-app-locator](cross-app-locator-strategy.md) | SD | 線三 |
+| 7 | White-label 實戰篇（三階段定位抽象） | 🟡 | 同上 + [cross-app-locator](skeletons-done/cross-app-locator-strategy.md) | SD | 線三 |
 | 8 | Bug 管理是一門專業（PM gap） | 🟡 | [bug-management-pm-gap](skeletons-active/bug-management-is-a-profession-pm-gap.md) | **IT 管理** | 線十 |
 | 9 | PM 流動率的 bug backlog 成本（aviation） | 🟡 | [bug-triage-pm-turnover-cost](skeletons-active/bug-triage-pm-turnover-cost.md) | **IT 管理** | 線十 |
 | 10 | PM-QA 介面結構化工作流 | 🟡 | [pm-qa-interface](skeletons-active/pm-qa-interface-structured-workflow.md) | **IT 管理** | 線一/五 |
@@ -38,11 +38,11 @@
 | 12 | AI 成功學留言區 = 集體測試 | 🟡 | [ai-success-story](skeletons-active/ai-success-story-comment-section-pdt.md) | SD/軟技能 | 線二 |
 | 13 | SDET 職能迷思（Holes 歌詞） | 🟡 | [sdet-role-reflection](skeletons-done/sdet-role-reflection-in-ai-era.md) | **IT 管理**/軟技能 | 線九/六 |
 | 14 | AI 時代組織耐性赤字 | 🟡 | [successor-communication-and-ai-impatience](skeletons-active/successor-communication-and-ai-impatience.md) | 軟技能 | 線二/六/九 |
-| 15 | 準備過的閒聊（PDT 社交版） | 🟡 | [prepared-casual-conversation-method](prepared-casual-conversation-method.md) | 軟技能 | 線十一 |
+| 15 | 準備過的閒聊（PDT 社交版） | 🟡 | [prepared-casual-conversation-method](skeletons-done/prepared-casual-conversation-method.md) | 軟技能 | 線十一 |
 | 16 | yes-man 續篇（QA 還守什麼） | 🔵 | [yes-man-sequel](skeletons-active/yes-man-sequel-what-qa-still-owns.md) | SD | 線二 |
-| 17 | 刪測試的第 5 個問題（續篇） | 🔵 | [rethinking-regression-sequel](rethinking-regression-sequel-idea.md) | SD | 線四 |
+| 17 | 刪測試的第 5 個問題（續篇） | 🔵 | [rethinking-regression-sequel](skeletons-active/rethinking-regression-sequel-idea.md) | SD | 線四 |
 | 18 | AI 修 bug 比開 ticket 快 | 🔵 | [ai-bug-fix-faster-than-ticket](skeletons-active/ai-bug-fix-faster-than-ticket.md) | SD | 線二/十 |
-| 19 | PDT × 醫生問診類比 | 🔵 | [analogy-series-proposals](analogy-series-proposals.md) | SD/書 | 線一 |
+| 19 | PDT × 醫生問診類比 | 🔵 | [analogy-series-proposals](skeletons-active/analogy-series-proposals.md) | SD/書 | 線一 |
 | 20 | 當責清單（AI 取代） | 🔵 | [ai-replacement-accountability-checklist](skeletons-active/ai-replacement-accountability-checklist.md) | SD/IT 管理 | 線二 |
 
 **→ 20 篇達標,且這還沒算：**
