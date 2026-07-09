@@ -32,11 +32,12 @@
 
 - **2026-05-07：第一次對外分享**——把 [rethinking-regression-test-value](/post/rethinking-regression-test-value/) 貼給一位 QA 同事看（暫無具體回饋，但無負面反應）。詳見 memory: `blog_promotion_stance.md`
 
-### 已上稿（30 篇，含 1 篇排程，依日期倒序）
+### 已上稿（31 篇，依日期倒序）
 
 | 日期 | 文章 | URL slug | 主題線 |
 |---|---|---|---|
-| 2026-06-27（排程） | 日常任務不是主線的對手，是主線的礦場——一位前輩的「每天擠一支 script」，與 AI 時代的新版本 | daily-tasks-are-the-mine-not-the-enemy | 線六 / 線一 PDT meta |
+| 2026-07-09 | 我上了大人學，卻用它把自己想做的專案卡死了 | right-tool-wrong-time | 線十一（工作方法）/ PDT-meta |
+| 2026-06-27 | 日常任務不是主線的對手，是主線的礦場——一位前輩的「每天擠一支 script」，與 AI 時代的新版本 | daily-tasks-are-the-mine-not-the-enemy | 線六 / 線一 PDT meta |
 | 2026-06-25 | POM 重構實戰：把「能跑」的自動化腳本，改寫成「能被別人接手」的形狀 | pom-refactor-from-runnable-to-maintainable | 線三（技術深度／教材） |
 | 2026-06-23 | 如何證明一個 Bug 已經消失？——從療程驗證看軟體與 AI 測試的哲學難題 | proving-a-bug-is-gone-verification-philosophy | 線一 / 線二 / 線九 |
 | 2026-06-18 | 當你把測試計畫交給 AI 執行，pass / fail 兩個欄位還夠用嗎？ | pass-fail-not-enough-for-ai-testing | 線二（AI 測試判讀） |
