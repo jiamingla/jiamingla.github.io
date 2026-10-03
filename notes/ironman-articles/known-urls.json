@@ -1,0 +1,22 @@
+{
+  "1": "https://ithelp.ithome.com.tw/articles/10411438",
+  "2": "https://ithelp.ithome.com.tw/articles/10412106",
+  "3": "https://ithelp.ithome.com.tw/articles/10412845",
+  "4": "https://ithelp.ithome.com.tw/articles/10413456",
+  "5": "https://ithelp.ithome.com.tw/articles/10414006",
+  "6": "https://ithelp.ithome.com.tw/articles/10414550",
+  "7": "https://ithelp.ithome.com.tw/articles/10414903",
+  "8": "https://ithelp.ithome.com.tw/articles/10415542",
+  "9": "https://ithelp.ithome.com.tw/articles/10415752",
+  "10": "https://ithelp.ithome.com.tw/articles/10416638",
+  "11": "https://ithelp.ithome.com.tw/articles/10417211",
+  "12": "https://ithelp.ithome.com.tw/articles/10417217",
+  "13": "https://ithelp.ithome.com.tw/articles/10418143",
+  "14": "https://ithelp.ithome.com.tw/articles/10418544",
+  "15": "https://ithelp.ithome.com.tw/articles/10418550",
+  "16": "https://ithelp.ithome.com.tw/articles/10418573",
+  "17": "https://ithelp.ithome.com.tw/articles/10418574",
+  "18": "https://ithelp.ithome.com.tw/articles/10418575",
+  "19": "https://ithelp.ithome.com.tw/articles/10418579",
+  "_說明": "已發布篇章的 Day → 網址對照。resolve-links.py 優先採用這裡的值，因為 iThome 系列 RSS 有數小時延遲，發布當天靠 RSS 比對會失敗。工具發布的篇章 receipt 也會提供，這裡主要補「手動發布」與「Day 1-13 早期篇章」。"
+}
