@@ -6,3 +6,6 @@ node_modules/
 public/
 .deploy*/
 _multiconfig.yml
+# Python 暫存
+__pycache__/
+*.pyc

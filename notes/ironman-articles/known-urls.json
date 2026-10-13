@@ -18,5 +18,16 @@
   "17": "https://ithelp.ithome.com.tw/articles/10418574",
   "18": "https://ithelp.ithome.com.tw/articles/10418575",
   "19": "https://ithelp.ithome.com.tw/articles/10418579",
+  "20": "https://ithelp.ithome.com.tw/articles/10418580",
+  "21": "https://ithelp.ithome.com.tw/articles/10418581",
+  "22": "https://ithelp.ithome.com.tw/articles/10418582",
+  "23": "https://ithelp.ithome.com.tw/articles/10418583",
+  "24": "https://ithelp.ithome.com.tw/articles/10418584",
+  "25": "https://ithelp.ithome.com.tw/articles/10418585",
+  "26": "https://ithelp.ithome.com.tw/articles/10418896",
+  "27": "https://ithelp.ithome.com.tw/articles/10418897",
+  "28": "https://ithelp.ithome.com.tw/articles/10418898",
+  "29": "https://ithelp.ithome.com.tw/articles/10418900",
+  "30": "https://ithelp.ithome.com.tw/articles/10418901",
   "_說明": "已發布篇章的 Day → 網址對照。resolve-links.py 優先採用這裡的值，因為 iThome 系列 RSS 有數小時延遲，發布當天靠 RSS 比對會失敗。工具發布的篇章 receipt 也會提供，這裡主要補「手動發布」與「Day 1-13 早期篇章」。"
 }

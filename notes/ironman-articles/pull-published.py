@@ -101,7 +101,7 @@ def register(day: int, url: str) -> None:
 
 
 def main() -> int:
-    args = sys.argv[1:]
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
     if not args or len(args) % 2:
         print(__doc__)
         return 1

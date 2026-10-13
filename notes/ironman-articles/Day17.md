@@ -1,6 +1,6 @@
 ---
 urlname: the-other-half-day17-doc-maintenance-orphan
-title: 我讀不懂那份規格的時候，以為是自己不夠格
+title: 我讀不懂那份規格的時候，以為是自己還太菜
 date: 2026-10-01 21:00:00
 tags: [軟體測試, QA職涯, 文件維護, 組織設計, 鐵人賽, 職涯歷練]
 ---
