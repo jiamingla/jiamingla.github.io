@@ -1,7 +1,7 @@
 ---
 urlname: thirty-days-what-actually-happened
 title: 三十篇寫完了：一些數字，跟一些沒寫進系列裡的事
-date: 2026-10-14 14:00:00
+date: 2026-10-13 22:54:13
 tags: [寫作, 鐵人賽, QA職涯, 自我反思, 工具]
 ---
 
