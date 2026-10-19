@@ -71,7 +71,7 @@ def to_markdown(body: str) -> str:
             if text:
                 out.append(text)
         elif tag == "blockquote":
-            text = to_markdown(inner) if re.search(r"<p\b", inner, re.I) else inline(inner)
+            text = to_markdown(inner) if re.search(r"<(p|ul|ol)\b", inner, re.I) else inline(inner)
             out.append("\n".join(("> " + line if line else ">") for line in text.split("\n")))
         elif tag in ("ul", "ol"):
             lines = []

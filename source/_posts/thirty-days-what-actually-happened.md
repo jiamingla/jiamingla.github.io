@@ -122,4 +122,7 @@ iThome 對 `/users/*` 底下的頁面有機器人防護，而那支工具在寫�
 ### 延伸閱讀
 
 - [測試之外的那一半：一個 QA 回頭帶當年的自己（完整系列）](https://ithelp.ithome.com.tw/users/20127015/ironman/9947)
+- [我說「沒問題」的那天：QA 的 A 到底在保證什麼](/post/qa-assurance-what-am-i-guaranteeing/)
+- [同樣一句「這個麻煩測一下」，我在四個地方聽過各種意思](/post/test-this-means-four-different-things/)
+- [做得越好，能被看見的亮點越少](/post/the-better-you-do-the-less-visible/)
 - [給新進 QA 的第一封信：如何在兩天內穩定的回歸測試完一個產品？](/post/letter-to-new-qa-two-day-regression/)
