@@ -315,10 +315,10 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a></li>
                         
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a></li>
@@ -356,38 +356,45 @@
                          <p>實習第一個月，有人問我一個功能測完了沒。</p>
 <p>我說還沒，我還在把每一種情況都試一遍。</p>
 <p>那句話本身就是問題。</p>
+<hr>
 <h2 id="「每一種情況」不存在"><a href="#「每一種情況」不存在" class="headerlink" title="「每一種情況」不存在"></a>「每一種情況」不存在</h2><p>拿一個輸入框來算。空白、一個字、一千個字、表情符號、全形空格、貼上帶換行的段落、打到一半切到背景再切回來、送出的瞬間網路斷掉。</p>
 <p>這只是一個欄位。</p>
 <p>一個畫面上有五個欄位、三個按鈕、兩種登入狀態、四種網路情況。把它們的組合乘開，幾千種起跳。而那還只是一個畫面。</p>
 <p>窮舉在物理上做不到。</p>
 <p>我那時候不知道。我以為做不完的原因是我不夠快。</p>
+<hr>
 <h2 id="那這份工作到底在做什麼"><a href="#那這份工作到底在做什麼" class="headerlink" title="那這份工作到底在做什麼"></a>那這份工作到底在做什麼</h2><p>以前在北護讀資管系，想到統計學有一個入門的比喻，愣了一下，那講的就是我每天在幹的事。</p>
 <p>你煮了一鍋湯。你不會整鍋喝完才判斷鹹淡。你通常會先攪一攪，舀一小匙，嘗。</p>
 <p>那一小匙不是整鍋湯。但只要你攪得夠勻、舀的位置有代表性，舌頭嘗到的口感、鹹度，這些證據足以支撐一個夠用的判斷。</p>
 <p>統計有一組現成的詞在講這件事：<strong>母體</strong>是你想了解的全部，<strong>樣本</strong>是你實際取到的那一小部分，<strong>代表性</strong>決定你能不能從樣本推回母體。</p>
 <p>軟體的所有可能狀態是母體。你執行測試案例得到的實際結果是樣本。</p>
 <p>你從來不在窮舉。你一直在抽樣，而且一直在做推論。</p>
+<hr>
 <h2 id="想通之後，問題換了"><a href="#想通之後，問題換了" class="headerlink" title="想通之後，問題換了"></a>想通之後，問題換了</h2><p>如果這是抽樣，那「我測完了嗎」就是個問錯的問題。母體不可窮盡，永遠沒有「完」。</p>
 <p>該問的是：<strong>我這幾匙，取得夠不夠有代表性？</strong></p>
 <p>這個轉換有幾個實際的後果。</p>
 <p><strong>覆蓋率不等於信心。</strong> 一鍋湯的表面舀滿一百匙，你還是不知道底下沉澱了什麼。一百個案例全部壓在同一條主流程上，跟三十個案例散落在不同風險區，後者給你的信心高得多。</p>
 <p><strong>你開始需要知道哪裡可能不一樣。</strong> 攪湯是為了讓樣本有代表性，此刻你知道湯頭太淡，你會再撒點鹽巴；在軟體裡，對應的動作是搞清楚這一版動了什麼、哪些是新的、哪些地方過去反覆出事。少了這些，你只是在同一個位置重複下勺。</p>
-<p>Day 3 那個資訊落差之所以要命，就在這裡。它直接決定你取得到哪裡。</p>
+<p><a href="/post/test-this-means-four-different-things/">組織位置帶來的資訊落差</a>之所以要命，就在這裡。它直接決定你取得到哪裡。</p>
 <p><strong>測不完不是你的問題，取樣偏誤才是。</strong> 我實習的時候為「做不完」焦慮。現在我認為該焦慮的是另一件事：做完了，但全部集中在無關緊要的角落。</p>
+<hr>
 <h2 id="三種不可窮盡"><a href="#三種不可窮盡" class="headerlink" title="三種不可窮盡"></a>三種不可窮盡</h2><p>再往下推一層，麻煩不只在軟體這一邊。</p>
 <p><strong>軟體本身不可窮盡。</strong> 它有沒人預料到的行為，狀態列不完。</p>
-<p><strong>人對軟體的期待也不完整。</strong> 規格不會寫全，PM 跟 RD 想得到的情境有限。這正是 Day 6 我在動手測試之前追問規格漏洞時撞到的東西。</p>
+<p><strong>人對軟體的期待也不完整。</strong> 規格不會寫全，PM 跟 RD 想得到的情境有限。這正是<a href="/post/the-better-you-do-the-less-visible/">我在動手測試之前追問規格漏洞時</a>撞到的東西。</p>
 <p><strong>真實的使用更超出設想。</strong> 使用者一定會做出沒有人想過的事。</p>
 <p>測試站在這三者中間。它不負責證明軟體是對的——它負責把這三邊的落差<strong>顯影</strong>出來，交給有權力的人去決定要不要放行。</p>
 <p>這句話我實習的時候聽不懂。現在我認為它是這份工作最準確的描述。</p>
+<hr>
 <h2 id="帶走的一樣東西"><a href="#帶走的一樣東西" class="headerlink" title="帶走的一樣東西"></a>帶走的一樣東西</h2><blockquote>
 <p>卡在「我到底測完了沒」的時候，換一個問題：</p>
 <p><strong>我這幾匙取在哪裡？為什麼取在那裡？</strong></p>
 <p>答得出第二句，你手上就是一份說得出理由的測試範圍。</p>
 </blockquote>
-<p>明天聊：時間只剩十分鐘的時候，怎麼決定取在哪裡。</p>
 <hr>
 <h3 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h3><ul>
+<li><a href="/post/qa-assurance-what-am-i-guaranteeing/">我說「沒問題」的那天：QA 的 A 到底在保證什麼</a></li>
+<li><a href="/post/test-this-means-four-different-things/">同樣一句「這個麻煩測一下」，我在四個地方聽過各種意思</a></li>
+<li><a href="/post/the-better-you-do-the-less-visible/">做得越好，能被看見的亮點越少</a></li>
 <li><a href="/post/problem-driven-testing-intro/">問題驅動測試（PDT）：致命 Bug 藏在你沒問過的問題裡</a></li>
 <li><a href="/post/ten-minute-test-plan-when-test-stage-down/">測試站登入壞了那天，我才被迫面對：我真的測完了嗎？</a></li>
 </ul>
@@ -407,11 +414,11 @@
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%95%8F%E9%A1%8C%E9%A9%85%E5%8B%95%E6%B8%AC%E8%A9%A6/">問題驅動測試</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
