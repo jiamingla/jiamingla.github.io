@@ -1,7 +1,7 @@
 ---
 urlname: defect-escape-rate-broken-assumptions
 title: 「Bug 逃逸率」的隱性假設：當產品三個月才測一次，線上出事算誰逃逸？
-date: 2026-10-20 02:00:00
+date: 2026-10-20 22:15:00
 tags: [軟體測試, QA職涯, 績效管理, 測試策略, 品質工程, 組織設計]
 ---
 
