@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="testing, software testing, test automation, qa, quality assurance">
+    <meta name="description" content="我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟AI能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。">
+    <meta name="author" content="Elijah Ho">
+    
+    <title>
+        
+            「Bug 逃逸率」的隱性假設：當產品三個月才測一次，線上出事算誰逃逸？ |
+        
+        Elijah’s Quality Lab
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"jiamingla.github.io","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Elijah’s Quality Lab","author":"Elijah Ho","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","tags":"/tags || fa-solid fa-tags","about":"/about || fa-solid fa-user-graduate","coffee-chat":"/coffee-chat || fa-solid fa-mug-hot"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/jiamingla","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":"我會在這裡分享有關軟體測試的知識與經驗，通常是踩過的坑，畢竟 AI 能幫我們解決很多問題，但還是需要人們紀錄坑坑洞洞。","category":false,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","reactions_enabled":"1","enable":true,"loading":true,"mapping":"title","strict":"0","emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"top","data_loading":"lazy"},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2026,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom.css"],"js":[null]},"symbols_count_time":{"symbols":true,"time":true,"total_symbols":true,"total_time":true,"exclude_codeblock":true},"root":"","source_data":{},"giscus":{"enable":true,"loading":true,"repo":"jiamingla/jiamingla.github.io","repo_id":"R_kgDOQ9s4Ng","category":"Blog Comments","category_id":"DIC_kwDOQ9s4Ns4C1NAE","mapping":"pathname","term":null,"strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","dark":"dark","lang":"zh-TW","input_position":"bottom","data_loading":"lazy"},"comments":{"title":null,"layout":null,"path":null,"darkclass":null,"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"view_injects":{"pageEnd":[{"layout":"keep/inject/pageEnd/giscus.ejs","order":0}],"comment":[{"layout":"keep/inject/comment/giscus.ejs","locals":{"configKey":"giscus","class":"giscus","text":"giscus","showLoading":true},"order":0}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"複製代碼","copied":"已複製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"複製版權資訊","copied":"已複製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<!-- hexo injector head_end start --><meta name="google-site-verification" content="Itek7fGpjqLPCmu3m_5P7VafFpgfJ2VOtRIQ2IanFKc" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Elijah’s Quality Lab
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首頁
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                歸檔
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                標籤
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                關於
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/coffee-chat">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-mug-hot"></i>
+                                
+                                COFFEE-CHAT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首頁
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            歸檔
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            標籤
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            關於
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/coffee-chat">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-mug-hot"></i>
+                                </span>
+                            
+                            COFFEE-CHAT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        「Bug 逃逸率」的隱性假設：當產品三個月才測一次，線上出事算誰逃逸？
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Elijah Ho</span>
+                                
+                                    <span class="author-badge">Lv4</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-10-20</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Tue Oct 20 2026 14:15:00 GMT+0000">2026-10-20</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%B5%84%E7%B9%94%E8%A8%AD%E8%A8%88/">組織設計</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/QA%E8%81%B7%E6%B6%AF/">QA職涯</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%B8%BE%E6%95%88%E7%AE%A1%E7%90%86/">績效管理</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>前陣子讀到 Jimmy Hong 在 QA Lens 寫的專文 <a class="link"   target="_blank" rel="noopener" href="https://qa-lens.com/blog/qa-metrics-for-managers" >〈QA 指標設計：如何向主管證明 QA 的價值？〉<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>他在文章裡點出了一個很多 QA 的痛點：主管往往對「我們抓了 100 個 Bug」、「寫了 500 個案例」這類活動量指標無感。因為這些數字無法反映商業價值，主管真正在意的是產品品質究竟改善了多少。因此，文章裡強烈建議將焦點轉向 <strong>「Bug 逃逸率（Defect Escape Rate）」</strong>，並指出健全團隊通常應將逃逸率控制在 10% 以下。</p>
+<p>這項指標的公式看起來非常科學、漂亮：</p>
+<blockquote>
+<p><strong>Bug 逃逸率 &#x3D; 線上發現的 Bug 數 &#x2F; (測試期發現的 Bug 數 + 線上發現的 Bug 數)</strong></p>
+</blockquote>
+<p>理論上，這個數字越低，代表測試團隊在前線攔截問題的能力越強；數字越高，代表漏到生產環境的風險越大（畢竟線上修復的成本往往是測試期的十幾倍）。</p>
+<p>讀這篇分析時，我非常認同他對「傳統活動量指標無效」的診斷。但當我把「Bug 逃逸率」這個解方拿來對照自己的日常工作時，我卻愣在螢幕前面。</p>
+<p>因為這個指標，<strong>完全套不進我所在的現實</strong>。</p>
+<hr>
+<h2 id="現實是：我一個月甚至三個月才測它一次"><a href="#現實是：我一個月甚至三個月才測它一次" class="headerlink" title="現實是：我一個月甚至三個月才測它一次"></a>現實是：我一個月甚至三個月才測它一次</h2><p>如果是一座編制完整、跑著嚴格雙週 Sprint 的產品團隊，每個版本上線前都有固定的測試窗口（Testing Window），QA 簽核了才能 release，那逃逸率確實能量出一些東西。</p>
+<p>但我們許多人的真實處境不是那樣。</p>
+<p>我手上同時看著好幾個產品。某些成熟期、或者非核心主力的產品，在資源配置下，<strong>我可能一個月、甚至一整個季度才輪到測它一次大版本</strong>。</p>
+<p>可在這一個月或三個月的空檔裡，產品並不是靜止的。</p>
+<p>RD 與 PM 為了配合市場行銷、補小需求、修緊急報修，中間陸續推了五個、十個小修改上線。這些小調整為了求快，根本沒有（也不可能）排進 QA 的測試排程裡，直接就進了 Production。</p>
+<p>這時候，如果某天線上突然爆出了一個 Bug，我們要怎麼算這筆帳？</p>
+<p>算進「Bug 逃逸率」裡嗎？</p>
+<hr>
+<h2 id="它根本沒經過你，談何「逃逸」？"><a href="#它根本沒經過你，談何「逃逸」？" class="headerlink" title="它根本沒經過你，談何「逃逸」？"></a>它根本沒經過你，談何「逃逸」？</h2><p>「逃逸」這個詞，背後有一個極為巨大的隱性假設：<strong>你曾經在港口張開過檢查的防線，而那條問題是在防線運作的當下，從網子的縫隙裡溜出海的。</strong></p>
+<p>但現實是，那些未經測試的小改動，<strong>根本是從另一條完全沒有港檢的水道直接開出去的。</strong></p>
+<p>當一艘船從頭到尾都沒有進過港口，它在公海沉船了，你轉頭問海關檢查員說：「為什麼這艘船逃逸了？你的攔截率怎麼這麼低？」</p>
+<p>這不叫衡量品質，這叫<strong>責任與權力的完全錯位</strong>。</p>
+<p>如果一個團隊把這種線上問題硬套進 QA 的 Bug 逃逸率，會立刻帶來三個災難性的扭曲：</p>
+<h3 id="1-數學上的荒謬：極小的分母"><a href="#1-數學上的荒謬：極小的分母" class="headerlink" title="1. 數學上的荒謬：極小的分母"></a>1. 數學上的荒謬：極小的分母</h3><p>因為幾個月才測一次大版本，你在「測試期發現的 Bug 數」可能只有個位數（甚至零）。這時只要線上隨便冒出兩個未經測試的小功能異常，逃逸率直接飆破 50%、甚至變成 100%。這個數字除了讓人在考績會議上心驚膽戰之外，沒有任何工程統計意義。</p>
+<h3 id="2-角色上的背鍋：無權決定發布，卻要對發布負責"><a href="#2-角色上的背鍋：無權決定發布，卻要對發布負責" class="headerlink" title="2. 角色上的背鍋：無權決定發布，卻要對發布負責"></a>2. 角色上的背鍋：無權決定發布，卻要對發布負責</h3><p>上線時程不是 QA 訂的、哪次修改不經測試就 push 不是 QA 拍板的，但線上只要有風吹草動，最後算在 QA 的指標上。這種指標不會帶來品質改善，只會讓工程師學會防衛心態。</p>
+<h3 id="3-行為上的倒退：防禦性官僚"><a href="#3-行為上的倒退：防禦性官僚" class="headerlink" title="3. 行為上的倒退：防禦性官僚"></a>3. 行為上的倒退：防禦性官僚</h3><p>一旦工程師發現沒看過的東西會害自己的指標難看，最直覺的自我保護就是：「以後所有小修改，不管多小，都必須排隊等我測過才能上。」<br>但在單兵作戰、資源極度有限的情況下，這只會造成兩個結果：要嘛整體交付速度被全面卡死，要嘛 QA 被迫每天做形式上的「點兩下簽核」，產出更脆弱的假安全感。</p>
+<hr>
+<h2 id="真正該分開算的兩筆帳"><a href="#真正該分開算的兩筆帳" class="headerlink" title="真正該分開算的兩筆帳"></a>真正該分開算的兩筆帳</h2><p>那如果我們還是想追蹤品質，該怎麼看待這種「低頻測試、高頻發布」的現場？</p>
+<p>我覺得關鍵在於<strong>把指標的前提拆開，區分「防線漏洞」與「速度溢價」</strong>。</p>
+<p>在紀錄線上 Bug 時，至少要先分類成兩群：</p>
+<ol>
+<li><p><strong>第一類：經過 QA 完整回歸驗收，但線上依然壞了（真正的 Escape）</strong></p>
+<ul>
+<li>這是真正的防線漏洞。</li>
+<li>值得深究：是我們的測試案例缺少這個邊界？還是測試環境跟正式環境資料有落差？這才是 QA 該負責檢討與優化的範圍。</li>
+</ul>
+</li>
+<li><p><strong>第二類：屬於兩次大測試之間，未排入 QA 測試流程的發布（速度換風險）</strong></p>
+<ul>
+<li>這不是逃逸，這是團隊「為了追求快速上線，自願承擔的未檢驗風險」。</li>
+<li>這個代價是業務策略的一部分，它該被記錄在「未檢驗發布的故障率」或產品整體的穩定性成本裡，而不是寫進 QA 的個人防守失誤表。</li>
+</ul>
+</li>
+</ol>
+<p>當你把這兩筆帳切開，原本那團模糊的指責就會變成非常清楚的決策資訊：</p>
+<p>如果第二類的問題多到團隊受不了，那大家要討論的不是「QA 測試能力好不好」，而是**「當初決定不測就直接上的決策，是不是該重新調整了？」**</p>
+<hr>
+<h2 id="指標是量「系統」，不是量「單兵」"><a href="#指標是量「系統」，不是量「單兵」" class="headerlink" title="指標是量「系統」，不是量「單兵」"></a>指標是量「系統」，不是量「單兵」</h2><p>教科書和管理顧問文章裡的名詞都很漂亮，但幾乎所有的指標，都有它賴以生存的「水溫與土壤」。</p>
+<p>在大廠裡，逃逸率是在穩定的 CI&#x2F;CD、充足的專職人力、規範嚴明的簽核流程下跑出來的；但當我們坐在現實的辦公室裡，一個星期要看好幾個 App、一季才能輪到某些產品一次時，硬搬那些名詞只會削足適履。</p>
+<p>我們需要數字，但我們不需要把別人情境下的尺，拿來量自己身上的傷口。</p>
+<hr>
+<blockquote>
+<p><strong>帶走的一樣東西</strong></p>
+<p>下次團隊或主管提到「Bug 逃逸率」時，先不要急著認錯，也不要急著辯解。拿出一張發布時間軸，問這一句：</p>
+<p><strong>「這個 Bug，是發生在我們有張開網子的那次發布，還是走那條沒設檢查的水道出海的？」</strong></p>
+<p>漏網之魚是測試策略的問題；<br>但沒經港口檢查的船，是團隊選擇用速度換取風險的代價。</p>
+<p>分清楚這兩件事，你才不會替別人當初為了搶快而欠下的技術債買單。</p>
+</blockquote>
+<hr>
+<h3 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://qa-lens.com/blog/qa-metrics-for-managers" >QA 指標設計：如何向主管證明 QA 的價值？ - QA Lens (Jimmy Hong)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a href="/post/qa-performance-metrics-perspective/">測試工程師的「價值」如何量化？初階 QA 對於績效指標的觀察與應對</a></li>
+<li><a href="/post/the-better-you-do-the-less-visible/">做得越好，能被看見的亮點越少</a></li>
+<li><a href="/post/absorbing-instead-of-pushing-back/">缺東西的時候，我傾向自己吸收</a></li>
+<li><a href="/post/testing-is-sampling-not-exhaustion/">測試不是把情況窮舉完，是抽樣</a></li>
+</ul>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">軟體測試</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%93%81%E8%B3%AA%E5%B7%A5%E7%A8%8B/">品質工程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%B8%AC%E8%A9%A6%E7%AD%96%E7%95%A5/">測試策略</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%B5%84%E7%B9%94%E8%A8%AD%E8%A8%88/">組織設計</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/QA%E8%81%B7%E6%B6%AF/">QA職涯</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%B8%BE%E6%95%88%E7%AE%A1%E7%90%86/">績效管理</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/cant-teach-while-doing/"
+                                   title="我懂了我爸做水電時為什麼沒辦法邊教邊做"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">我懂了我爸做水電時為什麼沒辦法邊教邊做</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;留言
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">留言插件加載失敗</span>
+    <button class="reload keep-button">點擊重新加載</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在載入留言插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="giscus-comments-container">
+        <div class="giscus" id="giscus"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.getGiscusTheme) {
+            window.KeepCommentPlugin.getGiscusTheme = () => {
+              return document.documentElement.classList.contains('dark-mode') ? 'dark_dimmed' : 'light_tritanopia'
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeGiscusTheme) {
+            window.KeepCommentPlugin.changeGiscusTheme = () => {
+              const iframe = document.querySelector('iframe.giscus-frame')
+              iframe && iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: window.KeepCommentPlugin.getGiscusTheme()
+                  }
+                }
+              }, 'https://giscus.app')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.initGiscus) {
+            window.KeepCommentPlugin.initGiscus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = 'https://giscus.app/client.js'
+              script.setAttribute('data-repo', 'jiamingla/jiamingla.github.io')
+              script.setAttribute('data-repo-id', 'R_kgDOQ9s4Ng')
+              script.setAttribute('data-category', 'Blog Comments')
+              script.setAttribute('data-category-id', 'DIC_kwDOQ9s4Ns4C1NAE')
+              script.setAttribute('data-reactions-enabled', '0')
+              script.setAttribute('data-lang', 'zh-TW')
+              script.setAttribute('data-mapping', 'pathname')
+              script.setAttribute('data-strict', '0')
+              script.setAttribute('data-emit-metadata', '0')
+              script.setAttribute('data-input-position', 'top')
+              script.setAttribute('crossorigin', 'anonymous')
+              script.setAttribute('loading', 'lazy')
+              script.setAttribute('data-theme', window.KeepCommentPlugin.getGiscusTheme())
+              document.querySelector('.giscus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeGiscusTheme()
+              })
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initGiscus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initGiscus)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8F%BE%E5%AF%A6%E6%98%AF%EF%BC%9A%E6%88%91%E4%B8%80%E5%80%8B%E6%9C%88%E7%94%9A%E8%87%B3%E4%B8%89%E5%80%8B%E6%9C%88%E6%89%8D%E6%B8%AC%E5%AE%83%E4%B8%80%E6%AC%A1"><span class="nav-text">現實是：我一個月甚至三個月才測它一次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%83%E6%A0%B9%E6%9C%AC%E6%B2%92%E7%B6%93%E9%81%8E%E4%BD%A0%EF%BC%8C%E8%AB%87%E4%BD%95%E3%80%8C%E9%80%83%E9%80%B8%E3%80%8D%EF%BC%9F"><span class="nav-text">它根本沒經過你，談何「逃逸」？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B8%E5%AD%B8%E4%B8%8A%E7%9A%84%E8%8D%92%E8%AC%AC%EF%BC%9A%E6%A5%B5%E5%B0%8F%E7%9A%84%E5%88%86%E6%AF%8D"><span class="nav-text">1. 數學上的荒謬：極小的分母</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A7%92%E8%89%B2%E4%B8%8A%E7%9A%84%E8%83%8C%E9%8D%8B%EF%BC%9A%E7%84%A1%E6%AC%8A%E6%B1%BA%E5%AE%9A%E7%99%BC%E5%B8%83%EF%BC%8C%E5%8D%BB%E8%A6%81%E5%B0%8D%E7%99%BC%E5%B8%83%E8%B2%A0%E8%B2%AC"><span class="nav-text">2. 角色上的背鍋：無權決定發布，卻要對發布負責</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A1%8C%E7%82%BA%E4%B8%8A%E7%9A%84%E5%80%92%E9%80%80%EF%BC%9A%E9%98%B2%E7%A6%A6%E6%80%A7%E5%AE%98%E5%83%9A"><span class="nav-text">3. 行為上的倒退：防禦性官僚</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9C%9F%E6%AD%A3%E8%A9%B2%E5%88%86%E9%96%8B%E7%AE%97%E7%9A%84%E5%85%A9%E7%AD%86%E5%B8%B3"><span class="nav-text">真正該分開算的兩筆帳</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E6%A8%99%E6%98%AF%E9%87%8F%E3%80%8C%E7%B3%BB%E7%B5%B1%E3%80%8D%EF%BC%8C%E4%B8%8D%E6%98%AF%E9%87%8F%E3%80%8C%E5%96%AE%E5%85%B5%E3%80%8D"><span class="nav-text">指標是量「系統」，不是量「單兵」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Elijah Ho</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">閱覽</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8F%BE%E5%AF%A6%E6%98%AF%EF%BC%9A%E6%88%91%E4%B8%80%E5%80%8B%E6%9C%88%E7%94%9A%E8%87%B3%E4%B8%89%E5%80%8B%E6%9C%88%E6%89%8D%E6%B8%AC%E5%AE%83%E4%B8%80%E6%AC%A1"><span class="nav-text">現實是：我一個月甚至三個月才測它一次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%83%E6%A0%B9%E6%9C%AC%E6%B2%92%E7%B6%93%E9%81%8E%E4%BD%A0%EF%BC%8C%E8%AB%87%E4%BD%95%E3%80%8C%E9%80%83%E9%80%B8%E3%80%8D%EF%BC%9F"><span class="nav-text">它根本沒經過你，談何「逃逸」？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B8%E5%AD%B8%E4%B8%8A%E7%9A%84%E8%8D%92%E8%AC%AC%EF%BC%9A%E6%A5%B5%E5%B0%8F%E7%9A%84%E5%88%86%E6%AF%8D"><span class="nav-text">1. 數學上的荒謬：極小的分母</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A7%92%E8%89%B2%E4%B8%8A%E7%9A%84%E8%83%8C%E9%8D%8B%EF%BC%9A%E7%84%A1%E6%AC%8A%E6%B1%BA%E5%AE%9A%E7%99%BC%E5%B8%83%EF%BC%8C%E5%8D%BB%E8%A6%81%E5%B0%8D%E7%99%BC%E5%B8%83%E8%B2%A0%E8%B2%AC"><span class="nav-text">2. 角色上的背鍋：無權決定發布，卻要對發布負責</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A1%8C%E7%82%BA%E4%B8%8A%E7%9A%84%E5%80%92%E9%80%80%EF%BC%9A%E9%98%B2%E7%A6%A6%E6%80%A7%E5%AE%98%E5%83%9A"><span class="nav-text">3. 行為上的倒退：防禦性官僚</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9C%9F%E6%AD%A3%E8%A9%B2%E5%88%86%E9%96%8B%E7%AE%97%E7%9A%84%E5%85%A9%E7%AD%86%E5%B8%B3"><span class="nav-text">真正該分開算的兩筆帳</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E6%A8%99%E6%98%AF%E9%87%8F%E3%80%8C%E7%B3%BB%E7%B5%B1%E3%80%8D%EF%BC%8C%E4%B8%8D%E6%98%AF%E9%87%8F%E3%80%8C%E5%96%AE%E5%85%B5%E3%80%8D"><span class="nav-text">指標是量「系統」，不是量「單兵」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-text">延伸閱讀</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>
